@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Image from 'next/image'
 import toast from 'react-hot-toast'
 import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from 'react-markdown-editor-lite'
@@ -180,7 +181,7 @@ export const Blog = ({
 					>
 						{images?.map((link, index) => (
 							<div key={link} className="uploaded-img">
-								<img src={link} alt="image" className="object-cover" width={150} height={80} />
+								<Image src={link} alt="image" className="object-cover" width={150} height={80} />
 
 								<div className="delete-img">
 									<button onClick={() => handleDeleteImage(index)}>
@@ -206,7 +207,7 @@ export const Blog = ({
 					renderHTML={(text) => (
 						<ReactMarkdown
 							components={{
-								code: ({ node, inline, className, children, ...props }) => {
+								code: ({ inline, className, children, ...props }) => {
 									// for code block
 									const match = /language-(\w+)/.exec(className || '')
 

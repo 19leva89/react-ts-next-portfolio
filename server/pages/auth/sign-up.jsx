@@ -8,7 +8,7 @@ import { Spinner } from '@/components'
 const SignUp = () => {
 	const router = useRouter()
 	const { data: session, status } = useSession()
-	const [error, setError] = useState('')
+	const [error, setError] = (useState < string) | (null > null)
 	const [form, setForm] = useState({
 		email: '',
 		password: '',

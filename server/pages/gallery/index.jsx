@@ -9,17 +9,17 @@ import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/compone
 
 const Gallery = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState(1)
+	const [currentPage, setCurrentPage] = useState < number > 1
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState('')
+	const [searchQuery, setSearchQuery] = useState < string > ''
 
 	// fetch content data
 	const { allData, loading } = useFetchData('/api/photos')
 
 	// handle page change
-	const paginate = (pageNumber) => {
+	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber)
 	}
 
@@ -27,10 +27,10 @@ const Gallery = () => {
 	const filteredContent =
 		searchQuery.trim() === ''
 			? allData
-			: allData.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase()))
+			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
 
 	// total pages
-	const totalPages = Math.ceil(filteredContent.length / perPage)
+	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
