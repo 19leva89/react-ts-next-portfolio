@@ -1,15 +1,21 @@
-import { useState } from 'react'
+import { CSSProperties, FC, ReactNode, useState } from 'react'
 
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
 
-export const CodeBlock = ({ node, inline, className, children, ...props }) => {
+interface CodeBlockProps {
+	inline: boolean
+	className: string
+	children: ReactNode
+}
+
+export const CodeBlock: FC<CodeBlockProps> = ({ inline, className, children, ...props }) => {
 	const match = /language-(\w+)/.exec(className || '')
 
 	const [copied, setCopied] = useState(false)
 
 	const handleCopy = () => {
-		navigator.clipboard.writeText(children)
+		navigator.clipboard.writeText(String(children))
 		setCopied(true)
 
 		setTimeout(() => {
@@ -24,6 +30,13 @@ export const CodeBlock = ({ node, inline, className, children, ...props }) => {
 			</code>
 		)
 	} else if (match) {
+		const codeTagStyle: CSSProperties = {
+			padding: '0',
+			borderRadius: '5px',
+			overflow: 'auto',
+			whiteSpace: 'pre-wrap',
+		}
+
 		return (
 			<div style={{ position: 'relative' }}>
 				<SyntaxHighlighter
@@ -32,12 +45,7 @@ export const CodeBlock = ({ node, inline, className, children, ...props }) => {
 					PreTag="pre"
 					{...props}
 					codeTagProps={{
-						style: {
-							padding: '0',
-							borderRadius: '5px',
-							overflow: 'auto',
-							whiteSpace: 'pre-wrap',
-						},
+						style: codeTagStyle,
 					}}
 				>
 					{String(children).replace(/\n$/, '')}
@@ -53,7 +61,7 @@ export const CodeBlock = ({ node, inline, className, children, ...props }) => {
 						color: '#fff',
 						padding: '10px',
 					}}
-					onClick={() => handleCopy()}
+					onClick={handleCopy}
 				>
 					{copied ? 'Copied!' : 'Copy code'}
 				</button>

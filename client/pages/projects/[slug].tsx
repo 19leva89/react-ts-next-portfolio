@@ -1,20 +1,26 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
 import { useRouter } from 'next/router'
+import { FreeMode } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { FreeMode, Pagination } from 'swiper/modules'
 
-import { CodeBlock } from '@/lib/code-block'
+import { CodeBlock } from '@/components'
+import { IProject } from '@/models/project'
 import { formatDate } from '@/utils/format-date'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 const ProjectSlug = () => {
 	const router = useRouter()
 
-	const { slug } = router.query
-	const { allData, loading } = useFetchData(`/api/projects?slug=${slug}`)
+	const { slug } = router.query as { slug: string }
+	const { allData } = useFetchData<IProject[]>(`/api/projects?slug=${slug}`)
+
+	if (!allData || allData.length === 0) {
+		return <div>No project found</div>
+	}
 
 	const projectCategory = allData[0]?.projectCategory
 		.map((category) => category.replace(/-/g, ' '))
@@ -32,7 +38,7 @@ const ProjectSlug = () => {
 				<div className="project-slug-img">
 					<div className="container">
 						<div className="pro-slug-img">
-							<img src={allData[0]?.images[0]} alt={allData[0]?.title} />
+							<Image src={allData[0]?.images[0]} alt={allData[0]?.title} width={1300} height={700} />
 						</div>
 
 						<div className="project-slug-info">
@@ -88,7 +94,7 @@ const ProjectSlug = () => {
 							>
 								{allData[0]?.images.map((image, index) => (
 									<SwiperSlide key={index}>
-										<img src={image} alt={allData[0]?.title} />
+										<Image src={image} alt={allData[0]?.title} width={350} height={230} />
 									</SwiperSlide>
 								))}
 							</Swiper>
@@ -102,7 +108,13 @@ const ProjectSlug = () => {
 							<h2>Project Description</h2>
 
 							<div className="blog-content">
-								<ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlock }}>
+								<ReactMarkdown
+									remarkPlugins={[remarkGfm]}
+									components={{
+										// eslint-disable-next-line @typescript-eslint/no-explicit-any
+										code: (props: any) => <CodeBlock {...props} inline={false} />,
+									}}
+								>
 									{allData[0]?.description}
 								</ReactMarkdown>
 							</div>

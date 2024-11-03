@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { HiXMark } from 'react-icons/hi2'
 import { IoMdCheckmark } from 'react-icons/io'
@@ -32,7 +33,7 @@ const Services = () => {
 								<div>
 									<h2>Web Deployment</h2>
 
-									<img src="/svg/website-icon.svg" alt="" />
+									<Image src="/svg/website-icon.svg" alt="" width={70} height={70} />
 								</div>
 
 								<ul>
@@ -56,7 +57,7 @@ const Services = () => {
 								<div>
 									<h2>Mobile Development</h2>
 
-									<img src="/svg/android.svg" alt="" />
+									<Image src="/svg/android.svg" alt="" width={70} height={70} />
 								</div>
 
 								<ul>
@@ -81,7 +82,7 @@ const Services = () => {
 								<div>
 									<h2>Digital Marketing (SEO)</h2>
 
-									<img src="/svg/seo.svg" alt="" />
+									<Image src="/svg/seo.svg" alt="" width={70} height={70} />
 								</div>
 
 								<ul>
@@ -104,7 +105,7 @@ const Services = () => {
 								<div>
 									<h2>Content Creator</h2>
 
-									<img src="/svg/photo-album.svg" alt="" />
+									<Image src="/svg/photo-album.svg" alt="" width={70} height={70} />
 								</div>
 
 								<ul>
@@ -127,7 +128,7 @@ const Services = () => {
 								<div>
 									<h2>UI/UX Product Design</h2>
 
-									<img src="/svg/ui.svg" alt="" />
+									<Image src="/svg/ui.svg" alt="" width={70} height={70} />
 								</div>
 
 								<ul>
@@ -150,7 +151,7 @@ const Services = () => {
 								<div>
 									<h2>E-commerce Business Solutions</h2>
 
-									<img src="/svg/shopify.svg" alt="" />
+									<Image src="/svg/shopify.svg" alt="" width={70} height={70} />
 								</div>
 
 								<ul>
@@ -174,7 +175,7 @@ const Services = () => {
 					<div className="container">
 						<div className="pricing-title text-center">
 							<h3 data-aos="fade-up">
-								<img src="/img/chevron-right.png" alt="" /> Pricing Plan
+								<Image src="/img/chevron-right.png" alt="" width={70} height={70} /> Pricing Plan
 							</h3>
 
 							<h2 data-aos="fade-up">Pricing my work</h2>

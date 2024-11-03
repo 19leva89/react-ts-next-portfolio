@@ -1,6 +1,12 @@
 import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
 
-export const Pagination = ({ paginate, currentPage, totalPages }) => {
+interface PaginationProps {
+	paginate: (page: number) => void
+	currentPage: number
+	totalPages: number
+}
+
+export const Pagination = ({ paginate, currentPage, totalPages }: PaginationProps) => {
 	const pageNumbers = []
 
 	for (let i = 1; i <= totalPages; i++) {

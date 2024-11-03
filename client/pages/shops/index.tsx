@@ -1,24 +1,30 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
+import { IShop } from '@/models/shop'
 import { Spinner } from '@/components'
 import { formatDate } from '@/utils/format-date'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 const Shop = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState(1)
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState('')
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/shops')
+	const { allData, loading } = useFetchData<IShop[]>('/api/shops')
+
+	if (!allData || allData.length === 0) {
+		return <div>No project found</div>
+	}
 
 	// handle page change
-	const paginate = (pageNumber) => {
+	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber)
 	}
 
@@ -26,21 +32,21 @@ const Shop = () => {
 	const filteredContent =
 		searchQuery.trim() === ''
 			? allData
-			: allData.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase()))
+			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
 
 	// total pages
-	const totalPages = Math.ceil(filteredContent.length / perPage)
+	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
 	// get current page of content
-	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
+	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const publishedContent = currentContent.filter((content) => content.status === 'publish')
+	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
 
-	const publishedData = allData.filter((content) => content.status === 'publish')
+	const publishedData = allData?.filter((content) => content.status === 'publish') || []
 
 	const createdAtData = allData[0]?.createdAt ? new Date(allData[0]?.createdAt) : null
 
@@ -75,7 +81,12 @@ const Shop = () => {
 										data-aos-duration="2000"
 									>
 										<div className="sp-pro-card-img">
-											<img src={product.images[0] || '/img/no-image.png'} alt={product.title} />
+											<Image
+												src={product.images[0] || '/img/no-image.png'}
+												alt={product.title}
+												width={420}
+												height={330}
+											/>
 										</div>
 
 										<div className="sp-pro-card-info">

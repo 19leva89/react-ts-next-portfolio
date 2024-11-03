@@ -1,47 +1,49 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { FreeMode } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+import { IBlog } from '@/models/blog'
 import { Pagination, Spinner } from '@/components'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 const Category = () => {
 	const router = useRouter()
-	const { category } = router.query
+	const { category } = router.query as { category: string }
 
 	// pagination
-	const [currentPage, setCurrentPage] = useState(1)
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// fetch content data
-	const { allData, loading } = useFetchData(`/api/blogs?blogCategory=${category}`)
+	const { allData, loading } = useFetchData<IBlog[]>(`/api/blogs?blogCategory=${category}`)
 
 	// handle page change
-	const paginate = (pageNumber) => {
+	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber)
 	}
 
 	// filter all data based on search query
 	const filteredContent = allData
-		.filter((item) => item.category === item.category)
-		.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+		?.filter((item) => item.blogCategory === item.blogCategory)
+		.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
 		.slice(0, 20)
 		.reverse()
 
 	// total pages
-	const totalPages = Math.ceil(filteredContent.length / perPage)
+	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
 	// get current page of content
-	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
+	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const publishedContent = currentContent.filter((content) => content.status === 'publish')
+	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
 
 	return (
 		<>
@@ -98,7 +100,12 @@ const Category = () => {
 										<div key={content._id} className="l-post">
 											<div className="l-post-img">
 												<Link href={`/blogs/${content.slug}`}>
-													<img src={content.images[0] || '/img/no-image.png'} alt={content.title} />
+													<Image
+														src={content.images[0] || '/img/no-image.png'}
+														alt={content.title}
+														width={420}
+														height={240}
+													/>
 												</Link>
 
 												<Swiper
@@ -128,7 +135,7 @@ const Category = () => {
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, autem. </p>
 
 												<h4 className="flex">
-													<img src="/img/coder-white.png" alt="author" />
+													<Image src="/img/coder-white.png" alt="author" width={28} height={28} />
 													<span>by sobolev</span>
 												</h4>
 											</div>

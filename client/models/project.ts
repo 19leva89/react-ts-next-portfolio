@@ -1,6 +1,7 @@
 import { Schema, models, model } from 'mongoose'
 
-interface IProject {
+export interface IProject {
+	_id: string
 	title: string
 	slug: string
 	images: string[]
@@ -10,6 +11,7 @@ interface IProject {
 	projectCategory: string[]
 	tags: string[]
 	status: string
+	createdAt: Date
 }
 
 const projectSchema = new Schema<IProject>(

@@ -1,28 +1,30 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
 import { Spinner } from '@/components'
+import { IProject } from '@/models/project'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 import { GoArrowUpRight } from 'react-icons/go'
 
 const Projects = () => {
-	const [selectedCategory, setSelectedCategory] = useState('all')
-	const [filtredProjects, setFiltredProjects] = useState([])
+	const [selectedCategory, setSelectedCategory] = useState<string>('all')
+	const [filtredProjects, setFiltredProjects] = useState<IProject[]>([])
 
 	// pagination
-	const [currentPage, setCurrentPage] = useState(1)
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState('')
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/projects')
+	const { allData, loading } = useFetchData<IProject[]>('/api/projects')
 
 	// handle page change
-	const paginate = (pageNumber) => {
+	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber)
 	}
 
@@ -30,29 +32,29 @@ const Projects = () => {
 	const filteredContent =
 		searchQuery.trim() === ''
 			? allData
-			: allData.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase()))
+			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
 
 	// total pages
-	const totalPages = Math.ceil(filteredContent.length / perPage)
+	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
 	// get current page of content
-	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
+	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const publishedContent = currentContent.filter((content) => content.status === 'publish')
+	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
 
-	const publishedData = allData.filter((content) => content.status === 'publish')
+	const publishedData = allData?.filter((content) => content.status === 'publish') || []
 
 	useEffect(() => {
 		// filter projects based on selected category
 		if (selectedCategory === 'all') {
-			setFiltredProjects(allData.filter((project) => project.status === 'publish'))
+			setFiltredProjects((allData ?? []).filter((project) => project.status === 'publish'))
 		} else {
 			setFiltredProjects(
-				allData.filter(
+				(allData ?? []).filter(
 					(project) => project.status === 'publish' && project.projectCategory[0] === selectedCategory,
 				),
 			)
@@ -154,7 +156,12 @@ const Projects = () => {
 												data-aos-duration="2000"
 											>
 												<div className="pro-img-box">
-													<img src={project.images[0] || '/img/no-image.png'} alt={project.title} />
+													<Image
+														src={project.images[0] || '/img/no-image.png'}
+														alt={project.title}
+														width={550}
+														height={400}
+													/>
 												</div>
 
 												<div className="pro-content-box">

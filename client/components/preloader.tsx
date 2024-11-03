@@ -1,9 +1,13 @@
 import gsap from 'gsap'
-import { useEffect, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 
-export const Preloader = ({ isLoading, children }) => {
-	const svgRef = useRef(null)
-	const svgTextRef = useRef(null)
+interface PreloaderProps {
+	isLoading: boolean
+	children: ReactNode
+}
+export const Preloader = ({ isLoading, children }: PreloaderProps) => {
+	const svgRef = useRef<SVGPathElement | null>(null)
+	const svgTextRef = useRef<HTMLDivElement | null>(null)
 
 	const startStrokeAnimation = () => {
 		if (svgTextRef.current) {
@@ -55,7 +59,7 @@ export const Preloader = ({ isLoading, children }) => {
 			<div className="preloader-heading">
 				<div className="load-text" ref={svgTextRef}>
 					{['S', 'O', 'B', 'O', 'L', 'E', 'V'].map((letter, index) => (
-						<span key={index} style={{ '--i': index }}>
+						<span key={index} style={{ ['--i' as string]: index }}>
 							{letter}
 						</span>
 					))}

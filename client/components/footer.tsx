@@ -3,13 +3,14 @@ import Link from 'next/link'
 import { GrLinkedinOption } from 'react-icons/gr'
 import { LiaBasketballBallSolid } from 'react-icons/lia'
 import { FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
+import Image from 'next/image'
 
 export const Footer = () => {
 	return (
 		<footer className="footer">
 			<div className="footer-sec flex flex-center flex-col gap-2">
 				<div className="logo">
-					<img src="/img/logo-white.png" alt="logo" />
+					<Image src="/img/logo-white.png" alt="logo" width={65} height={65} />
 				</div>
 
 				<ul className="flex gap-2">

@@ -1,6 +1,7 @@
 import { Schema, models, model, Types } from 'mongoose'
 
 export interface IComment {
+	_id: string
 	name: string
 	email: string
 	title: string
@@ -9,7 +10,7 @@ export interface IComment {
 	createdAt: Date
 	blog: Types.ObjectId
 	parent: Types.ObjectId
-	children: Types.ObjectId[]
+	children: IComment[]
 	parentName: string
 }
 

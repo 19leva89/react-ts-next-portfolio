@@ -1,10 +1,15 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
+import { IBlog } from '@/models/blog'
 import { IoClose } from 'react-icons/io5'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
-const extractFirstParagraph = (markdown) => {
+interface BlogSearchProps {
+	cls: () => void
+}
+
+const extractFirstParagraph = (markdown: string) => {
 	// Split markdown by double newline to separate paragraphs
 	const paragraphs = markdown.split('\n\n')
 
@@ -12,14 +17,14 @@ const extractFirstParagraph = (markdown) => {
 	return paragraphs[0]
 }
 
-export const BlogSearch = (props) => {
-	const { allData } = useFetchData('/api/blogs') // Assuming useFetchData returns an object with allwork and loading
+export const BlogSearch = ({ cls }: BlogSearchProps) => {
+	const { allData = [] } = useFetchData<IBlog[]>('/api/blogs') // Assuming useFetchData returns an object with allwork and loading
 
 	const [blogTitle, setBlogTitle] = useState('') // blog title should be initialized as a string
-	const [searchResult, setSearchResult] = useState(null)
+	const [searchResult, setSearchResult] = useState<IBlog[]>([])
 
 	// filter for published blogs required
-	const publishedData = allData.filter((ab) => ab.status === 'publish')
+	const publishedData = allData?.filter((blog) => blog.status === 'publish') || []
 
 	// Function to handle search
 	useEffect(() => {
@@ -50,7 +55,7 @@ export const BlogSearch = (props) => {
 						value={blogTitle}
 						onChange={(e) => setBlogTitle(e.target.value)}
 					/>
-					<div className="sbs-input-close" onClick={props.cls}>
+					<div className="sbs-input-close" onClick={cls}>
 						<IoClose />
 					</div>
 				</div>
@@ -65,12 +70,7 @@ export const BlogSearch = (props) => {
 								<>
 									{searchResult.slice(0, 10).map((blog) => {
 										return (
-											<Link
-												href={`/blogs/${blog.slug}`}
-												key={blog._id}
-												className="sbsf-s-box"
-												onClick={props.cls}
-											>
+											<Link href={`/blogs/${blog.slug}`} key={blog._id} className="sbsf-s-box" onClick={cls}>
 												<h2>{blog.title}</h2>
 												<p>{extractFirstParagraph(blog.description)}</p>
 											</Link>

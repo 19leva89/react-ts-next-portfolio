@@ -1,16 +1,18 @@
 import axios from 'axios'
 import Link from 'next/link'
 import Head from 'next/head'
+import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
 import { useRouter } from 'next/router'
-import { useEffect, useRef, useState } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 
-import { CodeBlock } from '@/lib/code-block'
+import { IBlog } from '@/models/blog'
+import { IComment } from '@/models/comment'
 import { formatDate } from '@/utils/format-date'
-import { BlogSearch, Spinner } from '@/components'
 import { useFetchData } from '@/hooks/use-fetch-data'
+import { BlogSearch, CodeBlock, Spinner } from '@/components'
 
 import { BsCopy } from 'react-icons/bs'
 import { CiRead } from 'react-icons/ci'
@@ -23,16 +25,15 @@ import { RiFacebookFill, RiWhatsappFill } from 'react-icons/ri'
 const BlogPage = () => {
 	const router = useRouter()
 
-	const { slug } = router.query
-	const { allData } = useFetchData(`/api/blogs`)
-	console.log('allData', allData)
+	const { slug } = router.query as { slug: string }
+	const { allData = [] } = useFetchData<IBlog[]>('/api/blogs')
 
-	const [error, setError] = useState(null)
+	const [error, setError] = useState<string | null>(null)
 	const [copied, setCopied] = useState(false)
 	const [loading, setLoading] = useState(true)
-	const [messageOk, setMessageOk] = useState('')
+	const [messageOk, setMessageOk] = useState<string>('')
 	const [searchInput, setSearchInput] = useState(false)
-	const [blogData, setBlogData] = useState({ blog: {}, comments: [] })
+	const [blogData, setBlogData] = useState({ blog: {} as IBlog, comments: [] as IComment[] })
 	const [newComment, setNewComment] = useState({
 		name: '',
 		email: '',
@@ -44,14 +45,14 @@ const BlogPage = () => {
 	})
 
 	// for scroll down to comment form
-	const replyFormRef = useRef(null)
+	const replyFormRef = useRef<HTMLDivElement>(null)
 
 	const createdAtDate =
 		blogData && blogData.blog.createdAt ? new Date(blogData && blogData.blog.createdAt) : null
 
 	const blogUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/blogs/${slug}`
 
-	const copyToClipboard = (url) => {
+	const copyToClipboard = (url: string) => {
 		navigator.clipboard.writeText(url)
 		setCopied(true)
 
@@ -60,7 +61,7 @@ const BlogPage = () => {
 		}, 3000)
 	}
 
-	const handleCommentSubmit = async (e) => {
+	const handleCommentSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		try {
@@ -76,7 +77,7 @@ const BlogPage = () => {
 								...comment,
 								children: [...comment.children, res.data],
 							}
-						} else if (comment.children && comment.children.length > 0) {
+						} else if (comment.children && comment.children.length > 0 && newComment.parent !== null) {
 							// recursively update the children comments
 							return {
 								...comment,
@@ -117,17 +118,23 @@ const BlogPage = () => {
 				parentName: '',
 			})
 		} catch (error) {
-			setMessageOk('❌ Failed to post comment, please try again later.')
+			if (axios.isAxiosError(error)) {
+				setMessageOk('❌ Failed to post comment, please try again later.')
+
+				setError(error.response?.data?.message || 'An unexpected error occurred')
+			} else {
+				setMessageOk('❌ Failed to post comment, please try again later.')
+
+				setError('An unexpected error occurred')
+			}
 
 			setTimeout(() => {
 				setMessageOk('')
 			}, 5000)
-
-			setError(error.response.data.message)
 		}
 	}
 
-	const handleReply = (parentCommentId, parentName) => {
+	const handleReply = (parentCommentId: any, parentName: string) => {
 		setNewComment({
 			...newComment,
 			parent: parentCommentId,
@@ -144,12 +151,16 @@ const BlogPage = () => {
 		setNewComment({
 			...newComment,
 			parent: null,
-			parentName: null,
+			parentName: '',
 			mainComment: true,
 		})
 	}
 
-	const updateChildrenComments = (comments, parentId, newComment) => {
+	const updateChildrenComments = (
+		comments: IComment[],
+		parentId: string,
+		newComment: IComment,
+	): IComment[] => {
 		return comments.map((comment) => {
 			if (comment._id === parentId) {
 				// add new reply to children array
@@ -169,7 +180,7 @@ const BlogPage = () => {
 		})
 	}
 
-	const renderComments = (comments) => {
+	const renderComments = (comments: IComment[]) => {
 		if (!comments) {
 			return null
 		}
@@ -211,7 +222,7 @@ const BlogPage = () => {
 					{parentComment.parent && <span className="replied-to">Replied to {parentComment.parentName}</span>}
 
 					<div className="children-comments">
-						{commentsMap.get(parentComment._id).map((childComment) => (
+						{commentsMap.get(parentComment._id).map((childComment: IComment) => (
 							<div key={childComment._id} className="child-comment">
 								<h3>
 									{childComment.name} <span>{new Date(childComment.createdAt).toLocaleString()}</span>
@@ -281,13 +292,19 @@ const BlogPage = () => {
 						<div className="blog-slug-page-cont">
 							<div className="left-side-details">
 								<div className="left-blog-info-img">
-									<img src={blogData.blog.images[0] || '/img/no-image.png'} alt={blogData.blog.title} />
+									<Image
+										src={blogData.blog.images[0] || '/img/no-image.png'}
+										alt={blogData.blog.title}
+										width={910}
+										height={350}
+									/>
 								</div>
 
 								<div className="slug-blog-info-pub">
 									<div className="flex gap-2">
 										<div className="admin-slug">
-											<img src="/img/coder-white.png" alt="coder" />
+											<Image src="/img/coder-white.png" alt="coder" width={30} height={30} />
+
 											<span>by Sobolev</span>
 										</div>
 
@@ -357,7 +374,13 @@ const BlogPage = () => {
 									<Spinner />
 								) : (
 									<div className="blog-content">
-										<ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlock }}>
+										<ReactMarkdown
+											remarkPlugins={[remarkGfm]}
+											components={{
+												// eslint-disable-next-line @typescript-eslint/no-explicit-any
+												code: (props: any) => <CodeBlock {...props} inline={false} />,
+											}}
+										>
 											{blogData.blog.description}
 										</ReactMarkdown>
 									</div>
@@ -451,28 +474,30 @@ const BlogPage = () => {
 										<Link href={`/blogs/category/node-js`}>
 											<li>
 												Node JS
-												<span>{allData.filter((item) => item.blogCategory.includes('node-js')).length}</span>
+												<span>{allData?.filter((item) => item.blogCategory.includes('node-js')).length}</span>
 											</li>
 										</Link>
 
 										<Link href={`/blogs/category/react-js`}>
 											<li>
 												React JS
-												<span>{allData.filter((item) => item.blogCategory.includes('react-js')).length}</span>
+												<span>
+													{allData?.filter((item) => item.blogCategory.includes('react-js')).length}
+												</span>
 											</li>
 										</Link>
 
 										<Link href={`/blogs/category/next-js`}>
 											<li>
 												Next JS
-												<span>{allData.filter((item) => item.blogCategory.includes('next-js')).length}</span>
+												<span>{allData?.filter((item) => item.blogCategory.includes('next-js')).length}</span>
 											</li>
 										</Link>
 
 										<Link href={`/blogs/category/css`}>
 											<li>
 												CSS
-												<span>{allData.filter((item) => item.blogCategory.includes('css')).length}</span>
+												<span>{allData?.filter((item) => item.blogCategory.includes('css')).length}</span>
 											</li>
 										</Link>
 
@@ -480,7 +505,7 @@ const BlogPage = () => {
 											<li>
 												Digital Marketing
 												<span>
-													{allData.filter((item) => item.blogCategory.includes('digital-marketing')).length}
+													{allData?.filter((item) => item.blogCategory.includes('digital-marketing')).length}
 												</span>
 											</li>
 										</Link>
@@ -489,7 +514,7 @@ const BlogPage = () => {
 											<li>
 												Flutter Dev
 												<span>
-													{allData.filter((item) => item.blogCategory.includes('flutter-dev')).length}
+													{allData?.filter((item) => item.blogCategory.includes('flutter-dev')).length}
 												</span>
 											</li>
 										</Link>
@@ -497,7 +522,9 @@ const BlogPage = () => {
 										<Link href={`/blogs/category/database`}>
 											<li>
 												Database
-												<span>{allData.filter((item) => item.blogCategory.includes('database')).length}</span>
+												<span>
+													{allData?.filter((item) => item.blogCategory.includes('database')).length}
+												</span>
 											</li>
 										</Link>
 
@@ -505,7 +532,7 @@ const BlogPage = () => {
 											<li>
 												Deployment
 												<span>
-													{allData.filter((item) => item.blogCategory.includes('deployment')).length}
+													{allData?.filter((item) => item.blogCategory.includes('deployment')).length}
 												</span>
 											</li>
 										</Link>
@@ -514,9 +541,14 @@ const BlogPage = () => {
 
 								<div className="right-recent-post">
 									<h2>Recent Posts</h2>
-									{allData.slice(0, 3).map((blog) => (
+									{allData?.slice(0, 3).map((blog) => (
 										<Link key={blog._id} href={`/blogs/${blog.slug}`} className="right-recent-p">
-											<img src={blog.images[0] || '/img/no-image.png'} alt={blog.title} />
+											<Image
+												src={blog.images[0] || '/img/no-image.png'}
+												alt={blog.title}
+												width={100}
+												height={100}
+											/>
 
 											<div>
 												<h3>{blog.title}</h3>

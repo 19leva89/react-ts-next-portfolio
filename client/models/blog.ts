@@ -2,7 +2,8 @@ import { Schema, models, model } from 'mongoose'
 
 import { IComment } from '@/models/comment'
 
-interface IBlog {
+export interface IBlog {
+	_id: string
 	title: string
 	slug: string
 	images: string[]
@@ -11,6 +12,7 @@ interface IBlog {
 	tags: string[]
 	status: string
 	comments: IComment[]
+	createdAt: Date
 }
 
 const blogSchema = new Schema<IBlog>(

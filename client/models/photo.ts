@@ -1,9 +1,11 @@
 import { Schema, models, model } from 'mongoose'
 
-interface IPhoto {
+export interface IPhoto {
+	_id: string
 	title: string
 	slug: string
 	images: string[]
+	createdAt: Date
 }
 
 const photoSchema = new Schema<IPhoto>(

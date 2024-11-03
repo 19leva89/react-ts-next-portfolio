@@ -1,7 +1,9 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
+import { IBlog } from '@/models/blog'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { BlogSearch, Pagination, Spinner } from '@/components'
 
@@ -13,18 +15,18 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 const Blogs = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState(1)
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState('')
+	const [searchQuery, setSearchQuery] = useState<string>('')
 	const [searchInput, setSearchInput] = useState(false)
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/blogs')
+	const { allData = [], loading } = useFetchData<IBlog[]>('/api/blogs')
 
 	// handle page change
-	const paginate = (pageNumber) => {
+	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber)
 	}
 
@@ -32,21 +34,21 @@ const Blogs = () => {
 	const filteredContent =
 		searchQuery.trim() === ''
 			? allData
-			: allData.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase()))
+			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
 
 	// total pages
-	const totalPages = Math.ceil(filteredContent.length / perPage)
+	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
 	// get current page of content
-	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
+	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const publishedContent = currentContent.filter((content) => content.status === 'publish')
+	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
 
-	const sliderPublishedData = allData.filter((content) => content.status === 'publish')
+	const sliderPublishedData = allData?.filter((content) => content.status === 'publish') || []
 
 	const handleSearchOpen = () => {
 		setSearchInput(!searchInput)
@@ -117,7 +119,12 @@ const Blogs = () => {
 													>
 														<div key={content._id} className="f-post">
 															<Link href={`/blogs/${content.slug}`}>
-																<img src={content.images[0] || '/img/no-image.png'} alt={content.title} />
+																<Image
+																	src={content.images[0] || '/img/no-image.png'}
+																	alt={content.title}
+																	width={430}
+																	height={480}
+																/>
 															</Link>
 
 															<div className="f-post-info">
@@ -127,7 +134,8 @@ const Blogs = () => {
 
 																<div className="f-post-by flex flex-sb">
 																	<div className="flex gap-05">
-																		<img src="/img/coder-white.png" alt="coder" />
+																		<Image src="/img/coder-white.png" alt="coder" width={32} height={32} />
+
 																		<p>By Sobolev</p>
 																	</div>
 
@@ -164,7 +172,7 @@ const Blogs = () => {
 
 							<div className="popu-tags">
 								<Link href="/blogs/category/next-js" className="p-tag" data-aos="fade-right">
-									<img src="/img/next-js.png" alt="next js" />
+									<Image src="/img/next-js.png" alt="next js" width={190} height={150} />
 
 									<div className="tags">
 										<div className="apps">
@@ -175,7 +183,7 @@ const Blogs = () => {
 								</Link>
 
 								<Link href="/blogs/category/node-js" className="p-tag" data-aos="fade-right">
-									<img src="/img/node-js.png" alt="node js" />
+									<Image src="/img/node-js.png" alt="node js" width={190} height={150} />
 
 									<div className="tags">
 										<div className="apps">
@@ -186,7 +194,7 @@ const Blogs = () => {
 								</Link>
 
 								<Link href="/blogs/category/react-js" className="p-tag" data-aos="fade-right">
-									<img src="/img/react-js.gif" alt="react js" />
+									<Image src="/img/react-js.gif" alt="react js" width={190} height={150} />
 
 									<div className="tags">
 										<div className="apps">
@@ -197,7 +205,7 @@ const Blogs = () => {
 								</Link>
 
 								<Link href="/blogs/category/digital-marketing" className="p-tag" data-aos="fade-left">
-									<img src="/img/digital-marketing.png" alt="digital marketing" />
+									<Image src="/img/digital-marketing.png" alt="digital marketing" width={190} height={150} />
 
 									<div className="tags">
 										<div className="apps">
@@ -208,7 +216,7 @@ const Blogs = () => {
 								</Link>
 
 								<Link href="/blogs/category/flutter-dev" className="p-tag" data-aos="fade-left">
-									<img src="/img/flutter-dev.png" alt="flutter dev" />
+									<Image src="/img/flutter-dev.png" alt="flutter dev" width={190} height={150} />
 
 									<div className="tags">
 										<div className="apps">
@@ -219,7 +227,7 @@ const Blogs = () => {
 								</Link>
 
 								<Link href="/blogs/category/css" className="p-tag" data-aos="fade-left">
-									<img src="/img/css.png" alt="css" />
+									<Image src="/img/css.png" alt="css" width={190} height={150} />
 
 									<div className="tags">
 										<div className="apps">
@@ -258,7 +266,12 @@ const Blogs = () => {
 										>
 											<div className="l-post-img">
 												<Link href={`/blogs/${content.slug}`}>
-													<img src={content.images[0] || '/img/no-image.png'} alt={content.title} />
+													<Image
+														src={content.images[0] || '/img/no-image.png'}
+														alt={content.title}
+														width={420}
+														height={240}
+													/>
 												</Link>
 
 												<div className="tags">
@@ -279,7 +292,8 @@ const Blogs = () => {
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, autem. </p>
 
 												<h4 className="flex">
-													<img src="/img/coder-white.png" alt="author" />
+													<Image src="/img/coder-white.png" alt="author" width={28} height={28} />
+
 													<span>by sobolev</span>
 												</h4>
 											</div>

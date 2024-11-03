@@ -7,24 +7,18 @@ import { FreeMode } from 'swiper/modules'
 import { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { Spinner } from '@/components'
-import { CodeBlock } from '@/lib/code-block'
+import { IShop } from '@/models/shop'
+import { CodeBlock, Spinner } from '@/components'
 import { useFetchData } from '@/hooks/use-fetch-data'
+import Image from 'next/image'
 
 const ShopSlug = () => {
 	const router = useRouter()
 
-	const { slug } = router.query
-	const { allData, loading } = useFetchData(`/api/shops?slug=${slug}`)
+	const { slug } = router.query as { slug: string }
+	const { allData, loading } = useFetchData<IShop[]>(`/api/shops?slug=${slug}`)
 
 	const [mainImage, setMainImage] = useState('')
-
-	const createdAtData = allData[0]?.createdAt ? new Date(allData[0]?.createdAt) : null
-
-	// function to handle click on product list image
-	const handleImageClick = (image) => {
-		setMainImage(image)
-	}
 
 	// useEffect to set mainImage once allData is available
 	useEffect(() => {
@@ -32,6 +26,15 @@ const ShopSlug = () => {
 			setMainImage(allData[0]?.images[0])
 		}
 	}, [allData])
+
+	// function to handle click on product list image
+	const handleImageClick = (image: string) => {
+		setMainImage(image)
+	}
+
+	if (!allData || allData.length === 0) {
+		return <div>No project found</div>
+	}
 
 	return (
 		<>
@@ -48,7 +51,12 @@ const ShopSlug = () => {
 									{loading ? (
 										<Spinner />
 									) : (
-										<img src={mainImage || '/img/no-image.png'} alt={allData[0]?.title} />
+										<Image
+											src={mainImage || '/img/no-image.png'}
+											alt={allData[0]?.title}
+											width={650}
+											height={450}
+										/>
 									)}
 								</div>
 
@@ -63,7 +71,13 @@ const ShopSlug = () => {
 									>
 										{allData[0]?.images.map((image, index) => (
 											<SwiperSlide key={index}>
-												<img src={image} alt={allData[0]?.title} onClick={() => handleImageClick(image)} />
+												<Image
+													src={image}
+													alt={allData[0]?.title}
+													onClick={() => handleImageClick(image)}
+													width={250}
+													height={250}
+												/>
 											</SwiperSlide>
 										))}
 									</Swiper>
@@ -84,7 +98,13 @@ const ShopSlug = () => {
 								<div className="blog-content">
 									<h2 className="bc-title">Product Details:</h2>
 
-									<ReactMarkdown remarkPlugins={[remarkGfm]} components={{ code: CodeBlock }}>
+									<ReactMarkdown
+										remarkPlugins={[remarkGfm]}
+										components={{
+											// eslint-disable-next-line @typescript-eslint/no-explicit-any
+											code: (props: any) => <CodeBlock {...props} inline={false} />,
+										}}
+									>
 										{allData[0]?.description}
 									</ReactMarkdown>
 								</div>

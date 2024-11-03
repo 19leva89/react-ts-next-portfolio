@@ -1,8 +1,11 @@
 import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 
+import { IBlog } from '@/models/blog'
+import { IProject } from '@/models/project'
 import { services } from '@/constants/services'
 import { formatDate } from '@/utils/format-date'
 import { Spinner, TypingAnimation } from '@/components'
@@ -16,23 +19,19 @@ import { LiaBasketballBallSolid } from 'react-icons/lia'
 import { FaCalendarDays, FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
 
 const Home = () => {
-	const [activeId, setActiveId] = useState(1)
-	const [loading, setLoading] = useState(true)
-	const [allProjects, setAllProjects] = useState([])
-	const [allBlogs, setAllBlogs] = useState([])
-	const [selectedCategory, setSelectedCategory] = useState('all')
-	const [filtredProjects, setFiltredProjects] = useState([])
+	const [activeId, setActiveId] = useState<number>(1)
+	const [loading, setLoading] = useState<boolean>(true)
+	const [allProjects, setAllProjects] = useState<IProject[]>([])
+	const [allBlogs, setAllBlogs] = useState<IBlog[]>([])
+	const [selectedCategory, setSelectedCategory] = useState<string>('all')
+	const [filtredProjects, setFiltredProjects] = useState<IProject[]>([])
 
-	const handleHover = (id) => {
+	const handleHover = (id: number) => {
 		setActiveId(id)
 	}
 
 	const handleMouseOut = () => {
 		setActiveId(1)
-	}
-
-	const handleCategoryChange = (category) => {
-		setSelectedCategory(category)
 	}
 
 	useEffect(() => {
@@ -58,10 +57,10 @@ const Home = () => {
 	useEffect(() => {
 		// filter projects based on selected category
 		if (selectedCategory === 'all') {
-			setFiltredProjects(allProjects.filter((project) => project.status === 'publish'))
+			setFiltredProjects((allProjects ?? []).filter((project) => project.status === 'publish'))
 		} else {
 			setFiltredProjects(
-				allProjects.filter(
+				(allProjects ?? []).filter(
 					(project) => project.status === 'publish' && project.projectCategory[0] === selectedCategory,
 				),
 			)
@@ -92,7 +91,7 @@ const Home = () => {
 						{/* left side section */}
 						<div className="hero-info-left">
 							<span className="hero-sb-title" data-aos="fade-right">
-								I'm Dmitry
+								I`m Dmitry
 							</span>
 
 							<h1 className="hero-title" data-aos="fade-right">
@@ -107,7 +106,7 @@ const Home = () => {
 								data-aos-easing="ease-out-cubic"
 								data-aos-duration="2000"
 							>
-								<img src="/img/me.png" alt="coder" />
+								<Image src="/img/me.png" alt="coder" height={500} width={500} />
 							</div>
 
 							<div className="lead" data-aos="fade-up">
@@ -162,7 +161,7 @@ const Home = () => {
 								data-aos-easing="ease-out-cubic"
 								data-aos-duration="2000"
 							>
-								<img src="/img/me.png" alt="coder" />
+								<Image src="/img/me.png" alt="coder" height={500} width={500} />
 							</div>
 						</div>
 					</div>
@@ -329,7 +328,12 @@ const Home = () => {
 											data-aos-duration="2000"
 										>
 											<div className="pro-img-box">
-												<img src={project.images[0] || '/img/no-image.png'} alt={project.title} />
+												<Image
+													src={project.images[0] || '/img/no-image.png'}
+													alt={project.title}
+													width={550}
+													height={400}
+												/>
 											</div>
 
 											<div className="pro-content-box">
@@ -431,7 +435,7 @@ const Home = () => {
 					<div className="my-skills-cards">
 						<div className="my-s-card" data-aos="fade-right">
 							<div className="my-s-inner">
-								<img src="/svg/python.svg" alt="python" />
+								<Image src="/svg/python.svg" alt="python" width={70} height={70} />
 								<h3>92%</h3>
 							</div>
 
@@ -440,7 +444,7 @@ const Home = () => {
 
 						<div className="my-s-card" data-aos="fade-right">
 							<div className="my-s-inner">
-								<img src="/svg/firebase.svg" alt="firebase" />
+								<Image src="/svg/firebase.svg" alt="firebase" width={70} height={70} />
 								<h3>80%</h3>
 							</div>
 
@@ -449,7 +453,7 @@ const Home = () => {
 
 						<div className="my-s-card" data-aos="fade-right">
 							<div className="my-s-inner">
-								<img src="/svg/mongo-db.svg" alt="mongodb" />
+								<Image src="/svg/mongo-db.svg" alt="mongodb" width={70} height={70} />
 								<h3>98%</h3>
 							</div>
 
@@ -458,7 +462,7 @@ const Home = () => {
 
 						<div className="my-s-card" data-aos="fade-left">
 							<div className="my-s-inner">
-								<img src="/svg/redux.svg" alt="redux" />
+								<Image src="/svg/redux.svg" alt="redux" width={70} height={70} />
 								<h3>85%</h3>
 							</div>
 
@@ -467,7 +471,7 @@ const Home = () => {
 
 						<div className="my-s-card" data-aos="fade-left">
 							<div className="my-s-inner">
-								<img src="/svg/react.svg" alt="react" />
+								<Image src="/svg/react.svg" alt="react" width={70} height={70} />
 								<h3>99%</h3>
 							</div>
 
@@ -476,7 +480,7 @@ const Home = () => {
 
 						<div className="my-s-card" data-aos="fade-left">
 							<div className="my-s-inner">
-								<img src="/svg/js.svg" alt="java-script" />
+								<Image src="/svg/js.svg" alt="java-script" width={70} height={70} />
 								<h3>99%</h3>
 							</div>
 
@@ -517,7 +521,12 @@ const Home = () => {
 											data-aos-duration="2000"
 										>
 											<div className="re-blog-img">
-												<img src={blog.images[0] || '/img/no-image.png'} alt={blog.title} />
+												<Image
+													src={blog.images[0] || '/img/no-image.png'}
+													alt={blog.title}
+													width={400}
+													height={400}
+												/>
 												<span>{blog.blogCategory[0].replace(/-/g, ' ')}</span>
 											</div>
 

@@ -1,7 +1,9 @@
-import { Contact } from "@/models/contact";
-import { mongooseConnect } from "@/lib/mongoose";
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req, res) {
+import { Contact } from '@/models/contact'
+import { mongooseConnect } from '@/lib/mongoose'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if authenticated, connect to MongoDB
 	await mongooseConnect()
 
@@ -12,7 +14,15 @@ export default async function handler(req, res) {
 			const { firstName, lastName, email, company, phone, country, price, description, project } = req.body
 
 			const contactDoc = await Contact.create({
-				firstName, lastName, email, company, phone, country, price, description, project
+				firstName,
+				lastName,
+				email,
+				company,
+				phone,
+				country,
+				price,
+				description,
+				project,
 			})
 
 			res.status(201).json(contactDoc)

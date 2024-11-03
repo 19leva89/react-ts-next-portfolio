@@ -1,4 +1,4 @@
-export const formatDate = (date: Date) => {
+export const formatDate = (date: Date | null) => {
 	if (!date) {
 		return ''
 	}

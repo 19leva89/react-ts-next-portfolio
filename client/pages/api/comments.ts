@@ -1,7 +1,9 @@
-import { Comment } from "@/models/comment";
-import { mongooseConnect } from "@/lib/mongoose";
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req, res) {
+import { Comment } from '@/models/comment'
+import { mongooseConnect } from '@/lib/mongoose'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if authenticated, connect to MongoDB
 	await mongooseConnect()
 
@@ -19,7 +21,7 @@ export default async function handler(req, res) {
 
 				// update parent coment`s children array
 				await Comment.findByIdAndUpdate(parent, {
-					$push: { children: commentDoc._id }
+					$push: { children: commentDoc._id },
 				})
 
 				// otherwise, create a root comment

@@ -1,6 +1,7 @@
 import { Schema, models, model } from 'mongoose'
 
-interface IShop {
+export interface IShop {
+	_id: string
 	title: string
 	slug: string
 	images: string[]
@@ -9,6 +10,7 @@ interface IShop {
 	affiliateLink: string
 	price: number
 	status: string
+	createdAt: Date
 }
 
 const productSchema = new Schema<IShop>(

@@ -1,31 +1,32 @@
 import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 import { GrLinkedin } from 'react-icons/gr'
+import { IContact } from '@/models/contact'
 import { MdAttachEmail } from 'react-icons/md'
 import { FaPhoneVolume, FaTwitter } from 'react-icons/fa6'
 
 const Contact = () => {
-	const [firstName, setFirstName] = useState('')
-	const [lastName, setLastName] = useState('')
-	const [email, setEmail] = useState('')
-	const [company, setCompany] = useState('')
-	const [phone, setPhone] = useState('')
-	const [country, setCountry] = useState('')
-	const [project, setProject] = useState('')
-	const [price, setPrice] = useState('')
-	const [description, setDescription] = useState('')
+	const [firstName, setFirstName] = useState<string>('')
+	const [lastName, setLastName] = useState<string>('')
+	const [email, setEmail] = useState<string>('')
+	const [company, setCompany] = useState<string>('')
+	const [phone, setPhone] = useState<string>('')
+	const [country, setCountry] = useState<string>('')
+	const [project, setProject] = useState<string[]>([])
+	const [price, setPrice] = useState<string>('')
+	const [description, setDescription] = useState<string>('')
 
-	const [messageOk, setMessageOk] = useState('')
+	const [messageOk, setMessageOk] = useState<string>('')
 
-	const createProduct = async (e) => {
+	const createProduct = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		setMessageOk('Sending...')
 
-		const data = {
+		const data: IContact = {
 			firstName,
 			lastName,
 			email,
@@ -48,23 +49,27 @@ const Contact = () => {
 			setCompany('')
 			setPhone('')
 			setCountry('')
-			setProject('')
+			setProject([])
 			setPrice('')
 			setDescription('')
 		} catch (error) {
-			if (error.response) {
-				console.error('[CONTACTS_RES] Error sending data:', error.response.data)
-			} else if (error.request) {
-				console.error('[CONTACTS_REQ] Error sending data:', error.request)
+			if (axios.isAxiosError(error)) {
+				if (error.response) {
+					console.error('[CONTACTS_RES] Error sending data:', error.response.data)
+				} else if (error.request) {
+					console.error('[CONTACTS_REQ] Error sending data:', error.request)
+				} else {
+					console.error('[CONTACTS_ERR] Error sending data:', error.message)
+				}
 			} else {
-				console.error('[CONTACTS_ERR] Error sending data:', error.message)
+				console.error('[CONTACTS_UNK] An unknown error occurred:', (error as Error).message)
 			}
 
 			setMessageOk('❌ Something went wrong')
 		}
 	}
 
-	const handleProjectChange = (projectName) => {
+	const handleProjectChange = (projectName: string) => {
 		if (project.includes(projectName)) {
 			setProject(project.filter((item) => item !== projectName))
 		} else {
@@ -72,7 +77,7 @@ const Contact = () => {
 		}
 	}
 
-	const handlePriceChange = (e) => {
+	const handlePriceChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setPrice(e.target.value)
 	}
 

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
@@ -13,14 +14,13 @@ import { HiMiniBars3BottomRight } from 'react-icons/hi2'
 export const Header = () => {
 	const router = useRouter()
 	const [mobile, setMobile] = useState(false)
-	const [clicked, setClicked] = useState(false)
 	const [isSticky, setIsSticky] = useState(false)
 	const [activeLink, setActiveLink] = useState('/')
 	const { darkMode, toggleDarkMode } = useDarkMode()
 
-	const handleLinkClick = (link) => {
-		setActiveLink((preActive) => (preActive === link ? null : link))
-		setClicked(false)
+	const handleLinkClick = (link: string) => {
+		setActiveLink((preActive) => (preActive === link ? '' : link))
+		setMobile(false)
 	}
 
 	const handleMobileOpen = () => {
@@ -51,7 +51,12 @@ export const Header = () => {
 			<nav className="container flex flex-sb">
 				<div className="logo flex gap-2">
 					<Link href="/">
-						<img src={darkMode ? '/img/logo-dark.png' : '/img/logo-white.png'} alt="logo" />
+						<Image
+							src={darkMode ? '/img/logo-dark.png' : '/img/logo-white.png'}
+							alt="logo"
+							width={65}
+							height={65}
+						/>
 					</Link>
 
 					<h2>d.sobolev.dev@gmail.com</h2>
@@ -93,7 +98,7 @@ export const Header = () => {
 					<span className={mobile ? 'active' : ''} onClick={handleMobileClose}></span>
 
 					<div className="mobile-logo">
-						<img src="/img/logo-white.png" alt="logo" />
+						<Image src="/img/logo-white.png" alt="logo" width={70} height={70} />
 
 						<h2>Sobolev</h2>
 					</div>

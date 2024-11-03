@@ -1,7 +1,9 @@
-import { Blog } from "@/models/blog";
-import { mongooseConnect } from "@/lib/mongoose";
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req, res) {
+import { Blog } from '@/models/blog'
+import { mongooseConnect } from '@/lib/mongoose'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if authenticated, connect to MongoDB
 	await mongooseConnect()
 
@@ -34,6 +36,6 @@ export default async function handler(req, res) {
 			res.json(blogs.reverse())
 		}
 	} else {
-		res.this.status(405).json({ message: 'Method not allowed' })
+		res.status(405).json({ message: 'Method not allowed' })
 	}
 }

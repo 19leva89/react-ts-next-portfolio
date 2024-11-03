@@ -1,8 +1,10 @@
-import { Blog } from '@/models/blog';
-import { Comment } from '@/models/comment';
-import { mongooseConnect } from '@/lib/mongoose';
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req, res) {
+import { Blog } from '@/models/blog'
+import { Comment } from '@/models/comment'
+import { mongooseConnect } from '@/lib/mongoose'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	const { slug } = req.query
 
 	await mongooseConnect()
@@ -20,7 +22,6 @@ export default async function handler(req, res) {
 			const comments = await Comment.find({ blog: blog._id }).sort({ createdAt: -1 })
 
 			res.status(200).json({ blog, comments })
-
 		} catch (error) {
 			console.error('[BLOGS_SLUG] Data boot error:', error)
 			res.status(500).json({ message: 'Internal server error' })
@@ -51,7 +52,7 @@ export default async function handler(req, res) {
 					mainComment,
 					parent: parentComment._id,
 					blog: blog._id,
-					parentName: parentComment.name
+					parentName: parentComment.name,
 				})
 
 				// save the child comment
@@ -73,7 +74,7 @@ export default async function handler(req, res) {
 					title,
 					contentPreview,
 					mainComment,
-					blog: blog._id
+					blog: blog._id,
 				})
 
 				// save the comment

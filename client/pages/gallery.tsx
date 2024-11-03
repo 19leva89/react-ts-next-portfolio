@@ -1,11 +1,14 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { Spinner } from '@/components'
+import { IPhoto } from '@/models/photo'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 const Gallery = () => {
-	const { allData, loading } = useFetchData('/api/photos')
+	const { allData, loading } = useFetchData<IPhoto[]>('/api/photos')
 
 	return (
 		<>
@@ -30,29 +33,35 @@ const Gallery = () => {
 							</div>
 
 							<div className="right-img-sec">
-								<img
+								<Image
 									src="/img/gallery-1.jpg"
 									alt="gallery"
 									data-aos="flip-left"
 									data-aos-ease="ease-in-cubic"
 									data-aos-duration="2000"
+									width={330}
+									height={450}
 								/>
 
 								<div className="r-img-top">
-									<img
+									<Image
 										src="/img/gallery-2.jpg"
 										alt="gallery"
 										data-aos="flip-right"
 										data-aos-ease="ease-in-cubic"
 										data-aos-duration="2000"
+										width={420}
+										height={560}
 									/>
 
-									<img
+									<Image
 										src="/img/gallery-3.jpg"
 										alt="gallery"
 										data-aos="flip-right"
 										data-aos-ease="ease-in-cubic"
 										data-aos-duration="2000"
+										width={300}
+										height={400}
 									/>
 								</div>
 							</div>
@@ -77,7 +86,7 @@ const Gallery = () => {
 							</div>
 						) : (
 							<div className="gallery-image-grid">
-								{allData.map((photo) => (
+								{allData?.map((photo) => (
 									<div
 										className="image-item"
 										key={photo._id}

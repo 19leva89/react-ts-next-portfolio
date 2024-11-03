@@ -1,6 +1,6 @@
 import { Schema, models, model } from 'mongoose'
 
-interface IContact {
+export interface IContact {
 	firstName: string
 	lastName: string
 	email: string

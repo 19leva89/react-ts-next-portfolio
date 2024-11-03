@@ -1,4 +1,5 @@
 import Aos from 'aos'
+import { AppProps } from 'next/app'
 import { useEffect, useState } from 'react'
 
 import { DarkModeProvider } from '@/hooks/use-dark-mode'
@@ -7,7 +8,7 @@ import { Footer, Header, Preloader } from '@/components'
 import 'aos/dist/aos.css'
 import '@/styles/globals.css'
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps }: AppProps) => {
 	const [isLoading, setIsLoading] = useState(true)
 
 	useEffect(() => {
