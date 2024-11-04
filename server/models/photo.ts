@@ -5,7 +5,7 @@ export interface IPhoto {
 	title: string
 	slug: string
 	images: string[]
-	createdAt: Date
+	createdAt?: Date
 }
 
 const photoSchema = new Schema<IPhoto>(

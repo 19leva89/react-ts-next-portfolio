@@ -1,28 +1,29 @@
 import axios from 'axios'
+import Image from 'next/image'
 import toast from 'react-hot-toast'
 import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 
-import { useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRouter } from 'next/router'
 import { ReactSortable } from 'react-sortablejs'
 import { MdDeleteForever } from 'react-icons/md'
 
-import { Spinner } from '@/components'
+import { IShop } from '@/models/shop'
+import { CodeBlock, Spinner } from '@/components'
 
-export const Project = ({
+export const Shop = ({
 	_id,
 	title: existingTitle,
 	slug: existingSlug,
 	images: existingImages,
 	description: existingDescription,
-	client: existingClient,
-	projectCategory: existingProjectCategory,
 	tags: existingTags,
-	livePreview: existingLivePreview,
+	affiliateLink: existingAffiliateLink,
+	price: existingPrice,
 	status: existingStatus,
-}) => {
+}: IShop) => {
 	const router = useRouter()
 	const [redirect, setRedirect] = useState(false)
 
@@ -30,45 +31,48 @@ export const Project = ({
 	const [slug, setSlug] = useState(existingSlug || '')
 	const [images, setImages] = useState(existingImages || [])
 	const [description, setDescription] = useState(existingDescription || '')
-	const [client, setClient] = useState(existingClient || '')
-	const [livePreview, setLivePreview] = useState(existingLivePreview || '')
-	const [projectCategory, setProjectCategory] = useState(existingProjectCategory || [])
 	const [tags, setTags] = useState(existingTags || [])
+	const [affiliateLink, setAffiliateLink] = useState(existingAffiliateLink || '')
+	const [price, setPrice] = useState(existingPrice || '')
 	const [status, setStatus] = useState(existingStatus || '')
 
 	// for images uploading
 	const [isUploading, setIsUploading] = useState(false)
-	const uploadImagesQuery = []
 
-	const createProject = async (e) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const uploadImagesQuery: Promise<any>[] = []
+
+	const createProduct = async (e: FormEvent) => {
 		e.preventDefault()
 
 		if (isUploading) {
 			await Promise.all(uploadImagesQuery)
 		}
 
-		const data = { title, slug, images, description, client, livePreview, projectCategory, tags, status }
+		const data = { title, slug, images, description, tags, affiliateLink, price, status }
 
 		if (_id) {
-			await axios.put(`/api/projects`, { ...data, _id })
+			await axios.put(`/api/shops`, { ...data, _id })
 
-			toast.success('Project updated successfully')
+			toast.success('Product updated successfully')
 		} else {
-			await axios.post(`/api/projects`, data)
+			await axios.post(`/api/shops`, data)
 
-			toast.success('Project created successfully')
+			toast.success('Product created successfully')
 		}
 
 		setRedirect(true)
 	}
 
-	const uploadImages = async (e) => {
+	const uploadImages = async (e: ChangeEvent<HTMLInputElement>) => {
 		const files = e.target?.files
 
-		if (files?.length > 0) {
+		if (files && files.length > 0) {
 			setIsUploading(true)
 
-			for (const file of files) {
+			const fileArray = Array.from(files)
+
+			for (const file of fileArray) {
 				const data = new FormData()
 				data.append('file', file)
 
@@ -89,11 +93,12 @@ export const Project = ({
 		}
 	}
 
-	const updateImagesOrder = (images) => {
-		setImages(images)
+	const updateImagesOrder = (images: { id: string; content: string }[]) => {
+		const imageLinks = images.map((image) => image.content)
+		setImages(imageLinks)
 	}
 
-	const handleDeleteImage = (index) => {
+	const handleDeleteImage = (index: number) => {
 		const updatedImages = [...images]
 		updatedImages.splice(index, 1)
 
@@ -103,7 +108,7 @@ export const Project = ({
 	}
 
 	// for slug url
-	const handleSlugChange = (e) => {
+	const handleSlugChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
 		const newSlug = inputValue.replace(/\s+/g, '-')
 
@@ -111,13 +116,13 @@ export const Project = ({
 	}
 
 	if (redirect) {
-		router.push('/projects')
+		router.push('/shops')
 		return null
 	}
 
 	return (
-		<form className="add-website-form" onSubmit={createProject}>
-			{/* project title */}
+		<form className="add-website-form" onSubmit={createProduct}>
+			{/* product title */}
 			<div className="w-100 flex flex-col flex-left mb-2">
 				<label htmlFor="title">Title</label>
 				<input
@@ -135,50 +140,31 @@ export const Project = ({
 				<input type="text" id="slug" placeholder="Enter slug url" value={slug} onChange={handleSlugChange} />
 			</div>
 
-			{/* project client name */}
+			{/* product affiliate link */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="client">Client name</label>
+				<label htmlFor="affiliateLink">Affiliate link</label>
 				<input
 					type="text"
-					id="client"
-					placeholder="Enter client name"
-					value={client}
-					onChange={(e) => setClient(e.target.value)}
+					id="affiliateLink"
+					placeholder="Enter affiliate link"
+					value={affiliateLink}
+					onChange={(e) => setAffiliateLink(e.target.value)}
 				/>
 			</div>
 
-			{/* project live preview */}
+			{/* product live preview */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="livePreview">Live preview</label>
+				<label htmlFor="price">Price</label>
 				<input
 					type="text"
-					id="livePreview"
-					placeholder="Enter live preview url"
-					value={livePreview}
-					onChange={(e) => setLivePreview(e.target.value)}
+					id="price"
+					placeholder="Enter price"
+					value={price}
+					onChange={(e) => setPrice(e.target.value)}
 				/>
 			</div>
 
-			{/* project category */}
-			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="category">Select category (for multiple press Ctrl + mouse left key)</label>
-				<select
-					name="category"
-					id="category"
-					value={projectCategory}
-					onChange={(e) => setProjectCategory(Array.from(e.target.selectedOptions, (option) => option.value))}
-					multiple
-				>
-					<option value="website-development">Website Development</option>
-					<option value="app-development">App Development</option>
-					<option value="design-system">Design System</option>
-					<option value="website-migration">Website Migration</option>
-					<option value="e-commerce-site">E-commerce Site</option>
-					<option value="performance-evaluation">Performance Evaluation</option>
-				</select>
-			</div>
-
-			{/* project images */}
+			{/* product images */}
 			<div className="w-100 flex flex-col flex-left mb-2">
 				<div className="w-100">
 					<label htmlFor="images">Images (first image will be shown as thumbnail, you can drag)</label>
@@ -199,14 +185,14 @@ export const Project = ({
 			{!isUploading && images?.length > 0 && (
 				<div className="flex">
 					<ReactSortable
-						list={Array.isArray(images) ? images : []}
+						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
 						className="flex gap-1"
 					>
 						{images?.map((link, index) => (
 							<div key={link} className="uploaded-img">
-								<img src={link} alt="image" className="object-cover" width={150} height={80} />
+								<Image src={link} alt="image" className="object-cover" width={150} height={80} />
 
 								<div className="delete-img">
 									<button onClick={() => handleDeleteImage(index)}>
@@ -222,7 +208,7 @@ export const Project = ({
 			{/* markdown description */}
 			<div className="description w-100 flex flex-col flex-left mb-2">
 				<label htmlFor="description">
-					Project content (for image: first upload and copy link and paste in ![alt text](link))
+					Product content (for image: first upload and copy link and paste in ![alt text](link))
 				</label>
 
 				<MarkdownEditor
@@ -232,39 +218,8 @@ export const Project = ({
 					renderHTML={(text) => (
 						<ReactMarkdown
 							components={{
-								code: ({ node, inline, className, children, ...props }) => {
-									// for code project
-									const match = /language-(\w+)/.exec(className || '')
-
-									if (inline) {
-										return <code>{children}</code>
-									} else if (match) {
-										return (
-											<div style={{ position: 'relative' }}>
-												<pre
-													style={{
-														padding: '0',
-														borderRadius: '5px',
-														overflow: 'auto',
-														whiteSpace: 'pre-wrap',
-													}}
-													{...props}
-												>
-													<code>{children}</code>
-												</pre>
-
-												<button
-													style={{ position: 'absolute', top: '0', right: '0', zIndex: '1' }}
-													onClick={() => navigator.clipboard.writeText(children)}
-												>
-													copy code
-												</button>
-											</div>
-										)
-									} else {
-										return <code {...props}>{children}</code>
-									}
-								},
+								// eslint-disable-next-line @typescript-eslint/no-explicit-any
+								code: (props: any) => <CodeBlock {...props} inline={false} />,
 							}}
 						>
 							{text}
@@ -283,16 +238,17 @@ export const Project = ({
 					onChange={(e) => setTags(Array.from(e.target.selectedOptions, (option) => option.value))}
 					multiple
 				>
-					<option value="html">HTML</option>
-					<option value="css">CSS</option>
-					<option value="java-script">Java Script</option>
-					<option value="next-js">Next JS</option>
-					<option value="react-js">React JS</option>
-					<option value="database">Database</option>
+					<option value="adapter">Adapter</option>
+					<option value="usb-c">USB C</option>
+					<option value="graphic">Graphic</option>
+					<option value="gimbal">Gimbal</option>
+					<option value="content-creators">Content Creators</option>
+					<option value="desk">Desk</option>
+					<option value="standing-desk">Standing Desk</option>
 				</select>
 			</div>
 
-			{/* project status */}
+			{/* product status */}
 			<div className="w-100 flex flex-col flex-left mb-2">
 				<label htmlFor="status">Status</label>
 				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)}>
@@ -304,7 +260,7 @@ export const Project = ({
 
 			<div className="w-100 mb-1">
 				<button className="w-100 flex-center" type="submit">
-					SAVE PROJECT
+					SAVE PRODUCT
 				</button>
 			</div>
 		</form>

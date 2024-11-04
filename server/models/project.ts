@@ -4,14 +4,14 @@ export interface IProject {
 	_id: string
 	title: string
 	slug: string
-	images: string[]
-	description: string
-	client: string
-	livePreview: string
-	projectCategory: string[]
-	tags: string[]
-	status: string
-	createdAt: Date
+	images?: string[]
+	description?: string
+	client?: string
+	livePreview?: string
+	projectCategory?: string[]
+	tags?: string[]
+	status?: string
+	createdAt?: Date
 }
 
 const projectSchema = new Schema<IProject>(

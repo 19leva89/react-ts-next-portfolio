@@ -3,7 +3,7 @@ import { Schema, models, model } from 'mongoose'
 export interface IProfile {
 	email: string
 	password: string
-	createdAt: Date
+	createdAt?: Date
 }
 
 const profileSchema = new Schema<IProfile>(

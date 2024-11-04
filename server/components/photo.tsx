@@ -1,14 +1,16 @@
 import axios from 'axios'
+import Image from 'next/image'
 import toast from 'react-hot-toast'
 
-import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { ReactSortable } from 'react-sortablejs'
 import { MdDeleteForever } from 'react-icons/md'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
 import { Spinner } from '@/components'
+import { IPhoto } from '@/models/photo'
 
-export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: existingImages }) => {
+export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: existingImages }: IPhoto) => {
 	const router = useRouter()
 	const [redirect, setRedirect] = useState(false)
 
@@ -18,9 +20,11 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 
 	// for images uploading
 	const [isUploading, setIsUploading] = useState(false)
-	const uploadImagesQuery = []
 
-	const createPhoto = async (e) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const uploadImagesQuery: Promise<any>[] = []
+
+	const createPhoto = async (e: FormEvent) => {
 		e.preventDefault()
 
 		if (isUploading) {
@@ -42,13 +46,15 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 		setRedirect(true)
 	}
 
-	const uploadImages = async (e) => {
+	const uploadImages = async (e: ChangeEvent<HTMLInputElement>) => {
 		const files = e.target?.files
 
-		if (files?.length > 0) {
+		if (files && files.length > 0) {
 			setIsUploading(true)
 
-			for (const file of files) {
+			const fileArray = Array.from(files)
+
+			for (const file of fileArray) {
 				const data = new FormData()
 				data.append('file', file)
 
@@ -69,11 +75,12 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 		}
 	}
 
-	const updateImagesOrder = (images) => {
-		setImages(images)
+	const updateImagesOrder = (images: { id: string; content: string }[]) => {
+		const imageLinks = images.map((image) => image.content)
+		setImages(imageLinks)
 	}
 
-	const handleDeleteImage = (index) => {
+	const handleDeleteImage = (index: number) => {
 		const updatedImages = [...images]
 		updatedImages.splice(index, 1)
 
@@ -83,7 +90,7 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 	}
 
 	// for slug url
-	const handleSlugChange = (e) => {
+	const handleSlugChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
 		const newSlug = inputValue.replace(/\s+/g, '-')
 
@@ -136,14 +143,14 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 			{!isUploading && images?.length > 0 && (
 				<div className="flex">
 					<ReactSortable
-						list={Array.isArray(images) ? images : []}
+						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
 						className="flex gap-1"
 					>
 						{images?.map((link, index) => (
 							<div key={link} className="uploaded-img">
-								<img src={link} alt="image" className="object-cover" width={150} height={80} />
+								<Image src={link} alt="image" className="object-cover" width={150} height={80} />
 
 								<div className="delete-img">
 									<button onClick={() => handleDeleteImage(index)}>

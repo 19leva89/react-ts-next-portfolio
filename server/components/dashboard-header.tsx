@@ -1,4 +1,18 @@
-export const DashboardHeader = ({ title, subtitle, icon: IconComponent, breadcrumb }) => {
+import { ElementType } from 'react'
+
+interface DashboardHeaderProps {
+	title: string
+	subtitle: string
+	icon: ElementType
+	breadcrumb: string
+}
+
+export const DashboardHeader = ({
+	title,
+	subtitle,
+	icon: IconComponent,
+	breadcrumb,
+}: DashboardHeaderProps) => {
 	return (
 		<div className="title-dashboard flex flex-sb">
 			<div>

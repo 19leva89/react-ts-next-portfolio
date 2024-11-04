@@ -6,6 +6,7 @@ import { TbTrashX } from 'react-icons/tb'
 import { useState, useEffect } from 'react'
 import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
+import { IBlog } from '@/models/blog'
 import { DashboardHeader } from '@/components'
 
 const DeleteBlog = () => {
@@ -13,7 +14,7 @@ const DeleteBlog = () => {
 
 	const { id } = router.query
 
-	const [productInfo, setProductInfo] = useState(null)
+	const [productInfo, setProductInfo] = useState<IBlog | null>(null)
 
 	const goBack = () => {
 		router.push('/blogs')
@@ -58,7 +59,7 @@ const DeleteBlog = () => {
 			<div className="content-page">
 				<DashboardHeader
 					title="Delete"
-					subtitle={productInfo?.title}
+					subtitle={productInfo ? productInfo.title : ''}
 					icon={RiArrowRightDoubleFill}
 					breadcrumb="delete blog"
 				/>

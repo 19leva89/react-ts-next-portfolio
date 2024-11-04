@@ -4,13 +4,13 @@ export interface IShop {
 	_id: string
 	title: string
 	slug: string
-	images: string[]
-	description: string
-	tags: string[]
-	affiliateLink: string
-	price: number
-	status: string
-	createdAt: Date
+	images?: string[]
+	description?: string
+	tags?: string[]
+	affiliateLink?: string
+	price?: number
+	status?: string
+	createdAt?: Date
 }
 
 const productSchema = new Schema<IShop>(

@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
+import { IBlog } from '@/models/blog'
 import { Blog, DashboardHeader, LoginLayout } from '@/components'
 
 const EditBlog = () => {
@@ -11,7 +12,7 @@ const EditBlog = () => {
 
 	const { id } = router.query
 
-	const [productInfo, setProductInfo] = useState(null)
+	const [productInfo, setProductInfo] = useState<IBlog | null>(null)
 
 	useEffect(() => {
 		if (!id) {
@@ -40,7 +41,7 @@ const EditBlog = () => {
 			<div className="content-page">
 				<DashboardHeader
 					title="Edit"
-					subtitle={productInfo?.title}
+					subtitle={productInfo ? productInfo.title : ''}
 					icon={RiArrowRightDoubleFill}
 					breadcrumb="edit blog"
 				/>

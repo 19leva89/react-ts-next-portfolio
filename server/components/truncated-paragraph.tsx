@@ -1,6 +1,11 @@
 import { useState } from 'react'
 
-export const TruncatedParagraph = ({ text, wordLimit }) => {
+interface TruncatedParagraphProps {
+	text: string
+	wordLimit: number
+}
+
+export const TruncatedParagraph = ({ text, wordLimit }: TruncatedParagraphProps) => {
 	const [isTruncated, setIsTruncated] = useState(true)
 
 	const toggleTruncate = () => {

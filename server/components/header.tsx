@@ -6,7 +6,11 @@ import { GoScreenFull } from 'react-icons/go'
 import { BiExitFullscreen } from 'react-icons/bi'
 import { RiBarChartHorizontalLine } from 'react-icons/ri'
 
-export const Header = ({ handleAsideOpen }) => {
+interface HeaderProps {
+	handleAsideOpen: () => void
+}
+
+export const Header = ({ handleAsideOpen }: HeaderProps) => {
 	const { data: session } = useSession()
 	const [isFullscreen, setIsFullscreen] = useState(false)
 

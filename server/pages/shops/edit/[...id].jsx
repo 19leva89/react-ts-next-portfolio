@@ -40,7 +40,7 @@ const EditProduct = () => {
 			<div className="content-page">
 				<DashboardHeader
 					title="Edit"
-					subtitle={productInfo?.title}
+					subtitle={productInfo ? productInfo.title : ''}
 					icon={RiArrowRightDoubleFill}
 					breadcrumb="edit product"
 				/>

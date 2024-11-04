@@ -1,7 +1,9 @@
-import { Photo } from "@/models/photo";
-import { mongooseConnect } from "@/lib/mongoose";
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req, res) {
+import { Photo } from '@/models/photo'
+import { mongooseConnect } from '@/lib/mongoose'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if authenticated, connect to MongoDB
 	await mongooseConnect()
 
@@ -10,7 +12,7 @@ export default async function handler(req, res) {
 	if (method === 'POST') {
 		const { title, slug, images } = req.body
 
-		const photoDoc = await Photo.create({ title, slug, images, })
+		const photoDoc = await Photo.create({ title, slug, images })
 
 		res.json(photoDoc)
 	}
@@ -21,16 +23,16 @@ export default async function handler(req, res) {
 
 			res.json(photo)
 		} else {
-			const photos = await Photo.find();
+			const photos = await Photo.find()
 
-			res.json(photos.reverse());
+			res.json(photos.reverse())
 		}
 	}
 
 	if (method === 'PUT') {
-		const { _id, title, slug, images, } = req.body
+		const { _id, title, slug, images } = req.body
 
-		await Photo.updateOne({ _id }, { title, slug, images, })
+		await Photo.updateOne({ _id }, { title, slug, images })
 
 		res.json(true)
 	}

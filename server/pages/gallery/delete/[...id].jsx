@@ -58,7 +58,7 @@ const DeletePhoto = () => {
 			<div className="content-page">
 				<DashboardHeader
 					title="Delete"
-					subtitle={productInfo?.title}
+					subtitle={productInfo ? productInfo.title : ''}
 					icon={RiArrowRightDoubleFill}
 					breadcrumb="delete photo"
 				/>

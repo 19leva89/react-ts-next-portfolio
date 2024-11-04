@@ -4,14 +4,14 @@ export interface IComment {
 	_id: string
 	name: string
 	email: string
-	title: string
-	contentPreview: string
-	mainComment: boolean
-	createdAt: Date
+	title?: string
+	contentPreview?: string
+	mainComment?: boolean
 	blog: Types.ObjectId
-	parent: Types.ObjectId
-	children: IComment[]
-	parentName: string
+	parent?: Types.ObjectId
+	children?: IComment[]
+	parentName?: string
+	createdAt?: Date
 }
 
 const commentSchema = new Schema<IComment>(

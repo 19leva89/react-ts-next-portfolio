@@ -3,19 +3,20 @@ import { useState } from 'react'
 import { FaRegEye } from 'react-icons/fa'
 import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
+import { IContact } from '@/models/contact'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
 const Contacts = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState < number > 1
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState < string > ''
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/contacts')
+	const { allData, loading } = useFetchData<IContact[]>('/api/contacts')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -26,7 +27,8 @@ const Contacts = () => {
 	const filteredContent =
 		searchQuery.trim() === ''
 			? allData
-			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
+			: allData?.filter((content) => content.firstName.toLowerCase().includes(searchQuery.toLowerCase())) ||
+				[]
 
 	// total pages
 	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
@@ -36,7 +38,7 @@ const Contacts = () => {
 	const indexOfLastContent = currentPage * perPage
 
 	// get current page of content
-	const publishedContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
+	const publishedContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
 	return (
 		<LoginLayout>
@@ -104,7 +106,9 @@ const Contacts = () => {
 												</td>
 
 												<td>
-													<h3>{content.project[0]}</h3>
+													<h3>
+														{content.project && content.project.length > 0 ? content.project[0] : 'N/A'}
+													</h3>
 												</td>
 
 												<td>

@@ -1,9 +1,14 @@
+import { ReactNode } from 'react'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
 
 import { Loading } from '@/components'
 
-export const LoginLayout = ({ children }) => {
+interface LoginLayoutProps {
+	children: ReactNode
+}
+
+export const LoginLayout = ({ children }: LoginLayoutProps) => {
 	const router = useRouter()
 	const { data: session, status } = useSession()
 

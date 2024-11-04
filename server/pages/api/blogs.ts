@@ -1,7 +1,9 @@
-import { Blog } from "@/models/blog";
-import { mongooseConnect } from "@/lib/mongoose";
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req, res) {
+import { Blog } from '@/models/blog'
+import { mongooseConnect } from '@/lib/mongoose'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if authenticated, connect to MongoDB
 	await mongooseConnect()
 
@@ -11,7 +13,13 @@ export default async function handler(req, res) {
 		const { title, slug, images, description, blogCategory, tags, status } = req.body
 
 		const blogDoc = await Blog.create({
-			title, slug, images, description, blogCategory, tags, status
+			title,
+			slug,
+			images,
+			description,
+			blogCategory,
+			tags,
+			status,
 		})
 
 		res.json(blogDoc)
@@ -23,18 +31,27 @@ export default async function handler(req, res) {
 
 			res.json(blog)
 		} else {
-			const blogs = await Blog.find();
+			const blogs = await Blog.find()
 
-			res.json(blogs.reverse());
+			res.json(blogs.reverse())
 		}
 	}
 
 	if (method === 'PUT') {
 		const { _id, title, slug, images, description, blogCategory, tags, status } = req.body
 
-		await Blog.updateOne({ _id }, {
-			title, slug, images, description, blogCategory, tags, status
-		})
+		await Blog.updateOne(
+			{ _id },
+			{
+				title,
+				slug,
+				images,
+				description,
+				blogCategory,
+				tags,
+				status,
+			},
+		)
 
 		res.json(true)
 	}

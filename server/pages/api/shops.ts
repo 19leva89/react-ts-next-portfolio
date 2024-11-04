@@ -1,7 +1,9 @@
-import { Shop } from "@/models/shop";
-import { mongooseConnect } from "@/lib/mongoose";
+import { NextApiRequest, NextApiResponse } from 'next'
 
-export default async function handler(req, res) {
+import { Shop } from '@/models/shop'
+import { mongooseConnect } from '@/lib/mongoose'
+
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	// if authenticated, connect to MongoDB
 	await mongooseConnect()
 
@@ -11,7 +13,14 @@ export default async function handler(req, res) {
 		const { title, slug, images, description, tags, affiliateLink, price, status } = req.body
 
 		const productDoc = await Shop.create({
-			title, slug, images, description, tags, affiliateLink, price, status
+			title,
+			slug,
+			images,
+			description,
+			tags,
+			affiliateLink,
+			price,
+			status,
 		})
 
 		res.json(productDoc)
@@ -23,18 +32,28 @@ export default async function handler(req, res) {
 
 			res.json(product)
 		} else {
-			const products = await Shop.find();
+			const products = await Shop.find()
 
-			res.json(products.reverse());
+			res.json(products.reverse())
 		}
 	}
 
 	if (method === 'PUT') {
 		const { _id, title, slug, images, description, tags, affiliateLink, price, status } = req.body
 
-		await Shop.updateOne({ _id }, {
-			title, slug, images, description, tags, affiliateLink, price, status
-		})
+		await Shop.updateOne(
+			{ _id },
+			{
+				title,
+				slug,
+				images,
+				description,
+				tags,
+				affiliateLink,
+				price,
+				status,
+			},
+		)
 
 		res.json(true)
 	}

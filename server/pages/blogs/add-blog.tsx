@@ -9,7 +9,7 @@ const AddBlog = () => {
 				<DashboardHeader title="Add" subtitle="Blog" icon={RiArrowRightDoubleFill} breadcrumb="add blog" />
 
 				<div className="contents-add">
-					<Blog />
+					<Blog _id={''} title={''} slug={''} />
 				</div>
 			</div>
 		</LoginLayout>

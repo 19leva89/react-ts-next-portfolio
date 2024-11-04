@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { FaRegAddressCard } from 'react-icons/fa6'
 
+import { IContact } from '@/models/contact'
 import { formatDate } from '@/utils/format-date'
 import { DashboardHeader, LoginLayout } from '@/components'
 
@@ -12,7 +13,7 @@ const ViewContact = () => {
 
 	const { id } = router.query
 
-	const [contactInfo, setContactInfo] = useState(null)
+	const [contactInfo, setContactInfo] = useState<IContact | null>(null)
 
 	useEffect(() => {
 		if (!id) {
@@ -41,7 +42,7 @@ const ViewContact = () => {
 			<div className="content-page">
 				<DashboardHeader
 					title="Contact"
-					subtitle={contactInfo?.email}
+					subtitle={contactInfo ? contactInfo.email : ''}
 					icon={FaRegAddressCard}
 					breadcrumb="view contact"
 				/>

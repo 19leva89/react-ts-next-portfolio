@@ -1,15 +1,17 @@
 import { Schema, models, model } from 'mongoose'
 
 export interface IContact {
+	_id: string
 	firstName: string
-	lastName: string
+	lastName?: string
 	email: string
-	company: string
+	company?: string
 	phone: string
-	country: string
-	price: string
-	description: string
-	project: string[]
+	country?: string
+	price?: string
+	description?: string
+	project?: string[]
+	createdAt?: Date
 }
 
 const contactSchema = new Schema<IContact>(

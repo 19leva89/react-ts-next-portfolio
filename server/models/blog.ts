@@ -6,13 +6,13 @@ export interface IBlog {
 	_id: string
 	title: string
 	slug: string
-	images: string[]
-	description: string
-	blogCategory: string[]
-	tags: string[]
-	status: string
-	comments: IComment[]
-	createdAt: Date
+	images?: string[]
+	description?: string
+	blogCategory?: string[]
+	tags?: string[]
+	status?: string
+	comments?: IComment[]
+	createdAt?: Date
 }
 
 const blogSchema = new Schema<IBlog>(
