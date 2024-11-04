@@ -5,12 +5,13 @@ import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 
-import { useState } from 'react'
 import { useRouter } from 'next/router'
 import { ReactSortable } from 'react-sortablejs'
 import { MdDeleteForever } from 'react-icons/md'
+import { ChangeEvent, FormEvent, useState } from 'react'
 
-import { Spinner } from '@/components'
+import { IBlog } from '@/models/blog'
+import { CodeBlock, Spinner } from '@/components'
 
 export const Blog = ({
 	_id,
@@ -21,7 +22,7 @@ export const Blog = ({
 	blogCategory: existingBlogCategory,
 	tags: existingTags,
 	status: existingStatus,
-}) => {
+}: IBlog) => {
 	const router = useRouter()
 	const [redirect, setRedirect] = useState(false)
 
@@ -35,9 +36,11 @@ export const Blog = ({
 
 	// for images uploading
 	const [isUploading, setIsUploading] = useState(false)
-	const uploadImagesQuery = []
 
-	const createBlog = async (e) => {
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const uploadImagesQuery: Promise<any>[] = []
+
+	const createBlog = async (e: FormEvent) => {
 		e.preventDefault()
 
 		if (isUploading) {
@@ -59,13 +62,15 @@ export const Blog = ({
 		setRedirect(true)
 	}
 
-	const uploadImages = async (e) => {
+	const uploadImages = async (e: ChangeEvent<HTMLInputElement>) => {
 		const files = e.target?.files
 
-		if (files?.length > 0) {
+		if (files && files.length > 0) {
 			setIsUploading(true)
 
-			for (const file of files) {
+			const fileArray = Array.from(files)
+
+			for (const file of fileArray) {
 				const data = new FormData()
 				data.append('file', file)
 
@@ -86,11 +91,12 @@ export const Blog = ({
 		}
 	}
 
-	const updateImagesOrder = (images) => {
-		setImages(images)
+	const updateImagesOrder = (images: { id: string; content: string }[]) => {
+		const imageLinks = images.map((image) => image.content)
+		setImages(imageLinks)
 	}
 
-	const handleDeleteImage = (index) => {
+	const handleDeleteImage = (index: number) => {
 		const updatedImages = [...images]
 		updatedImages.splice(index, 1)
 
@@ -100,7 +106,7 @@ export const Blog = ({
 	}
 
 	// for slug url
-	const handleSlugChange = (e) => {
+	const handleSlugChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
 		const newSlug = inputValue.replace(/\s+/g, '-')
 
@@ -174,7 +180,7 @@ export const Blog = ({
 			{!isUploading && images?.length > 0 && (
 				<div className="flex">
 					<ReactSortable
-						list={Array.isArray(images) ? images : []}
+						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
 						className="flex gap-1"
@@ -207,39 +213,8 @@ export const Blog = ({
 					renderHTML={(text) => (
 						<ReactMarkdown
 							components={{
-								code: ({ inline, className, children, ...props }) => {
-									// for code block
-									const match = /language-(\w+)/.exec(className || '')
-
-									if (inline) {
-										return <code>{children}</code>
-									} else if (match) {
-										return (
-											<div style={{ position: 'relative' }}>
-												<pre
-													style={{
-														padding: '0',
-														borderRadius: '5px',
-														overflow: 'auto',
-														whiteSpace: 'pre-wrap',
-													}}
-													{...props}
-												>
-													<code>{children}</code>
-												</pre>
-
-												<button
-													style={{ position: 'absolute', top: '0', right: '0', zIndex: '1' }}
-													onClick={() => navigator.clipboard.writeText(children)}
-												>
-													copy code
-												</button>
-											</div>
-										)
-									} else {
-										return <code {...props}>{children}</code>
-									}
-								},
+								// eslint-disable-next-line @typescript-eslint/no-explicit-any
+								code: (props: any) => <CodeBlock {...props} inline={false} />,
 							}}
 						>
 							{text}

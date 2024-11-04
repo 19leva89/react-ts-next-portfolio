@@ -1,8 +1,5 @@
 import { CSSProperties, FC, ReactNode, useState } from 'react'
 
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { a11yDark } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-
 interface CodeBlockProps {
 	inline: boolean
 	className: string
@@ -41,39 +38,16 @@ export const CodeBlock: FC<CodeBlockProps> = ({ inline, className, children, ...
 
 		return (
 			<div style={{ position: 'relative' }}>
-				<SyntaxHighlighter
-					style={a11yDark}
-					language={match[1]}
-					PreTag="pre"
-					{...props}
-					codeTagProps={{
-						style: codeTagStyle,
-					}}
-				>
-					{String(children).replace(/\n$/, '')}
-				</SyntaxHighlighter>
+				<pre style={codeTagStyle} {...props}>
+					<code>{children}</code>
+				</pre>
 
-				<button
-					style={{
-						position: 'absolute',
-						top: 0,
-						right: 0,
-						zIndex: '1',
-						background: `#3d3d3d`,
-						color: '#fff',
-						padding: '10px',
-					}}
-					onClick={handleCopy}
-				>
+				<button style={{ position: 'absolute', top: '0', right: '0', zIndex: '1' }} onClick={handleCopy}>
 					{copied ? 'Copied!' : 'Copy code'}
 				</button>
 			</div>
 		)
 	}
 
-	return (
-		<code className="md-post-code" {...props}>
-			{children}
-		</code>
-	)
+	return <code {...props}>{children}</code>
 }

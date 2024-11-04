@@ -7,13 +7,13 @@ import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
-const DraftBlogs = () => {
+const Blogs = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState < number > 1
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState < string > ''
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
 	const { allData, loading } = useFetchData('/api/blogs')
@@ -39,13 +39,13 @@ const DraftBlogs = () => {
 	// get current page of content
 	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const draftedContent = currentContent.filter((content) => content.status === 'draft')
+	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
 
 	return (
 		<LoginLayout>
 			<div className="content-page">
 				<DashboardHeader
-					title="All Draft"
+					title="All Published"
 					subtitle="Blogs"
 					icon={RiArrowRightDoubleFill}
 					breadcrumb="blogs"
@@ -81,14 +81,14 @@ const DraftBlogs = () => {
 								</tr>
 							) : (
 								<>
-									{draftedContent.length === 0 ? (
+									{publishedContent.length === 0 ? (
 										<tr>
 											<td colSpan={4} className="text-center">
 												No Blogs Found
 											</td>
 										</tr>
 									) : (
-										draftedContent.map((content, index) => (
+										publishedContent.map((content, index) => (
 											<tr key={content._id}>
 												<td>{indexOfFirstContent + index + 1}</td>
 
@@ -134,7 +134,7 @@ const DraftBlogs = () => {
 					</table>
 
 					{/* for pagination */}
-					{draftedContent.length > 0 && (
+					{publishedContent.length > 0 && (
 						<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 					)}
 				</div>
@@ -143,4 +143,4 @@ const DraftBlogs = () => {
 	)
 }
 
-export default DraftBlogs
+export default Blogs

@@ -9,18 +9,19 @@ import { MdOutlineWorkOutline } from 'react-icons/md'
 import { IoHome, IoSettingsOutline } from 'react-icons/io5'
 import { RiContactsBook3Line, RiShoppingCartLine } from 'react-icons/ri'
 
-export const Aside = ({ asideOpen, handleAsideOpen }) => {
+interface AsideProps {
+	asideOpen: boolean
+	handleAsideOpen: () => void
+}
+
+export const Aside = ({ asideOpen, handleAsideOpen }: AsideProps) => {
 	const router = useRouter()
 	const { data: session } = useSession()
 	const [clicked, setClicked] = useState(false)
 	const [activeLink, setActiveLink] = useState('/')
 
-	const handleClick = () => {
-		setClicked(!clicked)
-	}
-
-	const handleLinkClick = (link) => {
-		setActiveLink((preActive) => (preActive === link ? null : link))
+	const handleLinkClick = (link: string) => {
+		setActiveLink((preActive) => (preActive === link ? '' : link))
 		setClicked(false)
 	}
 

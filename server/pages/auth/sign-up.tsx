@@ -1,19 +1,18 @@
-'use client'
-
+import axios from 'axios'
 import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
 import { useEffect, useState } from 'react'
-import { signIn, useSession } from 'next-auth/react'
 
 import { Spinner } from '@/components'
 
-const SignIn = () => {
-	const { data: session, status } = useSession()
+const SignUp = () => {
 	const router = useRouter()
-	const [loading, setLoading] = useState(false)
-	const [error, setError] = (useState < string) | (null > null)
+	const { data: session, status } = useSession()
+	const [error, setError] = useState<string | null>(null)
 	const [form, setForm] = useState({
 		email: '',
 		password: '',
+		confirmPassword: '',
 	})
 
 	const handleChange = (e) => {
@@ -21,30 +20,25 @@ const SignIn = () => {
 	}
 
 	const handleSubmit = async (e) => {
-		setLoading(true)
 		e.preventDefault()
 
-		try {
-			// attempt to sign in using credentials provider
-			const result = await signIn('credentials', {
-				redirect: false,
-				email: form.email,
-				password: form.password,
-			})
+		if (form.password !== form.confirmPassword) {
+			setError('Passwords do not match')
+			setTimeout(() => setError(''), 3000)
 
-			if (!result.error) {
-				// successful sign in
-				router.push('/')
-			} else {
-				setError('Invalid email or password')
-				setTimeout(() => setError(''), 3000)
-			}
-		} catch (error) {
-			setError('Sign in failed, please try again')
+			return
+		}
+
+		const { data } = await axios.post('/api/auth/sign-up', form, {
+			headers: { 'Content-Type': 'application/json' },
+		})
+
+		if (data.error) {
+			setError('Error happened here')
+
 			setTimeout(() => setError(''), 3000)
-		} finally {
-			setLoading(false)
-			setTimeout(() => setError(''), 3000)
+		} else {
+			router.push('/auth/sign-in')
 		}
 	}
 
@@ -58,9 +52,9 @@ const SignIn = () => {
 	return (
 		<div className="flex flex-center full-h">
 			<div className="login-form">
-				<div className="heading">Sign In</div>
+				<div className="heading">Sign Up create admin</div>
 
-				{loading ? (
+				{status === 'loading' ? (
 					<div className="flex flex-center w-100 flex-col">
 						<Spinner />
 					</div>
@@ -84,16 +78,31 @@ const SignIn = () => {
 							value={form.password}
 						/>
 
+						<input
+							type="password"
+							name="confirmPassword"
+							placeholder="Confirm password"
+							className="input"
+							onChange={handleChange}
+							value={form.confirmPassword}
+						/>
+
 						<button className="login-button" type="submit">
-							Sign In
+							Sign Up
 						</button>
 
 						{error && <p className="red-color">{error}</p>}
 					</form>
 				)}
+
+				<span className="agreement">
+					<a href="/" target="_blank" rel="noopener noreferrer">
+						Learn admin license agreement
+					</a>
+				</span>
 			</div>
 		</div>
 	)
 }
 
-export default SignIn
+export default SignUp

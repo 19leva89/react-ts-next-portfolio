@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const useFetchData = <T = any>(apiEndpoint: string) => {
 	const [allData, setAllData] = useState<T | null>(null)
 	const [loading, setLoading] = useState(true)
