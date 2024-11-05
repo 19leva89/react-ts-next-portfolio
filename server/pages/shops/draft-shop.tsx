@@ -4,19 +4,20 @@ import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
 
+import { IShop } from '@/models/shop'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
-const Shops = () => {
+const DraftShop = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState < number > 1
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState < string > ''
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/shops')
+	const { allData, loading } = useFetchData<IShop[]>('/api/shops')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -39,13 +40,13 @@ const Shops = () => {
 	// get current page of content
 	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
+	const draftedContent = currentContent.filter((content) => content.status === 'draft') || []
 
 	return (
 		<LoginLayout>
 			<div className="content-page">
 				<DashboardHeader
-					title="All Published"
+					title="All Draft"
 					subtitle="Products"
 					icon={RiArrowRightDoubleFill}
 					breadcrumb="products"
@@ -53,7 +54,7 @@ const Shops = () => {
 
 				<div className="contents-table">
 					<div className="flex gap-2 mb-1">
-						<h2>Search Producrs:</h2>
+						<h2>Search Products:</h2>
 						<input
 							type="text"
 							placeholder="Search by title..."
@@ -81,21 +82,25 @@ const Shops = () => {
 								</tr>
 							) : (
 								<>
-									{publishedContent.length === 0 ? (
+									{draftedContent.length === 0 ? (
 										<tr>
 											<td colSpan={4} className="text-center">
 												No Products Found
 											</td>
 										</tr>
 									) : (
-										publishedContent.map((content, index) => (
+										draftedContent.map((content, index) => (
 											<tr key={content._id}>
 												<td>{indexOfFirstContent + index + 1}</td>
 
 												<td>
 													<div className="content-image-container">
 														<Image
-															src={content.images[0] || '/img/no-image.png'}
+															src={
+																content.images && content.images.length > 0
+																	? content.images[0]
+																	: '/img/no-image.png'
+															}
 															alt="image"
 															width={200}
 															height={100}
@@ -134,7 +139,7 @@ const Shops = () => {
 					</table>
 
 					{/* for pagination */}
-					{publishedContent.length > 0 && (
+					{draftedContent.length > 0 && (
 						<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 					)}
 				</div>
@@ -143,4 +148,4 @@ const Shops = () => {
 	)
 }
 
-export default Shops
+export default DraftShop

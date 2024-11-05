@@ -1,14 +1,14 @@
 'use client'
 
 import { useRouter } from 'next/router'
-import { useEffect, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import { Spinner } from '@/components'
 
 const SignIn = () => {
-	const { data: session, status } = useSession()
 	const router = useRouter()
+	const { status: sessionStatus } = useSession()
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [form, setForm] = useState({
@@ -16,11 +16,11 @@ const SignIn = () => {
 		password: '',
 	})
 
-	const handleChange = (e) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setForm({ ...form, [e.target.name]: e.target.value })
 	}
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
 		setLoading(true)
 		e.preventDefault()
 
@@ -32,7 +32,7 @@ const SignIn = () => {
 				password: form.password,
 			})
 
-			if (!result.error) {
+			if (result && !result.error) {
 				// successful sign in
 				router.push('/')
 			} else {
@@ -40,20 +40,22 @@ const SignIn = () => {
 				setTimeout(() => setError(''), 3000)
 			}
 		} catch (error) {
-			setError('Sign in failed, please try again')
-			setTimeout(() => setError(''), 3000)
-		} finally {
-			setLoading(false)
+			if (error instanceof Error) {
+				setError(`Sign in failed: ${error.message}`)
+			} else {
+				setError('Sign in failed: unknown error')
+			}
+
 			setTimeout(() => setError(''), 3000)
 		}
 	}
 
 	// authentication
 	useEffect(() => {
-		if (status === 'authenticated') {
+		if (sessionStatus === 'authenticated') {
 			router.push('/')
 		}
-	}, [status, router])
+	}, [sessionStatus, router])
 
 	return (
 		<div className="flex flex-center full-h">

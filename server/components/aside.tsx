@@ -11,18 +11,17 @@ import { RiContactsBook3Line, RiShoppingCartLine } from 'react-icons/ri'
 
 interface AsideProps {
 	asideOpen: boolean
-	handleAsideOpen: () => void
+	handleAsideOpen?: () => void
 }
 
-export const Aside = ({ asideOpen, handleAsideOpen }: AsideProps) => {
+export const Aside = ({ asideOpen }: AsideProps) => {
 	const router = useRouter()
 	const { data: session } = useSession()
-	const [clicked, setClicked] = useState(false)
+
 	const [activeLink, setActiveLink] = useState('/')
 
 	const handleLinkClick = (link: string) => {
 		setActiveLink((preActive) => (preActive === link ? '' : link))
-		setClicked(false)
 	}
 
 	useEffect(() => {

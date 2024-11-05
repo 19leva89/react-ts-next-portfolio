@@ -4,19 +4,20 @@ import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
 
+import { IProject } from '@/models/project'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
-const DraftShop = () => {
+const DraftProjects = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState < number > 1
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState < string > ''
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/shops')
+	const { allData, loading } = useFetchData<IProject[]>('/api/projects')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -39,21 +40,21 @@ const DraftShop = () => {
 	// get current page of content
 	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const draftedContent = currentContent.filter((content) => content.status === 'draft')
+	const draftedContent = currentContent.filter((content) => content.status === 'draft') || []
 
 	return (
 		<LoginLayout>
 			<div className="content-page">
 				<DashboardHeader
 					title="All Draft"
-					subtitle="Products"
+					subtitle="Projects"
 					icon={RiArrowRightDoubleFill}
-					breadcrumb="products"
+					breadcrumb="projects"
 				/>
 
 				<div className="contents-table">
 					<div className="flex gap-2 mb-1">
-						<h2>Search Products:</h2>
+						<h2>Search Projects:</h2>
 						<input
 							type="text"
 							placeholder="Search by title..."
@@ -84,7 +85,7 @@ const DraftShop = () => {
 									{draftedContent.length === 0 ? (
 										<tr>
 											<td colSpan={4} className="text-center">
-												No Products Found
+												No Projects Found
 											</td>
 										</tr>
 									) : (
@@ -95,7 +96,11 @@ const DraftShop = () => {
 												<td>
 													<div className="content-image-container">
 														<Image
-															src={content.images[0] || '/img/no-image.png'}
+															src={
+																content.images && content.images.length > 0
+																	? content.images[0]
+																	: '/img/no-image.png'
+															}
 															alt="image"
 															width={200}
 															height={100}
@@ -112,13 +117,13 @@ const DraftShop = () => {
 
 												<td>
 													<div className="flex gap-2 flex-center">
-														<Link href={`/shops/edit/${content._id}`}>
+														<Link href={`/projects/edit/${content._id}`}>
 															<button>
 																<FaEdit />
 															</button>
 														</Link>
 
-														<Link href={`/shops/delete/${content._id}`}>
+														<Link href={`/projects/delete/${content._id}`}>
 															<button>
 																<RiDeleteBin6Fill />
 															</button>
@@ -143,4 +148,4 @@ const DraftShop = () => {
 	)
 }
 
-export default DraftShop
+export default DraftProjects

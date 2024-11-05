@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { signOut } from 'next-auth/react'
 
 import { DashboardHeader, LoginLayout } from '@/components'
@@ -13,7 +14,7 @@ const Settings = () => {
 
 				<div className="profile-settings">
 					<div className="left-profile-details flex">
-						<img src="/img/coder.png" alt="coder" />
+						<Image src="/img/coder.png" alt="coder" width={200} height={300} />
 
 						<div className="w-100">
 							<div className="flex flex-sb flex-left mt-2">

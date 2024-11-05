@@ -6,6 +6,7 @@ import { TbTrashX } from 'react-icons/tb'
 import { useState, useEffect } from 'react'
 import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
+import { IShop } from '@/models/shop'
 import { DashboardHeader, LoginLayout } from '@/components'
 
 const DeleteProduct = () => {
@@ -13,7 +14,7 @@ const DeleteProduct = () => {
 
 	const { id } = router.query
 
-	const [productInfo, setProductInfo] = useState(null)
+	const [productInfo, setProductInfo] = useState<IShop | null>(null)
 
 	const goBack = () => {
 		router.push('/shops')

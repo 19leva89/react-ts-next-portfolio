@@ -4,14 +4,15 @@ import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
-import { Project, DashboardHeader, LoginLayout } from '@/components'
+import { IShop } from '@/models/shop'
+import { Shop, DashboardHeader, LoginLayout } from '@/components'
 
-const EditProject = () => {
+const EditProduct = () => {
 	const router = useRouter()
 
 	const { id } = router.query
 
-	const [productInfo, setProductInfo] = useState(null)
+	const [productInfo, setProductInfo] = useState<IShop | null>(null)
 
 	useEffect(() => {
 		if (!id) {
@@ -20,11 +21,11 @@ const EditProject = () => {
 
 		const fetchProduct = async () => {
 			try {
-				const res = await axios.get(`/api/projects?id=${id}`)
+				const res = await axios.get(`/api/shops?id=${id}`)
 
 				setProductInfo(res.data)
 			} catch (error) {
-				console.error('[PROJECTS_EDIT] Data boot error:', error)
+				console.error('[PRODUCTS_EDIT] Data boot error:', error)
 			}
 		}
 
@@ -34,7 +35,7 @@ const EditProject = () => {
 	return (
 		<LoginLayout>
 			<Head>
-				<title>Update Project</title>
+				<title>Update Product</title>
 			</Head>
 
 			<div className="content-page">
@@ -42,13 +43,13 @@ const EditProject = () => {
 					title="Edit"
 					subtitle={productInfo ? productInfo.title : ''}
 					icon={RiArrowRightDoubleFill}
-					breadcrumb="edit project"
+					breadcrumb="edit product"
 				/>
 
-				<div className="mt-3">{productInfo && <Project {...productInfo} />}</div>
+				<div className="mt-3">{productInfo && <Shop {...productInfo} />}</div>
 			</div>
 		</LoginLayout>
 	)
 }
 
-export default EditProject
+export default EditProduct

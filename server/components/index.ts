@@ -1,4 +1,5 @@
 export { Aside } from './aside'
+export { BarChart } from './bar-chart'
 export { Blog } from './blog'
 export { DashboardHeader } from './dashboard-header'
 export { DataLoading } from './data-loading'

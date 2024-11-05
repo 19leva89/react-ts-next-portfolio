@@ -101,7 +101,11 @@ const Category = () => {
 											<div className="l-post-img">
 												<Link href={`/blogs/${content.slug}`}>
 													<Image
-														src={content.images[0] || '/img/no-image.png'}
+														src={
+															content.images && content.images.length > 0
+																? content.images[0]
+																: '/img/no-image.png'
+														}
 														alt={content.title}
 														width={420}
 														height={240}

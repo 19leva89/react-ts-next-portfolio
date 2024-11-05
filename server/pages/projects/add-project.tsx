@@ -14,7 +14,7 @@ const AddProject = () => {
 				/>
 
 				<div className="contents-add">
-					<Project />
+					<Project _id={''} title={''} slug={''} />
 				</div>
 			</div>
 		</LoginLayout>

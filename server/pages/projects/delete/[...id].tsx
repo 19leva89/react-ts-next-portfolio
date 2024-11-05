@@ -6,28 +6,29 @@ import { TbTrashX } from 'react-icons/tb'
 import { useState, useEffect } from 'react'
 import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
+import { IProject } from '@/models/project'
 import { DashboardHeader, LoginLayout } from '@/components'
 
-const DeletePhoto = () => {
+const DeleteProject = () => {
 	const router = useRouter()
 
 	const { id } = router.query
 
-	const [productInfo, setProductInfo] = useState(null)
+	const [productInfo, setProductInfo] = useState<IProject | null>(null)
 
 	const goBack = () => {
-		router.push('/gallery')
+		router.push('/projects')
 	}
 
 	const deleteProduct = async () => {
 		try {
-			await axios.delete(`/api/photos?id=${id}`)
+			await axios.delete(`/api/projects?id=${id}`)
 
-			toast.success('Photo deleted successfully')
+			toast.success('Project deleted successfully')
 
 			goBack()
 		} catch (error) {
-			console.error('[BLOGS_DELETE] Error deleting:', error)
+			console.error('[PROJECTS_DELETE] Error deleting:', error)
 		}
 	}
 
@@ -38,11 +39,11 @@ const DeletePhoto = () => {
 
 		const fetchProduct = async () => {
 			try {
-				const res = await axios.get(`/api/photos?id=${id}`)
+				const res = await axios.get(`/api/projects?id=${id}`)
 
 				setProductInfo(res.data)
 			} catch (error) {
-				console.error('[PHOTOS_DELETE] Error loading data:', error)
+				console.error('[PROJECTS_DELETE] Error loading data:', error)
 			}
 		}
 
@@ -52,7 +53,7 @@ const DeletePhoto = () => {
 	return (
 		<LoginLayout>
 			<Head>
-				<title>Delete Photo</title>
+				<title>Delete Project</title>
 			</Head>
 
 			<div className="content-page">
@@ -60,7 +61,7 @@ const DeletePhoto = () => {
 					title="Delete"
 					subtitle={productInfo ? productInfo.title : ''}
 					icon={RiArrowRightDoubleFill}
-					breadcrumb="delete photo"
+					breadcrumb="delete project"
 				/>
 
 				<div className="delete-sec flex flex-center wh_100">
@@ -89,4 +90,4 @@ const DeletePhoto = () => {
 	)
 }
 
-export default DeletePhoto
+export default DeleteProject

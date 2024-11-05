@@ -4,19 +4,20 @@ import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
 
+import { IProject } from '@/models/project'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
 const Projects = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState < number > 1
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState < string > ''
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/projects')
+	const { allData, loading } = useFetchData<IProject[]>('/api/projects')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -95,7 +96,11 @@ const Projects = () => {
 												<td>
 													<div className="content-image-container">
 														<Image
-															src={content.images[0] || '/img/no-image.png'}
+															src={
+																content.images && content.images.length > 0
+																	? content.images[0]
+																	: '/img/no-image.png'
+															}
 															alt="image"
 															width={200}
 															height={100}

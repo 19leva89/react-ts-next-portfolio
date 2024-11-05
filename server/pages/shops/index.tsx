@@ -4,19 +4,20 @@ import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
 
+import { IShop } from '@/models/shop'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
-const Gallery = () => {
+const Shops = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState < number > 1
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState < string > ''
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/photos')
+	const { allData, loading } = useFetchData<IShop[]>('/api/shops')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -37,21 +38,23 @@ const Gallery = () => {
 	const indexOfLastContent = currentPage * perPage
 
 	// get current page of content
-	const publishedContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
+	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
+
+	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
 
 	return (
 		<LoginLayout>
 			<div className="content-page">
 				<DashboardHeader
 					title="All Published"
-					subtitle="Photos"
+					subtitle="Products"
 					icon={RiArrowRightDoubleFill}
-					breadcrumb="photos"
+					breadcrumb="products"
 				/>
 
 				<div className="contents-table">
 					<div className="flex gap-2 mb-1">
-						<h2>Search Photos:</h2>
+						<h2>Search Producrs:</h2>
 						<input
 							type="text"
 							placeholder="Search by title..."
@@ -82,7 +85,7 @@ const Gallery = () => {
 									{publishedContent.length === 0 ? (
 										<tr>
 											<td colSpan={4} className="text-center">
-												No Photos Found
+												No Products Found
 											</td>
 										</tr>
 									) : (
@@ -93,7 +96,11 @@ const Gallery = () => {
 												<td>
 													<div className="content-image-container">
 														<Image
-															src={content.images[0] || '/img/no-image.png'}
+															src={
+																content.images && content.images.length > 0
+																	? content.images[0]
+																	: '/img/no-image.png'
+															}
 															alt="image"
 															width={200}
 															height={100}
@@ -110,13 +117,13 @@ const Gallery = () => {
 
 												<td>
 													<div className="flex gap-2 flex-center">
-														<Link href={`/gallery/edit/${content._id}`}>
+														<Link href={`/shops/edit/${content._id}`}>
 															<button>
 																<FaEdit />
 															</button>
 														</Link>
 
-														<Link href={`/gallery/delete/${content._id}`}>
+														<Link href={`/shops/delete/${content._id}`}>
 															<button>
 																<RiDeleteBin6Fill />
 															</button>
@@ -141,4 +148,4 @@ const Gallery = () => {
 	)
 }
 
-export default Gallery
+export default Shops

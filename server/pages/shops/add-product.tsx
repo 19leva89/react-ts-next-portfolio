@@ -14,7 +14,7 @@ const AddProduct = () => {
 				/>
 
 				<div className="contents-add">
-					<Shop />
+					<Shop _id={''} title={''} slug={''} />
 				</div>
 			</div>
 		</LoginLayout>

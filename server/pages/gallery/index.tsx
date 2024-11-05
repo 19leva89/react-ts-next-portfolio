@@ -4,19 +4,20 @@ import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
 
+import { IPhoto } from '@/models/photo'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
-const DraftProjects = () => {
+const Gallery = () => {
 	// pagination
-	const [currentPage, setCurrentPage] = useState < number > 1
+	const [currentPage, setCurrentPage] = useState<number>(1)
 	const [perPage] = useState(7)
 
 	// search
-	const [searchQuery, setSearchQuery] = useState < string > ''
+	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/projects')
+	const { allData, loading } = useFetchData<IPhoto[]>('/api/photos')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -37,23 +38,21 @@ const DraftProjects = () => {
 	const indexOfLastContent = currentPage * perPage
 
 	// get current page of content
-	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
-
-	const draftedContent = currentContent.filter((content) => content.status === 'draft')
+	const publishedContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
 	return (
 		<LoginLayout>
 			<div className="content-page">
 				<DashboardHeader
-					title="All Draft"
-					subtitle="Projects"
+					title="All Published"
+					subtitle="Photos"
 					icon={RiArrowRightDoubleFill}
-					breadcrumb="projects"
+					breadcrumb="photos"
 				/>
 
 				<div className="contents-table">
 					<div className="flex gap-2 mb-1">
-						<h2>Search Projects:</h2>
+						<h2>Search Photos:</h2>
 						<input
 							type="text"
 							placeholder="Search by title..."
@@ -81,21 +80,25 @@ const DraftProjects = () => {
 								</tr>
 							) : (
 								<>
-									{draftedContent.length === 0 ? (
+									{publishedContent.length === 0 ? (
 										<tr>
 											<td colSpan={4} className="text-center">
-												No Projects Found
+												No Photos Found
 											</td>
 										</tr>
 									) : (
-										draftedContent.map((content, index) => (
+										publishedContent.map((content, index) => (
 											<tr key={content._id}>
 												<td>{indexOfFirstContent + index + 1}</td>
 
 												<td>
 													<div className="content-image-container">
 														<Image
-															src={content.images[0] || '/img/no-image.png'}
+															src={
+																content.images && content.images.length > 0
+																	? content.images[0]
+																	: '/img/no-image.png'
+															}
 															alt="image"
 															width={200}
 															height={100}
@@ -112,13 +115,13 @@ const DraftProjects = () => {
 
 												<td>
 													<div className="flex gap-2 flex-center">
-														<Link href={`/projects/edit/${content._id}`}>
+														<Link href={`/gallery/edit/${content._id}`}>
 															<button>
 																<FaEdit />
 															</button>
 														</Link>
 
-														<Link href={`/projects/delete/${content._id}`}>
+														<Link href={`/gallery/delete/${content._id}`}>
 															<button>
 																<RiDeleteBin6Fill />
 															</button>
@@ -134,7 +137,7 @@ const DraftProjects = () => {
 					</table>
 
 					{/* for pagination */}
-					{draftedContent.length > 0 && (
+					{publishedContent.length > 0 && (
 						<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 					)}
 				</div>
@@ -143,4 +146,4 @@ const DraftProjects = () => {
 	)
 }
 
-export default DraftProjects
+export default Gallery

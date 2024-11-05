@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
 import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
 
+import { IBlog } from '@/models/blog'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components'
 
@@ -16,7 +17,7 @@ const DraftBlogs = () => {
 	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData('/api/blogs')
+	const { allData, loading } = useFetchData<IBlog[]>('/api/blogs')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -39,7 +40,7 @@ const DraftBlogs = () => {
 	// get current page of content
 	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
-	const draftedContent = currentContent.filter((content) => content.status === 'draft')
+	const draftedContent = currentContent.filter((content) => content.status === 'draft') || []
 
 	return (
 		<LoginLayout>
@@ -95,7 +96,11 @@ const DraftBlogs = () => {
 												<td>
 													<div className="content-image-container">
 														<Image
-															src={content.images[0] || '/img/no-image.png'}
+															src={
+																content.images && content.images.length > 0
+																	? content.images[0]
+																	: '/img/no-image.png'
+															}
 															alt="image"
 															width={200}
 															height={100}

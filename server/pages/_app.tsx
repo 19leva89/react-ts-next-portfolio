@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import { AppProps } from 'next/app'
 import { SessionProvider } from 'next-auth/react'
 
 import '@/styles/globals.css'
 import { ParentComponent } from '@/components'
 
-const App = ({ Component, pageProps: { session, ...pageProps } }) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
 	const [asideOpen, setAsideOpen] = useState(false)
 
 	const asideClickOpen = () => {

@@ -1,4 +1,4 @@
-import { CSSProperties, FC, ReactNode, useState } from 'react'
+import { CSSProperties, ReactNode, useState } from 'react'
 
 interface CodeBlockProps {
 	inline: boolean
@@ -6,7 +6,7 @@ interface CodeBlockProps {
 	children: ReactNode
 }
 
-export const CodeBlock: FC<CodeBlockProps> = ({ inline, className, children, ...props }) => {
+export const CodeBlock = ({ inline, className, children, ...props }: CodeBlockProps) => {
 	const match = /language-(\w+)/.exec(className || '')
 
 	const [copied, setCopied] = useState(false)

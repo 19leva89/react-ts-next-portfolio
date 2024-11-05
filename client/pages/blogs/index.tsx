@@ -120,7 +120,11 @@ const Blogs = () => {
 														<div key={content._id} className="f-post">
 															<Link href={`/blogs/${content.slug}`}>
 																<Image
-																	src={content.images[0] || '/img/no-image.png'}
+																	src={
+																		content.images && content.images.length > 0
+																			? content.images[0]
+																			: '/img/no-image.png'
+																	}
 																	alt={content.title}
 																	width={430}
 																	height={480}
@@ -267,7 +271,11 @@ const Blogs = () => {
 											<div className="l-post-img">
 												<Link href={`/blogs/${content.slug}`}>
 													<Image
-														src={content.images[0] || '/img/no-image.png'}
+														src={
+															content.images && content.images.length > 0
+																? content.images[0]
+																: '/img/no-image.png'
+														}
 														alt={content.title}
 														width={420}
 														height={240}

@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { useRouter } from 'next/router'
 import { useSession } from 'next-auth/react'
-import { useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import { Spinner } from '@/components'
 
 const SignUp = () => {
 	const router = useRouter()
-	const { data: session, status } = useSession()
+	const { status: sessionStatus } = useSession()
 	const [error, setError] = useState<string | null>(null)
 	const [form, setForm] = useState({
 		email: '',
@@ -15,11 +15,11 @@ const SignUp = () => {
 		confirmPassword: '',
 	})
 
-	const handleChange = (e) => {
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setForm({ ...form, [e.target.name]: e.target.value })
 	}
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		if (form.password !== form.confirmPassword) {
@@ -44,17 +44,17 @@ const SignUp = () => {
 
 	// authentication
 	useEffect(() => {
-		if (status === 'authenticated') {
+		if (sessionStatus === 'authenticated') {
 			router.push('/')
 		}
-	}, [status, router])
+	}, [sessionStatus, router])
 
 	return (
 		<div className="flex flex-center full-h">
 			<div className="login-form">
 				<div className="heading">Sign Up create admin</div>
 
-				{status === 'loading' ? (
+				{sessionStatus === 'loading' ? (
 					<div className="flex flex-center w-100 flex-col">
 						<Spinner />
 					</div>
