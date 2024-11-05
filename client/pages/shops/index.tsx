@@ -82,7 +82,11 @@ const Shop = () => {
 									>
 										<div className="sp-pro-card-img">
 											<Image
-												src={product.images[0] || '/img/no-image.png'}
+												src={
+													product.images && product.images.length > 0
+														? product.images[0]
+														: '/img/no-image.png'
+												}
 												alt={product.title}
 												width={420}
 												height={330}
@@ -95,9 +99,7 @@ const Shop = () => {
 											<h3>$ {product.price}</h3>
 
 											<div className="sp-pro-tags">
-												{product.tags.map((tag) => (
-													<span key={tag}>{tag.replace(/-/g, ' ')}</span>
-												))}
+												{product.tags?.map((tag) => <span key={tag}>{tag.replace(/-/g, ' ')}</span>)}
 											</div>
 
 											<p>{formatDate(createdAtData)}</p>

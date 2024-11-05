@@ -94,7 +94,10 @@ const Gallery = () => {
 										data-aos-ease="ease-in-cubic"
 										data-aos-duration="2000"
 									>
-										<img src={photo.images[0] || '/img/no-image.png'} alt="gallery" />
+										<img
+											src={photo.images && photo.images.length > 0 ? photo.images[0] : '/img/no-image.png'}
+											alt="gallery"
+										/>
 
 										<div className="gallery-img-item-info">
 											<h2>{photo.title}</h2>

@@ -22,8 +22,11 @@ const ShopSlug = () => {
 
 	// useEffect to set mainImage once allData is available
 	useEffect(() => {
-		if (allData && allData.length > 0 && allData[0]?.images[0]) {
-			setMainImage(allData[0]?.images[0])
+		if (allData && allData.length > 0) {
+			const images = allData[0]?.images
+			if (images && images[0]) {
+				setMainImage(images[0])
+			}
 		}
 	}, [allData])
 
@@ -69,17 +72,20 @@ const ShopSlug = () => {
 										modules={[FreeMode]}
 										className="mySwiper"
 									>
-										{allData[0]?.images.map((image, index) => (
-											<SwiperSlide key={index}>
-												<Image
-													src={image}
-													alt={allData[0]?.title}
-													onClick={() => handleImageClick(image)}
-													width={250}
-													height={250}
-												/>
-											</SwiperSlide>
-										))}
+										{allData &&
+											allData[0] &&
+											allData[0].images &&
+											allData[0].images.map((image, index) => (
+												<SwiperSlide key={index}>
+													<Image
+														src={image}
+														alt={allData[0]?.title}
+														onClick={() => handleImageClick(image)}
+														width={250}
+														height={250}
+													/>
+												</SwiperSlide>
+											))}
 									</Swiper>
 								</div>
 							</div>

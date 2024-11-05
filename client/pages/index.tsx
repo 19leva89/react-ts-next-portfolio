@@ -61,7 +61,7 @@ const Home = () => {
 		} else {
 			setFiltredProjects(
 				(allProjects ?? []).filter(
-					(project) => project.status === 'publish' && project.projectCategory[0] === selectedCategory,
+					(project) => project.status === 'publish' && project.projectCategory?.[0] === selectedCategory,
 				),
 			)
 		}
@@ -329,7 +329,11 @@ const Home = () => {
 										>
 											<div className="pro-img-box">
 												<Image
-													src={project.images[0] || '/img/no-image.png'}
+													src={
+														project.images && project.images.length > 0
+															? project.images[0]
+															: '/img/no-image.png'
+													}
 													alt={project.title}
 													width={550}
 													height={400}
@@ -522,17 +526,17 @@ const Home = () => {
 										>
 											<div className="re-blog-img">
 												<Image
-													src={blog.images[0] || '/img/no-image.png'}
+													src={blog.images && blog.images.length > 0 ? blog.images[0] : '/img/no-image.png'}
 													alt={blog.title}
 													width={400}
 													height={400}
 												/>
-												<span>{blog.blogCategory[0].replace(/-/g, ' ')}</span>
+												<span>{blog.blogCategory?.[0].replace(/-/g, ' ')}</span>
 											</div>
 
 											<div className="re-blog-info">
 												<div className="re-top-date flex gap-1">
-													<FaCalendarDays /> <span>{formatDate(new Date(blog.createdAt))}</span>
+													<FaCalendarDays /> <span>{formatDate(blog.createdAt)}</span>
 												</div>
 
 												<h2>{blog.title}</h2>

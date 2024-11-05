@@ -5,6 +5,7 @@ import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
+import { Types } from 'mongoose'
 import { useRouter } from 'next/router'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 
@@ -29,17 +30,19 @@ const BlogPage = () => {
 	const { allData = [] } = useFetchData<IBlog[]>('/api/blogs')
 
 	const [error, setError] = useState<string | null>(null)
-	const [copied, setCopied] = useState(false)
-	const [loading, setLoading] = useState(true)
+	const [copied, setCopied] = useState<boolean>(false)
+	const [loading, setLoading] = useState<boolean>(true)
 	const [messageOk, setMessageOk] = useState<string>('')
-	const [searchInput, setSearchInput] = useState(false)
+	const [searchInput, setSearchInput] = useState<boolean>(false)
 	const [blogData, setBlogData] = useState({ blog: {} as IBlog, comments: [] as IComment[] })
-	const [newComment, setNewComment] = useState({
+	const [newComment, setNewComment] = useState<IComment>({
+		_id: '',
 		name: '',
 		email: '',
 		title: '',
 		contentPreview: '',
 		mainComment: true,
+		blog: new Types.ObjectId(),
 		parent: null,
 		parentName: '',
 	})
@@ -71,17 +74,21 @@ const BlogPage = () => {
 			if (newComment.parent) {
 				// add the new comment to it`s parent`s children array
 				setBlogData((prev) => {
-					const updatedComments = prev.comments.map((comment) => {
-						if (comment._id === newComment.parent) {
+					const updatedComments = (prev.comments ?? []).map((comment) => {
+						if (comment._id === newComment.parent?.toString()) {
 							return {
 								...comment,
-								children: [...comment.children, res.data],
+								children: [...(comment.children ?? []), res.data],
 							}
-						} else if (comment.children && comment.children.length > 0 && newComment.parent !== null) {
+						} else if (comment.children && comment.children.length > 0) {
 							// recursively update the children comments
 							return {
 								...comment,
-								children: updateChildrenComments(comment.children, newComment.parent, res.data),
+								children: updateChildrenComments(
+									comment.children,
+									newComment.parent?.toString() ?? '',
+									res.data,
+								),
 							}
 						}
 
@@ -109,11 +116,13 @@ const BlogPage = () => {
 			}, 5000)
 
 			setNewComment({
+				_id: '',
 				name: '',
 				email: '',
 				title: '',
 				contentPreview: '',
 				mainComment: true,
+				blog: new Types.ObjectId(),
 				parent: null,
 				parentName: '',
 			})
@@ -134,6 +143,7 @@ const BlogPage = () => {
 		}
 	}
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleReply = (parentCommentId: any, parentName: string) => {
 		setNewComment({
 			...newComment,
@@ -166,7 +176,7 @@ const BlogPage = () => {
 				// add new reply to children array
 				return {
 					...comment,
-					children: [...comment.children, newComment],
+					children: [...(comment.children ?? []), newComment],
 				}
 			} else if (comment.children && comment.children.length > 0) {
 				// recursively update the children comments
@@ -208,7 +218,7 @@ const BlogPage = () => {
 			.map((parentComment) => (
 				<div key={parentComment._id} className="blog-comment">
 					<h3>
-						{parentComment.name} <span>{new Date(parentComment.createdAt).toLocaleString()}</span>
+						{parentComment.name} <span>{parentComment.createdAt?.toLocaleString()}</span>
 					</h3>
 
 					<h4>
@@ -225,7 +235,7 @@ const BlogPage = () => {
 						{commentsMap.get(parentComment._id).map((childComment: IComment) => (
 							<div key={childComment._id} className="child-comment">
 								<h3>
-									{childComment.name} <span>{new Date(childComment.createdAt).toLocaleString()}</span>
+									{childComment.name} <span>{childComment.createdAt?.toLocaleString()}</span>
 								</h3>
 
 								<span>Replied to {childComment.parentName}</span>
@@ -293,7 +303,11 @@ const BlogPage = () => {
 							<div className="left-side-details">
 								<div className="left-blog-info-img">
 									<Image
-										src={blogData.blog.images[0] || '/img/no-image.png'}
+										src={
+											blogData.blog.images && blogData.blog.images.length > 0
+												? blogData.blog.images[0]
+												: '/img/no-image.png'
+										}
 										alt={blogData.blog.title}
 										width={910}
 										height={350}
@@ -391,9 +405,7 @@ const BlogPage = () => {
 										<h2>Tags:</h2>
 
 										<div className="flex flex-wrap gap-1">
-											{blogData.blog.tags.map((tag) => (
-												<span key={tag}>{tag}</span>
-											))}
+											{blogData.blog?.tags?.map((tag) => <span key={tag}>{tag}</span>)}
 										</div>
 									</div>
 								</div>
@@ -474,7 +486,13 @@ const BlogPage = () => {
 										<Link href={`/blogs/category/node-js`}>
 											<li>
 												Node JS
-												<span>{allData?.filter((item) => item.blogCategory.includes('node-js')).length}</span>
+												<span>
+													{
+														allData?.filter(
+															(item) => item.blogCategory && item.blogCategory.includes('node-js'),
+														).length
+													}
+												</span>
 											</li>
 										</Link>
 
@@ -482,7 +500,11 @@ const BlogPage = () => {
 											<li>
 												React JS
 												<span>
-													{allData?.filter((item) => item.blogCategory.includes('react-js')).length}
+													{
+														allData?.filter(
+															(item) => item.blogCategory && item.blogCategory.includes('react-js'),
+														).length
+													}
 												</span>
 											</li>
 										</Link>
@@ -490,14 +512,25 @@ const BlogPage = () => {
 										<Link href={`/blogs/category/next-js`}>
 											<li>
 												Next JS
-												<span>{allData?.filter((item) => item.blogCategory.includes('next-js')).length}</span>
+												<span>
+													{
+														allData?.filter(
+															(item) => item.blogCategory && item.blogCategory.includes('next-js'),
+														).length
+													}
+												</span>
 											</li>
 										</Link>
 
 										<Link href={`/blogs/category/css`}>
 											<li>
 												CSS
-												<span>{allData?.filter((item) => item.blogCategory.includes('css')).length}</span>
+												<span>
+													{
+														allData?.filter((item) => item.blogCategory && item.blogCategory.includes('css'))
+															.length
+													}
+												</span>
 											</li>
 										</Link>
 
@@ -505,7 +538,11 @@ const BlogPage = () => {
 											<li>
 												Digital Marketing
 												<span>
-													{allData?.filter((item) => item.blogCategory.includes('digital-marketing')).length}
+													{
+														allData?.filter(
+															(item) => item.blogCategory && item.blogCategory.includes('digital-marketing'),
+														).length
+													}
 												</span>
 											</li>
 										</Link>
@@ -514,7 +551,11 @@ const BlogPage = () => {
 											<li>
 												Flutter Dev
 												<span>
-													{allData?.filter((item) => item.blogCategory.includes('flutter-dev')).length}
+													{
+														allData?.filter(
+															(item) => item.blogCategory && item.blogCategory.includes('flutter-dev'),
+														).length
+													}
 												</span>
 											</li>
 										</Link>
@@ -523,7 +564,11 @@ const BlogPage = () => {
 											<li>
 												Database
 												<span>
-													{allData?.filter((item) => item.blogCategory.includes('database')).length}
+													{
+														allData?.filter(
+															(item) => item.blogCategory && item.blogCategory.includes('database'),
+														).length
+													}
 												</span>
 											</li>
 										</Link>
@@ -532,7 +577,11 @@ const BlogPage = () => {
 											<li>
 												Deployment
 												<span>
-													{allData?.filter((item) => item.blogCategory.includes('deployment')).length}
+													{
+														allData?.filter(
+															(item) => item.blogCategory && item.blogCategory.includes('deployment'),
+														).length
+													}
 												</span>
 											</li>
 										</Link>
@@ -544,7 +593,7 @@ const BlogPage = () => {
 									{allData?.slice(0, 3).map((blog) => (
 										<Link key={blog._id} href={`/blogs/${blog.slug}`} className="right-recent-p">
 											<Image
-												src={blog.images[0] || '/img/no-image.png'}
+												src={blog.images && blog.images.length > 0 ? blog.images[0] : '/img/no-image.png'}
 												alt={blog.title}
 												width={100}
 												height={100}
@@ -553,7 +602,7 @@ const BlogPage = () => {
 											<div>
 												<h3>{blog.title}</h3>
 												<h4 className="mt-1">
-													{blog.tags.map((tag) => {
+													{blog.tags?.map((tag) => {
 														return <span key={tag}>{tag}</span>
 													})}
 												</h4>

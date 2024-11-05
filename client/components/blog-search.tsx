@@ -20,7 +20,7 @@ const extractFirstParagraph = (markdown: string) => {
 export const BlogSearch = ({ cls }: BlogSearchProps) => {
 	const { allData = [] } = useFetchData<IBlog[]>('/api/blogs') // Assuming useFetchData returns an object with allwork and loading
 
-	const [blogTitle, setBlogTitle] = useState('') // blog title should be initialized as a string
+	const [blogTitle, setBlogTitle] = useState<string>('') // blog title should be initialized as a string
 	const [searchResult, setSearchResult] = useState<IBlog[]>([])
 
 	// filter for published blogs required
@@ -39,6 +39,7 @@ export const BlogSearch = ({ cls }: BlogSearchProps) => {
 		)
 
 		setSearchResult(filteredblogs) // setSearchResult should be used to update searchResult state
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [blogTitle, allData]) // Include allwork in dependencies to ensure useEffect updates when data changes
 
 	const handleBlogClick = () => {
@@ -55,6 +56,7 @@ export const BlogSearch = ({ cls }: BlogSearchProps) => {
 						value={blogTitle}
 						onChange={(e) => setBlogTitle(e.target.value)}
 					/>
+
 					<div className="sbs-input-close" onClick={cls}>
 						<IoClose />
 					</div>
@@ -72,7 +74,8 @@ export const BlogSearch = ({ cls }: BlogSearchProps) => {
 										return (
 											<Link href={`/blogs/${blog.slug}`} key={blog._id} className="sbsf-s-box" onClick={cls}>
 												<h2>{blog.title}</h2>
-												<p>{extractFirstParagraph(blog.description)}</p>
+
+												<p>{extractFirstParagraph(blog.description ?? '')}</p>
 											</Link>
 										)
 									})}

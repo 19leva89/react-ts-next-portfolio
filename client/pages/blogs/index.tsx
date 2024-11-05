@@ -144,7 +144,7 @@ const Blogs = () => {
 																	</div>
 
 																	<div className="tags flex flex-nowrap">
-																		{content.blogCategory.slice(0, 1).map((cat) => (
+																		{content.blogCategory?.slice(0, 1).map((cat) => (
 																			<Link key={cat} href={`blogs/category/${cat}`} className="ai">
 																				<span />
 																				{cat.replace(/-/g, ' ')}
@@ -283,7 +283,7 @@ const Blogs = () => {
 												</Link>
 
 												<div className="tags">
-													{content.blogCategory.slice(0, 2).map((cat) => (
+													{content.blogCategory?.slice(0, 2).map((cat) => (
 														<Link key={cat} href={`blogs/category/${cat}`} className="ai">
 															<span />
 															{cat.replace(/-/g, ' ')}

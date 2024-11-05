@@ -29,7 +29,10 @@ const Category = () => {
 	// filter all data based on search query
 	const filteredContent = allData
 		?.filter((item) => item.blogCategory === item.blogCategory)
-		.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+		.sort(
+			(a, b) =>
+				new Date(b.createdAt ?? new Date(0)).getTime() - new Date(a.createdAt ?? new Date(0)).getTime(),
+		)
 		.slice(0, 20)
 		.reverse()
 
@@ -120,7 +123,7 @@ const Category = () => {
 													modules={[FreeMode]}
 													className="tagsSwiper"
 												>
-													{content.blogCategory.map((cat, index) => (
+													{content.blogCategory?.map((cat, index) => (
 														<SwiperSlide key={index}>
 															<Link href={cat} className="ai">
 																<span />

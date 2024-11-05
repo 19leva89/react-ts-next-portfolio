@@ -55,7 +55,7 @@ const Projects = () => {
 		} else {
 			setFiltredProjects(
 				(allData ?? []).filter(
-					(project) => project.status === 'publish' && project.projectCategory[0] === selectedCategory,
+					(project) => project.status === 'publish' && project.projectCategory?.[0] === selectedCategory,
 				),
 			)
 		}
@@ -157,7 +157,11 @@ const Projects = () => {
 											>
 												<div className="pro-img-box">
 													<Image
-														src={project.images[0] || '/img/no-image.png'}
+														src={
+															project.images && project.images.length > 0
+																? project.images[0]
+																: '/img/no-image.png'
+														}
 														alt={project.title}
 														width={550}
 														height={400}

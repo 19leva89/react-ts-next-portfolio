@@ -23,7 +23,7 @@ const ProjectSlug = () => {
 	}
 
 	const projectCategory = allData[0]?.projectCategory
-		.map((category) => category.replace(/-/g, ' '))
+		?.map((category) => category.replace(/-/g, ' '))
 		.join(', ')
 
 	const createdAtData = allData[0]?.createdAt ? new Date(allData[0]?.createdAt) : null
@@ -38,7 +38,7 @@ const ProjectSlug = () => {
 				<div className="project-slug-img">
 					<div className="container">
 						<div className="pro-slug-img">
-							<Image src={allData[0]?.images[0]} alt={allData[0]?.title} width={1300} height={700} />
+							<Image src={allData[0]?.images?.[0] || ''} alt={allData[0]?.title} width={1300} height={700} />
 						</div>
 
 						<div className="project-slug-info">
@@ -92,7 +92,7 @@ const ProjectSlug = () => {
 								modules={[FreeMode]}
 								className="mySwiper"
 							>
-								{allData[0]?.images.map((image, index) => (
+								{allData[0]?.images?.map((image, index) => (
 									<SwiperSlide key={index}>
 										<Image src={image} alt={allData[0]?.title} width={350} height={230} />
 									</SwiperSlide>

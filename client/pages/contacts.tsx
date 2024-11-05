@@ -27,6 +27,7 @@ const Contact = () => {
 		setMessageOk('Sending...')
 
 		const data: IContact = {
+			_id: '',
 			firstName,
 			lastName,
 			email,

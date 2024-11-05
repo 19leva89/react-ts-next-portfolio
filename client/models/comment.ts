@@ -7,8 +7,8 @@ export interface IComment {
 	title?: string
 	contentPreview?: string
 	mainComment?: boolean
-	blog: Types.ObjectId
-	parent?: Types.ObjectId
+	blog?: Types.ObjectId | null
+	parent?: Types.ObjectId | null
 	children?: IComment[]
 	parentName?: string
 	createdAt?: Date
@@ -22,7 +22,7 @@ const commentSchema = new Schema<IComment>(
 		contentPreview: { type: String },
 		mainComment: { type: Boolean },
 		blog: { type: Schema.Types.ObjectId, ref: 'Blog', required: true },
-		parent: { type: Schema.Types.ObjectId, ref: 'Comment' },
+		parent: { type: Schema.Types.ObjectId, ref: 'Comment', default: null },
 		children: [{ type: Schema.Types.ObjectId, ref: 'Comment' }],
 		parentName: { type: String },
 	},
