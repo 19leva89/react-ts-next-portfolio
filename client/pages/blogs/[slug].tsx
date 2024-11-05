@@ -347,7 +347,7 @@ const BlogPage = () => {
 
 										{/* facebook share button */}
 										<Link
-											href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogUrl)}`}
+											href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogUrl)}`}
 											target="_blank"
 											rel="noopener noreferrer"
 										>
@@ -374,7 +374,7 @@ const BlogPage = () => {
 
 										{/* linkedin share button */}
 										<Link
-											href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(blogUrl)}`}
+											href={`https://linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(blogUrl)}`}
 											target="_blank"
 											rel="noopener noreferrer"
 										>
@@ -603,7 +603,7 @@ const BlogPage = () => {
 											<div>
 												<h3>{blog.title}</h3>
 												<h4 className="mt-1">
-													{blog.tags?.map((tag) => {
+													{blog.tags?.slice(0, 3).map((tag) => {
 														return <span key={tag}>{tag}</span>
 													})}
 												</h4>

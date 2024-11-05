@@ -132,7 +132,7 @@ const Contact = () => {
 										<span>
 											LinkedIn:{' '}
 											<Link
-												href="https://www.linkedin.com/in/lev-dmitry"
+												href="https://linkedin.com/in/lev-dmitry"
 												target="_blank"
 												rel="noreferrer noopener"
 											>

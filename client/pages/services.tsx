@@ -175,7 +175,7 @@ const Services = () => {
 					<div className="container">
 						<div className="pricing-title text-center">
 							<h3 data-aos="fade-up">
-								<Image src="/img/chevron-right.png" alt="" width={70} height={70} /> Pricing Plan
+								<Image src="/img/chevron-right.png" alt="" width={45} height={20} /> Pricing Plan
 							</h3>
 
 							<h2 data-aos="fade-up">Pricing my work</h2>

@@ -23,7 +23,7 @@ export const Footer = () => {
 					</li>
 
 					<li>
-						<Link href="/assets/cv.pdf" target="_blank">
+						<Link href="/assets/Soboliev_Dmitry_Node_React_Next_Dev.pdf" target="_blank">
 							Resume
 						</Link>
 					</li>
@@ -49,7 +49,7 @@ export const Footer = () => {
 					</li>
 
 					<li>
-						<Link href="https://www.facebook.com/dimochka.sobolev" target="_blank">
+						<Link href="https://facebook.com/dimochka.sobolev" target="_blank">
 							<FaFacebookF />
 						</Link>
 					</li>
@@ -61,7 +61,7 @@ export const Footer = () => {
 					</li>
 
 					<li>
-						<Link href="https://www.linkedin.com/in/lev-dmitry" target="_blank">
+						<Link href="https://linkedin.com/in/lev-dmitry" target="_blank">
 							<GrLinkedinOption />
 						</Link>
 					</li>
