@@ -143,8 +143,7 @@ const BlogPage = () => {
 		}
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const handleReply = (parentCommentId: any, parentName: string) => {
+	const handleReply = (parentCommentId: Types.ObjectId, parentName: string) => {
 		setNewComment({
 			...newComment,
 			parent: parentCommentId,
@@ -227,7 +226,9 @@ const BlogPage = () => {
 
 					<p>{parentComment.contentPreview}</p>
 
-					<button onClick={() => handleReply(parentComment._id, parentComment.name)}>Reply</button>
+					<button onClick={() => handleReply(new Types.ObjectId(parentComment._id), parentComment.name)}>
+						Reply
+					</button>
 
 					{parentComment.parent && <span className="replied-to">Replied to {parentComment.parentName}</span>}
 
