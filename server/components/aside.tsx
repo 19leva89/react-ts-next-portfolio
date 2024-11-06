@@ -33,6 +33,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 		return (
 			<aside className={asideOpen ? 'aside-left active' : 'aside-left'}>
 				<ul>
+					{/* Dashboard */}
 					<Link href="/">
 						<li className="nav-active">
 							<IoHome />
@@ -41,33 +42,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						</li>
 					</Link>
 
-					<li
-						className={activeLink === '/blogs' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
-						onClick={() => handleLinkClick('/blogs')}
-					>
-						<div className="flex gap-1">
-							<BsPostcard />
-
-							<span>Blogs</span>
-						</div>
-
-						{activeLink === '/blogs' && (
-							<ul>
-								<Link href="/blogs">
-									<li>All Blogs</li>
-								</Link>
-
-								<Link href="/blogs/draft-blogs">
-									<li>Draft Blogs</li>
-								</Link>
-
-								<Link href="/blogs/add-blog">
-									<li>Add Blog</li>
-								</Link>
-							</ul>
-						)}
-					</li>
-
+					{/* Projects */}
 					<li
 						className={activeLink === '/projects' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
 						onClick={() => handleLinkClick('/projects')}
@@ -95,6 +70,59 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						)}
 					</li>
 
+					{/* Blogs */}
+					<li
+						className={activeLink === '/blogs' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
+						onClick={() => handleLinkClick('/blogs')}
+					>
+						<div className="flex gap-1">
+							<BsPostcard />
+
+							<span>Blogs</span>
+						</div>
+
+						{activeLink === '/blogs' && (
+							<ul>
+								<Link href="/blogs">
+									<li>All Blogs</li>
+								</Link>
+
+								<Link href="/blogs/draft-blogs">
+									<li>Draft Blogs</li>
+								</Link>
+
+								<Link href="/blogs/add-blog">
+									<li>Add Blog</li>
+								</Link>
+							</ul>
+						)}
+					</li>
+
+					{/* Gallery */}
+					<li
+						className={activeLink === '/gallery' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
+						onClick={() => handleLinkClick('/gallery')}
+					>
+						<div className="flex gap-1">
+							<GrGallery />
+
+							<span>Gallery</span>
+						</div>
+
+						{activeLink === '/gallery' && (
+							<ul>
+								<Link href="/gallery">
+									<li>All Photos</li>
+								</Link>
+
+								<Link href="/gallery/add-photo">
+									<li>Add Photo</li>
+								</Link>
+							</ul>
+						)}
+					</li>
+
+					{/* Shops */}
 					<li
 						className={activeLink === '/shops' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
 						onClick={() => handleLinkClick('/shops')}
@@ -122,29 +150,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						)}
 					</li>
 
-					<li
-						className={activeLink === '/gallery' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
-						onClick={() => handleLinkClick('/gallery')}
-					>
-						<div className="flex gap-1">
-							<GrGallery />
-
-							<span>Gallery</span>
-						</div>
-
-						{activeLink === '/gallery' && (
-							<ul>
-								<Link href="/gallery">
-									<li>All Photos</li>
-								</Link>
-
-								<Link href="/gallery/add-photo">
-									<li>Add Photo</li>
-								</Link>
-							</ul>
-						)}
-					</li>
-
+					{/* Contacts */}
 					<Link href="/contacts">
 						<li
 							className={activeLink === '/contacts' ? 'nav-active' : ''}
@@ -156,6 +162,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						</li>
 					</Link>
 
+					{/* Settings */}
 					<Link href="/settings">
 						<li
 							className={activeLink === '/settings' ? 'nav-active' : ''}
@@ -168,6 +175,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 					</Link>
 				</ul>
 
+				{/* Logout */}
 				<button onClick={() => signOut()} className="logout-btn">
 					Logout
 				</button>
