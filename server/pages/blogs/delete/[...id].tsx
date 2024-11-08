@@ -4,7 +4,6 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import { TbTrashX } from 'react-icons/tb'
 import { useState, useEffect } from 'react'
-import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
 import { IBlog } from '@/models/blog'
 import { DashboardHeader } from '@/components'
@@ -60,8 +59,7 @@ const DeleteBlog = () => {
 				<DashboardHeader
 					title="Delete"
 					subtitle={productInfo ? productInfo.title : ''}
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="delete blog"
+					breadcrumbs={['blogs']}
 				/>
 
 				<div className="delete-sec flex flex-center wh_100">

@@ -1397,6 +1397,11 @@ header.sticky {
 	color: var(--pure-white);
 }
 
+.exper-card h3 svg {
+	flex-shrink: 0;
+	cursor: pointer;
+}
+
 .exper-card p {
 	font-size: 17px;
 	color: #bab8b8;

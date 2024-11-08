@@ -3,6 +3,7 @@ import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { signOut, useSession } from 'next-auth/react'
 
+import { IconType } from 'react-icons'
 import { GrGallery } from 'react-icons/gr'
 import { BsPostcard } from 'react-icons/bs'
 import { MdOutlineWorkOutline } from 'react-icons/md'
@@ -14,6 +15,53 @@ interface AsideProps {
 	handleAsideOpen?: () => void
 }
 
+interface NavItemProps {
+	title: string
+	links: { href: string; label: string }[]
+	activeLink: string
+	icon: IconType
+	onLinkClick: (link: string) => void
+}
+
+const NavItem = ({ title, links, activeLink, icon: Icon, onLinkClick }: NavItemProps) => (
+	<>
+		{links.length > 1 ? (
+			<li className="flex-col flex-left m-05" onClick={() => onLinkClick(links[0].href)}>
+				<div className="flex gap-1">
+					<Icon />
+
+					<span>{title}</span>
+				</div>
+
+				{links.some((link) => link.href === activeLink) && (
+					<ul>
+						{links.map(({ href, label }) => (
+							<Link key={href} href={href}>
+								<li className={activeLink === href ? 'nav-active' : ''}>{label}</li>
+							</Link>
+						))}
+					</ul>
+				)}
+			</li>
+		) : (
+			<li
+				className={
+					activeLink === links[0].href ? 'nav-active flex-col flex-left m-05' : 'flex-col flex-left m-05'
+				}
+				onClick={() => onLinkClick(links[0].href)}
+			>
+				<Link href={links[0].href}>
+					<div className="flex gap-1">
+						<Icon />
+
+						<span>{title}</span>
+					</div>
+				</Link>
+			</li>
+		)}
+	</>
+)
+
 export const Aside = ({ asideOpen }: AsideProps) => {
 	const router = useRouter()
 	const { data: session } = useSession()
@@ -22,6 +70,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 
 	const handleLinkClick = (link: string) => {
 		setActiveLink((preActive) => (preActive === link ? '' : link))
+		router.push(link)
 	}
 
 	useEffect(() => {
@@ -34,145 +83,82 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 			<aside className={asideOpen ? 'aside-left active' : 'aside-left'}>
 				<ul>
 					{/* Dashboard */}
-					<Link href="/">
-						<li className="nav-active">
-							<IoHome />
-
-							<span>Dashboard</span>
-						</li>
-					</Link>
+					<NavItem
+						title="Dashboard"
+						links={[{ href: '/', label: 'Dashboard' }]}
+						activeLink={activeLink}
+						icon={IoHome}
+						onLinkClick={handleLinkClick}
+					/>
 
 					{/* Projects */}
-					<li
-						className={activeLink === '/projects' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
-						onClick={() => handleLinkClick('/projects')}
-					>
-						<div className="flex gap-1">
-							<MdOutlineWorkOutline />
-
-							<span>Projects</span>
-						</div>
-
-						{activeLink === '/projects' && (
-							<ul>
-								<Link href="/projects">
-									<li>All Projects</li>
-								</Link>
-
-								<Link href="/projects/draft-projects">
-									<li>Draft Projects</li>
-								</Link>
-
-								<Link href="/projects/add-project">
-									<li>Add Project</li>
-								</Link>
-							</ul>
-						)}
-					</li>
+					<NavItem
+						title="Projects"
+						links={[
+							{ href: '/projects', label: 'All Projects' },
+							{ href: '/projects/draft-projects', label: 'Draft Projects' },
+							{ href: '/projects/add-project', label: 'Add Project' },
+						]}
+						activeLink={activeLink}
+						icon={MdOutlineWorkOutline}
+						onLinkClick={handleLinkClick}
+					/>
 
 					{/* Blogs */}
-					<li
-						className={activeLink === '/blogs' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
-						onClick={() => handleLinkClick('/blogs')}
-					>
-						<div className="flex gap-1">
-							<BsPostcard />
-
-							<span>Blogs</span>
-						</div>
-
-						{activeLink === '/blogs' && (
-							<ul>
-								<Link href="/blogs">
-									<li>All Blogs</li>
-								</Link>
-
-								<Link href="/blogs/draft-blogs">
-									<li>Draft Blogs</li>
-								</Link>
-
-								<Link href="/blogs/add-blog">
-									<li>Add Blog</li>
-								</Link>
-							</ul>
-						)}
-					</li>
+					<NavItem
+						title="Blogs"
+						links={[
+							{ href: '/blogs', label: 'All Blogs' },
+							{ href: '/blogs/draft-blogs', label: 'Draft Blogs' },
+							{ href: '/blogs/add-blog', label: 'Add Blog' },
+						]}
+						activeLink={activeLink}
+						icon={BsPostcard}
+						onLinkClick={handleLinkClick}
+					/>
 
 					{/* Gallery */}
-					<li
-						className={activeLink === '/gallery' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
-						onClick={() => handleLinkClick('/gallery')}
-					>
-						<div className="flex gap-1">
-							<GrGallery />
+					<NavItem
+						title="Gallery"
+						links={[
+							{ href: '/gallery', label: 'All Photos' },
+							{ href: '/gallery/add-photo', label: 'Add Photo' },
+						]}
+						activeLink={activeLink}
+						icon={GrGallery}
+						onLinkClick={handleLinkClick}
+					/>
 
-							<span>Gallery</span>
-						</div>
-
-						{activeLink === '/gallery' && (
-							<ul>
-								<Link href="/gallery">
-									<li>All Photos</li>
-								</Link>
-
-								<Link href="/gallery/add-photo">
-									<li>Add Photo</li>
-								</Link>
-							</ul>
-						)}
-					</li>
-
-					{/* Shops */}
-					<li
-						className={activeLink === '/shops' ? 'nav-active flex-col flex-left' : 'flex-col flex-left'}
-						onClick={() => handleLinkClick('/shops')}
-					>
-						<div className="flex gap-1">
-							<RiShoppingCartLine />
-
-							<span>Shops</span>
-						</div>
-
-						{activeLink === '/shops' && (
-							<ul>
-								<Link href="/shops">
-									<li>All Products</li>
-								</Link>
-
-								<Link href="/shops/draft-shop">
-									<li>Draft Products</li>
-								</Link>
-
-								<Link href="/shops/add-product">
-									<li>Add Product</li>
-								</Link>
-							</ul>
-						)}
-					</li>
+					{/* Shop */}
+					<NavItem
+						title="Shop"
+						links={[
+							{ href: '/shop', label: 'All Products' },
+							{ href: '/shop/draft-product', label: 'Draft Products' },
+							{ href: '/shop/add-product', label: 'Add Product' },
+						]}
+						activeLink={activeLink}
+						icon={RiShoppingCartLine}
+						onLinkClick={handleLinkClick}
+					/>
 
 					{/* Contacts */}
-					<Link href="/contacts">
-						<li
-							className={activeLink === '/contacts' ? 'nav-active' : ''}
-							onClick={() => handleLinkClick('/contacts')}
-						>
-							<RiContactsBook3Line />
-
-							<span>Contacts</span>
-						</li>
-					</Link>
+					<NavItem
+						title="Contacts"
+						links={[{ href: '/contacts', label: 'Contacts' }]}
+						activeLink={activeLink}
+						icon={RiContactsBook3Line}
+						onLinkClick={handleLinkClick}
+					/>
 
 					{/* Settings */}
-					<Link href="/settings">
-						<li
-							className={activeLink === '/settings' ? 'nav-active' : ''}
-							onClick={() => handleLinkClick('/settings')}
-						>
-							<IoSettingsOutline />
-
-							<span>Settings</span>
-						</li>
-					</Link>
+					<NavItem
+						title="Settings"
+						links={[{ href: '/settings', label: 'Settings' }]}
+						activeLink={activeLink}
+						icon={IoSettingsOutline}
+						onLinkClick={handleLinkClick}
+					/>
 				</ul>
 
 				{/* Logout */}

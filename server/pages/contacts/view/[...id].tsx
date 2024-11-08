@@ -2,7 +2,6 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
-import { FaRegAddressCard } from 'react-icons/fa6'
 
 import { IContact } from '@/models/contact'
 import { formatDate } from '@/utils/format-date'
@@ -43,8 +42,7 @@ const ViewContact = () => {
 				<DashboardHeader
 					title="Contact"
 					subtitle={contactInfo ? contactInfo.email : ''}
-					icon={FaRegAddressCard}
-					breadcrumb="view contact"
+					breadcrumbs={['contacts']}
 				/>
 
 				<div className="contact-info mt-2">

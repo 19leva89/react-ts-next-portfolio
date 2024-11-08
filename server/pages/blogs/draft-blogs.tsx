@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
 import { FaEdit } from 'react-icons/fa'
-import { RiArrowRightDoubleFill, RiDeleteBin6Fill } from 'react-icons/ri'
+import { RiDeleteBin6Fill } from 'react-icons/ri'
 
 import { IBlog } from '@/models/blog'
 import { useFetchData } from '@/hooks/use-fetch-data'
@@ -45,12 +45,7 @@ const DraftBlogs = () => {
 	return (
 		<LoginLayout>
 			<div className="content-page">
-				<DashboardHeader
-					title="All Draft"
-					subtitle="Blogs"
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="blogs"
-				/>
+				<DashboardHeader title="All Draft" subtitle="Blogs" breadcrumbs={['blogs', 'draft-blogs']} />
 
 				<div className="contents-table">
 					<div className="flex gap-2 mb-1">

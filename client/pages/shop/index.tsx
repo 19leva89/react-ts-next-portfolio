@@ -73,7 +73,7 @@ const Shop = () => {
 							) : (
 								publishedData.map((product) => (
 									<Link
-										href={`/shops/${product.slug}`}
+										href={`/shop/${product.slug}`}
 										key={product._id}
 										className="sp-pro-card"
 										data-aos="flip-left"

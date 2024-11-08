@@ -3,14 +3,13 @@ import { signOut } from 'next-auth/react'
 
 import { DashboardHeader, LoginLayout } from '@/components'
 
-import { IoSettingsOutline } from 'react-icons/io5'
 import { MdOutlineAccountCircle } from 'react-icons/md'
 
 const Settings = () => {
 	return (
 		<LoginLayout>
 			<div className="setting-page">
-				<DashboardHeader title="Admin" subtitle="Settings" icon={IoSettingsOutline} breadcrumb="settings" />
+				<DashboardHeader title="Admin" subtitle="Settings" breadcrumbs={['settings']} />
 
 				<div className="profile-settings">
 					<div className="left-profile-details flex">

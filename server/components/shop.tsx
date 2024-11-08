@@ -110,13 +110,13 @@ export const Shop = ({
 	// for slug url
 	const handleSlugChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
-		const newSlug = inputValue.replace(/\s+/g, '-')
+		const newSlug = inputValue.toLowerCase().replace(/\s+/g, '-')
 
 		setSlug(newSlug)
 	}
 
 	if (redirect) {
-		router.push('/shops')
+		router.push('/shop')
 		return null
 	}
 

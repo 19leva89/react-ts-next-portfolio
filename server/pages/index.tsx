@@ -1,6 +1,5 @@
 import axios from 'axios'
 import Head from 'next/head'
-import { IoHome } from 'react-icons/io5'
 import { useEffect, useState } from 'react'
 
 import { IBlog } from '@/models/blog'
@@ -76,7 +75,7 @@ const Home = () => {
 			</Head>
 
 			<div className="dashboard">
-				<DashboardHeader title="Admin" subtitle="Dashboard" icon={IoHome} breadcrumb="dashboard" />
+				<DashboardHeader title="Admin" subtitle="Dashboard" />
 
 				{/* dashboard four cards */}
 				<div className="top-four-cards flex flex-sb">

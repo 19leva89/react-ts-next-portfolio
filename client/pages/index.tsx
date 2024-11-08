@@ -10,12 +10,12 @@ import { services } from '@/constants/services'
 import { formatDate } from '@/utils/format-date'
 import { Spinner, TypingAnimation } from '@/components'
 
-import { LuMedal } from 'react-icons/lu'
 import { BiDownload } from 'react-icons/bi'
 import { GoArrowUpRight } from 'react-icons/go'
 import { PiGraduationCap } from 'react-icons/pi'
 import { GrLinkedinOption } from 'react-icons/gr'
 import { LiaBasketballBallSolid } from 'react-icons/lia'
+import { LuExternalLink, LuMedal } from 'react-icons/lu'
 import { FaCalendarDays, FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
 
 const Home = () => {
@@ -370,27 +370,27 @@ const Home = () => {
 
 						<div className="exper-cards">
 							<div className="exper-card" data-aos="fade-up">
-								<span>2020 - Present</span>
+								<span>2024 - Present</span>
 								<h3>DVTech IT Solution</h3>
 								<p>Full Stack Developer</p>
 							</div>
 
 							<div className="exper-card" data-aos="fade-up">
-								<span>2018 - 2020</span>
+								<span>2023 - 2024</span>
 								<h3>Bickdrims LLC.</h3>
 								<p>Front-end Developer (internship)</p>
 							</div>
 
 							<div className="exper-card" data-aos="fade-up">
-								<span>2021 - 2023</span>
-								<h3>Vagally LLC.</h3>
-								<p>Full Stack Developer</p>
+								<span>2018 - 2024</span>
+								<h3>Bitrek GPS, Kyiv</h3>
+								<p>Head of the production department</p>
 							</div>
 
 							<div className="exper-card" data-aos="fade-up">
-								<span>2021 - 2024</span>
-								<h3>BlokDots, USA</h3>
-								<p>Full Stack Developer</p>
+								<span>2013 - 2018</span>
+								<h3>Bitrek GPS, Kyiv</h3>
+								<p>Engineer</p>
 							</div>
 						</div>
 					</div>
@@ -403,27 +403,26 @@ const Home = () => {
 
 						<div className="exper-cards">
 							<div className="exper-card" data-aos="fade-up">
-								<span>2020 - Present</span>
-								<h3>DVTech IT Solution</h3>
+								<span>2023 – 2024</span>
+
+								<Link href="https://it-brains.com.ua/fullstack" target="_blank" rel="noopener noreferrer">
+									<h3 className="flex flex-sb gap-1">
+										IT-Brains School <LuExternalLink size={24} />
+									</h3>
+								</Link>
 								<p>Full Stack Developer</p>
 							</div>
 
 							<div className="exper-card" data-aos="fade-up">
-								<span>2018 - 2020</span>
-								<h3>Bickdrims LLC.</h3>
-								<p>Front-end Developer (internship)</p>
-							</div>
+								<span>2008 – 2015</span>
 
-							<div className="exper-card" data-aos="fade-up">
-								<span>2021 - 2023</span>
-								<h3>Vagally LLC.</h3>
-								<p>Full Stack Developer</p>
-							</div>
+								<Link href="https://en.knutd.edu.ua" target="_blank" rel="noopener noreferrer">
+									<h3 className="flex flex-sb gap-1">
+										Kyiv National University of Technologies and Design <LuExternalLink size={24} />
+									</h3>
+								</Link>
 
-							<div className="exper-card" data-aos="fade-up">
-								<span>2021 - 2024</span>
-								<h3>BlokDots, USA</h3>
-								<p>Full Stack Developer</p>
+								<p>Specialist || Electromechanics</p>
 							</div>
 						</div>
 					</div>

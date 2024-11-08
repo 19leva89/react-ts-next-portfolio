@@ -2,7 +2,6 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
 import { IBlog } from '@/models/blog'
 import { Blog, DashboardHeader, LoginLayout } from '@/components'
@@ -42,8 +41,7 @@ const EditBlog = () => {
 				<DashboardHeader
 					title="Edit"
 					subtitle={productInfo ? productInfo.title : ''}
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="edit blog"
+					breadcrumbs={['blogs']}
 				/>
 
 				<div className="mt-3">{productInfo && <Blog {...productInfo} />}</div>

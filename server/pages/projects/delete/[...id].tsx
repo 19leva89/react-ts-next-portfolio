@@ -4,7 +4,6 @@ import toast from 'react-hot-toast'
 import { useRouter } from 'next/router'
 import { TbTrashX } from 'react-icons/tb'
 import { useState, useEffect } from 'react'
-import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
 import { IProject } from '@/models/project'
 import { DashboardHeader, LoginLayout } from '@/components'
@@ -60,8 +59,7 @@ const DeleteProject = () => {
 				<DashboardHeader
 					title="Delete"
 					subtitle={productInfo ? productInfo.title : ''}
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="delete project"
+					breadcrumbs={['projects']}
 				/>
 
 				<div className="delete-sec flex flex-center wh_100">

@@ -1,18 +1,13 @@
-import { ElementType } from 'react'
+import Link from 'next/link'
+import { IoHome } from 'react-icons/io5'
 
 interface DashboardHeaderProps {
 	title: string
 	subtitle: string
-	icon: ElementType
-	breadcrumb: string
+	breadcrumbs?: string[]
 }
 
-export const DashboardHeader = ({
-	title,
-	subtitle,
-	icon: IconComponent,
-	breadcrumb,
-}: DashboardHeaderProps) => {
+export const DashboardHeader = ({ title, subtitle, breadcrumbs }: DashboardHeaderProps) => {
 	return (
 		<div className="title-dashboard flex flex-sb">
 			<div>
@@ -23,7 +18,22 @@ export const DashboardHeader = ({
 			</div>
 
 			<div className="breadcrumb">
-				<IconComponent /> <span>/</span> <span>{breadcrumb}</span>
+				<Link href="/">
+					<IoHome />
+				</Link>
+
+				{breadcrumbs && breadcrumbs.length > 0 && <span>/</span>}
+
+				{breadcrumbs?.map((breadcrumb, index) => (
+					<>
+						<span key={breadcrumb}>
+							{index > 0 && <span>/</span>} {/* Add a slash before each element except the first one */}
+							<Link href={`/${breadcrumbs.slice(0, index + 1).join('/')}`}>
+								<span>{breadcrumb}</span>
+							</Link>
+						</span>
+					</>
+				))}
 			</div>
 		</div>
 	)

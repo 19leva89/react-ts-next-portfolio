@@ -2,7 +2,6 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
 import { IProject } from '@/models/project'
 import { Project, DashboardHeader, LoginLayout } from '@/components'
@@ -42,8 +41,7 @@ const EditProject = () => {
 				<DashboardHeader
 					title="Edit"
 					subtitle={productInfo ? productInfo.title : ''}
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="edit project"
+					breadcrumbs={['projects']}
 				/>
 
 				<div className="mt-3">{productInfo && <Project {...productInfo} />}</div>

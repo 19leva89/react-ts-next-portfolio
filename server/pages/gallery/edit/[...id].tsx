@@ -2,7 +2,6 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
-import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
 import { IPhoto } from '@/models/photo'
 import { Photo, DashboardHeader, LoginLayout } from '@/components'
@@ -42,8 +41,7 @@ const EditPhoto = () => {
 				<DashboardHeader
 					title="Edit"
 					subtitle={productInfo ? productInfo.title : ''}
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="edit photo"
+					breadcrumbs={['gallery']}
 				/>
 
 				<div className="mt-3">{productInfo && <Photo {...productInfo} />}</div>

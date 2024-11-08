@@ -1,17 +1,10 @@
-import { RiArrowRightDoubleFill } from 'react-icons/ri'
-
 import { Shop, DashboardHeader, LoginLayout } from '@/components'
 
 const AddProduct = () => {
 	return (
 		<LoginLayout>
 			<div className="add-contents-page">
-				<DashboardHeader
-					title="Add"
-					subtitle="Product"
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="add product"
-				/>
+				<DashboardHeader title="Add" subtitle="Product" breadcrumbs={['shop', 'add-product']} />
 
 				<div className="contents-add">
 					<Shop _id={''} title={''} slug={''} />

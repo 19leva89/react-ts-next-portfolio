@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { FaRegEye } from 'react-icons/fa'
-import { RiArrowRightDoubleFill } from 'react-icons/ri'
 
 import { IContact } from '@/models/contact'
 import { useFetchData } from '@/hooks/use-fetch-data'
@@ -43,12 +42,7 @@ const Contacts = () => {
 	return (
 		<LoginLayout>
 			<div className="content-page">
-				<DashboardHeader
-					title="All Published"
-					subtitle="Contacts"
-					icon={RiArrowRightDoubleFill}
-					breadcrumb="contacts"
-				/>
+				<DashboardHeader title="All Published" subtitle="Contacts" breadcrumbs={['contacts']} />
 
 				<div className="contents-table">
 					<div className="flex gap-2 mb-1">

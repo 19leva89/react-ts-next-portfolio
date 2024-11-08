@@ -112,7 +112,7 @@ export const Project = ({
 	// for slug url
 	const handleSlugChange = (e: ChangeEvent<HTMLInputElement>) => {
 		const inputValue = e.target.value
-		const newSlug = inputValue.replace(/\s+/g, '-')
+		const newSlug = inputValue.toLowerCase().replace(/\s+/g, '-')
 
 		setSlug(newSlug)
 	}

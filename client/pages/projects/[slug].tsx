@@ -38,7 +38,12 @@ const ProjectSlug = () => {
 				<div className="project-slug-img">
 					<div className="container">
 						<div className="pro-slug-img">
-							<Image src={allData[0]?.images?.[0] || ''} alt={allData[0]?.title} width={1300} height={700} />
+							<Image
+								src={allData[0]?.images?.[0] || '/img/no-image.png'}
+								alt={allData[0]?.title}
+								width={1300}
+								height={700}
+							/>
 						</div>
 
 						<div className="project-slug-info">
