@@ -56,11 +56,7 @@ const DeletePhoto = () => {
 			</Head>
 
 			<div className="content-page">
-				<DashboardHeader
-					title="Delete"
-					subtitle={productInfo ? productInfo.title : ''}
-					breadcrumbs={['gallery']}
-				/>
+				<DashboardHeader title="Delete" subtitle={productInfo?.title || ''} breadcrumbs={['gallery']} />
 
 				<div className="delete-sec flex flex-center wh_100">
 					<div className="delete-card">

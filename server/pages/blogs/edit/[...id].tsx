@@ -38,11 +38,7 @@ const EditBlog = () => {
 			</Head>
 
 			<div className="content-page">
-				<DashboardHeader
-					title="Edit"
-					subtitle={productInfo ? productInfo.title : ''}
-					breadcrumbs={['blogs']}
-				/>
+				<DashboardHeader title="Edit" subtitle={productInfo?.title || ''} breadcrumbs={['blogs']} />
 
 				<div className="mt-3">{productInfo && <Blog {...productInfo} />}</div>
 			</div>

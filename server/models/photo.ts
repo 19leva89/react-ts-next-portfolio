@@ -1,10 +1,10 @@
 import { Schema, models, model } from 'mongoose'
 
 export interface IPhoto {
-	_id?: string
-	title?: string
-	slug?: string
-	images?: string[]
+	_id: string
+	title: string
+	slug: string
+	images: string[]
 	createdAt?: Date
 }
 
