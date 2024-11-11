@@ -20,44 +20,53 @@ interface NavItemProps {
 	links: { href: string; label: string }[]
 	activeLink: string
 	icon: IconType
+	isOpen: boolean
+	onToggle: () => void
 	onLinkClick: (link: string) => void
 }
 
-const NavItem = ({ title, links, activeLink, icon: Icon, onLinkClick }: NavItemProps) => (
+const NavItem = ({ title, links, activeLink, icon: Icon, isOpen, onToggle, onLinkClick }: NavItemProps) => (
 	<>
 		{links.length > 1 ? (
-			<li className="flex-col flex-left m-05" onClick={() => onLinkClick(links[0].href)}>
-				<div className="flex gap-1">
+			<li className="flex-col flex-left m-05">
+				<div className="flex gap-1 p-1" onClick={onToggle}>
 					<Icon />
 
 					<span>{title}</span>
 				</div>
 
-				{links.some((link) => link.href === activeLink) && (
+				{isOpen && (
 					<ul>
 						{links.map(({ href, label }) => (
 							<Link key={href} href={href}>
-								<li className={activeLink === href ? 'nav-active' : ''}>{label}</li>
+								<li
+									className={activeLink === href ? 'nav-active' : ''}
+									onClick={() => {
+										onLinkClick(href)
+									}}
+								>
+									{label}
+								</li>
 							</Link>
 						))}
 					</ul>
 				)}
 			</li>
 		) : (
-			<li
-				className={
-					activeLink === links[0].href ? 'nav-active flex-col flex-left m-05' : 'flex-col flex-left m-05'
-				}
-				onClick={() => onLinkClick(links[0].href)}
-			>
-				<Link href={links[0].href}>
-					<div className="flex gap-1">
+			<Link href={links[0].href}>
+				<li
+					className={
+						activeLink === links[0].href ? 'nav-active flex-col flex-left m-05' : 'flex-col flex-left m-05'
+					}
+					onClick={() => onLinkClick(links[0].href)}
+				>
+					<div className="flex gap-1 p-1">
 						<Icon />
 
 						<span>{title}</span>
 					</div>
-				</Link>
-			</li>
+				</li>
+			</Link>
 		)}
 	</>
 )
@@ -67,10 +76,14 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 	const { data: session } = useSession()
 
 	const [activeLink, setActiveLink] = useState('/')
+	const [openNavItem, setOpenNavItem] = useState<string | null>(null)
 
 	const handleLinkClick = (link: string) => {
-		setActiveLink((preActive) => (preActive === link ? '' : link))
-		router.push(link)
+		setActiveLink(link)
+	}
+
+	const toggleNavItem = (title: string) => {
+		setOpenNavItem((prev) => (prev === title ? null : title))
 	}
 
 	useEffect(() => {
@@ -88,6 +101,8 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						links={[{ href: '/', label: 'Dashboard' }]}
 						activeLink={activeLink}
 						icon={IoHome}
+						isOpen={openNavItem === 'Dashboard'}
+						onToggle={() => toggleNavItem('Dashboard')}
 						onLinkClick={handleLinkClick}
 					/>
 
@@ -101,6 +116,8 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						]}
 						activeLink={activeLink}
 						icon={MdOutlineWorkOutline}
+						isOpen={openNavItem === 'Projects'}
+						onToggle={() => toggleNavItem('Projects')}
 						onLinkClick={handleLinkClick}
 					/>
 
@@ -114,6 +131,8 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						]}
 						activeLink={activeLink}
 						icon={BsPostcard}
+						isOpen={openNavItem === 'Blogs'}
+						onToggle={() => toggleNavItem('Blogs')}
 						onLinkClick={handleLinkClick}
 					/>
 
@@ -126,6 +145,8 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						]}
 						activeLink={activeLink}
 						icon={GrGallery}
+						isOpen={openNavItem === 'Gallery'}
+						onToggle={() => toggleNavItem('Gallery')}
 						onLinkClick={handleLinkClick}
 					/>
 
@@ -139,6 +160,8 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						]}
 						activeLink={activeLink}
 						icon={RiShoppingCartLine}
+						isOpen={openNavItem === 'Shop'}
+						onToggle={() => toggleNavItem('Shop')}
 						onLinkClick={handleLinkClick}
 					/>
 
@@ -148,6 +171,8 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						links={[{ href: '/contacts', label: 'Contacts' }]}
 						activeLink={activeLink}
 						icon={RiContactsBook3Line}
+						isOpen={openNavItem === 'Contacts'}
+						onToggle={() => toggleNavItem('Contacts')}
 						onLinkClick={handleLinkClick}
 					/>
 
@@ -157,6 +182,8 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						links={[{ href: '/settings', label: 'Settings' }]}
 						activeLink={activeLink}
 						icon={IoSettingsOutline}
+						isOpen={openNavItem === 'Settings'}
+						onToggle={() => toggleNavItem('Settings')}
 						onLinkClick={handleLinkClick}
 					/>
 				</ul>

@@ -98,6 +98,10 @@ body {
 	padding: 0 !important;
 }
 
+.p-1 {
+	padding: 1rem;
+}
+
 .mtb-1 {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
@@ -363,10 +367,6 @@ button {
 }
 
 .aside-left ul li {
-	display: flex;
-	align-items: center;
-	gap: 1rem;
-	padding: 1rem;
 	cursor: pointer;
 	border-radius: 10px;
 	border: 1px solid transparent;
@@ -417,9 +417,10 @@ button {
 }
 
 .aside-left ul li ul a li {
-	width: 100%;
 	display: block;
 	padding: 1rem;
+	margin-left: 0.5rem;
+	margin-right: 0.75rem;
 }
 
 .logout-btn {
