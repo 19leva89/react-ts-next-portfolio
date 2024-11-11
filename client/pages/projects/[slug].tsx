@@ -7,26 +7,22 @@ import { useRouter } from 'next/router'
 import { FreeMode } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { CodeBlock } from '@/components'
 import { IProject } from '@/models/project'
 import { formatDate } from '@/utils/format-date'
+import { CodeBlock, Spinner } from '@/components'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 const ProjectSlug = () => {
 	const router = useRouter()
 
 	const { slug } = router.query as { slug: string }
-	const { allData } = useFetchData<IProject[]>(`/api/projects?slug=${slug}`)
+	const { allData, loading } = useFetchData<IProject[]>(`/api/projects?slug=${slug}`)
 
-	if (!allData || allData.length === 0) {
-		return <div>No project found</div>
-	}
-
-	const projectCategory = allData[0]?.projectCategory
+	const projectCategory = allData?.[0].projectCategory
 		?.map((category) => category.replace(/-/g, ' '))
 		.join(', ')
 
-	const createdAtData = allData[0]?.createdAt ? new Date(allData[0]?.createdAt) : null
+	const createdAtData = allData?.[0].createdAt ? new Date(allData[0]?.createdAt) : null
 
 	return (
 		<>
@@ -38,12 +34,18 @@ const ProjectSlug = () => {
 				<div className="project-slug-img">
 					<div className="container">
 						<div className="pro-slug-img">
-							<Image
-								src={allData[0]?.images?.[0] || '/img/no-image.png'}
-								alt={allData[0]?.title}
-								width={1300}
-								height={700}
-							/>
+							{loading ? (
+								<div className="wh-100 flex flex-center">
+									<Spinner />
+								</div>
+							) : (
+								<Image
+									src={allData?.[0].images?.[0] || '/img/no-image.png'}
+									alt={allData && allData[0] ? allData[0].title : ''}
+									width={1300}
+									height={700}
+								/>
+							)}
 						</div>
 
 						<div className="project-slug-info">
@@ -56,7 +58,7 @@ const ProjectSlug = () => {
 									quidem sapiente quia similique. Consequatur, omnis?
 								</p>
 
-								<a href={allData[0]?.livePreview} target="_blank">
+								<a href={allData?.[0].livePreview} target="_blank">
 									Live Preview
 								</a>
 							</div>
@@ -71,7 +73,7 @@ const ProjectSlug = () => {
 								<div>
 									<h3>Client</h3>
 
-									<h2>{allData[0]?.client}</h2>
+									<h2>{allData?.[0].client}</h2>
 								</div>
 
 								<div>
@@ -97,9 +99,9 @@ const ProjectSlug = () => {
 								modules={[FreeMode]}
 								className="mySwiper"
 							>
-								{allData[0]?.images?.map((image, index) => (
+								{allData?.[0].images?.map((image, index) => (
 									<SwiperSlide key={index}>
-										<Image src={image} alt={allData[0]?.title} width={350} height={230} />
+										<Image src={image} alt={allData[0].title} width={350} height={230} />
 									</SwiperSlide>
 								))}
 							</Swiper>
@@ -120,7 +122,7 @@ const ProjectSlug = () => {
 										code: (props: any) => <CodeBlock {...props} inline={false} />,
 									}}
 								>
-									{allData[0]?.description}
+									{allData?.[0].description}
 								</ReactMarkdown>
 							</div>
 						</div>

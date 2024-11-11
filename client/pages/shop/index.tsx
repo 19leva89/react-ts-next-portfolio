@@ -19,10 +19,6 @@ const Shop = () => {
 	// fetch content data
 	const { allData, loading } = useFetchData<IShop[]>('/api/shops')
 
-	if (!allData || allData.length === 0) {
-		return <div>No project found</div>
-	}
-
 	// handle page change
 	const paginate = (pageNumber: number) => {
 		setCurrentPage(pageNumber)
@@ -48,7 +44,7 @@ const Shop = () => {
 
 	const publishedData = allData?.filter((content) => content.status === 'publish') || []
 
-	const createdAtData = allData[0]?.createdAt ? new Date(allData[0]?.createdAt) : null
+	const createdAtData = allData?.[0].createdAt ? new Date(allData[0].createdAt) : null
 
 	return (
 		<>
@@ -69,7 +65,9 @@ const Shop = () => {
 					<div className="container">
 						<div className="shop-pro-cards">
 							{loading ? (
-								<Spinner />
+								<div className="wh-100 flex flex-center">
+									<Spinner />
+								</div>
 							) : (
 								publishedData.map((product) => (
 									<Link

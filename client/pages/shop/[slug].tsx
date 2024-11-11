@@ -35,10 +35,6 @@ const ShopSlug = () => {
 		setMainImage(image)
 	}
 
-	if (!allData || allData.length === 0) {
-		return <div>No project found</div>
-	}
-
 	return (
 		<>
 			<Head>
@@ -52,11 +48,13 @@ const ShopSlug = () => {
 							<div className="left-shop-img-box">
 								<div className="left-shop-main-img">
 									{loading ? (
-										<Spinner />
+										<div className="wh-100 flex flex-center">
+											<Spinner />
+										</div>
 									) : (
 										<Image
 											src={mainImage || '/img/no-image.png'}
-											alt={allData[0]?.title}
+											alt={allData && allData[0] ? allData[0].title : ''}
 											width={650}
 											height={450}
 										/>
@@ -91,13 +89,18 @@ const ShopSlug = () => {
 							</div>
 
 							<div className="right-shop-cont-box">
-								<h1>{allData[0]?.title}</h1>
+								<h1>{allData?.[0].title}</h1>
 
 								<h3 className="right-shop-price">
-									Price: <span>$ {allData[0]?.price}</span>
+									Price: <span>$ {allData?.[0].price}</span>
 								</h3>
 
-								<a href={allData[0]?.affiliateLink} target="_blank" rel="noreferrer" className="shop-now-btn">
+								<a
+									href={allData?.[0].affiliateLink}
+									target="_blank"
+									rel="noreferrer"
+									className="shop-now-btn"
+								>
 									Shop Now
 								</a>
 
@@ -111,7 +114,7 @@ const ShopSlug = () => {
 											code: (props: any) => <CodeBlock {...props} inline={false} />,
 										}}
 									>
-										{allData[0]?.description}
+										{allData?.[0].description}
 									</ReactMarkdown>
 								</div>
 							</div>
