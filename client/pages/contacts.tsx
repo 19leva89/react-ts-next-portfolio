@@ -247,10 +247,10 @@ const Contact = () => {
 
 								<div className="right-cont-radio">
 									{['Less than $400', '$400 - $800', '$800 - $1000', 'More than $1000'].map((priceRange) => (
-										<div key={priceRange} className="radio-button">
+										<label key={priceRange} htmlFor={priceRange} className="radio-button">
 											<input
-												type="radio"
 												id={priceRange}
+												type="radio"
 												name="budget"
 												value={priceRange}
 												checked={price === priceRange}
@@ -258,9 +258,8 @@ const Contact = () => {
 											/>
 
 											<span className="radio"></span>
-
-											<label htmlFor={priceRange}>{priceRange}</label>
-										</div>
+											{priceRange}
+										</label>
 									))}
 								</div>
 

@@ -3386,6 +3386,7 @@ header.sticky {
 	position: relative;
 	align-items: center;
 	color: white;
+	cursor: pointer;
 }
 
 .dark .radio-button {
