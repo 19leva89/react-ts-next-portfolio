@@ -8,6 +8,7 @@ import { IBlog } from '@/models/blog'
 import { IProject } from '@/models/project'
 import { services } from '@/constants/services'
 import { formatDate } from '@/utils/format-date'
+import { useDarkMode } from '@/hooks/use-dark-mode'
 import { Spinner, TypingAnimation } from '@/components'
 
 import { BiDownload } from 'react-icons/bi'
@@ -19,6 +20,7 @@ import { LuExternalLink, LuMedal } from 'react-icons/lu'
 import { FaCalendarDays, FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
 
 const Home = () => {
+	const { darkMode } = useDarkMode()
 	const [activeId, setActiveId] = useState<number>(1)
 	const [loading, setLoading] = useState<boolean>(true)
 	const [allProjects, setAllProjects] = useState<IProject[]>([])
@@ -441,43 +443,28 @@ const Home = () => {
 					</div>
 
 					<div className="my-skills-cards">
+						{/* JavaScript */}
 						<div className="my-s-card" data-aos="fade-right">
 							<div className="my-s-inner">
-								<Image src="/svg/python.svg" alt="python" width={70} height={70} />
-								<h3>92%</h3>
+								<Image src="/svg/js.svg" alt="java-script" width={70} height={70} />
+								<h3>99%</h3>
 							</div>
 
-							<p className="text-center">Python</p>
+							<p className="text-center">JavaScript</p>
 						</div>
 
+						{/* TypeScript */}
 						<div className="my-s-card" data-aos="fade-right">
 							<div className="my-s-inner">
-								<Image src="/svg/firebase.svg" alt="firebase" width={70} height={70} />
-								<h3>80%</h3>
+								<Image src="/svg/ts.svg" alt="type-script" width={70} height={70} />
+								<h3>99%</h3>
 							</div>
 
-							<p className="text-center">Firebase</p>
+							<p className="text-center">TypeScript</p>
 						</div>
 
+						{/* React */}
 						<div className="my-s-card" data-aos="fade-right">
-							<div className="my-s-inner">
-								<Image src="/svg/mongo-db.svg" alt="mongodb" width={70} height={70} />
-								<h3>98%</h3>
-							</div>
-
-							<p className="text-center">MongoDB</p>
-						</div>
-
-						<div className="my-s-card" data-aos="fade-left">
-							<div className="my-s-inner">
-								<Image src="/svg/redux.svg" alt="redux" width={70} height={70} />
-								<h3>85%</h3>
-							</div>
-
-							<p className="text-center">Redux</p>
-						</div>
-
-						<div className="my-s-card" data-aos="fade-left">
 							<div className="my-s-inner">
 								<Image src="/svg/react.svg" alt="react" width={70} height={70} />
 								<h3>99%</h3>
@@ -486,13 +473,104 @@ const Home = () => {
 							<p className="text-center">React</p>
 						</div>
 
+						{/* Next */}
 						<div className="my-s-card" data-aos="fade-left">
 							<div className="my-s-inner">
-								<Image src="/svg/js.svg" alt="java-script" width={70} height={70} />
+								<Image
+									src={darkMode ? '/svg/next-js-dark.svg' : '/svg/next-js-white.svg'}
+									alt="next-js"
+									width={70}
+									height={70}
+								/>
+								<h3>90%</h3>
+							</div>
+
+							<p className="text-center">Next.js</p>
+						</div>
+
+						{/* Express */}
+						<div className="my-s-card" data-aos="fade-left">
+							<div className="my-s-inner">
+								<Image src="/svg/express-js.svg" alt="express" width={70} height={70} />
+								<h3>92%</h3>
+							</div>
+
+							<p className="text-center">Express</p>
+						</div>
+
+						{/* Firebase */}
+						<div className="my-s-card" data-aos="fade-left">
+							<div className="my-s-inner">
+								<Image src="/svg/firebase.svg" alt="firebase" width={70} height={70} />
+								<h3>80%</h3>
+							</div>
+
+							<p className="text-center">Firebase</p>
+						</div>
+
+						{/* Redux */}
+						<div className="my-s-card" data-aos="fade-right">
+							<div className="my-s-inner">
+								<Image src="/svg/redux.svg" alt="redux" width={70} height={70} />
+								<h3>85%</h3>
+							</div>
+
+							<p className="text-center">Redux</p>
+						</div>
+
+						{/* Zustand */}
+						<div className="my-s-card" data-aos="fade-right">
+							<div className="my-s-inner">
+								<Image src="/svg/zustand.svg" alt="zustand" width={70} height={70} />
+								<h3>85%</h3>
+							</div>
+
+							<p className="text-center">Zustand</p>
+						</div>
+
+						{/* MySQL */}
+						<div className="my-s-card" data-aos="fade-right">
+							<div className="my-s-inner">
+								<Image src="/svg/my-sql.svg" alt="my-sql" width={70} height={70} />
+								<h3>98%</h3>
+							</div>
+
+							<p className="text-center">MySQL</p>
+						</div>
+
+						{/* MongoDB */}
+						<div className="my-s-card" data-aos="fade-left">
+							<div className="my-s-inner">
+								<Image src="/svg/mongo-db.svg" alt="mongodb" width={70} height={70} />
+								<h3>98%</h3>
+							</div>
+
+							<p className="text-center">MongoDB</p>
+						</div>
+
+						{/* Prisma */}
+						<div className="my-s-card" data-aos="fade-left">
+							<div className="my-s-inner">
+								<Image
+									src={darkMode ? '/svg/prisma-dark.svg' : '/svg/prisma-light.svg'}
+									alt="prisma"
+									width={70}
+									height={70}
+								/>
+								<h3>90%</h3>
+							</div>
+
+							<p className="text-center">Prisma</p>
+						</div>
+
+						{/* Tailwind */}
+						<div className="my-s-card" data-aos="fade-left">
+							<div className="my-s-inner">
+								<Image src="/svg/tailwind.svg" alt="tailwind" width={70} height={70} />
 								<h3>99%</h3>
 							</div>
 
-							<p className="text-center">JavaScript</p>
+							<p className="text-center">Tailwind</p>
 						</div>
 					</div>
 				</div>

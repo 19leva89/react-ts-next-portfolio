@@ -48,7 +48,7 @@ export const Header = () => {
 
 	return (
 		<header className={isSticky ? 'sticky' : ''}>
-			<nav className="container flex flex-sb">
+			<nav className="container flex flex-sb gap-05">
 				<div className="logo flex gap-2">
 					<Link href="/">
 						<Image
@@ -62,7 +62,7 @@ export const Header = () => {
 					<h2>d.sobolev.dev@gmail.com</h2>
 				</div>
 
-				<div className="navlist flex gap-2">
+				<div className="navlist flex gap-1">
 					<ul className="flex gap-2">
 						{navItems.map(({ href, label }) => (
 							<NavItem
@@ -98,7 +98,7 @@ export const Header = () => {
 					<span className={mobile ? 'active' : ''} onClick={handleMobileClose}></span>
 
 					<div className="mobile-logo">
-						<Image src="/img/logo-white.png" alt="logo" width={70} height={70} />
+						<Image src="/img/logo-white.png" alt="logo" width={60} height={60} />
 
 						<h2>Sobolev</h2>
 					</div>
