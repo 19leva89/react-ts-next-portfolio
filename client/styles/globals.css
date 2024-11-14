@@ -370,6 +370,33 @@ header.sticky {
 	font-weight: 500;
 }
 
+.logo h2 a {
+	position: relative;
+	text-decoration: none;
+}
+
+.logo h2 a:hover::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -3px;
+	width: 100%;
+	height: 3px;
+	background: linear-gradient(260deg, #2a1454 0%, #8750f7 100%);
+	animation: logoEmailLink 0.3s ease-in-out;
+}
+
+@keyframes logoEmailLink {
+	0% {
+		width: 0;
+	}
+
+	100% {
+		width: 100%;
+		right: 0;
+	}
+}
+
 .navlist li a {
 	position: relative;
 	font-size: 18px;
@@ -1910,6 +1937,16 @@ header.sticky {
 	width: auto;
 }
 
+.fe-posts .swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+	bottom: var(--swiper-scrollbar-bottom, 10px);
+}
+
+.fe-posts .swiper-scrollbar-drag {
+	background: var(--main-hover-color);
+	opacity: 0.8;
+}
+
 .fe-posts::-webkit-scrollbar {
 	display: none;
 }
@@ -2724,6 +2761,7 @@ header.sticky {
 
 .top-services h2 {
 	font-size: 55px;
+	text-align: center;
 	background: linear-gradient(to right, var(--main-site-color) 0%, #dddddd 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
@@ -4029,6 +4067,16 @@ header.sticky {
 	width: auto;
 }
 
+.left-s-img-box-list .swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+	bottom: var(--swiper-scrollbar-bottom, 10px);
+}
+
+.left-s-img-box-list .swiper-scrollbar-drag {
+	background: var(--main-hover-color);
+	opacity: 0.8;
+}
+
 .right-shop-cont-box {
 	width: 48%;
 }
@@ -4515,6 +4563,16 @@ header.sticky {
 
 .project-slug-slider-img .swiper-slide {
 	width: auto;
+}
+
+.project-slug-slider-img .swiper-horizontal > .swiper-scrollbar,
+.swiper-scrollbar.swiper-scrollbar-horizontal {
+	bottom: var(--swiper-scrollbar-bottom, 10px);
+}
+
+.project-slug-slider-img .swiper-scrollbar-drag {
+	background: var(--main-hover-color);
+	opacity: 0.8;
 }
 
 .ps-desc h2 {
@@ -5204,6 +5262,15 @@ header.sticky {
 	.gallery-img-item-info h2 {
 		font-size: 18px;
 	}
+
+	.my-s-card {
+		max-width: 160px;
+	}
+
+	.my-s-card img {
+		max-width: 50px;
+		margin: 0;
+	}
 }
 
 @media screen and (max-width: 380px) {
@@ -5226,5 +5293,23 @@ header.sticky {
 	.mobile-logo img {
 		width: 50px;
 		height: 50px;
+	}
+
+	.my-s-card {
+		max-width: 155px;
+	}
+
+	.my-s-card img {
+		max-width: 43px;
+	}
+}
+
+@media screen and (max-width: 360px) {
+	.my-s-card {
+		max-width: 140px;
+	}
+
+	.my-s-card img {
+		max-width: 40px;
 	}
 }

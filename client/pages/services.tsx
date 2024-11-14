@@ -15,10 +15,13 @@ const Services = () => {
 			<div className="services-page">
 				<div className="top-services">
 					<div className="container">
-						<h2 data-aos="fade-up">Sobolev Services</h2>
+						<h2 data-aos="fade-up">My Services</h2>
 
 						<p data-aos="fade-up">
-							Home <span>&gt;</span> Services
+							<span>
+								I put your ideas and thus your wishes in the form of a unique web project that inspires you
+								and you customers
+							</span>
 						</p>
 					</div>
 				</div>

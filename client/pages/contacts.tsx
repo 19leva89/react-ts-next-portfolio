@@ -208,10 +208,20 @@ const Contact = () => {
 										onChange={(e) => setCountry(e.target.value)}
 									>
 										<option value="">Select country</option>
-										<option value="USA">USA</option>
-										<option value="UK">UK</option>
-										<option value="Germany">Germany</option>
-										<option value="France">France</option>
+										<option value="czech-republic">Czech Republic</option>
+										<option value="france">France</option>
+										<option value="germany">Germany</option>
+										<option value="greece">Greece</option>
+										<option value="hungary">Hungary</option>
+										<option value="italy">Italy</option>
+										<option value="norway">Norway</option>
+										<option value="poland">Poland</option>
+										<option value="spain">Spain</option>
+										<option value="sweden">Sweden</option>
+										<option value="turkiye">Türkiye</option>
+										<option value="ukraine">Ukraine</option>
+										<option value="united-kingdom">United Kingdom</option>
+										<option value="united-states">United States</option>
 									</select>
 								</div>
 

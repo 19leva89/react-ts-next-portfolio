@@ -59,7 +59,11 @@ export const Header = () => {
 						/>
 					</Link>
 
-					<h2>d.sobolev.dev@gmail.com</h2>
+					<h2>
+						<Link href="mailto:d.sobolev.dev@gmail.com" target="_blank" rel="noopener noreferrer">
+							d.sobolev.dev@gmail.com
+						</Link>
+					</h2>
 				</div>
 
 				<div className="navlist flex gap-1">

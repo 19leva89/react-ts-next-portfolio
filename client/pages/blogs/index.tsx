@@ -9,8 +9,9 @@ import { BlogSearch, Pagination, Spinner } from '@/components'
 
 // swiper
 import 'swiper/css'
+import 'swiper/css/scrollbar'
 import 'swiper/css/pagination'
-import { FreeMode } from 'swiper/modules'
+import { Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 const Blogs = () => {
@@ -102,8 +103,9 @@ const Blogs = () => {
 											slidesPerView={'auto'}
 											freeMode={true}
 											spaceBetween={30}
-											className="mySwiper"
-											modules={[FreeMode]}
+											modules={[Scrollbar]}
+											scrollbar={{ draggable: true }}
+											className="imageSwiper"
 										>
 											{loading ? (
 												<div className="flex flex-center">

@@ -4,13 +4,17 @@ import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
 import { useRouter } from 'next/router'
-import { FreeMode } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { IProject } from '@/models/project'
 import { formatDate } from '@/utils/format-date'
 import { CodeBlock, Spinner } from '@/components'
 import { useFetchData } from '@/hooks/use-fetch-data'
+
+// swiper
+import 'swiper/css'
+import 'swiper/css/scrollbar'
+import { Scrollbar } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 const ProjectSlug = () => {
 	const router = useRouter()
@@ -96,8 +100,9 @@ const ProjectSlug = () => {
 								spaceBetween={30}
 								freeMode={true}
 								grabCursor={true}
-								modules={[FreeMode]}
-								className="mySwiper"
+								modules={[Scrollbar]}
+								scrollbar={{ draggable: true }}
+								className="imageSwiper"
 							>
 								{allData?.[0].images?.map((image, index) => (
 									<SwiperSlide key={index}>

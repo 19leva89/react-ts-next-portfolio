@@ -74,7 +74,7 @@ const Projects = () => {
 							<h2 data-aos="fade-up">My Recent Works</h2>
 
 							<p data-aos="fade-up">
-								We put your ideas and thus your wishes in the form of a unique web project that inspires you
+								I put your ideas and thus your wishes in the form of a unique web project that inspires you
 								and you customers
 							</p>
 						</div>

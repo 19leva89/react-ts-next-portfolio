@@ -1,16 +1,20 @@
 import Head from 'next/head'
+import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
 import { useRouter } from 'next/router'
-import { FreeMode } from 'swiper/modules'
 import { useEffect, useState } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { IShop } from '@/models/shop'
 import { CodeBlock, Spinner } from '@/components'
 import { useFetchData } from '@/hooks/use-fetch-data'
-import Image from 'next/image'
+
+// swiper
+import 'swiper/css'
+import 'swiper/css/scrollbar'
+import { Scrollbar } from 'swiper/modules'
+import { Swiper, SwiperSlide } from 'swiper/react'
 
 const ShopSlug = () => {
 	const router = useRouter()
@@ -67,8 +71,9 @@ const ShopSlug = () => {
 										spaceBetween={30}
 										freeMode={true}
 										grabCursor={true}
-										modules={[FreeMode]}
-										className="mySwiper"
+										modules={[Scrollbar]}
+										scrollbar={{ draggable: true }}
+										className="imageSwiper"
 									>
 										{allData &&
 											allData[0] &&
