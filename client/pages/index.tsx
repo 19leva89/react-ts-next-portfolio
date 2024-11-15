@@ -323,7 +323,7 @@ const Home = () => {
 						) : (
 							<>
 								{filtredProjects.length === 0 ? (
-									<h1 className="flex flex-center w-100 mt-3">No projects found</h1>
+									<h1 className="flex flex-center w-100 h_25 mt-3">No projects found</h1>
 								) : (
 									filtredProjects.slice(0, 4).map((project) => (
 										<Link
@@ -357,6 +357,12 @@ const Home = () => {
 								)}
 							</>
 						)}
+					</div>
+
+					<div className="flex flex-center">
+						<button className="mt-3">
+							<Link href="/projects">View all projects</Link>
+						</button>
 					</div>
 				</div>
 			</section>
