@@ -108,7 +108,7 @@ const Home = () => {
 								data-aos-easing="ease-out-cubic"
 								data-aos-duration="2000"
 							>
-								<Image src="/img/me.png" alt="coder" height={500} width={500} />
+								<Image src="/img/coder-white.png" alt="coder" height={500} width={500} />
 							</div>
 
 							<div className="lead" data-aos="fade-up">
@@ -168,7 +168,7 @@ const Home = () => {
 								data-aos-easing="ease-out-cubic"
 								data-aos-duration="2000"
 							>
-								<Image src="/img/me.png" alt="coder" height={500} width={500} />
+								<Image src="/img/coder-white.png" alt="coder" height={500} width={500} />
 							</div>
 						</div>
 					</div>
