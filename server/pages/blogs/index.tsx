@@ -102,6 +102,7 @@ const Blogs = () => {
 															layout="responsive"
 															objectFit="cover"
 															priority={false}
+															quality={100}
 														/>
 													</div>
 												</td>

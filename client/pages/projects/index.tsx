@@ -165,6 +165,7 @@ const Projects = () => {
 														alt={project.title}
 														width={550}
 														height={400}
+														quality={100}
 													/>
 												</div>
 

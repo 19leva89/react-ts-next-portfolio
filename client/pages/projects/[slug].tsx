@@ -48,6 +48,7 @@ const ProjectSlug = () => {
 									alt={allData && allData[0] ? allData[0].title : ''}
 									width={1300}
 									height={700}
+									quality={100}
 								/>
 							)}
 						</div>
@@ -106,7 +107,7 @@ const ProjectSlug = () => {
 							>
 								{allData?.[0].images?.map((image, index) => (
 									<SwiperSlide key={index}>
-										<Image src={image} alt={allData[0].title} width={350} height={230} />
+										<Image src={image} alt={allData[0].title} width={350} height={230} quality={100} />
 									</SwiperSlide>
 								))}
 							</Swiper>

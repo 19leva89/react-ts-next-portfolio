@@ -61,6 +61,7 @@ const ShopSlug = () => {
 											alt={allData && allData[0] ? allData[0].title : ''}
 											width={650}
 											height={450}
+											quality={100}
 										/>
 									)}
 								</div>
@@ -86,6 +87,7 @@ const ShopSlug = () => {
 														onClick={() => handleImageClick(image)}
 														width={250}
 														height={250}
+														quality={100}
 													/>
 												</SwiperSlide>
 											))}

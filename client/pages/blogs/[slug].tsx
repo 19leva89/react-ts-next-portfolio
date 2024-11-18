@@ -312,6 +312,7 @@ const BlogPage = () => {
 										alt={blogData.blog.title}
 										width={910}
 										height={350}
+										quality={100}
 									/>
 								</div>
 

@@ -130,6 +130,7 @@ const Blogs = () => {
 																	alt={content.title}
 																	width={430}
 																	height={480}
+																	quality={100}
 																/>
 															</Link>
 

@@ -88,6 +88,7 @@ const Shop = () => {
 												alt={product.title}
 												width={420}
 												height={330}
+												quality={100}
 											/>
 										</div>
 

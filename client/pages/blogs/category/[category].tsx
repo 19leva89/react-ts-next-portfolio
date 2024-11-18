@@ -112,6 +112,7 @@ const Category = () => {
 														alt={content.title}
 														width={420}
 														height={240}
+														quality={100}
 													/>
 												</Link>
 
