@@ -75,6 +75,7 @@ const SignIn = () => {
 							className="input"
 							onChange={handleChange}
 							value={form.email}
+							required
 						/>
 
 						<input
@@ -84,6 +85,7 @@ const SignIn = () => {
 							className="input"
 							onChange={handleChange}
 							value={form.password}
+							required
 						/>
 
 						<button className="login-button" type="submit">

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Form from 'next/form'
 import Link from 'next/link'
 import Head from 'next/head'
 import Image from 'next/image'
@@ -429,7 +430,8 @@ const BlogPage = () => {
 
 									{!newComment.parentName && <h2>Leave a reply</h2>}
 
-									<p>Your email will not be published. Required fields are marked *</p>
+									<p>Your email will not be published. All fields are required.</p>
+
 									<form onSubmit={handleCommentSubmit} className="leave-areply-form">
 										<div className="name-email-comment">
 											<input
@@ -437,6 +439,7 @@ const BlogPage = () => {
 												placeholder="Enter Name"
 												value={newComment.name}
 												onChange={(e) => setNewComment({ ...newComment, name: e.target.value })}
+												required
 											/>
 
 											<input
@@ -444,6 +447,7 @@ const BlogPage = () => {
 												placeholder="Enter Email"
 												value={newComment.email}
 												onChange={(e) => setNewComment({ ...newComment, email: e.target.value })}
+												required
 											/>
 										</div>
 
@@ -452,6 +456,7 @@ const BlogPage = () => {
 											placeholder="Enter Title"
 											value={newComment.title}
 											onChange={(e) => setNewComment({ ...newComment, title: e.target.value })}
+											required
 										/>
 
 										<textarea
@@ -461,6 +466,7 @@ const BlogPage = () => {
 											placeholder="Enter your Comment"
 											value={newComment.contentPreview}
 											onChange={(e) => setNewComment({ ...newComment, contentPreview: e.target.value })}
+											required
 										></textarea>
 
 										<div className="flex gap-2">
@@ -473,13 +479,13 @@ const BlogPage = () => {
 							</div>
 
 							<div className="right-side-details">
-								<div className="right-slug-search-bar">
+								<Form action="" className="right-slug-search-bar">
 									<input type="text" placeholder="Search..." onClick={handleSearchOpen} />
 
 									<button>
 										<FiSearch />
 									</button>
-								</div>
+								</Form>
 
 								<div className="right-slug-category">
 									<h2>Categories</h2>

@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Form from 'next/form'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import ReactMarkdown from 'react-markdown'
@@ -6,9 +7,9 @@ import MarkdownEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 
 import { useRouter } from 'next/router'
+import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import { MdDeleteForever } from 'react-icons/md'
-import { ChangeEvent, FormEvent, useState } from 'react'
 
 import { IBlog } from '@/models/blog'
 import { CodeBlock, Spinner } from '@/components'
@@ -40,9 +41,7 @@ export const Blog = ({
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const uploadImagesQuery: Promise<any>[] = []
 
-	const createBlog = async (e: FormEvent) => {
-		e.preventDefault()
-
+	const createBlog = async () => {
 		if (isUploading) {
 			await Promise.all(uploadImagesQuery)
 		}
@@ -119,23 +118,35 @@ export const Blog = ({
 	}
 
 	return (
-		<form className="add-website-form" onSubmit={createBlog}>
+		<Form className="add-website-form" action="" onSubmit={createBlog}>
 			{/* blog title */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="title">Title</label>
+				<label htmlFor="title">
+					Title <span className="text-required">*</span>
+				</label>
 				<input
 					type="text"
 					id="title"
 					placeholder="Enter small title"
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
+					required
 				/>
 			</div>
 
 			{/* blog slug url */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="slug">Slug (seo friendly url)</label>
-				<input type="text" id="slug" placeholder="Enter slug url" value={slug} onChange={handleSlugChange} />
+				<label htmlFor="slug">
+					Slug (seo friendly url) <span className="text-required">*</span>
+				</label>
+				<input
+					type="text"
+					id="slug"
+					placeholder="Enter slug url"
+					value={slug}
+					onChange={handleSlugChange}
+					required
+				/>
 			</div>
 
 			{/* blog category */}
@@ -244,8 +255,10 @@ export const Blog = ({
 
 			{/* blog status */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="status">Status</label>
-				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)}>
+				<label htmlFor="status">
+					Status <span className="text-required">*</span>
+				</label>
+				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)} required>
 					<option value="">No select</option>
 					<option value="draft">Draft</option>
 					<option value="publish">Publish</option>
@@ -257,6 +270,6 @@ export const Blog = ({
 					Save blog
 				</button>
 			</div>
-		</form>
+		</Form>
 	)
 }

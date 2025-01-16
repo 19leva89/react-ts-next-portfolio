@@ -1,12 +1,13 @@
 import axios from 'axios'
+import Form from 'next/form'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 
-import { ChangeEvent, FormEvent, useState } from 'react'
 import { useRouter } from 'next/router'
+import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import { MdDeleteForever } from 'react-icons/md'
 
@@ -42,9 +43,7 @@ export const Shop = ({
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const uploadImagesQuery: Promise<any>[] = []
 
-	const createProduct = async (e: FormEvent) => {
-		e.preventDefault()
-
+	const createProduct = async () => {
 		if (isUploading) {
 			await Promise.all(uploadImagesQuery)
 		}
@@ -121,23 +120,35 @@ export const Shop = ({
 	}
 
 	return (
-		<form className="add-website-form" onSubmit={createProduct}>
+		<Form className="add-website-form" action="" onSubmit={createProduct}>
 			{/* product title */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="title">Title</label>
+				<label htmlFor="title">
+					Title <span className="text-required">*</span>
+				</label>
 				<input
 					type="text"
 					id="title"
 					placeholder="Enter small title"
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
+					required
 				/>
 			</div>
 
 			{/* blog slug url */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="slug">Slug (seo friendly url)</label>
-				<input type="text" id="slug" placeholder="Enter slug url" value={slug} onChange={handleSlugChange} />
+				<label htmlFor="slug">
+					Slug (seo friendly url) <span className="text-required">*</span>
+				</label>
+				<input
+					type="text"
+					id="slug"
+					placeholder="Enter slug url"
+					value={slug}
+					onChange={handleSlugChange}
+					required
+				/>
 			</div>
 
 			{/* product affiliate link */}
@@ -250,8 +261,10 @@ export const Shop = ({
 
 			{/* product status */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="status">Status</label>
-				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)}>
+				<label htmlFor="status">
+					Status <span className="text-required">*</span>
+				</label>
+				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)} required>
 					<option value="">No select</option>
 					<option value="draft">Draft</option>
 					<option value="publish">Publish</option>
@@ -263,6 +276,6 @@ export const Shop = ({
 					Save product
 				</button>
 			</div>
-		</form>
+		</Form>
 	)
 }

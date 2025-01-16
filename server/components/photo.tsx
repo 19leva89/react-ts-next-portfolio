@@ -1,11 +1,12 @@
 import axios from 'axios'
+import Form from 'next/form'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 
 import { useRouter } from 'next/router'
+import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 import { MdDeleteForever } from 'react-icons/md'
-import { ChangeEvent, FormEvent, useState } from 'react'
 
 import { Spinner } from '@/components'
 import { IPhoto } from '@/models/photo'
@@ -24,9 +25,7 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const uploadImagesQuery: Promise<any>[] = []
 
-	const createPhoto = async (e: FormEvent) => {
-		e.preventDefault()
-
+	const createPhoto = async () => {
 		if (isUploading) {
 			await Promise.all(uploadImagesQuery)
 		}
@@ -103,29 +102,44 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 	}
 
 	return (
-		<form className="add-website-form" onSubmit={createPhoto}>
+		<Form className="add-website-form" action="" onSubmit={createPhoto}>
 			{/* photo title */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="title">Title</label>
+				<label htmlFor="title">
+					Title <span className="text-required">*</span>
+				</label>
 				<input
 					type="text"
 					id="title"
 					placeholder="Enter small title"
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
+					required
 				/>
 			</div>
 
 			{/* blog slug url */}
 			<div className="w-100 flex flex-col flex-left mb-2">
-				<label htmlFor="slug">Slug (seo friendly url)</label>
-				<input type="text" id="slug" placeholder="Enter slug url" value={slug} onChange={handleSlugChange} />
+				<label htmlFor="slug">
+					Slug (seo friendly url) <span className="text-required">*</span>
+				</label>
+				<input
+					type="text"
+					id="slug"
+					placeholder="Enter slug url"
+					value={slug}
+					onChange={handleSlugChange}
+					required
+				/>
 			</div>
 
 			{/* photo images */}
 			<div className="w-100 flex flex-col flex-left mb-2">
 				<div className="w-100">
-					<label htmlFor="images">Images (first image will be shown as thumbnail, you can drag)</label>
+					<label htmlFor="images">
+						Images (first image will be shown as thumbnail, you can drag){' '}
+						<span className="text-required">*</span>
+					</label>
 					<input
 						type="file"
 						id="fileInput"
@@ -133,6 +147,7 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 						accept="image/*"
 						onChange={uploadImages}
 						multiple
+						required
 					/>
 				</div>
 
@@ -168,6 +183,6 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 					Save photo
 				</button>
 			</div>
-		</form>
+		</Form>
 	)
 }

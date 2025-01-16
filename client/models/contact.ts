@@ -5,7 +5,7 @@ export interface IContact {
 	firstName: string
 	lastName?: string
 	email: string
-	company?: string
+	company: string
 	phone: string
 	country?: string
 	price?: string
@@ -19,7 +19,7 @@ const contactSchema = new Schema<IContact>(
 		firstName: { type: String, required: true },
 		lastName: { type: String },
 		email: { type: String, required: true },
-		company: { type: String },
+		company: { type: String, required: true },
 		phone: { type: String, required: true },
 		country: { type: String },
 		price: { type: String },

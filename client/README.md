@@ -9,9 +9,9 @@ Authentication and User Management:
 - JSON Web Token (securely transmitting information)
 
 Core Technologies:
-- React 18
+- React 19
 - TypeScript
-- Next 14 (framework)
+- Next 15 (framework)
 
 Data Fetching and State Management:
 - Axios (sending requests to backend)
@@ -28,6 +28,6 @@ Styling and UI Frameworks:
 Text Editing:
 - React Markdown
 
-To run the client and server via concurrently:
-npm run all
+To run the client:
+npm run dev
 npm run lint (loading ESLint checker)

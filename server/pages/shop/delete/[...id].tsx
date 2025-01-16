@@ -16,7 +16,7 @@ const DeleteProduct = () => {
 	const [productInfo, setProductInfo] = useState<IShop | null>(null)
 
 	const goBack = () => {
-		router.push('/shops')
+		router.push('/shop')
 	}
 
 	const deleteProduct = async () => {

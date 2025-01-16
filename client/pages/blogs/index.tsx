@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Form from 'next/form'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -80,11 +81,11 @@ const Blogs = () => {
 								</p>
 
 								<div className="sub-email" data-aos="fade-up">
-									<form action="" className="flex">
+									<Form action="" className="flex">
 										<input onClick={handleSearchOpen} type="text" placeholder="Search blogs here..." />
 
 										<button>Search</button>
-									</form>
+									</Form>
 								</div>
 							</div>
 						</div>

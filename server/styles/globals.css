@@ -286,6 +286,10 @@ a {
 	text-align: left !important;
 }
 
+.text-required {
+	color: red;
+}
+
 .uppercase {
 	text-transform: uppercase;
 }
