@@ -146,7 +146,7 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
-						className="flex gap-1"
+						className="flex flex-wrap gap-1"
 					>
 						{images?.map((link, index) => (
 							<div key={link} className="uploaded-img">
@@ -164,8 +164,8 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 			)}
 
 			<div className="w-100 mb-1">
-				<button className="w-100 flex-center" type="submit">
-					SAVE PHOTO
+				<button className="w-100 flex-center uppercase" type="submit">
+					Save photo
 				</button>
 			</div>
 		</form>

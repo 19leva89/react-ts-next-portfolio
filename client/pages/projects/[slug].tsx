@@ -90,7 +90,7 @@ const ProjectSlug = () => {
 								<div>
 									<h3>Designer</h3>
 
-									<h2>Shin Malpur</h2>
+									<h2>{allData?.[0].designer}</h2>
 								</div>
 							</div>
 						</div>

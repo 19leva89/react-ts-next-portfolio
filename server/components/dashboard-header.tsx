@@ -25,14 +25,12 @@ export const DashboardHeader = ({ title, subtitle, breadcrumbs }: DashboardHeade
 				{breadcrumbs && breadcrumbs.length > 0 && <span>/</span>}
 
 				{breadcrumbs?.map((breadcrumb, index) => (
-					<>
-						<span key={breadcrumb}>
-							{index > 0 && <span>/</span>} {/* Add a slash before each element except the first one */}
-							<Link href={`/${breadcrumbs.slice(0, index + 1).join('/')}`}>
-								<span>{breadcrumb}</span>
-							</Link>
-						</span>
-					</>
+					<span key={index}>
+						{index > 0 && <span>/</span>} {/* Add a slash before each element except the first one */}
+						<Link href={`/${breadcrumbs.slice(0, index + 1).join('/')}`}>
+							<span>{breadcrumb}</span>
+						</Link>
+					</span>
 				))}
 			</div>
 		</div>

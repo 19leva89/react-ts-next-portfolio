@@ -20,6 +20,7 @@ export const Project = ({
 	images: existingImages,
 	description: existingDescription,
 	client: existingClient,
+	designer: existingDesigner,
 	projectCategory: existingProjectCategory,
 	tags: existingTags,
 	livePreview: existingLivePreview,
@@ -33,6 +34,7 @@ export const Project = ({
 	const [images, setImages] = useState(existingImages || [])
 	const [description, setDescription] = useState(existingDescription || '')
 	const [client, setClient] = useState(existingClient || '')
+	const [designer, setDesigner] = useState(existingDesigner || '')
 	const [livePreview, setLivePreview] = useState(existingLivePreview || '')
 	const [projectCategory, setProjectCategory] = useState(existingProjectCategory || [])
 	const [tags, setTags] = useState(existingTags || [])
@@ -51,7 +53,18 @@ export const Project = ({
 			await Promise.all(uploadImagesQuery)
 		}
 
-		const data = { title, slug, images, description, client, livePreview, projectCategory, tags, status }
+		const data = {
+			title,
+			slug,
+			designer,
+			images,
+			description,
+			client,
+			livePreview,
+			projectCategory,
+			tags,
+			status,
+		}
 
 		if (_id) {
 			await axios.put(`/api/projects`, { ...data, _id })
@@ -185,6 +198,18 @@ export const Project = ({
 				</select>
 			</div>
 
+			{/* project designer */}
+			<div className="w-100 flex flex-col flex-left mb-2">
+				<label htmlFor="designer">Designer name</label>
+				<input
+					type="text"
+					id="designer"
+					placeholder="Enter designer name"
+					value={designer}
+					onChange={(e) => setDesigner(e.target.value)}
+				/>
+			</div>
+
 			{/* project images */}
 			<div className="w-100 flex flex-col flex-left mb-2">
 				<div className="w-100">
@@ -209,7 +234,7 @@ export const Project = ({
 						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
-						className="flex gap-1"
+						className="flex flex-wrap gap-1"
 					>
 						{images?.map((link, index) => (
 							<div key={link} className="uploaded-img">
@@ -279,8 +304,8 @@ export const Project = ({
 			</div>
 
 			<div className="w-100 mb-1">
-				<button className="w-100 flex-center" type="submit">
-					SAVE PROJECT
+				<button className="w-100 flex-center uppercase" type="submit">
+					Save project
 				</button>
 			</div>
 		</form>

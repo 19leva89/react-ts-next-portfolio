@@ -10,11 +10,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	const { method } = req
 
 	if (method === 'POST') {
-		const { title, slug, images, description, client, projectCategory, tags, livePreview, status } = req.body
+		const { title, slug, designer, images, description, client, projectCategory, tags, livePreview, status } =
+			req.body
 
 		const projectDoc = await Project.create({
 			title,
 			slug,
+			designer,
 			images,
 			description,
 			client,
@@ -40,14 +42,26 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	}
 
 	if (method === 'PUT') {
-		const { _id, title, slug, images, description, client, projectCategory, tags, livePreview, status } =
-			req.body
+		const {
+			_id,
+			title,
+			slug,
+			designer,
+			images,
+			description,
+			client,
+			projectCategory,
+			tags,
+			livePreview,
+			status,
+		} = req.body
 
 		await Project.updateOne(
 			{ _id },
 			{
 				title,
 				slug,
+				designer,
 				images,
 				description,
 				client,
