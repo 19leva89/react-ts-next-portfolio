@@ -98,6 +98,10 @@ body {
 	padding: 0 !important;
 }
 
+.p-05 {
+	padding: 0.5rem;
+}
+
 .p-1 {
 	padding: 1rem;
 }
@@ -1629,7 +1633,6 @@ button {
 
 .contact-info h2 {
 	font-size: 18px;
-	margin-bottom: 8px;
 	color: #571f9e;
 	font-weight: 800;
 }
@@ -1641,6 +1644,24 @@ button {
 
 .contact-info h2 .contact-info-header {
 	margin-bottom: 20px;
+}
+
+.contact-info-link button {
+	font-size: 15px;
+	display: inline-flex;
+	gap: 10px;
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	font-weight: 700;
+	border: 1px solid #555;
+	color: #444;
+	transition: 0.3s ease;
+}
+
+.contact-info-link button:hover {
+	background-color: rgb(255, 85, 85);
+	border-color: rgb(255, 85, 85);
+	color: var(--pure-white);
 }
 
 .contact-info-footer {

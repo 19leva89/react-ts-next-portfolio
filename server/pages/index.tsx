@@ -36,7 +36,7 @@ const Home = () => {
 			: {}
 
 	const filteredCategoryCounts = Object.entries(categoryCounts).filter(([, count]) => count > 0)
-	console.log('filteredCategoryCounts', filteredCategoryCounts)
+	// console.log('filteredCategoryCounts', filteredCategoryCounts)
 
 	useEffect(() => {
 		// fetch blog data from api

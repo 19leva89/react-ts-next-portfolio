@@ -29,7 +29,7 @@ export const Header = ({ handleAsideOpen }: HeaderProps) => {
 	return (
 		<header className="header flex flex-sb">
 			<div className="logo flex gap-2">
-				<h1>ADMIN</h1>
+				<h1 className="uppercase">Admin</h1>
 
 				{session ? (
 					<div className="header-ham flex flex-center" onClick={handleAsideOpen}>

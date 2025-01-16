@@ -14,7 +14,7 @@ export const DashboardHeader = ({ title, subtitle, breadcrumbs }: DashboardHeade
 				<h2>
 					{title} <span>{subtitle}</span>
 				</h2>
-				<h3>ADMIN PANEL</h3>
+				<h3 className="uppercase">Admin panel</h3>
 			</div>
 
 			<div className="breadcrumb">

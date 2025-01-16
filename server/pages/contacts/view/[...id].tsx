@@ -1,10 +1,12 @@
 import axios from 'axios'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 
 import { IContact } from '@/models/contact'
 import { formatDate } from '@/utils/format-date'
+import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { DashboardHeader, LoginLayout } from '@/components'
 
 const ViewContact = () => {
@@ -46,7 +48,15 @@ const ViewContact = () => {
 				/>
 
 				<div className="contact-info mt-2">
-					<h2 className="contact-info-header">Contact Details</h2>
+					<div className="flex flex-sb flex-center mb-1">
+						<h2 className="contact-info-header">Contact Details</h2>
+
+						<Link href={`/contacts/delete/${id}`} className="contact-info-link">
+							<button className="p-05">
+								<RiDeleteBin6Fill />
+							</button>
+						</Link>
+					</div>
 
 					{contactInfo ? (
 						<table className="contact-details-table">
