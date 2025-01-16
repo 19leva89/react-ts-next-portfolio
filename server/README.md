@@ -10,7 +10,7 @@ Authentication and User Management:
 Core Technologies:
 - React 18
 - TypeScript
-- Next 14 (framework)
+- Next 15 (framework)
 
 Data Fetching and State Management:
 - Axios (sending requests to backend)
@@ -36,3 +36,7 @@ Text Editing:
 
 Utilities and Libraries:
 - Chart.js (interactive graphs and charts)
+
+To run the server:
+npm run dev
+npm run lint (loading ESLint checker)

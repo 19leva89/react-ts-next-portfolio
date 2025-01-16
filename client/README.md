@@ -27,3 +27,7 @@ Styling and UI Frameworks:
 
 Text Editing:
 - React Markdown
+
+To run the client and server via concurrently:
+npm run all
+npm run lint (loading ESLint checker)
