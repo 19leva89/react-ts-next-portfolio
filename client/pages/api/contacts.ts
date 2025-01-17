@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				price,
 				description,
 				project,
+				viewed: false,
 			})
 
 			res.status(201).json(contactDoc)
