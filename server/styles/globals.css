@@ -298,6 +298,10 @@ a {
 	color: red;
 }
 
+.not-viewed-bg {
+	background-color: #f23434ad;
+}
+
 button {
 	cursor: pointer;
 }

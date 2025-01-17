@@ -21,17 +21,23 @@ const ViewContact = () => {
 			return
 		}
 
-		const fetchContact = async () => {
+		const fetchAndMarkContact = async () => {
 			try {
 				const res = await axios.get(`/api/contacts?id=${id}`)
+				const contact = res.data
 
-				setContactInfo(res.data)
+				setContactInfo(contact)
+
+				// Updating the viewed field
+				if (!contact.viewed) {
+					await axios.put(`/api/contacts`, { _id: id, viewed: true })
+				}
 			} catch (error) {
-				console.error('[CONTACT_VIEW] Data boot error:', error)
+				console.error('[CONTACT_VIEW] Error fetching or updating contact:', error)
 			}
 		}
 
-		fetchContact()
+		fetchAndMarkContact()
 	}, [id])
 
 	return (

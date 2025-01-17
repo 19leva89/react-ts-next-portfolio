@@ -40,9 +40,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 	}
 
 	if (method === 'PUT') {
-		const { _id, firstName, lastName, email, company, phone, country, price, description, project } = req.body
+		const { _id, firstName, lastName, email, company, phone, country, price, description, project, viewed } =
+			req.body
 
-		await Contact.updateOne(
+		await Contact.updateMany(
 			{ _id },
 			{
 				firstName,
@@ -54,6 +55,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 				price,
 				description,
 				project,
+				viewed,
 			},
 		)
 

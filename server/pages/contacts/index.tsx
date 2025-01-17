@@ -84,7 +84,7 @@ const Contacts = () => {
 										</tr>
 									) : (
 										publishedContent.map((content, index) => (
-											<tr key={content._id}>
+											<tr key={content._id} className={content.viewed ? '' : 'not-viewed-bg'}>
 												<td>{indexOfFirstContent + index + 1}</td>
 
 												<td>

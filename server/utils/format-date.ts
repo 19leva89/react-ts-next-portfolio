@@ -16,7 +16,7 @@ export const formatDate = (date: Date | null | undefined) => {
 		minute: 'numeric',
 	}
 
-	const locale = navigator.language || 'en-US'
+	const locale = 'en-US'
 
 	return new Intl.DateTimeFormat(locale, options).format(parsedDate)
 }

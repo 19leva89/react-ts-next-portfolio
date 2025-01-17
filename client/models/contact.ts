@@ -11,6 +11,7 @@ export interface IContact {
 	price?: string
 	description?: string
 	project?: string[]
+	viewed: boolean
 	createdAt?: Date
 }
 
@@ -25,6 +26,7 @@ const contactSchema = new Schema<IContact>(
 		price: { type: String },
 		description: { type: String },
 		project: [{ type: String }],
+		viewed: { type: Boolean, default: false },
 	},
 	{
 		timestamps: true,
