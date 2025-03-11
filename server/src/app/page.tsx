@@ -1,7 +1,6 @@
 'use client'
 
 import axios from 'axios'
-import Head from 'next/head'
 import { useEffect, useState } from 'react'
 
 import { IBlog } from '@/models/blog'
@@ -68,14 +67,6 @@ const HomePage = () => {
 
 	return (
 		<LoginLayout>
-			<Head>
-				<title>Portfolio Backend</title>
-
-				<meta name="description" content="Blog website backend" />
-
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-			</Head>
-
 			<div className="dashboard">
 				<DashboardHeader title="Admin" subtitle="Dashboard" />
 

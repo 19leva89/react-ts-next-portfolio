@@ -8,7 +8,7 @@ Authentication and User Management:
 - NextAuth (authentication)
 
 Core Technologies:
-- React 18
+- React 19
 - TypeScript
 - Next 15 (framework)
 

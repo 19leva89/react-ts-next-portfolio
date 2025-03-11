@@ -22,8 +22,8 @@ export function absoluteUrl(path: string): string {
 }
 
 export function constructMetadata({
-	title = 'Personal Portfolio',
-	description = 'I break down complex user experience problems to create integrity focused solutions that connect billions of people.',
+	title = 'Portfolio Backend',
+	description = 'Website backend.',
 	image = '/img/thumbnail.webp',
 	icons = '/favicon.ico',
 	noIndex = false,
