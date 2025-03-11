@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 import { FreeMode } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
@@ -11,12 +11,11 @@ import { Pagination, Spinner } from '@/components'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 const Category = () => {
-	const router = useRouter()
-	const { category } = router.query as { category: string }
+	const { category } = useParams() as { category: string }
 
 	// pagination
+	const [perPage] = useState<number>(7)
 	const [currentPage, setCurrentPage] = useState<number>(1)
-	const [perPage] = useState(7)
 
 	// fetch content data
 	const { allData, loading } = useFetchData<IBlog[]>(`/api/blogs?blogCategory=${category}`)

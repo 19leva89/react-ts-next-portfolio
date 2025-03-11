@@ -10,8 +10,8 @@ import { useFetchData } from '@/hooks/use-fetch-data'
 
 const Shop = () => {
 	// pagination
+	const [perPage] = useState<number>(7)
 	const [currentPage, setCurrentPage] = useState<number>(1)
-	const [perPage] = useState(7)
 
 	// search
 	const [searchQuery, setSearchQuery] = useState<string>('')

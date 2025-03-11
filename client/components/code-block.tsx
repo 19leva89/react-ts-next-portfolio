@@ -12,7 +12,7 @@ interface CodeBlockProps {
 export const CodeBlock: FC<CodeBlockProps> = ({ inline, className, children, ...props }) => {
 	const match = /language-(\w+)/.exec(className || '')
 
-	const [copied, setCopied] = useState(false)
+	const [copied, setCopied] = useState<boolean>(false)
 
 	const handleCopy = () => {
 		navigator.clipboard.writeText(String(children))

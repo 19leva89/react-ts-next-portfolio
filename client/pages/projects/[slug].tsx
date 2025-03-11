@@ -3,7 +3,7 @@ import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
-import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 
 import { IProject } from '@/models/project'
 import { formatDate } from '@/utils/format-date'
@@ -17,9 +17,7 @@ import { Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 const ProjectSlug = () => {
-	const router = useRouter()
-
-	const { slug } = router.query as { slug: string }
+	const { slug } = useParams() as { slug: string }
 	const { allData, loading } = useFetchData<IProject[]>(`/api/projects?slug=${slug}`)
 
 	const projectCategory = allData?.[0].projectCategory

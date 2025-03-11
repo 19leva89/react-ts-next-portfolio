@@ -4,7 +4,7 @@ Animation and Interaction:
 - React Spinners (loading indicators)
 
 Authentication and User Management:
-- Bcrypt (password hashing)
+- Bcryptjs (password hashing)
 - NextAuth (authentication)
 
 Core Technologies:

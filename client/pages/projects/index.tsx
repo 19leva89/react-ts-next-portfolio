@@ -11,11 +11,11 @@ import { GoArrowUpRight } from 'react-icons/go'
 
 const Projects = () => {
 	const [selectedCategory, setSelectedCategory] = useState<string>('all')
-	const [filtredProjects, setFiltredProjects] = useState<IProject[]>([])
+	const [filteredProjects, setFilteredProjects] = useState<IProject[]>([])
 
 	// pagination
+	const [perPage] = useState<number>(7)
 	const [currentPage, setCurrentPage] = useState<number>(1)
-	const [perPage] = useState(7)
 
 	// search
 	const [searchQuery, setSearchQuery] = useState<string>('')
@@ -51,9 +51,9 @@ const Projects = () => {
 	useEffect(() => {
 		// filter projects based on selected category
 		if (selectedCategory === 'all') {
-			setFiltredProjects((allData ?? []).filter((project) => project.status === 'publish'))
+			setFilteredProjects((allData ?? []).filter((project) => project.status === 'publish'))
 		} else {
-			setFiltredProjects(
+			setFilteredProjects(
 				(allData ?? []).filter(
 					(project) => project.status === 'publish' && project.projectCategory?.[0] === selectedCategory,
 				),
@@ -143,10 +143,10 @@ const Projects = () => {
 								</div>
 							) : (
 								<>
-									{filtredProjects.length === 0 ? (
+									{filteredProjects.length === 0 ? (
 										<h1 className="flex flex-center w-100 mt-3">No projects found</h1>
 									) : (
-										filtredProjects.map((project) => (
+										filteredProjects.map((project) => (
 											<Link
 												key={project._id}
 												href={`/projects/${project.slug}`}

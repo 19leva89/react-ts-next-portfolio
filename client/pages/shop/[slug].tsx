@@ -3,7 +3,7 @@ import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
-import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { IShop } from '@/models/shop'
@@ -17,12 +17,10 @@ import { Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 const ShopSlug = () => {
-	const router = useRouter()
-
-	const { slug } = router.query as { slug: string }
+	const { slug } = useParams() as { slug: string }
 	const { allData, loading } = useFetchData<IShop[]>(`/api/shops?slug=${slug}`)
 
-	const [mainImage, setMainImage] = useState('')
+	const [mainImage, setMainImage] = useState<string>('')
 
 	// useEffect to set mainImage once allData is available
 	useEffect(() => {

@@ -17,12 +17,12 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 
 const Blogs = () => {
 	// pagination
+	const [perPage] = useState<number>(7)
 	const [currentPage, setCurrentPage] = useState<number>(1)
-	const [perPage] = useState(7)
 
 	// search
 	const [searchQuery, setSearchQuery] = useState<string>('')
-	const [searchInput, setSearchInput] = useState(false)
+	const [searchInput, setSearchInput] = useState<boolean>(false)
 
 	// fetch content data
 	const { allData = [], loading } = useFetchData<IBlog[]>('/api/blogs')

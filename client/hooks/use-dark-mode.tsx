@@ -11,8 +11,8 @@ const DarkModeContext = createContext({
 })
 
 // Context Provider Component
-export const DarkModeProvider = ({ children }:DarkModeProviderProps) => {
-	const [darkMode, setDarkMode] = useState(false)
+export const DarkModeProvider = ({ children }: DarkModeProviderProps) => {
+	const [darkMode, setDarkMode] = useState<boolean>(false)
 
 	const toggleDarkMode = () => {
 		setDarkMode((prev) => !prev)
@@ -29,10 +29,10 @@ export const DarkModeProvider = ({ children }:DarkModeProviderProps) => {
 	useEffect(() => {
 		if (darkMode) {
 			document.body.classList.add('dark')
-			localStorage.setItem('darkMode', "true")
+			localStorage.setItem('darkMode', 'true')
 		} else {
 			document.body.classList.remove('dark')
-			localStorage.setItem('darkMode', "false")
+			localStorage.setItem('darkMode', 'false')
 		}
 	}, [darkMode])
 

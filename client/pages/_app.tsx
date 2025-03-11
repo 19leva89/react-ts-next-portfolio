@@ -9,7 +9,7 @@ import 'aos/dist/aos.css'
 import '@/styles/globals.css'
 
 const App = ({ Component, pageProps }: AppProps) => {
-	const [isLoading, setIsLoading] = useState(true)
+	const [isLoading, setIsLoading] = useState<boolean>(true)
 
 	useEffect(() => {
 		const timeoutId = setTimeout(() => {

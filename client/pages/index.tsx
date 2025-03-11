@@ -26,7 +26,7 @@ const Home = () => {
 	const [allProjects, setAllProjects] = useState<IProject[]>([])
 	const [allBlogs, setAllBlogs] = useState<IBlog[]>([])
 	const [selectedCategory, setSelectedCategory] = useState<string>('all')
-	const [filtredProjects, setFiltredProjects] = useState<IProject[]>([])
+	const [filteredProjects, setFilteredProjects] = useState<IProject[]>([])
 
 	const handleHover = (id: number) => {
 		setActiveId(id)
@@ -59,9 +59,9 @@ const Home = () => {
 	useEffect(() => {
 		// filter projects based on selected category
 		if (selectedCategory === 'all') {
-			setFiltredProjects((allProjects ?? []).filter((project) => project.status === 'publish'))
+			setFilteredProjects((allProjects ?? []).filter((project) => project.status === 'publish'))
 		} else {
-			setFiltredProjects(
+			setFilteredProjects(
 				(allProjects ?? []).filter(
 					(project) => project.status === 'publish' && project.projectCategory?.[0] === selectedCategory,
 				),
@@ -322,10 +322,10 @@ const Home = () => {
 							</div>
 						) : (
 							<>
-								{filtredProjects.length === 0 ? (
+								{filteredProjects.length === 0 ? (
 									<h1 className="flex flex-center w-100 h_25 mt-3">No projects found</h1>
 								) : (
-									filtredProjects.slice(0, 4).map((project) => (
+									filteredProjects.slice(0, 4).map((project) => (
 										<Link
 											key={project._id}
 											href={`/projects/${project.slug}`}

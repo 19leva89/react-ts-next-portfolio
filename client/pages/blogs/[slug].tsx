@@ -7,7 +7,7 @@ import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
 import { Types } from 'mongoose'
-import { useRouter } from 'next/router'
+import { useParams } from 'next/navigation'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 
 import { IBlog } from '@/models/blog'
@@ -25,9 +25,7 @@ import { BiLogoLinkedin } from 'react-icons/bi'
 import { RiFacebookFill, RiWhatsappFill } from 'react-icons/ri'
 
 const BlogPage = () => {
-	const router = useRouter()
-
-	const { slug } = router.query as { slug: string }
+	const { slug } = useParams() as { slug: string }
 	const { allData = [] } = useFetchData<IBlog[]>('/api/blogs')
 
 	const [error, setError] = useState<string | null>(null)
@@ -35,7 +33,10 @@ const BlogPage = () => {
 	const [loading, setLoading] = useState<boolean>(true)
 	const [messageOk, setMessageOk] = useState<string>('')
 	const [searchInput, setSearchInput] = useState<boolean>(false)
-	const [blogData, setBlogData] = useState({ blog: {} as IBlog, comments: [] as IComment[] })
+	const [blogData, setBlogData] = useState<{ blog: IBlog; comments: IComment[] }>({
+		blog: {} as IBlog,
+		comments: [] as IComment[],
+	})
 	const [newComment, setNewComment] = useState<IComment>({
 		_id: '',
 		name: '',

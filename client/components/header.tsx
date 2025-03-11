@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { useRouter } from 'next/router'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { NavItem } from '@/components'
@@ -12,11 +12,11 @@ import { IoMoonSharp } from 'react-icons/io5'
 import { HiMiniBars3BottomRight } from 'react-icons/hi2'
 
 export const Header = () => {
-	const router = useRouter()
-	const [mobile, setMobile] = useState(false)
-	const [isSticky, setIsSticky] = useState(false)
-	const [activeLink, setActiveLink] = useState('/')
+	const pathname = usePathname()
 	const { darkMode, toggleDarkMode } = useDarkMode()
+	const [mobile, setMobile] = useState<boolean>(false)
+	const [isSticky, setIsSticky] = useState<boolean>(false)
+	const [activeLink, setActiveLink] = useState<string>('/')
 
 	const handleLinkClick = (link: string) => {
 		setActiveLink((preActive) => (preActive === link ? '' : link))
@@ -43,8 +43,10 @@ export const Header = () => {
 	}, [])
 
 	useEffect(() => {
-		setActiveLink(router.pathname)
-	}, [router.pathname])
+		if (pathname !== null) {
+			setActiveLink(pathname)
+		}
+	}, [pathname])
 
 	return (
 		<header className={isSticky ? 'sticky' : ''}>

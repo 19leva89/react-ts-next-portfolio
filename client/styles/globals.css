@@ -242,8 +242,8 @@ img {
 
 :root {
 	--main-site-color: #9500ff;
-	--dark-black: #000;
-	--pure-white: #fff;
+	--dark-black: #000000;
+	--pure-white: #ffffff;
 	--week-white: #f6f3fc;
 	--dark-site-secondary: #19195c;
 	--main-hover-color: #905ff1;
@@ -577,7 +577,7 @@ header.sticky {
 .mobile-navlist p {
 	position: absolute;
 	bottom: 2%;
-	color: #999;
+	color: #999999;
 }
 
 .mobile-navlist span {
@@ -971,7 +971,7 @@ header.sticky {
 }
 
 .dark .services-item {
-	border-bottom: 1px solid #999;
+	border-bottom: 1px solid #999999;
 }
 
 .dark .services-item p {
@@ -1201,7 +1201,7 @@ header.sticky {
 	margin-top: 15px;
 	font-size: 18px;
 	text-align: center;
-	color: #999;
+	color: #999999;
 }
 
 .dark .projects-title p {
@@ -1478,7 +1478,7 @@ header.sticky {
 
 .dark .exper-card p {
 	font-size: 17px;
-	color: #555;
+	color: #555555;
 }
 
 .exper-card:hover::before {
@@ -1542,7 +1542,7 @@ header.sticky {
 	margin-top: 15px;
 	font-size: 18px;
 	text-align: center;
-	color: #999;
+	color: #999999;
 }
 
 .dark .my-skills-title p {
@@ -1827,7 +1827,7 @@ header.sticky {
 	font-size: 20px;
 	font-weight: 500;
 	max-width: 800px;
-	color: #999;
+	color: #999999;
 	line-height: 1.6;
 }
 
@@ -2493,11 +2493,11 @@ header.sticky {
 }
 
 .sbsf-s-box p {
-	color: #999;
+	color: #999999;
 }
 
 .sbsf-search-list h3 span {
-	color: #999;
+	color: #999999;
 	font-weight: 500;
 }
 
@@ -2758,7 +2758,7 @@ header.sticky {
 }
 
 .dark .gallery-img-item-info p {
-	color: #555;
+	color: #555555;
 }
 
 /* @media screen and (max-width: 1400px) {
@@ -2893,11 +2893,11 @@ header.sticky {
 }
 
 .cs-service p {
-	color: #999;
+	color: #999999;
 }
 
 .dark .cs-service p {
-	color: #444;
+	color: #444444;
 }
 
 .cs-service span {
@@ -2936,7 +2936,7 @@ header.sticky {
 }
 
 .dark .pricing-title h3 {
-	color: #555;
+	color: #555555;
 }
 
 .pricing-title h2 {
@@ -3000,7 +3000,7 @@ header.sticky {
 }
 
 .dark .pricing-card p {
-	color: #555;
+	color: #555555;
 }
 
 .pricing-card a {
@@ -3039,7 +3039,7 @@ header.sticky {
 }
 
 .dark .pricing-card ul li {
-	color: #555;
+	color: #555555;
 }
 
 .pricing-card ul li svg {
@@ -3167,7 +3167,7 @@ header.sticky {
 }
 
 .dark .sp-pro-card h3 {
-	color: #555;
+	color: #555555;
 }
 
 .sp-pro-card span {
@@ -3350,7 +3350,7 @@ header.sticky {
 
 .right-cont-title {
 	padding: 1rem;
-	border-top: 1px dashed #999;
+	border-top: 1px dashed #999999;
 	background-color: rgb(41 37 36 / 0.5);
 }
 
@@ -3537,7 +3537,7 @@ header.sticky {
 }
 
 .right-cont-p hr {
-	border: 1px dashed #555;
+	border: 1px dashed #555555;
 }
 
 .right-cont-btn {
@@ -3724,8 +3724,8 @@ header.sticky {
 	width: 100%;
 	height: 100%;
 	padding: 2rem 0;
-	border-top: 1px solid #555;
-	border-bottom: 1px solid #555;
+	border-top: 1px solid #555555;
+	border-bottom: 1px solid #555555;
 	margin: 3rem 0;
 	display: flex;
 	align-items: center;
@@ -3786,14 +3786,14 @@ header.sticky {
 	border: none;
 	outline: none;
 	color: var(--pure-white);
-	background-color: #111;
-	border: 0.5px solid #444;
+	background-color: #111111;
+	border: 0.5px solid #444444;
 }
 
 .dark .right-slug-search-bar input {
 	color: var(--dark-black);
 	background-color: var(--pure-white);
-	border: 0.5px solid #999;
+	border: 0.5px solid #999999;
 }
 
 .right-slug-search-bar button {
@@ -4239,7 +4239,7 @@ header.sticky {
 	font-size: 20px;
 	background-color: transparent;
 	color: rgb(249, 75, 75);
-	border: 1px solid #999;
+	border: 1px solid #999999;
 	outline: none;
 	border-radius: 10px;
 }
@@ -4402,7 +4402,7 @@ header.sticky {
 
 .blog-comment h3 span {
 	display: inline;
-	color: #999;
+	color: #999999;
 	font-weight: 300;
 	font-size: 15px;
 	margin-left: 20px;
@@ -4529,7 +4529,7 @@ header.sticky {
 }
 
 .dark .left-main-pro-info p {
-	color: #555;
+	color: #555555;
 }
 
 .right-main-pro-info h3 {
