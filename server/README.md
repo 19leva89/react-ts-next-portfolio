@@ -36,7 +36,9 @@ Text Editing:
 
 Utilities and Libraries:
 - Chart.js (interactive graphs and charts)
+- Knip (code analyzer and declutter)
 
 To run the server:
 npm run dev
 npm run lint (loading ESLint checker)
+npm run knip

@@ -28,6 +28,10 @@ Styling and UI Frameworks:
 Text Editing:
 - React Markdown
 
+Utilities and Libraries:
+- Knip (code analyzer and declutter)
+
 To run the client:
 npm run dev
 npm run lint (loading ESLint checker)
+npm run knip
