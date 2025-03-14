@@ -6,13 +6,11 @@ import authConfig from '@/auth.config'
 export const { auth, handlers, signIn, signOut } = NextAuth({
 	secret: process.env.NEXTAUTH_SECRET,
 
-	// session: {
-	// 	strategy: "jwt",
-	// },
-
-	// jwt: {
-	// 	secret: process.env.JWT_SECRET,
-	// },
+	session: {
+		strategy: 'jwt',
+		maxAge: 30 * 60, // 30 minutes
+		updateAge: 10 * 60, // 10 minutes
+	},
 
 	callbacks: {
 		async jwt({ token, user }: { token: JWT; user?: User }) {

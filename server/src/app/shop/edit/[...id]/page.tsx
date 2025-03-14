@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 import { IShop } from '@/models/shop'
-import { Shop, DashboardHeader, LoginLayout } from '@/components/shared'
+import { Shop, DashboardHeader } from '@/components/shared'
 
 const EditProductPage = () => {
 	const { id } = useParams() as { id: string }
@@ -32,7 +32,7 @@ const EditProductPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Update Product</title>
 			</Head>
@@ -42,7 +42,7 @@ const EditProductPage = () => {
 
 				<div className="mt-3">{productInfo && <Shop {...productInfo} />}</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

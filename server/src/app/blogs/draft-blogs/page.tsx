@@ -8,7 +8,7 @@ import { RiDeleteBin6Fill } from 'react-icons/ri'
 
 import { IBlog } from '@/models/blog'
 import { useFetchData } from '@/hooks/use-fetch-data'
-import { DashboardHeader, DataLoading, LoginLayout, Pagination } from '@/components/shared'
+import { DashboardHeader, DataLoading, Pagination } from '@/components/shared'
 
 const DraftBlogsPage = () => {
 	// pagination
@@ -45,104 +45,102 @@ const DraftBlogsPage = () => {
 	const draftedContent = currentContent.filter((content) => content.status === 'draft') || []
 
 	return (
-		<LoginLayout>
-			<div className="content-page">
-				<DashboardHeader title="All Draft" subtitle="Blogs" breadcrumbs={['blogs', 'draft-blogs']} />
+		<div className="content-page">
+			<DashboardHeader title="All Draft" subtitle="Blogs" breadcrumbs={['blogs', 'draft-blogs']} />
 
-				<div className="contents-table">
-					<div className="flex gap-2 mb-1">
-						<h2>Search Blogs:</h2>
-						<input
-							type="text"
-							placeholder="Search by title..."
-							value={searchQuery}
-							onChange={(e) => setSearchQuery(e.target.value)}
-						/>
-					</div>
+			<div className="contents-table">
+				<div className="flex gap-2 mb-1">
+					<h2>Search Blogs:</h2>
+					<input
+						type="text"
+						placeholder="Search by title..."
+						value={searchQuery}
+						onChange={(e) => setSearchQuery(e.target.value)}
+					/>
+				</div>
 
-					<table>
-						<thead>
+				<table>
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Image</th>
+							<th>Title</th>
+							<th>Edit / Delete</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{loading ? (
 							<tr>
-								<th>#</th>
-								<th>Image</th>
-								<th>Title</th>
-								<th>Edit / Delete</th>
+								<td colSpan={4}>
+									<DataLoading />
+								</td>
 							</tr>
-						</thead>
+						) : (
+							<>
+								{draftedContent.length === 0 ? (
+									<tr>
+										<td colSpan={4} className="text-center">
+											No Blogs Found
+										</td>
+									</tr>
+								) : (
+									draftedContent.map((content, index) => (
+										<tr key={content._id}>
+											<td>{indexOfFirstContent + index + 1}</td>
 
-						<tbody>
-							{loading ? (
-								<tr>
-									<td colSpan={4}>
-										<DataLoading />
-									</td>
-								</tr>
-							) : (
-								<>
-									{draftedContent.length === 0 ? (
-										<tr>
-											<td colSpan={4} className="text-center">
-												No Blogs Found
+											<td>
+												<div className="content-image-container">
+													<Image
+														src={
+															content.images && content.images.length > 0
+																? content.images[0]
+																: '/img/no-image.png'
+														}
+														alt="image"
+														width={200}
+														height={100}
+														layout="responsive"
+														objectFit="cover"
+														priority={false}
+														quality={100}
+													/>
+												</div>
+											</td>
+
+											<td>
+												<h3>{content.title}</h3>
+											</td>
+
+											<td>
+												<div className="flex gap-2 flex-center">
+													<Link href={`/blogs/edit/${content._id}`}>
+														<button>
+															<FaEdit />
+														</button>
+													</Link>
+
+													<Link href={`/blogs/delete/${content._id}`}>
+														<button>
+															<RiDeleteBin6Fill />
+														</button>
+													</Link>
+												</div>
 											</td>
 										</tr>
-									) : (
-										draftedContent.map((content, index) => (
-											<tr key={content._id}>
-												<td>{indexOfFirstContent + index + 1}</td>
+									))
+								)}
+							</>
+						)}
+					</tbody>
+				</table>
 
-												<td>
-													<div className="content-image-container">
-														<Image
-															src={
-																content.images && content.images.length > 0
-																	? content.images[0]
-																	: '/img/no-image.png'
-															}
-															alt="image"
-															width={200}
-															height={100}
-															layout="responsive"
-															objectFit="cover"
-															priority={false}
-															quality={100}
-														/>
-													</div>
-												</td>
-
-												<td>
-													<h3>{content.title}</h3>
-												</td>
-
-												<td>
-													<div className="flex gap-2 flex-center">
-														<Link href={`/blogs/edit/${content._id}`}>
-															<button>
-																<FaEdit />
-															</button>
-														</Link>
-
-														<Link href={`/blogs/delete/${content._id}`}>
-															<button>
-																<RiDeleteBin6Fill />
-															</button>
-														</Link>
-													</div>
-												</td>
-											</tr>
-										))
-									)}
-								</>
-							)}
-						</tbody>
-					</table>
-
-					{/* for pagination */}
-					{draftedContent.length > 0 && (
-						<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
-					)}
-				</div>
+				{/* for pagination */}
+				{draftedContent.length > 0 && (
+					<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
+				)}
 			</div>
-		</LoginLayout>
+		</div>
 	)
 }
 

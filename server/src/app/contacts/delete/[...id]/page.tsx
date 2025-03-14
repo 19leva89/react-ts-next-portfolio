@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
 import { IContact } from '@/models/contact'
-import { DashboardHeader, LoginLayout } from '@/components/shared'
+import { DashboardHeader } from '@/components/shared'
 
 const DeleteContactPage = () => {
 	const router = useRouter()
@@ -51,7 +51,7 @@ const DeleteContactPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Delete Contact</title>
 			</Head>
@@ -79,7 +79,7 @@ const DeleteContactPage = () => {
 					</div>
 				</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
 import { IPhoto } from '@/models/photo'
-import { DashboardHeader, LoginLayout } from '@/components/shared'
+import { DashboardHeader } from '@/components/shared'
 
 const DeletePhotoPage = () => {
 	const router = useRouter()
@@ -51,7 +51,7 @@ const DeletePhotoPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Delete Photo</title>
 			</Head>
@@ -81,7 +81,7 @@ const DeletePhotoPage = () => {
 					</div>
 				</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

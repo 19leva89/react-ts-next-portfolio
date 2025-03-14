@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
 import { IProject } from '@/models/project'
-import { DashboardHeader, LoginLayout } from '@/components/shared'
+import { DashboardHeader } from '@/components/shared'
 
 const DeleteProjectPage = () => {
 	const router = useRouter()
@@ -51,7 +51,7 @@ const DeleteProjectPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Delete Project</title>
 			</Head>
@@ -81,7 +81,7 @@ const DeleteProjectPage = () => {
 					</div>
 				</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

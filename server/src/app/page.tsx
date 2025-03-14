@@ -7,7 +7,7 @@ import { IBlog } from '@/models/blog'
 import { IShop } from '@/models/shop'
 import { IPhoto } from '@/models/photo'
 import { IProject } from '@/models/project'
-import { BarChart, DashboardHeader, LoginLayout } from '@/components/shared'
+import { BarChart, DashboardHeader } from '@/components/shared'
 
 const HomePage = () => {
 	const [shopData, setShopData] = useState<IShop[]>([])
@@ -66,98 +66,96 @@ const HomePage = () => {
 	}, [])
 
 	return (
-		<LoginLayout>
-			<div className="dashboard">
-				<DashboardHeader title="Admin" subtitle="Dashboard" />
+		<div className="dashboard">
+			<DashboardHeader title="Admin" subtitle="Dashboard" />
 
-				{/* dashboard four cards */}
-				<div className="top-four-cards flex flex-sb">
-					<div className="four-card">
-						<h2>Total Blogs</h2>
-						<span>{blogsData.filter((item) => item.status === 'publish').length}</span>
-					</div>
-
-					<div className="four-card">
-						<h2>Total Projects</h2>
-						<span>{projectData.filter((item) => item.status === 'publish').length}</span>
-					</div>
-
-					<div className="four-card">
-						<h2>Total Products</h2>
-						<span>{shopData.filter((item) => item.status === 'publish').length}</span>
-					</div>
-
-					<div className="four-card">
-						<h2>Gallery Photos</h2>
-						<span>{photosData.length}</span>
-					</div>
+			{/* dashboard four cards */}
+			<div className="top-four-cards flex flex-sb">
+				<div className="four-card">
+					<h2>Total Blogs</h2>
+					<span>{blogsData.filter((item) => item.status === 'publish').length}</span>
 				</div>
 
-				{/* year overview */}
-				<div className="year-overview flex flex-sb">
-					<div className="left-year-overview">
-						<div className="flex flex-sb">
-							<h3>Year Overview</h3>
+				<div className="four-card">
+					<h2>Total Projects</h2>
+					<span>{projectData.filter((item) => item.status === 'publish').length}</span>
+				</div>
 
-							<ul className="creative-dots">
-								<li className="big-dot"></li>
-								<li className="semi-big-dot"></li>
-								<li className="medium-dot"></li>
-								<li className="semi-medium-dot"></li>
-								<li className="small-dot"></li>
-								<li className="semi-small-dot"></li>
-							</ul>
+				<div className="four-card">
+					<h2>Total Products</h2>
+					<span>{shopData.filter((item) => item.status === 'publish').length}</span>
+				</div>
 
-							<h3 className="text-right">
-								{shopData.filter((item) => item.status === 'publish').length +
-									blogsData.filter((item) => item.status === 'publish').length +
-									projectData.filter((item) => item.status === 'publish').length}{' '}
-								/ 365
-								<br />
-								<span>Total Published</span>
-							</h3>
-						</div>
+				<div className="four-card">
+					<h2>Gallery Photos</h2>
+					<span>{photosData.length}</span>
+				</div>
+			</div>
 
-						<BarChart shopData={shopData} blogsData={blogsData} projectData={projectData} />
+			{/* year overview */}
+			<div className="year-overview flex flex-sb">
+				<div className="left-year-overview">
+					<div className="flex flex-sb">
+						<h3>Year Overview</h3>
+
+						<ul className="creative-dots">
+							<li className="big-dot"></li>
+							<li className="semi-big-dot"></li>
+							<li className="medium-dot"></li>
+							<li className="semi-medium-dot"></li>
+							<li className="small-dot"></li>
+							<li className="semi-small-dot"></li>
+						</ul>
+
+						<h3 className="text-right">
+							{shopData.filter((item) => item.status === 'publish').length +
+								blogsData.filter((item) => item.status === 'publish').length +
+								projectData.filter((item) => item.status === 'publish').length}{' '}
+							/ 365
+							<br />
+							<span>Total Published</span>
+						</h3>
 					</div>
 
-					<div className="right-sales-cont">
-						<div className="flex flex-sb">
-							<h3>Data by Category</h3>
+					<BarChart shopData={shopData} blogsData={blogsData} projectData={projectData} />
+				</div>
 
-							<ul className="creative-dots">
-								<li className="big-dot"></li>
-								<li className="semi-big-dot"></li>
-								<li className="medium-dot"></li>
-								<li className="semi-medium-dot"></li>
-								<li className="small-dot"></li>
-								<li className="semi-small-dot"></li>
-							</ul>
-						</div>
+				<div className="right-sales-cont">
+					<div className="flex flex-sb">
+						<h3>Data by Category</h3>
 
-						<div className="blogs-category">
-							<table>
-								<thead>
-									<tr>
-										<td>Category</td>
-										<td>Count</td>
+						<ul className="creative-dots">
+							<li className="big-dot"></li>
+							<li className="semi-big-dot"></li>
+							<li className="medium-dot"></li>
+							<li className="semi-medium-dot"></li>
+							<li className="small-dot"></li>
+							<li className="semi-small-dot"></li>
+						</ul>
+					</div>
+
+					<div className="blogs-category">
+						<table>
+							<thead>
+								<tr>
+									<td>Category</td>
+									<td>Count</td>
+								</tr>
+							</thead>
+
+							<tbody>
+								{filteredCategoryCounts.map(([category, count]) => (
+									<tr key={category}>
+										<td>{category}</td>
+										<td>{count}</td>
 									</tr>
-								</thead>
-
-								<tbody>
-									{filteredCategoryCounts.map(([category, count]) => (
-										<tr key={category}>
-											<td>{category}</td>
-											<td>{count}</td>
-										</tr>
-									))}
-								</tbody>
-							</table>
-						</div>
+								))}
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>
-		</LoginLayout>
+		</div>
 	)
 }
 

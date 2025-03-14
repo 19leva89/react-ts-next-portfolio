@@ -44,11 +44,11 @@ export const Header = ({ handleAsideOpen }: HeaderProps) => {
 				<div onClick={toggleFullscreen}>{isFullscreen ? <BiExitFullscreen /> : <GoScreenFull />}</div>
 
 				<div className="notification">
-					<Image src="/img/notification.png" alt="notification" width={22} height={22} priority={false} />
+					<Image src="/img/notification.png" alt="notification" width={22} height={22} loading="lazy" />
 				</div>
 
 				<div className="profile-nav">
-					<Image src="/img/user.png" alt="user" width={120} height={54} priority={false} />
+					<Image src="/img/user.png" alt="user" width={120} height={54} loading="lazy" />
 				</div>
 			</div>
 		</header>

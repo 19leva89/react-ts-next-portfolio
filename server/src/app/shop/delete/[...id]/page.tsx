@@ -8,7 +8,7 @@ import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
 import { IShop } from '@/models/shop'
-import { DashboardHeader, LoginLayout } from '@/components/shared'
+import { DashboardHeader } from '@/components/shared'
 
 const DeleteProductPage = () => {
 	const router = useRouter()
@@ -51,7 +51,7 @@ const DeleteProductPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Delete Product</title>
 			</Head>
@@ -81,7 +81,7 @@ const DeleteProductPage = () => {
 					</div>
 				</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

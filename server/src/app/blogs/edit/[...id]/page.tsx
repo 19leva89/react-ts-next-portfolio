@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 import { IBlog } from '@/models/blog'
-import { Blog, DashboardHeader, LoginLayout } from '@/components/shared'
+import { Blog, DashboardHeader } from '@/components/shared'
 
 const EditBlogPage = () => {
 	const { id } = useParams() as { id: string }
@@ -32,7 +32,7 @@ const EditBlogPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Update Blog</title>
 			</Head>
@@ -42,7 +42,7 @@ const EditBlogPage = () => {
 
 				<div className="mt-3">{productInfo && <Blog {...productInfo} />}</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

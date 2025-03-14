@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 import { IProject } from '@/models/project'
-import { Project, DashboardHeader, LoginLayout } from '@/components/shared'
+import { Project, DashboardHeader } from '@/components/shared'
 
 const EditProjectPage = () => {
 	const { id } = useParams() as { id: string }
@@ -32,7 +32,7 @@ const EditProjectPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Update Project</title>
 			</Head>
@@ -42,7 +42,7 @@ const EditProjectPage = () => {
 
 				<div className="mt-3">{productInfo && <Project {...productInfo} />}</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

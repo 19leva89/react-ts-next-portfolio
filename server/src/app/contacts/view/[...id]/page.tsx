@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react'
 import { IContact } from '@/models/contact'
 import { formatDate } from '@/utils/format-date'
 import { RiDeleteBin6Fill } from 'react-icons/ri'
-import { DashboardHeader, LoginLayout } from '@/components/shared'
+import { DashboardHeader } from '@/components/shared'
 
 const ViewContactPage = () => {
 	const { id } = useParams() as { id: string }
@@ -41,7 +41,7 @@ const ViewContactPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>View Contact</title>
 			</Head>
@@ -127,7 +127,7 @@ const ViewContactPage = () => {
 					)}
 				</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 

@@ -6,7 +6,7 @@ import { useParams } from 'next/navigation'
 import { useState, useEffect } from 'react'
 
 import { IPhoto } from '@/models/photo'
-import { Photo, DashboardHeader, LoginLayout } from '@/components/shared'
+import { Photo, DashboardHeader } from '@/components/shared'
 
 const EditPhotoPage = () => {
 	const { id } = useParams() as { id: string }
@@ -32,7 +32,7 @@ const EditPhotoPage = () => {
 	}, [id])
 
 	return (
-		<LoginLayout>
+		<>
 			<Head>
 				<title>Update Photo</title>
 			</Head>
@@ -42,7 +42,7 @@ const EditPhotoPage = () => {
 
 				<div className="mt-3">{productInfo && <Photo {...productInfo} />}</div>
 			</div>
-		</LoginLayout>
+		</>
 	)
 }
 
