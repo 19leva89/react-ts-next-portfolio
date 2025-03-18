@@ -1597,6 +1597,7 @@ header.sticky {
 
 .my-s-card img {
 	max-width: 70px;
+	height: auto;
 	margin: 0 auto 30px;
 	transition: 0.3s;
 }
@@ -2957,9 +2958,11 @@ header.sticky {
 
 .pricing-cards {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	justify-content: space-between;
 	gap: 1rem;
+	margin: 0 1rem;
 }
 
 .pricing-card {
@@ -4740,17 +4743,13 @@ header.sticky {
 	}
 
 	.pricing-card {
-		width: 100%;
+		width: 45%;
 	}
 
 	.pricing-card:nth-child(1),
 	.pricing-card:nth-child(2),
 	.pricing-card:nth-child(3) {
-		width: 100%;
-	}
-
-	.pricing-card {
-		width: 100%;
+		width: 45%;
 	}
 
 	.pricing-card-s {
@@ -4976,9 +4975,10 @@ header.sticky {
 		width: 50%;
 	}
 
-	.projects-button button {
-		font-size: 16px;
-		padding: 0.8rem;
+	.projects .container button {
+		height: 30px;
+		font-size: 14px;
+		padding: 0.5rem;
 	}
 
 	.services-title {
@@ -5088,6 +5088,16 @@ header.sticky {
 	.footer-sec ul {
 		flex-wrap: wrap;
 		justify-content: center;
+	}
+
+	.pricing-card {
+		width: 100%;
+	}
+
+	.pricing-card:nth-child(1),
+	.pricing-card:nth-child(2),
+	.pricing-card:nth-child(3) {
+		width: 100%;
 	}
 }
 
@@ -5295,6 +5305,7 @@ header.sticky {
 
 	.my-s-card img {
 		max-width: 50px;
+		height: auto;
 		margin: 0;
 	}
 }
@@ -5327,6 +5338,7 @@ header.sticky {
 
 	.my-s-card img {
 		max-width: 43px;
+		height: auto;
 	}
 }
 
@@ -5337,5 +5349,6 @@ header.sticky {
 
 	.my-s-card img {
 		max-width: 40px;
+		height: auto;
 	}
 }

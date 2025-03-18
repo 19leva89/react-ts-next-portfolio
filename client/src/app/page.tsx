@@ -261,50 +261,50 @@ const Home = () => {
 						data-aos-offset="0"
 					>
 						<button
-							className={selectedCategory === 'all' ? 'active' : ''}
 							onClick={() => setSelectedCategory('all')}
+							className={selectedCategory === 'all' ? 'active' : ''}
 						>
 							All
 						</button>
 
 						<button
-							className={selectedCategory === 'website-development' ? 'active' : ''}
 							onClick={() => setSelectedCategory('website-development')}
+							className={selectedCategory === 'website-development' ? 'active' : ''}
 						>
 							Website
 						</button>
 
 						<button
-							className={selectedCategory === 'app-development' ? 'active' : ''}
 							onClick={() => setSelectedCategory('app-development')}
+							className={selectedCategory === 'app-development' ? 'active' : ''}
 						>
 							Apps
 						</button>
 
 						<button
-							className={selectedCategory === 'design-system' ? 'active' : ''}
 							onClick={() => setSelectedCategory('design-system')}
+							className={selectedCategory === 'design-system' ? 'active' : ''}
 						>
 							Design
 						</button>
 
 						<button
-							className={selectedCategory === 'website-migration' ? 'active' : ''}
 							onClick={() => setSelectedCategory('website-migration')}
+							className={selectedCategory === 'website-migration' ? 'active' : ''}
 						>
 							Migration
 						</button>
 
 						<button
-							className={selectedCategory === 'e-commerce-site' ? 'active' : ''}
 							onClick={() => setSelectedCategory('e-commerce-site')}
+							className={selectedCategory === 'e-commerce-site' ? 'active' : ''}
 						>
 							E-commerce
 						</button>
 
 						<button
-							className={selectedCategory === 'performance-evaluation' ? 'active' : ''}
 							onClick={() => setSelectedCategory('performance-evaluation')}
+							className={selectedCategory === 'performance-evaluation' ? 'active' : ''}
 						>
 							Performance
 						</button>
