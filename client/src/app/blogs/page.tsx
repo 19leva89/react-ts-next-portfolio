@@ -73,9 +73,9 @@ const BlogsPage = () => {
 
 			<div className="content-page">
 				<section className="top-hero">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="top-title">
-							<div className="top-title-cont flex">
+							<div className="top-title-cont flex items-center">
 								<h1 data-aos="fade-right">
 									Welcome to <span>Blogs!</span>
 								</h1>
@@ -86,7 +86,7 @@ const BlogsPage = () => {
 								</p>
 
 								<div className="sub-email" data-aos="fade-up">
-									<Form action="" className="flex">
+									<Form action="" className="flex items-center">
 										<input onClick={handleSearchOpen} type="text" placeholder="Search blogs here..." />
 
 										<button>Search</button>
@@ -96,15 +96,15 @@ const BlogsPage = () => {
 						</div>
 
 						<div className="featured">
-							<div className="container">
-								<div className="border" />
+							<div className="container m-auto">
+								<div className="border border-[#2a1f81]" />
 
 								<div className="featured-posts">
-									<div className="fe-title flex">
+									<div className="fe-title flex items-center">
 										<h3 data-aos="fade-up">Featured Posts:</h3>
 									</div>
 
-									<div className="fe-posts flex">
+									<div className="fe-posts flex items-center">
 										<Swiper
 											slidesPerView={'auto'}
 											freeMode={true}
@@ -114,7 +114,7 @@ const BlogsPage = () => {
 											className="imageSwiper"
 										>
 											{loading ? (
-												<div className="flex flex-center">
+												<div className="flex items-center justify-center">
 													<Spinner />
 												</div>
 											) : (
@@ -145,14 +145,14 @@ const BlogsPage = () => {
 																	<Link href={`/blogs/${content.slug}`}>{content.title}</Link>
 																</h2>
 
-																<div className="f-post-by flex flex-sb">
-																	<div className="flex gap-05">
+																<div className="f-post-by flex items-center justify-between">
+																	<div className="flex items-center gap-8">
 																		<Image src="/img/coder-white.png" alt="coder" width={32} height={32} />
 
 																		<p>By Sobolev</p>
 																	</div>
 
-																	<div className="tags flex flex-nowrap">
+																	<div className="tags flex items-center flex-nowrap">
 																		{content.blogCategory?.slice(0, 1).map((cat) => (
 																			<Link key={cat} href={`blogs/category/${cat}`} className="ai">
 																				<span />
@@ -175,8 +175,8 @@ const BlogsPage = () => {
 				</section>
 
 				<section className="popular-tags-sec">
-					<div className="container">
-						<div className="border" />
+					<div className="container m-auto">
+						<div className="border border-[#2a1f81]" />
 
 						<div className="popular-tags-data">
 							<div className="fe-title">
@@ -260,8 +260,8 @@ const BlogsPage = () => {
 				</section>
 
 				<section className="latest-posts-sec">
-					<div className="container">
-						<div className="border" />
+					<div className="container m-auto">
+						<div className="border border-[#2a1f81]" />
 
 						<div className="latest-posts-data">
 							<div className="fe-title">
@@ -270,7 +270,7 @@ const BlogsPage = () => {
 
 							<div className="latest-posts">
 								{loading ? (
-									<div className="flex flex-center wh_50">
+									<div className="flex items-center justify-center w-screen h-[50vh]">
 										<Spinner />
 									</div>
 								) : (
@@ -313,7 +313,7 @@ const BlogsPage = () => {
 
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, autem. </p>
 
-												<h4 className="flex">
+												<h4 className="flex items-center">
 													<Image src="/img/coder-white.png" alt="author" width={28} height={28} />
 
 													<span>by sobolev</span>

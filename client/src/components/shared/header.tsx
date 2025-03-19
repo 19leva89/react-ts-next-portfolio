@@ -52,8 +52,8 @@ export const Header = () => {
 
 	return (
 		<header className={isSticky ? 'sticky' : ''}>
-			<nav className="container flex flex-sb gap-05">
-				<div className="logo flex gap-2">
+			<nav className="container m-auto flex items-center justify-between gap-8">
+				<div className="logo flex items-center gap-8">
 					<Link href="/">
 						<Image
 							src={darkMode ? '/img/logo-dark.png' : '/img/logo-white.png'}
@@ -70,8 +70,8 @@ export const Header = () => {
 					</h2>
 				</div>
 
-				<div className="navlist flex gap-1">
-					<ul className="flex gap-2">
+				<div className="navlist flex items-center gap-4">
+					<ul className="flex items-center gap-8">
 						{navItems.map(({ href, label }) => (
 							<NavItem
 								key={href}
@@ -111,7 +111,7 @@ export const Header = () => {
 						<h2>Sobolev</h2>
 					</div>
 
-					<ul className="flex flex-col flex-left gap-1 mt-3" onClick={handleMobileClose}>
+					<ul className="flex flex-col items-start justify-start gap-4 mt-12" onClick={handleMobileClose}>
 						{navItems.map(({ href, label }) => (
 							<NavItem
 								key={href}

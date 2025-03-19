@@ -47,7 +47,7 @@ const GalleryPage = () => {
 			<DashboardHeader title="All Published" subtitle="Photos" breadcrumbs={['gallery']} />
 
 			<div className="contents-table">
-				<div className="flex gap-2 mb-1">
+				<div className="flex items-center gap-8 mb-4">
 					<h2>Search Photos:</h2>
 					<input
 						type="text"
@@ -111,7 +111,7 @@ const GalleryPage = () => {
 											</td>
 
 											<td>
-												<div className="flex gap-2 flex-center">
+												<div className="flex items-center gap-8 justify-center">
 													<Link href={`/gallery/edit/${content._id}`}>
 														<button>
 															<FaEdit />

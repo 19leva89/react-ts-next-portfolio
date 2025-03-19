@@ -1,10 +1,10 @@
 import { Metadata } from 'next'
-// import { twMerge } from 'tailwind-merge'
-// import { clsx, type ClassValue } from 'clsx'
+import { twMerge } from 'tailwind-merge'
+import { clsx, type ClassValue } from 'clsx'
 
-// export function cn(...inputs: ClassValue[]) {
-// 	return twMerge(clsx(inputs))
-// }
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs))
+}
 
 export function absoluteUrl(path: string): string {
 	// If in a browser, return the relative path

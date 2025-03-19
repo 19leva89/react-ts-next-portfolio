@@ -58,12 +58,12 @@ const SignIn = () => {
 	}, [sessionStatus, router])
 
 	return (
-		<div className="flex flex-center full-h">
+		<div className="flex items-center justify-center h-screen!">
 			<div className="login-form">
 				<div className="heading">Sign In</div>
 
 				{loading ? (
-					<div className="flex flex-center w-100 flex-col">
+					<div className="flex items-center justify-center w-full flex-col">
 						<Spinner />
 					</div>
 				) : (
@@ -92,7 +92,7 @@ const SignIn = () => {
 							Sign In
 						</button>
 
-						{error && <p className="red-color">{error}</p>}
+						{error && <p className="text-red-500">{error}</p>}
 					</form>
 				)}
 			</div>

@@ -53,12 +53,12 @@ const ViewContactPage = () => {
 					breadcrumbs={['contacts']}
 				/>
 
-				<div className="contact-info mt-2">
-					<div className="flex flex-sb flex-center mb-1">
+				<div className="contact-info mt-8">
+					<div className="flex items-center justify-between gap-2 mb-4">
 						<h2 className="contact-info-header">Contact Details</h2>
 
 						<Link href={`/contacts/delete/${id}`} className="contact-info-link">
-							<button className="p-05">
+							<button className="p-2">
 								<RiDeleteBin6Fill />
 							</button>
 						</Link>

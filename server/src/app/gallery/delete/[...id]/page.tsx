@@ -59,7 +59,7 @@ const DeletePhotoPage = () => {
 			<div className="content-page">
 				<DashboardHeader title="Delete" subtitle={productInfo?.title || ''} breadcrumbs={['gallery']} />
 
-				<div className="delete-sec flex flex-center wh_100">
+				<div className="delete-sec flex items-center justify-center w-screen h-screen">
 					<div className="delete-card">
 						<TbTrashX size={60} color="red" />
 

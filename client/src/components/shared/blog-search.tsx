@@ -51,19 +51,20 @@ export const BlogSearch = ({ cls }: Props) => {
 	return (
 		<div className="search-blog-fix">
 			<div className="search-blog-section-fix">
-				<div className="sbsf-input flex gap-1">
+				<div className="sbsf-input flex items-center gap-4">
 					<input
 						type="text"
 						placeholder="Search blog here"
 						value={blogTitle}
 						onChange={(e) => setBlogTitle(e.target.value)}
+						className="border border-[#8a81d3] rounded-xl"
 					/>
 
 					<div className="sbs-input-close" onClick={cls}>
 						<IoClose />
 					</div>
 				</div>
-				<div className="sbsf-search-list mt-2">
+				<div className="sbsf-search-list mt-8">
 					{blogTitle && (
 						<>
 							{searchResult.length === 0 ? (

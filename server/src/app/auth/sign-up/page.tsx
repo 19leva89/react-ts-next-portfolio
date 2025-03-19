@@ -53,12 +53,12 @@ const SignUp = () => {
 	}, [sessionStatus, router])
 
 	return (
-		<div className="flex flex-center full-h">
+		<div className="flex items-center justify-center h-screen!">
 			<div className="login-form">
 				<div className="heading">Sign Up create admin</div>
 
 				{sessionStatus === 'loading' ? (
-					<div className="flex flex-center w-100 flex-col">
+					<div className="flex items-center justify-center w-full flex-col">
 						<Spinner />
 					</div>
 				) : (
@@ -97,7 +97,7 @@ const SignUp = () => {
 							Sign Up
 						</button>
 
-						{error && <p className="red-color">{error}</p>}
+						{error && <p className="text-red-500">{error}</p>}
 					</form>
 				)}
 

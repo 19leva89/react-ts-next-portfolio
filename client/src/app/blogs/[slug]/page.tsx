@@ -13,6 +13,7 @@ import { useParams } from 'next/navigation'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 
 import { IBlog } from '@/models/blog'
+import { absoluteUrl } from '@/lib/utils'
 import { IComment } from '@/models/comment'
 import { formatDate } from '@/utils/format-date'
 import { useFetchData } from '@/hooks/use-fetch-data'
@@ -57,7 +58,7 @@ const BlogPage = () => {
 	const createdAtDate =
 		blogData && blogData.blog.createdAt ? new Date(blogData && blogData.blog.createdAt) : null
 
-	const blogUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/blogs/${slug}`
+	const blogUrl = `${absoluteUrl}/blogs/${slug}`
 
 	const copyToClipboard = (url: string) => {
 		navigator.clipboard.writeText(url)
@@ -285,7 +286,7 @@ const BlogPage = () => {
 
 	if (loading) {
 		return (
-			<div className="flex flex-center wh_100">
+			<div className="flex items-center justify-center w-screen h-screen">
 				<Spinner />
 			</div>
 		)
@@ -303,7 +304,7 @@ const BlogPage = () => {
 
 			{blogData && (
 				<div className="blog-slug-page">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="blog-slug-page-cont">
 							<div className="left-side-details">
 								<div className="left-blog-info-img">
@@ -321,7 +322,7 @@ const BlogPage = () => {
 								</div>
 
 								<div className="slug-blog-info-pub">
-									<div className="flex gap-2">
+									<div className="flex items-center gap-8">
 										<div className="admin-slug">
 											<Image src="/img/coder-white.png" alt="coder" width={30} height={30} />
 
@@ -410,7 +411,7 @@ const BlogPage = () => {
 									<div className="blog-s-tags">
 										<h2>Tags:</h2>
 
-										<div className="flex flex-wrap gap-1">
+										<div className="flex items-center flex-wrap gap-4">
 											{blogData.blog?.tags?.map((tag) => <span key={tag}>{tag}</span>)}
 										</div>
 									</div>
@@ -423,7 +424,7 @@ const BlogPage = () => {
 
 								<div className="blog-slug-comments" ref={replyFormRef}>
 									{newComment.parentName && (
-										<h2 className="flex flex-left gap-05">
+										<h2 className="flex items-start justify-start gap-8">
 											Leave a reply to <span className="parent-name">{newComment.parentName}</span>
 											<button onClick={handleRemoveReply} className="remove-reply-btn">
 												Remove reply
@@ -472,7 +473,7 @@ const BlogPage = () => {
 											required
 										></textarea>
 
-										<div className="flex gap-2">
+										<div className="flex items-center gap-8">
 											<button type="submit">Post Comment</button>
 
 											<p>{messageOk}</p>
@@ -612,7 +613,7 @@ const BlogPage = () => {
 
 											<div>
 												<h3>{blog.title}</h3>
-												<h4 className="mt-1">
+												<h4 className="mt-4">
 													{blog.tags?.slice(0, 3).map((tag) => {
 														return <span key={tag}>{tag}</span>
 													})}

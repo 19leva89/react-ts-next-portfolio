@@ -70,7 +70,7 @@ const HomePage = () => {
 			<DashboardHeader title="Admin" subtitle="Dashboard" />
 
 			{/* dashboard four cards */}
-			<div className="top-four-cards flex flex-sb">
+			<div className="top-four-cards flex flex-wrap items-center justify-between gap-2">
 				<div className="four-card">
 					<h2>Total Blogs</h2>
 					<span>{blogsData.filter((item) => item.status === 'publish').length}</span>
@@ -93,9 +93,9 @@ const HomePage = () => {
 			</div>
 
 			{/* year overview */}
-			<div className="year-overview flex flex-sb">
+			<div className="year-overview flex items-center justify-between">
 				<div className="left-year-overview">
-					<div className="flex flex-sb">
+					<div className="flex items-center justify-between">
 						<h3>Year Overview</h3>
 
 						<ul className="creative-dots">
@@ -121,7 +121,7 @@ const HomePage = () => {
 				</div>
 
 				<div className="right-sales-cont">
-					<div className="flex flex-sb">
+					<div className="flex items-center justify-between">
 						<h3>Data by Category</h3>
 
 						<ul className="creative-dots">

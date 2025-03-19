@@ -57,9 +57,9 @@ const BlogCategoryPage = () => {
 
 			<div className="blog-category">
 				<section className="top-hero">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="top-title">
-							<div className="top-title-cont flex">
+							<div className="top-title-cont flex items-center">
 								<h1>
 									Category{' '}
 									<span>
@@ -78,8 +78,8 @@ const BlogCategoryPage = () => {
 				</section>
 
 				<section className="latest-posts-sec">
-					<div className="container">
-						<div className="border" />
+					<div className="container m-auto">
+						<div className="border border-[#2a1f81]" />
 
 						<div className="latest-posts-data">
 							<div className="fe-title">
@@ -96,7 +96,7 @@ const BlogCategoryPage = () => {
 
 							<div className="latest-posts">
 								{loading ? (
-									<div className="flex flex-center wh_50">
+									<div className="flex items-center justify-center w-screen h-[50vh]">
 										<Spinner />
 									</div>
 								) : (
@@ -143,7 +143,7 @@ const BlogCategoryPage = () => {
 
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, autem. </p>
 
-												<h4 className="flex">
+												<h4 className="flex items-center">
 													<Image src="/img/coder-white.png" alt="author" width={28} height={28} />
 													<span>by sobolev</span>
 												</h4>

@@ -71,7 +71,7 @@ const ProjectsPage = () => {
 
 			<div className="project-page">
 				<div className="projects">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="projects-title">
 							<h2 data-aos="fade-up">My Recent Works</h2>
 
@@ -140,13 +140,13 @@ const ProjectsPage = () => {
 
 						<div className="projects-card">
 							{loading ? (
-								<div className="flex flex-center wh_50">
+								<div className="flex items-center justify-center w-screen h-[50vh]">
 									<Spinner />
 								</div>
 							) : (
 								<>
 									{filteredProjects.length === 0 ? (
-										<h1 className="flex flex-center w-100 mt-3">No projects found</h1>
+										<h1 className="flex items-center justify-center w-full mt-12">No projects found</h1>
 									) : (
 										filteredProjects.map((project) => (
 											<Link

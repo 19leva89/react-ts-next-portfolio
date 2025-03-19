@@ -46,7 +46,7 @@ const ContactsPage = () => {
 			<DashboardHeader title="All Published" subtitle="Contacts" breadcrumbs={['contacts']} />
 
 			<div className="contents-table">
-				<div className="flex gap-2 mb-1">
+				<div className="flex items-center gap-8 mb-4">
 					<h2>Search Contacts:</h2>
 					<input
 						type="text"
@@ -85,7 +85,7 @@ const ContactsPage = () => {
 									</tr>
 								) : (
 									publishedContent.map((content, index) => (
-										<tr key={content._id} className={content.viewed ? '' : 'not-viewed-bg'}>
+										<tr key={content._id} className={content.viewed ? '' : 'bg-[#f23434ad]'}>
 											<td>{indexOfFirstContent + index + 1}</td>
 
 											<td>
@@ -105,7 +105,7 @@ const ContactsPage = () => {
 											</td>
 
 											<td>
-												<div className="flex gap-2 flex-center">
+												<div className="flex items-center gap-8 justify-center">
 													<Link href={`/contacts/view/${content._id}`}>
 														<button>
 															<FaRegEye />

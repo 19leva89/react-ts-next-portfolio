@@ -12,47 +12,44 @@ const SettingsPage = () => {
 			<DashboardHeader title="Admin" subtitle="Settings" breadcrumbs={['settings']} />
 
 			<div className="profile-settings">
-				<div className="left-profile-details flex">
+				<div className="left-profile-details flex items-center">
 					<Image src="/img/coder.png" alt="coder" width={200} height={300} quality={100} />
 
-					<div className="w-100">
-						<div className="flex flex-sb flex-left mt-2">
+					<div className="w-full">
+						<div className="flex items-start justify-between mt-8">
 							<h2>My profile:</h2>
 
-							<h3>
-								Sobolev <br />
-								Web Developer
-							</h3>
+							<h3>Sobolev Web Developer</h3>
 						</div>
 
-						<div className="flex flex-sb mt-2">
+						<div className="flex items-center justify-between mt-8">
 							<h3>Phone:</h3>
 
 							<input type="tel" defaultValue={'+380668745656'} />
 						</div>
 
-						<div className="flex flex-sb mt-2">
+						<div className="flex items-center justify-between mt-8">
 							<h3>Email:</h3>
 
 							<input type="email" defaultValue={'youremail@gmail.com'} />
 						</div>
 
-						<div className="flex flex-center w-100 mt-2">
+						<div className="flex items-center justify-center w-full mt-8">
 							<button>Save</button>
 						</div>
 					</div>
 				</div>
 
-				<div className="right-logout-sec flex">
+				<div className="right-logout-sec flex items-center">
 					<div className="top-account-box">
-						<h2 className="flex flex-sb">
+						<h2 className="flex items-center justify-between">
 							My account
 							<MdOutlineAccountCircle />
 						</h2>
 
 						<hr />
 
-						<div className="flex flex-sb mt-1">
+						<div className="flex items-center justify-between mt-4">
 							<h3>
 								Active account <br /> <span>Email</span>
 							</h3>

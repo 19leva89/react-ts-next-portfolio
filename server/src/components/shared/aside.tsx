@@ -30,8 +30,8 @@ interface NavItemProps {
 const NavItem = ({ title, links, activeLink, icon: Icon, isOpen, onToggle, onLinkClick }: NavItemProps) => (
 	<>
 		{links.length > 1 ? (
-			<li className="flex-col flex-left m-05">
-				<div className="flex gap-1 p-1" onClick={onToggle}>
+			<li className="flex-col items-start justify-start m-2">
+				<div className="flex items-center gap-4 p-4" onClick={onToggle}>
 					<Icon />
 
 					<span>{title}</span>
@@ -58,11 +58,13 @@ const NavItem = ({ title, links, activeLink, icon: Icon, isOpen, onToggle, onLin
 			<Link href={links[0].href}>
 				<li
 					className={
-						activeLink === links[0].href ? 'nav-active flex-col flex-left m-05' : 'flex-col flex-left m-05'
+						activeLink === links[0].href
+							? 'nav-active flex-col items-start justify-start m-2'
+							: 'flex-col items-start justify-start m-2'
 					}
 					onClick={() => onLinkClick(links[0].href)}
 				>
-					<div className="flex gap-1 p-1">
+					<div className="flex items-center gap-4 p-4">
 						<Icon />
 
 						<span>{title}</span>

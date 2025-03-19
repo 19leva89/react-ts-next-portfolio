@@ -14,7 +14,7 @@ const ServicesPage = () => {
 
 			<div className="services-page">
 				<div className="top-services">
-					<div className="container">
+					<div className="container m-auto">
 						<h2 data-aos="fade-up">My Services</h2>
 
 						<p data-aos="fade-up">
@@ -27,7 +27,7 @@ const ServicesPage = () => {
 				</div>
 
 				<div className="center-services">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="c-services-box">
 							{/* Web Deployment */}
 							<div className="cs-service" data-aos="fade-right">
@@ -175,16 +175,16 @@ const ServicesPage = () => {
 				</div>
 
 				<div className="pricing-plan-sec">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="pricing-title text-center">
-							<h3 data-aos="fade-up">
+							<h3 data-aos="fade-up" className="flex items-center justify-center gap-2">
 								<Image src="/img/chevron-right.png" alt="" width={45} height={20} /> Pricing Plan
 							</h3>
 
 							<h2 data-aos="fade-up">Pricing my work</h2>
 						</div>
 
-						<div className="pricing-cards">
+						<div className="flex flex-wrap items-center justify-center gap-4 mx-4 md:justify-between">
 							{/* Life Plan */}
 							<div className="pricing-card" data-aos="fade-right">
 								<h4>Life Plan</h4>

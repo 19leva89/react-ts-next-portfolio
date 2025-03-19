@@ -36,10 +36,10 @@ const ProjectSlugPage = () => {
 
 			<div className="project-slug">
 				<div className="project-slug-img">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="pro-slug-img">
 							{loading ? (
-								<div className="wh-100 flex flex-center">
+								<div className="w-full h-full flex items-center justify-center">
 									<Spinner />
 								</div>
 							) : (
@@ -116,7 +116,7 @@ const ProjectSlugPage = () => {
 				</div>
 
 				<div className="project-slug-description">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="ps-desc">
 							<h2>Project Description</h2>
 

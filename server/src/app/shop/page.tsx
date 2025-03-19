@@ -49,8 +49,8 @@ const ShopPage = () => {
 			<DashboardHeader title="All Published" subtitle="Products" breadcrumbs={['shop']} />
 
 			<div className="contents-table">
-				<div className="flex gap-2 mb-1">
-					<h2>Search Producrs:</h2>
+				<div className="flex items-center gap-8 mb-4">
+					<h2>Search Products:</h2>
 					<input
 						type="text"
 						placeholder="Search by title..."
@@ -113,7 +113,7 @@ const ShopPage = () => {
 											</td>
 
 											<td>
-												<div className="flex gap-2 flex-center">
+												<div className="flex items-center gap-8 justify-center">
 													<Link href={`/shop/edit/${content._id}`}>
 														<button>
 															<FaEdit />

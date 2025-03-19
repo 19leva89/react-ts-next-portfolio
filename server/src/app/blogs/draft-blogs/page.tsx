@@ -49,7 +49,7 @@ const DraftBlogsPage = () => {
 			<DashboardHeader title="All Draft" subtitle="Blogs" breadcrumbs={['blogs', 'draft-blogs']} />
 
 			<div className="contents-table">
-				<div className="flex gap-2 mb-1">
+				<div className="flex items-center gap-8 mb-4">
 					<h2>Search Blogs:</h2>
 					<input
 						type="text"
@@ -113,7 +113,7 @@ const DraftBlogsPage = () => {
 											</td>
 
 											<td>
-												<div className="flex gap-2 flex-center">
+												<div className="flex items-center gap-8 justify-center">
 													<Link href={`/blogs/edit/${content._id}`}>
 														<button>
 															<FaEdit />

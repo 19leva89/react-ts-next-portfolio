@@ -1,20 +1,10 @@
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-	/* user-select: none; */
-}
-
-html {
-	scroll-behavior: smooth;
-	overflow-x: hidden;
-}
+@import 'tailwindcss';
 
 body {
-	font-family: 'Sora', sans-serif;
-	scroll-behavior: smooth;
-	background-color: var(--dark-black);
+	font-family: 'Nunito', sans-serif;
 	color: #dddddd;
+	background-color: var(--dark-black);
+	scroll-behavior: smooth;
 	overflow-x: hidden;
 }
 
@@ -51,194 +41,9 @@ img {
 	-webkit-user-drag: none;
 }
 
-/* 
-  font-family: "Russo One", sans-serif; */
-
-/* ================================================== */
-
-/* Flex class */
-
-/* ================================================== */
-
-.flex {
-	display: flex;
-	align-items: center;
-}
-
-.flex-col {
-	flex-direction: column;
-}
-
-.flex-wrap {
-	flex-wrap: wrap;
-}
-
-.flex-nowrap {
-	flex-wrap: nowrap;
-}
-
-.flex-center {
-	justify-content: center;
-}
-
-.flex-left {
-	align-items: flex-start;
-	justify-content: flex-start;
-}
-
-.flex-right {
-	align-items: flex-end;
-	justify-content: flex-end;
-}
-
-.flex-sb {
-	justify-content: space-between;
-}
-
-.flex-ev {
-	justify-content: space-evenly;
-}
-
-.flex-ar {
-	justify-content: space-around;
-}
-
-.gap-05 {
-	gap: 0.5rem;
-}
-
-.gap-1 {
-	gap: 1rem;
-}
-
-.gap-15 {
-	gap: 1.5rem;
-}
-
-.gap-2 {
-	gap: 2rem;
-}
-
-.gap-3 {
-	gap: 3rem;
-}
-
-/* ================================================== */
-
-/* Margin */
-
-/* ================================================== */
-
-.m-auto {
-	margin: 0 auto;
-}
-
-.m-0 {
-	margin: 0 !important;
-}
-
-.p-0 {
-	padding: 0 !important;
-}
-
-.mtb-1 {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-
-.mt-1 {
-	margin-top: 1rem;
-}
-
-.mt-15 {
-	margin-top: 1.5rem;
-}
-
-.mt-2 {
-	margin-top: 2rem;
-}
-
-.mt-25 {
-	margin-top: 2.5rem;
-}
-
-.mt-3 {
-	margin-top: 3rem;
-}
-
-.mt-5 {
-	margin-top: 5rem;
-}
-
-.mb-1 {
-	margin-bottom: 1rem;
-}
-
-.mb-15 {
-	margin-bottom: 1.5rem;
-}
-
-.mb-2 {
-	margin-bottom: 2rem;
-}
-
-.mb-25 {
-	margin-bottom: 2.5rem;
-}
-
-.mb-3 {
-	margin-bottom: 3rem;
-}
-
-.ml-1 {
-	margin-left: 1rem;
-}
-
-.ml-15 {
-	margin-left: 1.5rem;
-}
-
-.ml-2 {
-	margin-left: 2rem;
-}
-
-.ml-25 {
-	margin-left: 2.5rem;
-}
-
-.ml-3 {
-	margin-left: 3rem;
-}
-
-.mr-05 {
-	margin-right: 0.5rem;
-}
-
-.mr-1 {
-	margin-right: 1rem;
-}
-
-.mr-15 {
-	margin-right: 1.5rem;
-}
-
-.mr-2 {
-	margin-right: 2rem;
-}
-
-.mr-25 {
-	margin-right: 2.5rem;
-}
-
-.mr-3 {
-	margin-right: 3rem;
-}
-
-/* ================================================== */
-
+/* ********************************************** */
 /* Custom */
-
-/* ================================================== */
+/* ********************************************** */
 
 :root {
 	--main-site-color: #9500ff;
@@ -249,78 +54,9 @@ img {
 	--main-hover-color: #905ff1;
 }
 
-.container {
-	/* max-width: 1320px; */
-	max-width: 1400px;
-	margin: auto;
-}
-
-.full-h {
-	height: 100vh !important;
-}
-
-.h-50 {
-	height: 50%;
-}
-
-.h_25 {
-	height: 25vh;
-}
-
-.h_50 {
-	height: 50vh;
-}
-
-.full-w {
-	width: 100vw !important;
-}
-
-.w-33 {
-	width: 33.333333%;
-}
-
-.w-50 {
-	width: 50%;
-}
-
-.w-66 {
-	width: 66.66666%;
-}
-
-.w-100 {
-	width: 100%;
-}
-
-.wh-100 {
-	width: 100%;
-	height: 100%;
-}
-
-.wh_50 {
-	width: 100vw;
-	height: 50vh;
-}
-
-.wh_100 {
-	width: 100vw;
-	height: 100vh;
-}
-
 a {
 	text-decoration: none;
 	color: inherit;
-}
-
-.text-center {
-	text-align: center !important;
-}
-
-.text-right {
-	text-align: right !important;
-}
-
-.text-left {
-	text-align: left !important;
 }
 
 button {
@@ -331,9 +67,9 @@ li {
 	list-style: none;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Header Component */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ***************************** Header Component */
+/* ********************************************** */
 
 header {
 	position: absolute;
@@ -605,9 +341,9 @@ header.sticky {
 	cursor: pointer;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ HERO SECTION */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ********************************* HERO SECTION */
+/* ********************************************** */
 
 .hero {
 	padding: 250px 0 50px;
@@ -900,9 +636,9 @@ header.sticky {
 	color: var(--main-site-color);
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ Services SECTION */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ***************************** Services SECTION */
+/* ********************************************** */
 
 .services {
 	position: relative;
@@ -1128,9 +864,9 @@ header.sticky {
 	}
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ PROJECTS SECTION */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ***************************** PROJECTS SECTION */
+/* ********************************************** */
 
 .projects {
 	position: relative;
@@ -1356,9 +1092,9 @@ header.sticky {
 	}
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ ex-study SECTION */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ***************************** ex-study SECTION */
+/* ********************************************** */
 
 .ex-study {
 	position: relative;
@@ -1498,9 +1234,9 @@ header.sticky {
 	width: 48%;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ my-skills SECTION */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* **************************** my-skills SECTION */
+/* ********************************************** */
 
 .my-skills {
 	position: relative;
@@ -1562,6 +1298,15 @@ header.sticky {
 .my-s-card {
 	max-width: 180px;
 	text-align: center;
+	color: var(--week-white);
+}
+
+.dark .my-s-card {
+	color: var(--main-site-color);
+}
+
+.my-s-card:hover {
+	color: var(--week-white);
 }
 
 .my-s-inner {
@@ -1572,7 +1317,6 @@ header.sticky {
 	border: 1px solid transparent;
 	margin-bottom: 15px;
 	transition: 0.6s;
-	/* border: 1px solid var(--main-hover-color); */
 	overflow: hidden;
 	z-index: 1;
 	transition: 0.3s ease-in-out;
@@ -1602,14 +1346,6 @@ header.sticky {
 	transition: 0.3s;
 }
 
-.dark .my-s-inner h3 {
-	color: var(--dark-site-secondary);
-}
-
-.dark .my-s-inner:hover h3 {
-	color: var(--main-hover-color);
-}
-
 .my-s-card:hover .my-s-inner::before {
 	opacity: 1;
 }
@@ -1623,13 +1359,17 @@ header.sticky {
 }
 
 .my-s-card p {
-	color: var(--main-site-color);
+	color: var(--week-white);
 	font-size: 18px;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ recent-blogs SECTION */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+.dark .my-s-card p {
+	color: var(--main-site-color);
+}
+
+/* ********************************************** */
+/* ************************* recent-blogs SECTION */
+/* ********************************************** */
 
 .recent-blogs {
 	position: relative;
@@ -1722,9 +1462,9 @@ header.sticky {
 	font-weight: 600;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ FOOTER COMPONENT */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ***************************** FOOTER COMPONENT */
+/* ********************************************** */
 
 .footer {
 	padding: 2rem 1rem;
@@ -1763,9 +1503,9 @@ header.sticky {
 	font-weight: 700;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ BLOGS PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* *********************************** BLOGS PAGE */
+/* ********************************************** */
 
 .content-page {
 	background-color: #111327;
@@ -1901,17 +1641,11 @@ header.sticky {
 	color: #ffffffe2;
 }
 
-/* feauterd */
+/* featured */
 
 .featured {
 	position: relative;
 	height: 390px;
-}
-
-.border {
-	background-color: #2a1f81;
-	width: 100%;
-	height: 1px;
 }
 
 .featured-posts {
@@ -2032,7 +1766,6 @@ header.sticky {
 	gap: 12px;
 	max-width: 100%;
 	white-space: nowrap;
-	/* margin-bottom: 0.75rem; */
 	text-transform: capitalize;
 }
 
@@ -2067,7 +1800,6 @@ header.sticky {
 	gap: 12px;
 	max-width: 100%;
 	white-space: nowrap;
-	/* margin-bottom: 0.75rem; */
 	text-transform: capitalize;
 	background-color: transparent;
 }
@@ -2098,33 +1830,6 @@ header.sticky {
 	color: var(--pure-white);
 }
 
-.apple span {
-	background: #839ed2;
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	margin-right: 8px;
-}
-
-.gaming span {
-	background: #58df68;
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
-.vr span {
-	background: #ff1a75;
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
 .ai span {
 	background: orange;
 	display: inline-block;
@@ -2136,33 +1841,6 @@ header.sticky {
 
 .apps span {
 	background: #6b5be1;
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
-.fintech span {
-	background: #26ac36;
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
-.google span {
-	background: #58df68;
-	display: inline-block;
-	width: 10px;
-	height: 10px;
-	border-radius: 50%;
-	margin-right: 10px;
-}
-
-.health-tech span {
-	background: #e08585;
 	display: inline-block;
 	width: 10px;
 	height: 10px;
@@ -2210,11 +1888,6 @@ header.sticky {
 	padding: 20px;
 	margin-top: 5rem;
 	padding-bottom: 5rem;
-}
-
-.latest-posts-sec .border,
-.popular-tags-sec .border {
-	background-color: #34269c;
 }
 
 .latest-posts-data,
@@ -2342,11 +2015,6 @@ header.sticky {
 	font-size: 16px;
 }
 
-.content-pagination button svg {
-	width: 26px;
-	height: 26px;
-}
-
 .content-pagination button.active {
 	background-color: #4f3ed0;
 	border: 1px solid #7a6fd0;
@@ -2432,8 +2100,6 @@ header.sticky {
 	width: 100%;
 	padding: 1rem;
 	font-size: 25px;
-	border-radius: 10px;
-	border: none;
 	outline: none;
 }
 
@@ -2502,9 +2168,9 @@ header.sticky {
 	font-weight: 500;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ GALLERY PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ********************************* GALLERY PAGE */
+/* ********************************************** */
 .gallery-page {
 	position: relative;
 	padding-top: 10rem;
@@ -2598,7 +2264,7 @@ header.sticky {
 	-webkit-text-fill-color: transparent;
 }
 
-.dark .lef-ttitle-sec h1 {
+.dark .left-title-sec h1 {
 	background: linear-gradient(to right, var(--main-site-color) 0%, var(--dark-site-secondary) 100%);
 	-webkit-background-clip: text;
 	background-clip: text;
@@ -2762,16 +2428,9 @@ header.sticky {
 	color: #555555;
 }
 
-/* @media screen and (max-width: 1400px) {
-    .image-grid {
-        width: calc(100% - 40px);
-        columns: 2;
-    }
-} */
-
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SERVICES PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ******************************** SERVICES PAGE */
+/* ********************************************** */
 
 .services-page {
 	position: relative;
@@ -2828,12 +2487,7 @@ header.sticky {
 
 .c-services-box {
 	width: 100%;
-	/* height: auto; */
 	position: relative;
-	/* display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between; */
 	columns: 3;
 	column-gap: 3rem;
 	margin: 20px auto;
@@ -2956,15 +2610,6 @@ header.sticky {
 	-webkit-text-fill-color: transparent;
 }
 
-.pricing-cards {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: space-between;
-	gap: 1rem;
-	margin: 0 1rem;
-}
-
 .pricing-card {
 	background-color: #2e64cf49;
 	padding: 1.8rem;
@@ -3063,9 +2708,9 @@ header.sticky {
 	color: #4f3ed0;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SHOP PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ************************************ SHOP PAGE */
+/* ********************************************** */
 
 .shop-page {
 	position: relative;
@@ -3202,18 +2847,17 @@ header.sticky {
 	text-transform: uppercase;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ PROJECTS PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ******************************** PROJECTS PAGE */
+/* ********************************************** */
 
 .project-page {
 	position: relative;
-	/* padding: 5rem 0; */
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ CONTACT PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ********************************* CONTACT PAGE */
+/* ********************************************** */
 
 .contact-page {
 	position: relative;
@@ -3251,7 +2895,6 @@ header.sticky {
 	filter: blur(150px);
 	margin-right: -5%;
 	margin-top: -5%;
-	/* z-index: -1; */
 }
 
 .left-cont-p {
@@ -3303,7 +2946,6 @@ header.sticky {
 	width: 8px;
 	height: 8px;
 	background-color: #584bba;
-	/* border-radius: 50%; */
 }
 
 .left-soc-info {
@@ -3595,9 +3237,9 @@ header.sticky {
 	background-position: -200%;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ BLOG SLUG PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ******************************* BLOG SLUG PAGE */
+/* ********************************************** */
 
 .blog-slug-page {
 	position: relative;
@@ -3925,9 +3567,9 @@ header.sticky {
 	color: #8750f7;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ BLOG CATEGORY PAGE */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* *************************** BLOG CATEGORY PAGE */
+/* ********************************************** */
 
 .blog-category .top-hero {
 	margin-bottom: 0;
@@ -3945,14 +3587,13 @@ header.sticky {
 	background-color: var(--pure-white);
 }
 
-.dark .blog-category .lates-tposts-sec {
+.dark .blog-category .latest-posts-sec {
 	background-color: var(--week-white);
 }
 
 .blog-content {
 	padding: 10px 0;
 	font-size: 16px;
-	/* background-color: var(--pure-white); */
 	border: 1px solid #c6c6cc;
 	border-radius: 20px;
 	margin-top: 1rem;
@@ -3980,7 +3621,6 @@ header.sticky {
 }
 
 .blog-content {
-	/* padding: 2rem; */
 	border: none;
 }
 
@@ -4031,9 +3671,9 @@ header.sticky {
 	margin: 8px 0;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ SHOP SLUG PAGE  */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ****************************** SHOP SLUG PAGE  */
+/* ********************************************** */
 
 .shop-slug-page {
 	position: relative;
@@ -4081,7 +3721,6 @@ header.sticky {
 
 .left-s-img-box-list {
 	max-width: 100%;
-	/* display: flex; */
 	align-items: center;
 	margin-top: 1rem;
 }
@@ -4372,7 +4011,6 @@ header.sticky {
 .blog-comment {
 	position: relative;
 	width: 100%;
-	/* border-bottom: 1px solid #333; */
 	padding: 1rem 0;
 }
 
@@ -4438,7 +4076,6 @@ header.sticky {
 	flex-direction: column;
 	gap: 1rem;
 	width: 100%;
-	/* display: none; */
 }
 
 .children-comments p {
@@ -4468,9 +4105,9 @@ header.sticky {
 	font-size: 20px;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ PROJECT SLUG PAGE  */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* *************************** PROJECT SLUG PAGE  */
+/* ********************************************** */
 
 .project-slug {
 	position: relative;
@@ -4624,9 +4261,9 @@ header.sticky {
 	background-color: #8750f7;
 }
 
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ RESPONSIVE CSS         $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
-/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+/* ********************************************** */
+/* ****************************** RESPONSIVE CSS  */
+/* ********************************************** */
 
 @media screen and (max-width: 1412px) {
 	.container {
@@ -4687,8 +4324,8 @@ header.sticky {
 		width: 80%;
 	}
 
-	.pricing-card:not(:hover) {
-		width: 29%;
+	.pricing-card {
+		width: 30%;
 	}
 
 	.right-cont-input input,
@@ -4727,6 +4364,10 @@ header.sticky {
 		height: 424px;
 	}
 
+	.pricing-card {
+		width: 32%;
+	}
+
 	.right-cont-input input,
 	.right-cont-input select {
 		width: 100%;
@@ -4743,12 +4384,6 @@ header.sticky {
 	}
 
 	.pricing-card {
-		width: 45%;
-	}
-
-	.pricing-card:nth-child(1),
-	.pricing-card:nth-child(2),
-	.pricing-card:nth-child(3) {
 		width: 45%;
 	}
 
@@ -4863,10 +4498,6 @@ header.sticky {
 }
 
 @media screen and (max-width: 1023px) {
-	.hero .w-100 {
-		flex-direction: column;
-	}
-
 	.hero-info-left {
 		width: 100%;
 		display: flex;
@@ -4892,6 +4523,10 @@ header.sticky {
 
 	.hero-sb-title {
 		font-size: 30px;
+	}
+
+	.pricing-card {
+		width: 45%;
 	}
 
 	.contact-page {
@@ -4973,6 +4608,10 @@ header.sticky {
 
 	.funfect-item {
 		width: 50%;
+	}
+
+	.pricing-card {
+		width: 75%;
 	}
 
 	.projects .container button {
@@ -5091,13 +4730,7 @@ header.sticky {
 	}
 
 	.pricing-card {
-		width: 100%;
-	}
-
-	.pricing-card:nth-child(1),
-	.pricing-card:nth-child(2),
-	.pricing-card:nth-child(3) {
-		width: 100%;
+		width: 85%;
 	}
 }
 
@@ -5151,6 +4784,10 @@ header.sticky {
 
 	.pro-card {
 		padding: 0;
+	}
+
+	.pricing-card {
+		width: 90%;
 	}
 }
 
@@ -5236,7 +4873,7 @@ header.sticky {
 		padding: 0.5rem;
 	}
 
-	.contact-formp {
+	.contact-form-p {
 		padding: 1rem;
 	}
 
@@ -5274,6 +4911,10 @@ header.sticky {
 
 	.popular-tags-sec {
 		padding: 0 1rem;
+	}
+
+	.pricing-card {
+		width: 100%;
 	}
 }
 

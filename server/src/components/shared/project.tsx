@@ -139,9 +139,9 @@ export const Project = ({
 	return (
 		<Form className="add-website-form" action="" onSubmit={createProject}>
 			{/* project title */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="title">
-					Title <span className="text-required">*</span>
+					Title <span className="text-red-500">*</span>
 				</label>
 				<input
 					type="text"
@@ -154,9 +154,9 @@ export const Project = ({
 			</div>
 
 			{/* blog slug url */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="slug">
-					Slug (seo friendly url) <span className="text-required">*</span>
+					Slug (seo friendly url) <span className="text-red-500">*</span>
 				</label>
 				<input
 					type="text"
@@ -169,7 +169,7 @@ export const Project = ({
 			</div>
 
 			{/* project client name */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="client">Client name</label>
 				<input
 					type="text"
@@ -181,7 +181,7 @@ export const Project = ({
 			</div>
 
 			{/* project live preview */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="livePreview">Live preview</label>
 				<input
 					type="text"
@@ -193,7 +193,7 @@ export const Project = ({
 			</div>
 
 			{/* project category */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="category">Select category (for multiple press Ctrl + mouse left key)</label>
 				<select
 					name="category"
@@ -212,7 +212,7 @@ export const Project = ({
 			</div>
 
 			{/* project designer */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="designer">Designer name</label>
 				<input
 					type="text"
@@ -224,30 +224,30 @@ export const Project = ({
 			</div>
 
 			{/* project images */}
-			<div className="w-100 flex flex-col flex-left mb-2">
-				<div className="w-100">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
+				<div className="w-full">
 					<label htmlFor="images">Images (first image will be shown as thumbnail, you can drag)</label>
 					<input
 						type="file"
 						id="fileInput"
-						className="mt-1"
+						className="mt-4"
 						accept="image/*"
 						onChange={uploadImages}
 						multiple
 					/>
 				</div>
 
-				<div className="w-100 flex flex-left mt-1">{isUploading && <Spinner />}</div>
+				<div className="w-full flex items-start justify-start mt-4">{isUploading && <Spinner />}</div>
 			</div>
 
 			{/* image preview and image sortable with delete image */}
 			{!isUploading && images?.length > 0 && (
-				<div className="flex">
+				<div className="flex items-center">
 					<ReactSortable
 						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
-						className="flex flex-wrap gap-1"
+						className="flex items-center flex-wrap gap-4"
 					>
 						{images?.map((link, index) => (
 							<div key={link} className="uploaded-img">
@@ -265,7 +265,7 @@ export const Project = ({
 			)}
 
 			{/* markdown description */}
-			<div className="description w-100 flex flex-col flex-left mb-2">
+			<div className="description w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="description">
 					Project content (for image: first upload and copy link and paste in ![alt text](link))
 				</label>
@@ -288,7 +288,7 @@ export const Project = ({
 			</div>
 
 			{/* tags */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="tags">Tags</label>
 				<select
 					name="tags"
@@ -307,9 +307,9 @@ export const Project = ({
 			</div>
 
 			{/* project status */}
-			<div className="w-100 flex flex-col flex-left mb-2">
+			<div className="w-full flex flex-col items-start justify-start mb-8">
 				<label htmlFor="status">
-					Status <span className="text-required">*</span>
+					Status <span className="text-red-500">*</span>
 				</label>
 				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)} required>
 					<option value="">No select</option>
@@ -318,8 +318,8 @@ export const Project = ({
 				</select>
 			</div>
 
-			<div className="w-100 mb-1">
-				<button className="w-100 flex-center uppercase" type="submit">
+			<div className="w-full mb-4">
+				<button className="w-full justify-center uppercase" type="submit">
 					Save project
 				</button>
 			</div>

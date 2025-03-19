@@ -1,7 +1,6 @@
 'use client'
 
 import axios from 'axios'
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
@@ -83,8 +82,8 @@ const Home = () => {
 					</svg>
 				</div>
 
-				<div className="container">
-					<div className="flex w-100">
+				<div className="container m-auto">
+					<div className="flex items-center w-full">
 						{/* left side section */}
 						<div className="hero-info-left">
 							<span className="hero-sb-title" data-aos="fade-right">
@@ -168,7 +167,7 @@ const Home = () => {
 						</div>
 					</div>
 
-					<div className="funfect-area flex flex-sb">
+					<div className="funfect-area flex items-center justify-between">
 						<div className="funfect-item" data-aos="fade-right">
 							<h3>1+</h3>
 
@@ -206,7 +205,7 @@ const Home = () => {
 
 			{/* Services */}
 			<section className="services">
-				<div className="container">
+				<div className="container m-auto">
 					<div className="services-title">
 						<h2 data-aos="fade-up">My Quality Services</h2>
 
@@ -243,7 +242,7 @@ const Home = () => {
 
 			{/* Projects */}
 			<section className="projects">
-				<div className="container">
+				<div className="container m-auto">
 					<div className="projects-title">
 						<h2 data-aos="fade-up">My Recent Works</h2>
 
@@ -312,13 +311,15 @@ const Home = () => {
 
 					<div className="projects-card">
 						{loading ? (
-							<div className="flex flex-center wh_50">
+							<div className="flex items-center justify-center w-screen h-[50vh]">
 								<Spinner />
 							</div>
 						) : (
 							<>
 								{filteredProjects.length === 0 ? (
-									<h1 className="flex flex-center w-100 h_25 mt-3">No projects found</h1>
+									<h1 className="flex items-center justify-center w-full h-[25vh] mt-12">
+										No projects found
+									</h1>
 								) : (
 									filteredProjects.slice(0, 4).map((project) => (
 										<Link
@@ -354,8 +355,8 @@ const Home = () => {
 						)}
 					</div>
 
-					<div className="flex flex-center">
-						<button className="mt-3">
+					<div className="flex items-center justify-center">
+						<button className="mt-12">
 							<Link href="/projects">View all projects</Link>
 						</button>
 					</div>
@@ -364,9 +365,9 @@ const Home = () => {
 
 			{/* Experience study */}
 			<section className="ex-study">
-				<div className="container flex flex-left flex-sb">
+				<div className="container m-auto flex items-start justify-between">
 					<div className="experience">
-						<div className="experience-title flex gap-1" data-aos="fade-right">
+						<div className="experience-title flex items-center gap-4" data-aos="fade-right">
 							<LuMedal />
 							<h2>My Experience</h2>
 						</div>
@@ -399,7 +400,7 @@ const Home = () => {
 					</div>
 
 					<div className="education">
-						<div className="experience-title flex gap-1" data-aos="fade-left">
+						<div className="experience-title flex items-center gap-4" data-aos="fade-left">
 							<PiGraduationCap />
 							<h2>My Education</h2>
 						</div>
@@ -409,7 +410,7 @@ const Home = () => {
 								<span>2023 – 2024</span>
 
 								<Link href="https://it-brains.com.ua/fullstack" target="_blank" rel="noopener noreferrer">
-									<h3 className="flex flex-sb gap-1">
+									<h3 className="flex items-center justify-between gap-4">
 										IT-Brains School <LuExternalLink size={24} />
 									</h3>
 								</Link>
@@ -420,7 +421,7 @@ const Home = () => {
 								<span>2008 – 2015</span>
 
 								<Link href="https://en.knutd.edu.ua" target="_blank" rel="noopener noreferrer">
-									<h3 className="flex flex-sb gap-1">
+									<h3 className="flex items-center justify-between gap-4">
 										Kyiv National University of Technologies and Design <LuExternalLink size={24} />
 									</h3>
 								</Link>
@@ -434,7 +435,7 @@ const Home = () => {
 
 			{/* My Skills */}
 			<section className="my-skills">
-				<div className="container">
+				<div className="container m-auto">
 					<div className="my-skills-title">
 						<h2 data-aos="fade-up">My Skills</h2>
 						<p data-aos="fade-up">
@@ -579,7 +580,7 @@ const Home = () => {
 
 			{/* Recent Blogs */}
 			<section className="recent-blogs">
-				<div className="container">
+				<div className="container m-auto">
 					<div className="my-skills-title">
 						<h2 data-aos="fade-up">Recent Blogs</h2>
 						<p data-aos="fade-up">
@@ -590,13 +591,13 @@ const Home = () => {
 
 					<div className="recent_blogs">
 						{loading ? (
-							<div className="flex flex-center wh_50">
+							<div className="flex items-center justify-center w-screen h-[50vh]">
 								<Spinner />
 							</div>
 						) : (
 							<>
 								{allBlogs.length === 0 ? (
-									<h1 className="flex flex-center w-100 mt-3">No blogs found</h1>
+									<h1 className="flex items-center justify-center w-full mt-12">No blogs found</h1>
 								) : (
 									allBlogs.slice(0, 3).map((blog) => (
 										<Link
@@ -618,7 +619,7 @@ const Home = () => {
 											</div>
 
 											<div className="re-blog-info">
-												<div className="re-top-date flex gap-1">
+												<div className="re-top-date flex items-center gap-4">
 													<FaCalendarDays /> <span>{formatDate(blog.createdAt)}</span>
 												</div>
 

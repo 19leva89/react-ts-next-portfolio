@@ -19,7 +19,7 @@ const GalleryPage = () => {
 			</Head>
 
 			<div className="gallery-page">
-				<div className="container">
+				<div className="container m-auto">
 					<div className="gallery-top-sec">
 						<div className="top-phone-sec">
 							<div className="left-title-sec">
@@ -72,7 +72,7 @@ const GalleryPage = () => {
 				</div>
 
 				<div className="gallery-btm-photos" id="gallery-images">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="g-btm-title text-center">
 							<h3>
 								<span>01:</span> Our portfolio
@@ -83,7 +83,7 @@ const GalleryPage = () => {
 						</div>
 
 						{loading ? (
-							<div className="flex flex-center">
+							<div className="flex items-center justify-center">
 								<Spinner />
 							</div>
 						) : (

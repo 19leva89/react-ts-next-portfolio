@@ -56,7 +56,7 @@ const ShopPage = () => {
 
 			<div className="shop-page">
 				<div className="shop-page-top-title">
-					<div className="container">
+					<div className="container m-auto">
 						<h2 data-aos="fade-right">Shop Online</h2>
 
 						<h3 data-aos="fade-right">Our Products</h3>
@@ -64,10 +64,10 @@ const ShopPage = () => {
 				</div>
 
 				<div className="shop-products">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="shop-pro-cards">
 							{loading ? (
-								<div className="wh-100 flex flex-center">
+								<div className="w-full h-full flex items-center justify-center">
 									<Spinner />
 								</div>
 							) : (

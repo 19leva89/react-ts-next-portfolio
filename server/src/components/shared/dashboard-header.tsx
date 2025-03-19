@@ -9,7 +9,7 @@ interface DashboardHeaderProps {
 
 export const DashboardHeader = ({ title, subtitle, breadcrumbs }: DashboardHeaderProps) => {
 	return (
-		<div className="title-dashboard flex flex-sb">
+		<div className="title-dashboard flex items-center justify-between">
 			<div>
 				<h2>
 					{title} <span>{subtitle}</span>

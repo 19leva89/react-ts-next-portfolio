@@ -91,7 +91,7 @@ const ContactPage = () => {
 			</Head>
 
 			<div className="contact-page">
-				<div className="container">
+				<div className="container m-auto">
 					<div className="contact-form-p">
 						<div className="left-cont-p" data-aos="fade-right">
 							<h2>Get in touch</h2>
@@ -292,7 +292,7 @@ const ContactPage = () => {
 
 								<hr />
 
-								<div className="right-cont-btn flex gap-3">
+								<div className="right-cont-btn flex items-center gap-12">
 									<button type="submit">Submit</button>
 
 									<p>{messageOk}</p>

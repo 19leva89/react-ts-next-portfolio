@@ -7,12 +7,12 @@ import { FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
 export const Footer = () => {
 	return (
 		<footer className="footer">
-			<div className="footer-sec flex flex-center flex-col gap-2">
+			<div className="footer-sec flex items-center justify-center flex-col gap-8">
 				<div className="logo">
 					<Image src="/img/logo-white.png" alt="logo" width={65} height={65} />
 				</div>
 
-				<ul className="flex gap-2">
+				<ul className="flex items-center gap-8">
 					<li>
 						<Link href="/services">Services</Link>
 					</li>

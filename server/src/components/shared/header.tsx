@@ -29,18 +29,18 @@ export const Header = ({ handleAsideOpen }: HeaderProps) => {
 	}
 
 	return (
-		<header className="header flex flex-sb">
-			<div className="logo flex gap-2">
+		<header className="header flex items-center justify-between">
+			<div className="logo flex items-center gap-8">
 				<h1 className="uppercase">Admin</h1>
 
 				{session ? (
-					<div className="header-ham flex flex-center" onClick={handleAsideOpen}>
+					<div className="header-ham flex items-center justify-center" onClick={handleAsideOpen}>
 						<RiBarChartHorizontalLine />
 					</div>
 				) : null}
 			</div>
 
-			<div className="right-nav flex gap-2">
+			<div className="right-nav flex items-center gap-8">
 				<div onClick={toggleFullscreen}>{isFullscreen ? <BiExitFullscreen /> : <GoScreenFull />}</div>
 
 				<div className="notification">

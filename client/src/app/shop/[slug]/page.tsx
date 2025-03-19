@@ -47,12 +47,12 @@ const ShopSlugPage = () => {
 
 			<div className="shop-slug-page">
 				<div className="shop-content">
-					<div className="container">
+					<div className="container m-auto">
 						<div className="shop-cont-box">
 							<div className="left-shop-img-box">
 								<div className="left-shop-main-img">
 									{loading ? (
-										<div className="wh-100 flex flex-center">
+										<div className="w-full h-full flex items-center justify-center">
 											<Spinner />
 										</div>
 									) : (
