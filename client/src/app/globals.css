@@ -1285,19 +1285,7 @@ header.sticky {
 	color: var(--dark-black);
 }
 
-.my-skills-cards {
-	width: 100%;
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: center;
-	gap: 2rem;
-	margin-top: 3rem;
-}
-
 .my-s-card {
-	max-width: 180px;
-	text-align: center;
 	color: var(--week-white);
 }
 
@@ -1305,66 +1293,8 @@ header.sticky {
 	color: var(--main-site-color);
 }
 
-.my-s-card:hover {
-	color: var(--week-white);
-}
-
-.my-s-inner {
-	position: relative;
-	border-radius: 25px;
-	padding: 2rem 3.5rem;
-	background: #140c1c;
-	border: 1px solid transparent;
-	margin-bottom: 15px;
-	transition: 0.6s;
-	overflow: hidden;
-	z-index: 1;
-	transition: 0.3s ease-in-out;
-}
-
 .dark .my-s-inner {
 	background: var(--week-white);
-}
-
-.my-s-inner::before {
-	content: '';
-	position: absolute;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	background-color: var(--dark-site-secondary);
-	z-index: -1;
-	opacity: 0;
-	transition: 0.3s ease-in-out;
-}
-
-.my-s-card img {
-	max-width: 70px;
-	height: auto;
-	margin: 0 auto 30px;
-	transition: 0.3s;
-}
-
-.my-s-card:hover .my-s-inner::before {
-	opacity: 1;
-}
-
-.my-s-card:hover .my-s-inner {
-	border: 1px solid var(--main-hover-color);
-}
-
-.my-s-card:hover .my-s-inner img {
-	transform: scale(1.1);
-}
-
-.my-s-card p {
-	color: var(--week-white);
-	font-size: 18px;
-}
-
-.dark .my-s-card p {
-	color: var(--main-site-color);
 }
 
 /* ********************************************** */
@@ -4440,10 +4370,6 @@ header.sticky {
 		width: calc(50% - 1rem);
 	}
 
-	.my-skills-cards {
-		gap: 1rem;
-	}
-
 	.recent_blogs {
 		gap: 1rem;
 	}
@@ -4939,16 +4865,6 @@ header.sticky {
 	.gallery-img-item-info h2 {
 		font-size: 18px;
 	}
-
-	.my-s-card {
-		max-width: 160px;
-	}
-
-	.my-s-card img {
-		max-width: 50px;
-		height: auto;
-		margin: 0;
-	}
 }
 
 @media screen and (max-width: 380px) {
@@ -4971,25 +4887,5 @@ header.sticky {
 	.mobile-logo img {
 		width: 50px;
 		height: 50px;
-	}
-
-	.my-s-card {
-		max-width: 155px;
-	}
-
-	.my-s-card img {
-		max-width: 43px;
-		height: auto;
-	}
-}
-
-@media screen and (max-width: 360px) {
-	.my-s-card {
-		max-width: 140px;
-	}
-
-	.my-s-card img {
-		max-width: 40px;
-		height: auto;
 	}
 }

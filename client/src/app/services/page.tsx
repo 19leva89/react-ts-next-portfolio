@@ -184,7 +184,7 @@ const ServicesPage = () => {
 							<h2 data-aos="fade-up">Pricing my work</h2>
 						</div>
 
-						<div className="flex flex-wrap items-center justify-center gap-4 mx-4 md:justify-between">
+						<div className="flex flex-wrap items-center justify-center gap-12 mx-4 md:justify-between">
 							{/* Life Plan */}
 							<div className="pricing-card" data-aos="fade-right">
 								<h4>Life Plan</h4>

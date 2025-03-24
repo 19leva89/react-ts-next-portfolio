@@ -69,6 +69,6 @@ export const Preloader = ({ isLoading, children }: Props) => {
 			</div>
 		</div>
 	) : (
-		<div className="main-content">{children}</div>
+		<div className="overflow-hidden">{children}</div>
 	)
 }
