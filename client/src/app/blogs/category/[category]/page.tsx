@@ -111,29 +111,30 @@ const BlogCategoryPage = () => {
 																: '/img/no-image.png'
 														}
 														alt={content.title}
-														width={420}
-														height={240}
-														quality={100}
+														fill
+														sizes="(max-width: 768px) 100vw, 420px"
 													/>
 												</Link>
 
-												<Swiper
-													slidesPerView={'auto'}
-													spaceBetween={0}
-													freeMode={true}
-													grabCursor={true}
-													modules={[FreeMode]}
-													className="tagsSwiper"
-												>
-													{content.blogCategory?.map((cat, index) => (
-														<SwiperSlide key={index}>
-															<Link href={cat} className="ai">
-																<span />
-																{cat.replace(/-/g, ' ')}
-															</Link>
-														</SwiperSlide>
-													))}
-												</Swiper>
+												<div className="absolute bottom-2 left-2 w-full z-10">
+													<Swiper
+														slidesPerView={'auto'}
+														spaceBetween={0}
+														freeMode={true}
+														grabCursor={true}
+														modules={[FreeMode]}
+														className="tagsSwiper"
+													>
+														{content.blogCategory?.map((cat, index) => (
+															<SwiperSlide key={index}>
+																<Link href={cat} className="ai">
+																	<span />
+																	{cat.replace(/-/g, ' ')}
+																</Link>
+															</SwiperSlide>
+														))}
+													</Swiper>
+												</div>
 											</div>
 
 											<div className="l-post-info">

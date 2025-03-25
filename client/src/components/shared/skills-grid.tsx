@@ -27,7 +27,7 @@ export const SkillsGrid = () => {
 								className="my-s-card flex flex-col items-center justify-center gap-2"
 								data-aos={index % 2 === 0 ? 'fade-right' : 'fade-left'}
 							>
-								<div className="group my-s-inner flex flex-col items-center justify-center gap-2 px-14 py-8 border border-transparent rounded-3xl bg-[#140c1c] hover:bg-[#19195c] hover:border-[#905ff1] transition ease-in-out duration-300">
+								<div className="group my-s-inner flex flex-col items-center justify-center gap-2 px-10 py-6 sm:px-14 sm:py-8 border border-transparent rounded-3xl bg-[#140c1c] hover:bg-[#19195c] hover:border-[#905ff1] transition ease-in-out duration-300">
 									<Image
 										src={skillSrc}
 										alt={skill.name.toLowerCase()}

@@ -4,19 +4,16 @@ import Head from 'next/head'
 import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
+import Autoplay from 'embla-carousel-autoplay'
 
+import { useRef } from 'react'
 import { useParams } from 'next/navigation'
 
 import { IProject } from '@/models/project'
 import { formatDate } from '@/utils/format-date'
-import { CodeBlock, Spinner } from '@/components/shared'
 import { useFetchData } from '@/hooks/use-fetch-data'
-
-// swiper
-import 'swiper/css'
-import 'swiper/css/scrollbar'
-import { Scrollbar } from 'swiper/modules'
-import { Swiper, SwiperSlide } from 'swiper/react'
+import { CodeBlock, Spinner } from '@/components/shared'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui'
 
 const ProjectSlugPage = () => {
 	const { slug } = useParams() as { slug: string }
@@ -28,6 +25,8 @@ const ProjectSlugPage = () => {
 
 	const createdAtData = allData?.[0].createdAt ? new Date(allData[0]?.createdAt) : null
 
+	const plugin = useRef(Autoplay({ delay: 3000, stopOnInteraction: true }))
+
 	return (
 		<>
 			<Head>
@@ -37,20 +36,40 @@ const ProjectSlugPage = () => {
 			<div className="project-slug">
 				<div className="project-slug-img">
 					<div className="container m-auto">
-						<div className="pro-slug-img">
-							{loading ? (
-								<div className="w-full h-full flex items-center justify-center">
-									<Spinner />
-								</div>
-							) : (
-								<Image
-									src={allData?.[0].images?.[0] || '/img/no-image.png'}
-									alt={allData && allData[0] ? allData[0].title : ''}
-									width={1300}
-									height={700}
-									quality={100}
-								/>
-							)}
+						<div className="flex justify-center border border-dashed border-[#34269c]">
+							<div className="w-full xl:w-4/5 2xl:w-2/3 p-4 sm:p-8">
+								{loading ? (
+									<div className="w-full h-full flex items-center justify-center">
+										<Spinner />
+									</div>
+								) : (
+									<Carousel
+										plugins={[plugin.current]}
+										onMouseEnter={plugin.current.stop}
+										onMouseLeave={plugin.current.reset}
+									>
+										<CarouselContent>
+											{(allData?.[0].images ?? []).map((image, index) => (
+												<CarouselItem key={index}>
+													<div className="p-1">
+														<Image
+															src={image}
+															alt={`Image ${index + 1}`}
+															width={1300}
+															height={700}
+															quality={100}
+														/>
+													</div>
+												</CarouselItem>
+											))}
+										</CarouselContent>
+
+										<CarouselPrevious />
+
+										<CarouselNext />
+									</Carousel>
+								)}
+							</div>
 						</div>
 
 						<div className="project-slug-info">
@@ -93,24 +112,6 @@ const ProjectSlugPage = () => {
 									<h2>{allData?.[0].designer}</h2>
 								</div>
 							</div>
-						</div>
-
-						<div className="project-slug-slider-img">
-							<Swiper
-								slidesPerView={'auto'}
-								spaceBetween={30}
-								freeMode={true}
-								grabCursor={true}
-								modules={[Scrollbar]}
-								scrollbar={{ draggable: true }}
-								className="imageSwiper"
-							>
-								{allData?.[0].images?.map((image, index) => (
-									<SwiperSlide key={index}>
-										<Image src={image} alt={allData[0].title} width={350} height={230} quality={100} />
-									</SwiperSlide>
-								))}
-							</Swiper>
 						</div>
 					</div>
 				</div>

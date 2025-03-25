@@ -291,8 +291,8 @@ const BlogsPage = () => {
 																: '/img/no-image.png'
 														}
 														alt={content.title}
-														width={420}
-														height={240}
+														sizes="(max-width: 768px) 100vw, 420px"
+														fill
 													/>
 												</Link>
 
