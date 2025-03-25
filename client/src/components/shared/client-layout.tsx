@@ -5,6 +5,8 @@ import { PropsWithChildren, useEffect, useState } from 'react'
 
 import { Preloader } from '@/components/shared'
 
+import 'aos/dist/aos.css'
+
 export const ClientLayout = ({ children }: PropsWithChildren) => {
 	const [isLoading, setIsLoading] = useState<boolean>(true)
 

@@ -5,9 +5,9 @@ import Form from 'next/form'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
+import { useTheme } from 'next-themes'
 
 import { IBlog } from '@/models/blog'
-import { useDarkMode } from '@/hooks/use-dark-mode'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { BlogSearch, Pagination, Spinner } from '@/components/shared'
 
@@ -19,7 +19,7 @@ import { Scrollbar } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 const BlogsPage = () => {
-	const { darkMode } = useDarkMode()
+	const { theme } = useTheme()
 
 	// pagination
 	const [perPage] = useState<number>(7)
@@ -186,7 +186,7 @@ const BlogsPage = () => {
 							<div className="popu-tags">
 								<Link href="/blogs/category/next-js" className="p-tag" data-aos="fade-right">
 									<Image
-										src={darkMode ? '/svg/next-js-dark.svg' : '/svg/next-js-white.svg'}
+										src={theme === 'light' ? '/svg/next-js-white.svg' : '/svg/next-js-dark.svg'}
 										alt="next-js"
 										width={190}
 										height={150}

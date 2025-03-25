@@ -1,10 +1,10 @@
 import Image from 'next/image'
+import { useTheme } from 'next-themes'
 
 import { SKILLS } from '@/constants/skills'
-import { useDarkMode } from '@/hooks/use-dark-mode'
 
 export const SkillsGrid = () => {
-	const { darkMode } = useDarkMode()
+	const { theme } = useTheme()
 
 	return (
 		<section className="my-skills">
@@ -19,7 +19,7 @@ export const SkillsGrid = () => {
 
 				<div className="flex flex-wrap items-center justify-center gap-4 mt-12 w-full md:gap-8">
 					{SKILLS.map((skill, index) => {
-						const skillSrc = darkMode ? skill.darkSrc : skill.lightSrc
+						const skillSrc = theme === 'light' ? skill.lightSrc : skill.darkSrc
 
 						return (
 							<div

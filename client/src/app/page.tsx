@@ -3,6 +3,7 @@
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
 import { IBlog } from '@/models/blog'
@@ -20,6 +21,8 @@ import { LuExternalLink, LuMedal } from 'react-icons/lu'
 import { FaCalendarDays, FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
 
 const HomePage = () => {
+	const { theme } = useTheme()
+
 	const [activeId, setActiveId] = useState<number>(1)
 	const [loading, setLoading] = useState<boolean>(true)
 	const [allProjects, setAllProjects] = useState<IProject[]>([])
@@ -100,7 +103,12 @@ const HomePage = () => {
 								data-aos-easing="ease-out-cubic"
 								data-aos-duration="2000"
 							>
-								<Image src="/img/coder-white.png" alt="coder" height={500} width={500} />
+								<Image
+									src={theme === 'light' ? '/img/coder-dark.png' : '/img/coder-white.png'}
+									alt="coder"
+									height={500}
+									width={500}
+								/>
 							</div>
 
 							<div className="lead" data-aos="fade-up">
@@ -160,7 +168,12 @@ const HomePage = () => {
 								data-aos-easing="ease-out-cubic"
 								data-aos-duration="2000"
 							>
-								<Image src="/img/coder-white.png" alt="coder" height={500} width={500} />
+								<Image
+									src={theme === 'light' ? '/img/coder-dark.png' : '/img/coder-white.png'}
+									alt="coder"
+									height={500}
+									width={500}
+								/>
 							</div>
 						</div>
 					</div>

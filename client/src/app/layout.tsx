@@ -2,10 +2,9 @@ import { Nunito } from 'next/font/google'
 import { PropsWithChildren } from 'react'
 
 import { constructMetadata } from '@/lib/utils'
-import { DarkModeProvider } from '@/hooks/use-dark-mode'
+import { ThemeProvider } from '@/components/shared/providers'
 import { ClientLayout, Footer, Header } from '@/components/shared'
 
-import 'aos/dist/aos.css'
 import './globals.css'
 
 const nunito = Nunito({
@@ -20,7 +19,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={nunito.variable}>
-				<DarkModeProvider>
+				<ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
 					<ClientLayout>
 						<Header />
 
@@ -28,7 +27,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 
 						<Footer />
 					</ClientLayout>
-				</DarkModeProvider>
+				</ThemeProvider>
 			</body>
 		</html>
 	)

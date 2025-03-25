@@ -12,7 +12,6 @@ body {
 }
 
 :root {
-	--image-url: url('/img/coder-dark.png');
 	--radius: 0.625rem;
 	--background: oklch(1 0 0);
 	--foreground: oklch(0.145 0 0);
@@ -48,7 +47,6 @@ body {
 }
 
 .dark {
-	--image-url: url('/img/coder-white.png');
 	--background: oklch(0.145 0 0);
 	--foreground: oklch(0.985 0 0);
 	--card: oklch(0.205 0 0);
@@ -80,14 +78,6 @@ body {
 	--sidebar-accent-foreground: oklch(0.985 0 0);
 	--sidebar-border: oklch(1 0 0 / 10%);
 	--sidebar-ring: oklch(0.556 0 0);
-}
-
-.hero_img_box img {
-	content: var(--image-url);
-}
-
-body .dark {
-	background-color: #fff !important;
 }
 
 ::-webkit-scrollbar {

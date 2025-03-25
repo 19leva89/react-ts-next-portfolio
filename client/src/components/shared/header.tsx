@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 import { NavItem } from '@/components/shared'
 import { navItems } from '@/constants/nav-items'
-import { useDarkMode } from '@/hooks/use-dark-mode'
 
 import { LuSunMoon } from 'react-icons/lu'
 import { IoMoonSharp } from 'react-icons/io5'
@@ -15,7 +15,7 @@ import { HiMiniBars3BottomRight } from 'react-icons/hi2'
 
 export const Header = () => {
 	const pathname = usePathname()
-	const { darkMode, toggleDarkMode } = useDarkMode()
+	const { theme, resolvedTheme, setTheme } = useTheme()
 	const [mobile, setMobile] = useState<boolean>(false)
 	const [isSticky, setIsSticky] = useState<boolean>(false)
 	const [activeLink, setActiveLink] = useState<string>('/')
@@ -56,7 +56,7 @@ export const Header = () => {
 				<div className="logo flex items-center gap-8">
 					<Link href="/">
 						<Image
-							src={darkMode ? '/img/logo-dark.png' : '/img/logo-white.png'}
+							src={theme === 'light' ? '/img/logo-white.png' : '/img/logo-dark.png'}
 							alt="logo"
 							width={65}
 							height={65}
@@ -83,14 +83,8 @@ export const Header = () => {
 						))}
 					</ul>
 
-					<div
-						className="dark-mode-toggle"
-						onClick={() => {
-							console.log('Dark mode toggled')
-							toggleDarkMode()
-						}}
-					>
-						{darkMode ? <IoMoonSharp /> : <LuSunMoon />}
+					<div className="dark-mode-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+						{resolvedTheme === 'light' ? <IoMoonSharp /> : <LuSunMoon />}
 					</div>
 
 					<button>
