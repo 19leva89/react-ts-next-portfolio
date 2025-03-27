@@ -5,7 +5,7 @@ Animation and Interaction:
 
 Authentication and User Management:
 - Bcryptjs (password hashing)
-- NextAuth (authentication)
+- NextAuth 5 (authentication)
 
 Core Technologies:
 - React 19
@@ -29,7 +29,10 @@ Miscellaneous:
 - React hot toast (stylization message)
 
 Styling and UI Frameworks:
-- React Icons (stylization)
+- Lucide React (stylization)
+- Next Themes (using theme switcher)
+- shadcn/ui (stylization)
+- Tailwind CSS (stylization)
 
 Text Editing:
 - React Markdown

@@ -5,10 +5,10 @@ import Form from 'next/form'
 import Image from 'next/image'
 import toast from 'react-hot-toast'
 
+import { Trash2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
-import { MdDeleteForever } from 'react-icons/md'
 
 import { Spinner } from '@/components/shared'
 import { IPhoto } from '@/models/photo'
@@ -171,7 +171,7 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 
 								<div className="delete-img">
 									<button onClick={() => handleDeleteImage(index)}>
-										<MdDeleteForever />
+										<Trash2Icon size={15} />
 									</button>
 								</div>
 							</div>

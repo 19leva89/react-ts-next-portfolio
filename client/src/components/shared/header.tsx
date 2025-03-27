@@ -3,19 +3,16 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
+import { KanbanIcon, MenuIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
-import { NavItem } from '@/components/shared'
 import { navItems } from '@/constants/nav-items'
-
-import { LuSunMoon } from 'react-icons/lu'
-import { IoMoonSharp } from 'react-icons/io5'
-import { HiMiniBars3BottomRight } from 'react-icons/hi2'
+import { ModeToggle, NavItem } from '@/components/shared'
 
 export const Header = () => {
 	const pathname = usePathname()
-	const { theme, resolvedTheme, setTheme } = useTheme()
+	const { theme } = useTheme()
 	const [mobile, setMobile] = useState<boolean>(false)
 	const [isSticky, setIsSticky] = useState<boolean>(false)
 	const [activeLink, setActiveLink] = useState<string>('/')
@@ -56,7 +53,7 @@ export const Header = () => {
 				<div className="logo flex items-center gap-8">
 					<Link href="/">
 						<Image
-							src={theme === 'light' ? '/img/logo-white.png' : '/img/logo-dark.png'}
+							src={theme === 'light' ? '/img/logo-dark.png' : '/img/logo-white.png'}
 							alt="logo"
 							width={65}
 							height={65}
@@ -83,16 +80,17 @@ export const Header = () => {
 						))}
 					</ul>
 
-					<div className="dark-mode-toggle" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
-						{resolvedTheme === 'light' ? <IoMoonSharp /> : <LuSunMoon />}
-					</div>
+					<ModeToggle />
 
 					<button>
 						<Link href="/contacts">Hire Me!</Link>
 					</button>
 
 					<div className="mobile-toggle-svg" onClick={handleMobileOpen}>
-						<HiMiniBars3BottomRight />
+						<KanbanIcon
+							size={45}
+							className="p-1 rotate-90 scale-y-[-1] hover:text-[var(--main-site-color)] transition-colors ease-in-out duration-300"
+						/>
 					</div>
 				</div>
 

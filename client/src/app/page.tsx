@@ -6,29 +6,30 @@ import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
+import {
+	ArrowUpRightIcon,
+	CalendarDaysIcon,
+	DownloadIcon,
+	ExternalLinkIcon,
+	FacebookIcon,
+	GithubIcon,
+	GlobeIcon,
+	GraduationCapIcon,
+	LinkedinIcon,
+	MedalIcon,
+	TwitterIcon,
+} from 'lucide-react'
 import { IBlog } from '@/models/blog'
-import { IProject } from '@/models/project'
 import { services } from '@/constants/services'
 import { formatDate } from '@/utils/format-date'
-import { SkillsGrid, Spinner, TypingAnimation } from '@/components/shared'
-
-import { BiDownload } from 'react-icons/bi'
-import { GoArrowUpRight } from 'react-icons/go'
-import { PiGraduationCap } from 'react-icons/pi'
-import { GrLinkedinOption } from 'react-icons/gr'
-import { LiaBasketballBallSolid } from 'react-icons/lia'
-import { LuExternalLink, LuMedal } from 'react-icons/lu'
-import { FaCalendarDays, FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
+import { ProjectsSection, SkillsGrid, Spinner, TypingAnimation } from '@/components/shared'
 
 const HomePage = () => {
 	const { theme } = useTheme()
 
 	const [activeId, setActiveId] = useState<number>(1)
 	const [loading, setLoading] = useState<boolean>(true)
-	const [allProjects, setAllProjects] = useState<IProject[]>([])
 	const [allBlogs, setAllBlogs] = useState<IBlog[]>([])
-	const [selectedCategory, setSelectedCategory] = useState<string>('all')
-	const [filteredProjects, setFilteredProjects] = useState<IProject[]>([])
 
 	const handleHover = (id: number) => {
 		setActiveId(id)
@@ -39,15 +40,11 @@ const HomePage = () => {
 	}
 
 	useEffect(() => {
-		const fetchAllData = async () => {
+		const fetchBlogs = async () => {
 			try {
-				const [projectsResponse, blogsResponse] = await Promise.all([
-					axios.get('/api/projects'),
-					axios.get('/api/blogs'),
-				])
+				const { data } = await axios.get('/api/blogs')
 
-				setAllProjects(projectsResponse.data)
-				setAllBlogs(blogsResponse.data)
+				setAllBlogs(data)
 			} catch (error) {
 				console.error('[PAGES_HOME] Data fetch error:', error)
 			} finally {
@@ -55,21 +52,8 @@ const HomePage = () => {
 			}
 		}
 
-		fetchAllData()
+		fetchBlogs()
 	}, [])
-
-	useEffect(() => {
-		// filter projects based on selected category
-		if (selectedCategory === 'all') {
-			setFilteredProjects((allProjects ?? []).filter((project) => project.status === 'publish'))
-		} else {
-			setFilteredProjects(
-				(allProjects ?? []).filter(
-					(project) => project.status === 'publish' && project.projectCategory?.[0] === selectedCategory,
-				),
-			)
-		}
-	}, [selectedCategory, allProjects])
 
 	return (
 		<>
@@ -104,7 +88,7 @@ const HomePage = () => {
 								data-aos-duration="2000"
 							>
 								<Image
-									src={theme === 'light' ? '/img/coder-dark.png' : '/img/coder-white.png'}
+									src={theme === 'light' ? '/img/coder-white.png' : '/img/coder-dark.png'}
 									alt="coder"
 									height={500}
 									width={500}
@@ -123,37 +107,37 @@ const HomePage = () => {
 									download
 									className="download-cv"
 								>
-									Download CV <BiDownload />
+									Download CV <DownloadIcon size={24} />
 								</Link>
 
 								<ul className="hero-social">
 									<li>
 										<Link href="#" target="_blank">
-											<FaTwitter />
+											<TwitterIcon size={20} />
 										</Link>
 									</li>
 
 									<li>
 										<Link href="https://facebook.com/dimochka.sobolev" target="_blank">
-											<FaFacebookF />
+											<FacebookIcon size={20} />
 										</Link>
 									</li>
 
 									<li>
 										<Link href="#" target="_blank">
-											<LiaBasketballBallSolid />
+											<GlobeIcon size={20} />
 										</Link>
 									</li>
 
 									<li>
 										<Link href="https://linkedin.com/in/lev-dmitry" target="_blank">
-											<GrLinkedinOption />
+											<LinkedinIcon size={20} />
 										</Link>
 									</li>
 
 									<li>
 										<Link href="https://github.com/19leva89" target="_blank">
-											<FaGithub />
+											<GithubIcon size={20} />
 										</Link>
 									</li>
 								</ul>
@@ -169,7 +153,7 @@ const HomePage = () => {
 								data-aos-duration="2000"
 							>
 								<Image
-									src={theme === 'light' ? '/img/coder-dark.png' : '/img/coder-white.png'}
+									src={theme === 'light' ? '/img/coder-white.png' : '/img/coder-dark.png'}
 									alt="coder"
 									height={500}
 									width={500}
@@ -244,7 +228,7 @@ const HomePage = () => {
 									<p>{service.description}</p>
 								</div>
 
-								<GoArrowUpRight />
+								<ArrowUpRightIcon size={34} />
 							</div>
 						))}
 					</div>
@@ -252,134 +236,14 @@ const HomePage = () => {
 			</section>
 
 			{/* Projects */}
-			<section className="projects">
-				<div className="container m-auto">
-					<div className="projects-title">
-						<h2 data-aos="fade-up">My Recent Works</h2>
-
-						<p data-aos="fade-up">
-							I put your ideas and thus your wishes in the form of a unique web project that inspires you and
-							your customers
-						</p>
-					</div>
-
-					<div
-						className="projects-button"
-						data-aos="fade-zoom-in"
-						data-aos-easing="ease-in-back"
-						data-aos-delay="300"
-						data-aos-offset="0"
-					>
-						<button
-							onClick={() => setSelectedCategory('all')}
-							className={selectedCategory === 'all' ? 'active' : ''}
-						>
-							All
-						</button>
-
-						<button
-							onClick={() => setSelectedCategory('website-development')}
-							className={selectedCategory === 'website-development' ? 'active' : ''}
-						>
-							Website
-						</button>
-
-						<button
-							onClick={() => setSelectedCategory('app-development')}
-							className={selectedCategory === 'app-development' ? 'active' : ''}
-						>
-							Apps
-						</button>
-
-						<button
-							onClick={() => setSelectedCategory('design-system')}
-							className={selectedCategory === 'design-system' ? 'active' : ''}
-						>
-							Design
-						</button>
-
-						<button
-							onClick={() => setSelectedCategory('website-migration')}
-							className={selectedCategory === 'website-migration' ? 'active' : ''}
-						>
-							Migration
-						</button>
-
-						<button
-							onClick={() => setSelectedCategory('e-commerce-site')}
-							className={selectedCategory === 'e-commerce-site' ? 'active' : ''}
-						>
-							E-commerce
-						</button>
-
-						<button
-							onClick={() => setSelectedCategory('performance-evaluation')}
-							className={selectedCategory === 'performance-evaluation' ? 'active' : ''}
-						>
-							Performance
-						</button>
-					</div>
-
-					<div className="projects-card">
-						{loading ? (
-							<div className="flex items-center justify-center w-screen h-[50vh]">
-								<Spinner />
-							</div>
-						) : (
-							<>
-								{filteredProjects.length === 0 ? (
-									<h1 className="flex items-center justify-center w-full h-[25vh] mt-12">
-										No projects found
-									</h1>
-								) : (
-									filteredProjects.slice(0, 4).map((project) => (
-										<Link
-											key={project._id}
-											href={`/projects/${project.slug}`}
-											className="pro-card"
-											data-aos="flip-left"
-											data-aos-easing="ease-out-cubic"
-											data-aos-duration="2000"
-										>
-											<div className="pro-img-box">
-												<Image
-													src={
-														project.images && project.images.length > 0
-															? project.images[0]
-															: '/img/no-image.png'
-													}
-													alt={project.title}
-													width={550}
-													height={400}
-												/>
-											</div>
-
-											<div className="pro-content-box">
-												<h2>{project.title}</h2>
-
-												<GoArrowUpRight />
-											</div>
-										</Link>
-									))
-								)}
-							</>
-						)}
-					</div>
-
-					<div className="flex items-center justify-center">
-						<button className="mt-12">
-							<Link href="/projects">View all projects</Link>
-						</button>
-					</div>
-				</div>
-			</section>
+			<ProjectsSection showAllProjects={false} maxProjects={4} />
 
 			{/* Experience study */}
 			<section className="ex-study">
 				<div className="container m-auto flex items-start justify-between">
 					<div className="experience">
 						<div className="experience-title flex items-center gap-4" data-aos="fade-right">
-							<LuMedal />
+							<MedalIcon size={45} />
 							<h2>My Experience</h2>
 						</div>
 
@@ -412,7 +276,7 @@ const HomePage = () => {
 
 					<div className="education">
 						<div className="experience-title flex items-center gap-4" data-aos="fade-left">
-							<PiGraduationCap />
+							<GraduationCapIcon size={45} />
 							<h2>My Education</h2>
 						</div>
 
@@ -420,9 +284,13 @@ const HomePage = () => {
 							<div className="exper-card" data-aos="fade-up">
 								<span>2023 – 2024</span>
 
-								<Link href="https://it-brains.com.ua/fullstack" target="_blank" rel="noopener noreferrer">
+								<Link
+									href="https://drive.google.com/file/d/11Qlo5O13dWooep8iPkUuF87e3sCTXrD5/view"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
 									<h3 className="flex items-center justify-between gap-4">
-										IT-Brains School <LuExternalLink size={24} />
+										IT-Brains School <ExternalLinkIcon size={24} />
 									</h3>
 								</Link>
 								<p>Full Stack Developer</p>
@@ -433,7 +301,7 @@ const HomePage = () => {
 
 								<Link href="https://en.knutd.edu.ua" target="_blank" rel="noopener noreferrer">
 									<h3 className="flex items-center justify-between gap-4">
-										Kyiv National University of Technologies and Design <LuExternalLink size={24} />
+										Kyiv National University of Technologies and Design <ExternalLinkIcon size={24} />
 									</h3>
 								</Link>
 
@@ -489,7 +357,7 @@ const HomePage = () => {
 
 											<div className="re-blog-info">
 												<div className="re-top-date flex items-center gap-4">
-													<FaCalendarDays /> <span>{formatDate(blog.createdAt)}</span>
+													<CalendarDaysIcon size={16} /> <span>{formatDate(blog.createdAt)}</span>
 												</div>
 
 												<h2>{blog.title}</h2>

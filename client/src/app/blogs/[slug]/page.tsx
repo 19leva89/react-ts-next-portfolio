@@ -8,6 +8,15 @@ import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
+import {
+	CalendarDaysIcon,
+	CopyIcon,
+	EyeIcon,
+	FacebookIcon,
+	LinkedinIcon,
+	SearchIcon,
+	TwitterIcon,
+} from 'lucide-react'
 import { Types } from 'mongoose'
 import { useParams } from 'next/navigation'
 import { FormEvent, useEffect, useRef, useState } from 'react'
@@ -18,14 +27,6 @@ import { IComment } from '@/models/comment'
 import { formatDate } from '@/utils/format-date'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { BlogSearch, CodeBlock, Spinner } from '@/components/shared'
-
-import { BsCopy } from 'react-icons/bs'
-import { CiRead } from 'react-icons/ci'
-import { FiSearch } from 'react-icons/fi'
-import { FaTwitter } from 'react-icons/fa'
-import { SlCalender } from 'react-icons/sl'
-import { BiLogoLinkedin } from 'react-icons/bi'
-import { RiFacebookFill, RiWhatsappFill } from 'react-icons/ri'
 
 const BlogPage = () => {
 	const { slug } = useParams() as { slug: string }
@@ -330,12 +331,12 @@ const BlogPage = () => {
 										</div>
 
 										<div className="admin-slug">
-											<SlCalender />
+											<CalendarDaysIcon size={27} />
 											<span>{formatDate(createdAtDate)}</span>
 										</div>
 
 										<div className="admin-slug">
-											<CiRead />
+											<EyeIcon size={35} />
 											<span>Comments ({blogData.comments ? blogData.comments.length : 0})</span>
 										</div>
 									</div>
@@ -347,18 +348,9 @@ const BlogPage = () => {
 											onClick={() => copyToClipboard(blogUrl)}
 											style={{ cursor: 'pointer' }}
 										>
-											<BsCopy />
+											<CopyIcon size={20} />
 											<span>{copied ? 'Copied!' : ''}</span>
 										</div>
-
-										{/* facebook share button */}
-										<Link
-											href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogUrl)}`}
-											target="_blank"
-											rel="noopener noreferrer"
-										>
-											<RiFacebookFill />
-										</Link>
 
 										{/* twitter share button */}
 										<Link
@@ -366,16 +358,16 @@ const BlogPage = () => {
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FaTwitter />
+											<TwitterIcon size={20} />
 										</Link>
 
-										{/* whatsapp share button */}
+										{/* facebook share button */}
 										<Link
-											href={`https://wa.me/?text=Check out this blog post: ${encodeURIComponent(blogUrl)}`}
+											href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogUrl)}`}
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<RiWhatsappFill />
+											<FacebookIcon size={20} />
 										</Link>
 
 										{/* linkedin share button */}
@@ -384,7 +376,7 @@ const BlogPage = () => {
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<BiLogoLinkedin />
+											<LinkedinIcon size={20} />
 										</Link>
 									</div>
 								</div>
@@ -394,7 +386,7 @@ const BlogPage = () => {
 								{loading ? (
 									<Spinner />
 								) : (
-									<div className="blog-content">
+									<div className="blog-content dark:bg-[#0f0715]!">
 										<ReactMarkdown
 											remarkPlugins={[remarkGfm]}
 											components={{
@@ -487,7 +479,7 @@ const BlogPage = () => {
 									<input type="text" placeholder="Search..." onClick={handleSearchOpen} />
 
 									<button>
-										<FiSearch />
+										<SearchIcon size={26} />
 									</button>
 								</Form>
 

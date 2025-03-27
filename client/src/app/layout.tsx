@@ -19,7 +19,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<body className={nunito.variable}>
-				<ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
+				<ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} enableColorScheme>
 					<ClientLayout>
 						<Header />
 

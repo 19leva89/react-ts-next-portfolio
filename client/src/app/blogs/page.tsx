@@ -149,7 +149,7 @@ const BlogsPage = () => {
 																	<div className="flex items-center gap-8">
 																		<Image src="/img/coder-white.png" alt="coder" width={32} height={32} />
 
-																		<p>By Sobolev</p>
+																		<p>by Sobolev</p>
 																	</div>
 
 																	<div className="tags flex items-center flex-nowrap">
@@ -186,7 +186,7 @@ const BlogsPage = () => {
 							<div className="popu-tags">
 								<Link href="/blogs/category/next-js" className="p-tag" data-aos="fade-right">
 									<Image
-										src={theme === 'light' ? '/svg/next-js-white.svg' : '/svg/next-js-dark.svg'}
+										src={theme === 'light' ? '/svg/next-js-dark.svg' : '/svg/next-js-white.svg'}
 										alt="next-js"
 										width={190}
 										height={150}
@@ -316,7 +316,7 @@ const BlogsPage = () => {
 												<h4 className="flex items-center">
 													<Image src="/img/coder-white.png" alt="author" width={28} height={28} />
 
-													<span>by sobolev</span>
+													<span>by Sobolev</span>
 												</h4>
 											</div>
 										</div>

@@ -3,8 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { FaEdit } from 'react-icons/fa'
-import { RiDeleteBin6Fill } from 'react-icons/ri'
+import { SquarePenIcon, Trash2Icon } from 'lucide-react'
 
 import { IBlog } from '@/models/blog'
 import { useFetchData } from '@/hooks/use-fetch-data'
@@ -116,13 +115,13 @@ const BlogsPage = () => {
 												<div className="flex gap-8 justify-center">
 													<Link href={`/blogs/edit/${content._id}`}>
 														<button>
-															<FaEdit />
+															<SquarePenIcon size={15} />
 														</button>
 													</Link>
 
 													<Link href={`/blogs/delete/${content._id}`}>
 														<button>
-															<RiDeleteBin6Fill />
+															<Trash2Icon size={15} />
 														</button>
 													</Link>
 												</div>

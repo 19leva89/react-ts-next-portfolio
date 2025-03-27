@@ -3,12 +3,12 @@
 import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
+import { Trash2Icon } from 'lucide-react'
 import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { IContact } from '@/models/contact'
 import { formatDate } from '@/utils/format-date'
-import { RiDeleteBin6Fill } from 'react-icons/ri'
 import { DashboardHeader } from '@/components/shared'
 
 const ViewContactPage = () => {
@@ -59,7 +59,7 @@ const ViewContactPage = () => {
 
 						<Link href={`/contacts/delete/${id}`} className="contact-info-link">
 							<button className="p-2">
-								<RiDeleteBin6Fill />
+								<Trash2Icon size={15} />
 							</button>
 						</Link>
 					</div>

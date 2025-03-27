@@ -64,9 +64,9 @@ const ProjectSlugPage = () => {
 											))}
 										</CarouselContent>
 
-										<CarouselPrevious />
+										<CarouselPrevious variant="secondary" />
 
-										<CarouselNext />
+										<CarouselNext variant="secondary" />
 									</Carousel>
 								)}
 							</div>
@@ -121,7 +121,7 @@ const ProjectSlugPage = () => {
 						<div className="ps-desc">
 							<h2>Project Description</h2>
 
-							<div className="blog-content">
+							<div className="blog-content dark:bg-[var(--dark-black)]!">
 								<ReactMarkdown
 									remarkPlugins={[remarkGfm]}
 									components={{

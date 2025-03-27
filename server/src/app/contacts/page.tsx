@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { FaRegEye } from 'react-icons/fa'
+import { EyeIcon } from 'lucide-react'
 
 import { IContact } from '@/models/contact'
 import { useFetchData } from '@/hooks/use-fetch-data'
@@ -108,7 +108,7 @@ const ContactsPage = () => {
 												<div className="flex items-center gap-8 justify-center">
 													<Link href={`/contacts/view/${content._id}`}>
 														<button>
-															<FaRegEye />
+															<EyeIcon size={15} />
 														</button>
 													</Link>
 												</div>

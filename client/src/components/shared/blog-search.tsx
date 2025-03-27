@@ -1,10 +1,10 @@
 'use client'
 
 import Link from 'next/link'
+import { XIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 import { IBlog } from '@/models/blog'
-import { IoClose } from 'react-icons/io5'
 import { useFetchData } from '@/hooks/use-fetch-data'
 
 interface Props {
@@ -61,7 +61,7 @@ export const BlogSearch = ({ cls }: Props) => {
 					/>
 
 					<div className="sbs-input-close" onClick={cls}>
-						<IoClose />
+						<XIcon size={55} />
 					</div>
 				</div>
 				<div className="sbsf-search-list mt-8">

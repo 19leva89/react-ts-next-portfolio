@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { GrLinkedinOption } from 'react-icons/gr'
-import { LiaBasketballBallSolid } from 'react-icons/lia'
-import { FaFacebookF, FaGithub, FaTwitter } from 'react-icons/fa6'
+import { FacebookIcon, GithubIcon, GlobeIcon, LinkedinIcon, TwitterIcon } from 'lucide-react'
 
 export const Footer = () => {
 	return (
@@ -43,31 +41,31 @@ export const Footer = () => {
 				<ul className="hero-social">
 					<li>
 						<Link href="/" target="_blank">
-							<FaTwitter />
+							<TwitterIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
 						<Link href="https://facebook.com/dimochka.sobolev" target="_blank">
-							<FaFacebookF />
+							<FacebookIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
 						<Link href="/" target="_blank">
-							<LiaBasketballBallSolid />
+							<GlobeIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
 						<Link href="https://linkedin.com/in/lev-dmitry" target="_blank">
-							<GrLinkedinOption />
+							<LinkedinIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
 						<Link href="https://github.com/19leva89" target="_blank">
-							<FaGithub />
+							<GithubIcon size={20} />
 						</Link>
 					</li>
 				</ul>

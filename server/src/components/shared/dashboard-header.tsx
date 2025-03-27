@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { IoHome } from 'react-icons/io5'
+import { HouseIcon } from 'lucide-react'
 
 interface DashboardHeaderProps {
 	title: string
@@ -19,7 +19,7 @@ export const DashboardHeader = ({ title, subtitle, breadcrumbs }: DashboardHeade
 
 			<div className="breadcrumb">
 				<Link href="/">
-					<IoHome />
+					<HouseIcon size={22} />
 				</Link>
 
 				{breadcrumbs && breadcrumbs.length > 0 && <span>/</span>}

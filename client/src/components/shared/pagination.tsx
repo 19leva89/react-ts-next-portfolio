@@ -1,4 +1,4 @@
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
 interface Props {
 	paginate: (page: number) => void
@@ -20,7 +20,7 @@ export const Pagination = ({ paginate, currentPage, totalPages }: Props) => {
 				disabled={currentPage === 1}
 				className="flex items-center justify-center"
 			>
-				<FaArrowAltCircleLeft size={26} />
+				<ChevronLeftIcon size={26} />
 			</button>
 
 			{pageNumbers
@@ -40,7 +40,7 @@ export const Pagination = ({ paginate, currentPage, totalPages }: Props) => {
 				disabled={currentPage === totalPages}
 				className="flex items-center justify-center"
 			>
-				<FaArrowAltCircleRight size={26} />
+				<ChevronRightIcon size={26} />
 			</button>
 		</div>
 	)

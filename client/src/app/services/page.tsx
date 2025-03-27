@@ -1,9 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
-
-import { HiXMark } from 'react-icons/hi2'
-import { IoMdCheckmark } from 'react-icons/io'
+import { CheckIcon, XIcon } from 'lucide-react'
 
 const ServicesPage = () => {
 	return (
@@ -204,19 +202,19 @@ const ServicesPage = () => {
 
 									<ul>
 										<li>
-											<IoMdCheckmark /> Powerful admin panel
+											<CheckIcon size={20} /> Powerful admin panel
 										</li>
 
 										<li>
-											<IoMdCheckmark /> 1 Native android app
+											<CheckIcon size={20} /> 1 Native android app
 										</li>
 
 										<li>
-											<HiXMark /> Multi-language support
+											<XIcon size={20} /> Multi-language support
 										</li>
 
 										<li>
-											<HiXMark /> 24/7 support
+											<XIcon size={20} /> 24/7 support
 										</li>
 									</ul>
 								</div>
@@ -241,19 +239,19 @@ const ServicesPage = () => {
 
 									<ul>
 										<li>
-											<IoMdCheckmark /> Powerful admin panel
+											<CheckIcon size={20} /> Powerful admin panel
 										</li>
 
 										<li>
-											<IoMdCheckmark /> 1 Native android app
+											<CheckIcon size={20} /> 1 Native android app
 										</li>
 
 										<li>
-											<IoMdCheckmark /> Multi-language support
+											<CheckIcon size={20} /> Multi-language support
 										</li>
 
 										<li>
-											<HiXMark /> 24/7 support
+											<XIcon size={20} /> 24/7 support
 										</li>
 									</ul>
 								</div>
@@ -278,19 +276,19 @@ const ServicesPage = () => {
 
 									<ul>
 										<li>
-											<IoMdCheckmark /> Powerful admin panel
+											<CheckIcon size={20} /> Powerful admin panel
 										</li>
 
 										<li>
-											<IoMdCheckmark /> 1 Native android app
+											<CheckIcon size={20} /> 1 Native android app
 										</li>
 
 										<li>
-											<IoMdCheckmark /> Multi-language support
+											<CheckIcon size={20} /> Multi-language support
 										</li>
 
 										<li>
-											<IoMdCheckmark /> 24/7 support
+											<CheckIcon size={20} /> 24/7 support
 										</li>
 									</ul>
 								</div>

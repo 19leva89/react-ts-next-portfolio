@@ -1,16 +1,18 @@
 'use client'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import {
+	BriefcaseBusinessIcon,
+	HouseIcon,
+	IdCardIcon,
+	ImagesIcon,
+	NotebookTabsIcon,
+	SettingsIcon,
+	ShoppingCartIcon,
+} from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
-
-import { IconType } from 'react-icons'
-import { GrGallery } from 'react-icons/gr'
-import { BsPostcard } from 'react-icons/bs'
-import { MdOutlineWorkOutline } from 'react-icons/md'
-import { IoHome, IoSettingsOutline } from 'react-icons/io5'
-import { RiContactsBook3Line, RiShoppingCartLine } from 'react-icons/ri'
+import { ComponentType, SVGProps, useEffect, useState } from 'react'
 
 interface AsideProps {
 	asideOpen: boolean
@@ -21,7 +23,7 @@ interface NavItemProps {
 	title: string
 	links: { href: string; label: string }[]
 	activeLink: string
-	icon: IconType
+	icon: ComponentType<SVGProps<SVGSVGElement>>
 	isOpen: boolean
 	onToggle: () => void
 	onLinkClick: (link: string) => void
@@ -106,7 +108,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						title="Dashboard"
 						links={[{ href: '/', label: 'Dashboard' }]}
 						activeLink={activeLink}
-						icon={IoHome}
+						icon={HouseIcon}
 						isOpen={openNavItem === 'Dashboard'}
 						onToggle={() => toggleNavItem('Dashboard')}
 						onLinkClick={handleLinkClick}
@@ -121,7 +123,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 							{ href: '/projects/add-project', label: 'Add Project' },
 						]}
 						activeLink={activeLink}
-						icon={MdOutlineWorkOutline}
+						icon={BriefcaseBusinessIcon}
 						isOpen={openNavItem === 'Projects'}
 						onToggle={() => toggleNavItem('Projects')}
 						onLinkClick={handleLinkClick}
@@ -136,7 +138,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 							{ href: '/blogs/add-blog', label: 'Add Blog' },
 						]}
 						activeLink={activeLink}
-						icon={BsPostcard}
+						icon={IdCardIcon}
 						isOpen={openNavItem === 'Blogs'}
 						onToggle={() => toggleNavItem('Blogs')}
 						onLinkClick={handleLinkClick}
@@ -150,7 +152,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 							{ href: '/gallery/add-photo', label: 'Add Photo' },
 						]}
 						activeLink={activeLink}
-						icon={GrGallery}
+						icon={ImagesIcon}
 						isOpen={openNavItem === 'Gallery'}
 						onToggle={() => toggleNavItem('Gallery')}
 						onLinkClick={handleLinkClick}
@@ -165,7 +167,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 							{ href: '/shop/add-product', label: 'Add Product' },
 						]}
 						activeLink={activeLink}
-						icon={RiShoppingCartLine}
+						icon={ShoppingCartIcon}
 						isOpen={openNavItem === 'Shop'}
 						onToggle={() => toggleNavItem('Shop')}
 						onLinkClick={handleLinkClick}
@@ -176,7 +178,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						title="Contacts"
 						links={[{ href: '/contacts', label: 'Contacts' }]}
 						activeLink={activeLink}
-						icon={RiContactsBook3Line}
+						icon={NotebookTabsIcon}
 						isOpen={openNavItem === 'Contacts'}
 						onToggle={() => toggleNavItem('Contacts')}
 						onLinkClick={handleLinkClick}
@@ -187,7 +189,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						title="Settings"
 						links={[{ href: '/settings', label: 'Settings' }]}
 						activeLink={activeLink}
-						icon={IoSettingsOutline}
+						icon={SettingsIcon}
 						isOpen={openNavItem === 'Settings'}
 						onToggle={() => toggleNavItem('Settings')}
 						onLinkClick={handleLinkClick}

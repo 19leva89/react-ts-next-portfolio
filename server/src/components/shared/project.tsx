@@ -8,10 +8,10 @@ import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 
+import { Trash2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
-import { MdDeleteForever } from 'react-icons/md'
 
 import { IProject } from '@/models/project'
 import { CodeBlock, Spinner } from '@/components/shared'
@@ -255,7 +255,7 @@ export const Project = ({
 
 								<div className="delete-img">
 									<button onClick={() => handleDeleteImage(index)}>
-										<MdDeleteForever />
+										<Trash2Icon size={15} />
 									</button>
 								</div>
 							</div>

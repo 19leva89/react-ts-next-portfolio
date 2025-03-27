@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { signOut } from 'next-auth/react'
-import { MdOutlineAccountCircle } from 'react-icons/md'
+import { CircleUserIcon } from 'lucide-react'
 
 import { DashboardHeader } from '@/components/shared'
 
@@ -44,7 +44,7 @@ const SettingsPage = () => {
 					<div className="top-account-box">
 						<h2 className="flex items-center justify-between">
 							My account
-							<MdOutlineAccountCircle />
+							<CircleUserIcon size={16} />
 						</h2>
 
 						<hr />

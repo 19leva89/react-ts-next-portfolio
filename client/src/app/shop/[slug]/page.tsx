@@ -111,7 +111,7 @@ const ShopSlugPage = () => {
 									Shop Now
 								</a>
 
-								<div className="blog-content">
+								<div className="blog-content dark:bg-[#140c1c]!">
 									<h2 className="bc-title">Product Details:</h2>
 
 									<ReactMarkdown

@@ -3,8 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useState } from 'react'
-import { FaEdit } from 'react-icons/fa'
-import { RiDeleteBin6Fill } from 'react-icons/ri'
+import { SquarePenIcon, Trash2Icon } from 'lucide-react'
 
 import { IShop } from '@/models/shop'
 import { useFetchData } from '@/hooks/use-fetch-data'
@@ -116,13 +115,13 @@ const DraftShopPage = () => {
 												<div className="flex items-center gap-8 justify-center">
 													<Link href={`/shops/edit/${content._id}`}>
 														<button>
-															<FaEdit />
+															<SquarePenIcon size={15} />
 														</button>
 													</Link>
 
 													<Link href={`/shops/delete/${content._id}`}>
 														<button>
-															<RiDeleteBin6Fill />
+															<Trash2Icon size={15} />
 														</button>
 													</Link>
 												</div>

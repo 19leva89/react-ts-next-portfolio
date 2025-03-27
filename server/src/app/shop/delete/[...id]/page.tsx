@@ -3,7 +3,7 @@
 import axios from 'axios'
 import Head from 'next/head'
 import toast from 'react-hot-toast'
-import { TbTrashX } from 'react-icons/tb'
+import { Trash2Icon } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
 
@@ -61,7 +61,7 @@ const DeleteProductPage = () => {
 
 				<div className="delete-sec flex items-center justify-center w-screen h-screen">
 					<div className="delete-card">
-						<TbTrashX size={60} color="red" />
+						<Trash2Icon size={60} color="red" />
 
 						<p className="cookie-heading">Are you sure?</p>
 

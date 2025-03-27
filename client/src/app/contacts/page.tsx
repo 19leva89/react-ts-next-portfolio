@@ -4,11 +4,9 @@ import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
 import { ChangeEvent, FormEvent, useState } from 'react'
+import { LinkedinIcon, MailIcon, PhoneCallIcon, TwitterIcon } from 'lucide-react'
 
-import { GrLinkedin } from 'react-icons/gr'
 import { IContact } from '@/models/contact'
-import { MdAttachEmail } from 'react-icons/md'
-import { FaPhoneVolume, FaTwitter } from 'react-icons/fa6'
 
 const ContactPage = () => {
 	const [firstName, setFirstName] = useState<string>('')
@@ -107,7 +105,7 @@ const ContactPage = () => {
 							<div className="left-soc-info">
 								<ul>
 									<li>
-										<FaPhoneVolume />
+										<PhoneCallIcon size={26} />
 
 										<span>
 											Phone:{' '}
@@ -118,7 +116,7 @@ const ContactPage = () => {
 									</li>
 
 									<li>
-										<MdAttachEmail />
+										<MailIcon size={26} />
 
 										<span>
 											Email:{' '}
@@ -129,7 +127,7 @@ const ContactPage = () => {
 									</li>
 
 									<li>
-										<GrLinkedin />
+										<LinkedinIcon size={26} />
 
 										<span>
 											LinkedIn:{' '}
@@ -144,7 +142,7 @@ const ContactPage = () => {
 									</li>
 
 									<li>
-										<FaTwitter />
+										<TwitterIcon size={26} />
 
 										<span>
 											Twitter:{' '}

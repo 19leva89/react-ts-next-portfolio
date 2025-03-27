@@ -146,7 +146,7 @@ const BlogCategoryPage = () => {
 
 												<h4 className="flex items-center">
 													<Image src="/img/coder-white.png" alt="author" width={28} height={28} />
-													<span>by sobolev</span>
+													<span>by Sobolev</span>
 												</h4>
 											</div>
 										</div>

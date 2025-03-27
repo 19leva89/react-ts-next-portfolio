@@ -3,10 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { useSession } from 'next-auth/react'
-
-import { GoScreenFull } from 'react-icons/go'
-import { BiExitFullscreen } from 'react-icons/bi'
-import { RiBarChartHorizontalLine } from 'react-icons/ri'
+import { KanbanIcon, MaximizeIcon, MinimizeIcon } from 'lucide-react'
 
 interface HeaderProps {
 	handleAsideOpen: () => void
@@ -35,13 +32,15 @@ export const Header = ({ handleAsideOpen }: HeaderProps) => {
 
 				{session ? (
 					<div className="header-ham flex items-center justify-center" onClick={handleAsideOpen}>
-						<RiBarChartHorizontalLine />
+						<KanbanIcon size={22} className="rotate-270" />
 					</div>
 				) : null}
 			</div>
 
 			<div className="right-nav flex items-center gap-8">
-				<div onClick={toggleFullscreen}>{isFullscreen ? <BiExitFullscreen /> : <GoScreenFull />}</div>
+				<div onClick={toggleFullscreen}>
+					{isFullscreen ? <MinimizeIcon size={22} /> : <MaximizeIcon size={22} />}
+				</div>
 
 				<div className="notification">
 					<Image src="/img/notification.png" alt="notification" width={22} height={22} loading="lazy" />
