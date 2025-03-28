@@ -122,7 +122,7 @@ const ContactsPage = () => {
 				</table>
 
 				{/* for pagination */}
-				{publishedContent.length > 0 && (
+				{publishedContent.length > 0 && totalPages > 1 && (
 					<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 				)}
 			</div>

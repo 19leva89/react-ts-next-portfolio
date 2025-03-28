@@ -1,17 +1,18 @@
 'use client'
 
 import axios from 'axios'
+import Link from 'next/link'
+import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 
 import { Spinner } from '@/components/shared'
 
-const SignUp = () => {
+const SignUpPage = () => {
 	const router = useRouter()
 	const { status: sessionStatus } = useSession()
 
-	const [error, setError] = useState<string | null>(null)
 	const [form, setForm] = useState<{ email: string; password: string; confirmPassword: string }>({
 		email: '',
 		password: '',
@@ -26,8 +27,9 @@ const SignUp = () => {
 		e.preventDefault()
 
 		if (form.password !== form.confirmPassword) {
-			setError('Passwords do not match')
-			setTimeout(() => setError(''), 3000)
+			toast.error('Passwords do not match')
+			// setError('Passwords do not match')
+			// setTimeout(() => setError(''), 3000)
 
 			return
 		}
@@ -37,20 +39,16 @@ const SignUp = () => {
 		})
 
 		if (data.error) {
-			setError('Error happened here')
+			toast.error('Error happened here')
+			// setError('Error happened here')
 
-			setTimeout(() => setError(''), 3000)
+			// setTimeout(() => setError(''), 3000)
 		} else {
+			toast.success('Sign up successful')
+
 			router.push('/auth/sign-in')
 		}
 	}
-
-	// authentication
-	useEffect(() => {
-		if (sessionStatus === 'authenticated') {
-			router.push('/')
-		}
-	}, [sessionStatus, router])
 
 	return (
 		<div className="flex items-center justify-center h-screen!">
@@ -97,7 +95,15 @@ const SignUp = () => {
 							Sign Up
 						</button>
 
-						{error && <p className="text-red-500">{error}</p>}
+						<span className="text-gray-600">
+							Already have an account?
+							<Link
+								href="/auth/sign-in"
+								className="ml-1 font-medium text-amber-600 hover:text-amber-700 hover:underline transition-colors ease-in-out duration-200"
+							>
+								Login
+							</Link>
+						</span>
 					</form>
 				)}
 
@@ -111,4 +117,4 @@ const SignUp = () => {
 	)
 }
 
-export default SignUp
+export default SignUpPage

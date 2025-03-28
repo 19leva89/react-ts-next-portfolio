@@ -1,16 +1,17 @@
 'use client'
 
+import Link from 'next/link'
+import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
+import { ChangeEvent, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
-import { ChangeEvent, useEffect, useState } from 'react'
 
 import { Spinner } from '@/components/shared'
 
-const SignIn = () => {
+const SignInPage = () => {
 	const router = useRouter()
 	const { status: sessionStatus } = useSession()
-	const [loading, setLoading] = useState<boolean>(false)
-	const [error, setError] = useState<string | null>(null)
+
 	const [form, setForm] = useState<{ email: string; password: string }>({
 		email: '',
 		password: '',
@@ -21,7 +22,6 @@ const SignIn = () => {
 	}
 
 	const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
-		setLoading(true)
 		e.preventDefault()
 
 		try {
@@ -34,35 +34,27 @@ const SignIn = () => {
 
 			if (result && !result.error) {
 				// successful sign in
+				toast.success('Sign in successful')
+
 				router.push('/')
 			} else {
-				setError('Invalid email or password')
-				setTimeout(() => setError(''), 3000)
+				toast.error('Invalid email or password')
 			}
 		} catch (error) {
 			if (error instanceof Error) {
-				setError(`Sign in failed: ${error.message}`)
+				toast.error(`Sign in failed: ${error.message}`)
 			} else {
-				setError('Sign in failed: unknown error')
+				toast.error('Sign in failed: unknown error')
 			}
-
-			setTimeout(() => setError(''), 3000)
 		}
 	}
-
-	// authentication
-	useEffect(() => {
-		if (sessionStatus === 'authenticated') {
-			router.push('/')
-		}
-	}, [sessionStatus, router])
 
 	return (
 		<div className="flex items-center justify-center h-screen!">
 			<div className="login-form">
 				<div className="heading">Sign In</div>
 
-				{loading ? (
+				{sessionStatus === 'loading' ? (
 					<div className="flex items-center justify-center w-full flex-col">
 						<Spinner />
 					</div>
@@ -92,7 +84,15 @@ const SignIn = () => {
 							Sign In
 						</button>
 
-						{error && <p className="text-red-500">{error}</p>}
+						<span className="text-gray-600">
+							Forgot your password?
+							<Link
+								href="/recovery"
+								className="ml-1 font-medium text-amber-600 hover:text-amber-700 hover:underline transition-colors ease-in-out duration-200"
+							>
+								Restore
+							</Link>
+						</span>
 					</form>
 				)}
 			</div>
@@ -100,4 +100,4 @@ const SignIn = () => {
 	)
 }
 
-export default SignIn
+export default SignInPage

@@ -50,11 +50,15 @@ const ShopPage = () => {
 			<div className="contents-table">
 				<div className="flex items-center gap-8 mb-4">
 					<h2>Search Products:</h2>
+
 					<input
 						type="text"
 						placeholder="Search by title..."
 						value={searchQuery}
-						onChange={(e) => setSearchQuery(e.target.value)}
+						onChange={(e) => {
+							setSearchQuery(e.target.value)
+							setCurrentPage(1)
+						}}
 					/>
 				</div>
 
@@ -135,7 +139,7 @@ const ShopPage = () => {
 				</table>
 
 				{/* for pagination */}
-				{publishedContent.length > 0 && (
+				{publishedContent.length > 0 && totalPages > 1 && (
 					<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 				)}
 			</div>

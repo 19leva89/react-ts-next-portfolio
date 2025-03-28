@@ -191,7 +191,7 @@ export const Blog = ({
 
 			{/* image preview and image sortable with delete image */}
 			{!isUploading && images?.length > 0 && (
-				<div className="flex items-center">
+				<div className="flex items-center mb-8">
 					<ReactSortable
 						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
