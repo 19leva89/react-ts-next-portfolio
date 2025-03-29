@@ -6,13 +6,14 @@ import {
 	HouseIcon,
 	IdCardIcon,
 	ImagesIcon,
+	LucideIcon,
 	NotebookTabsIcon,
 	SettingsIcon,
 	ShoppingCartIcon,
 } from 'lucide-react'
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import { signOut, useSession } from 'next-auth/react'
-import { ComponentType, SVGProps, useEffect, useState } from 'react'
 
 interface AsideProps {
 	asideOpen: boolean
@@ -23,7 +24,7 @@ interface NavItemProps {
 	title: string
 	links: { href: string; label: string }[]
 	activeLink: string
-	icon: ComponentType<SVGProps<SVGSVGElement>>
+	icon: LucideIcon
 	isOpen: boolean
 	onToggle: () => void
 	onLinkClick: (link: string) => void
