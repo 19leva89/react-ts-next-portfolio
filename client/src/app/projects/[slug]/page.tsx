@@ -9,11 +9,24 @@ import Autoplay from 'embla-carousel-autoplay'
 import { useRef } from 'react'
 import { useParams } from 'next/navigation'
 
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogOverlay,
+	DialogPortal,
+	DialogTitle,
+	DialogTrigger,
+} from '@/components/ui'
 import { IProject } from '@/models/project'
 import { formatDate } from '@/utils/format-date'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { CodeBlock, Spinner } from '@/components/shared'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui'
 
 const ProjectSlugPage = () => {
 	const { slug } = useParams() as { slug: string }
@@ -51,15 +64,38 @@ const ProjectSlugPage = () => {
 										<CarouselContent>
 											{(allData?.[0].images ?? []).map((image, index) => (
 												<CarouselItem key={index}>
-													<div className="p-1">
-														<Image
-															src={image}
-															alt={`Image ${index + 1}`}
-															width={1300}
-															height={700}
-															quality={100}
-														/>
-													</div>
+													<Dialog>
+														<DialogTrigger aria-describedby={undefined}>
+															<div className="p-1 cursor-zoom-in">
+																<Image
+																	src={image}
+																	alt={`Image ${index + 1}`}
+																	width={1000}
+																	height={540}
+																	quality={80}
+																/>
+															</div>
+														</DialogTrigger>
+
+														<DialogPortal>
+															<DialogOverlay className="z-100 backdrop-blur-md" />
+
+															<DialogContent className="z-100 max-w-325! p-1 border-none bg-transparent shadow-none">
+																<DialogTitle className="hidden" />
+
+																<DialogDescription className="hidden" />
+
+																<Image
+																	src={image}
+																	alt={`Image ${index + 1}`}
+																	width={1300}
+																	height={700}
+																	quality={100}
+																	className="size-full rounded-xl object-cover"
+																/>
+															</DialogContent>
+														</DialogPortal>
+													</Dialog>
 												</CarouselItem>
 											))}
 										</CarouselContent>

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
-import { KanbanIcon, MenuIcon } from 'lucide-react'
+import { KanbanIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
@@ -86,11 +86,13 @@ export const Header = () => {
 						<Link href="/contacts">Hire Me!</Link>
 					</button>
 
-					<div className="mobile-toggle-svg" onClick={handleMobileOpen}>
-						<KanbanIcon
-							size={45}
-							className="p-1 rotate-90 scale-y-[-1] hover:text-[var(--main-site-color)] transition-colors ease-in-out duration-300"
-						/>
+					<div className="group" onClick={handleMobileOpen}>
+						<div className="relative mobile-toggle-svg size-13 transition-transform duration-300 ease-in-out group-hover:scale-x-[-1]">
+							<KanbanIcon
+								size={48}
+								className="absolute size-12! p-1 inset-0 m-auto rotate-90 scale-y-[-1] hover:text-[var(--main-site-color)] transition-colors ease-in-out duration-300"
+							/>
+						</div>
 					</div>
 				</div>
 

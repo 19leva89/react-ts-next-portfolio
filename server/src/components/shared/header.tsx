@@ -31,8 +31,10 @@ export const Header = ({ handleAsideOpen }: HeaderProps) => {
 				<h1 className="uppercase">Admin</h1>
 
 				{session ? (
-					<div className="header-ham flex items-center justify-center" onClick={handleAsideOpen}>
-						<KanbanIcon size={22} className="rotate-270" />
+					<div className="header-ham flex items-center justify-center group" onClick={handleAsideOpen}>
+						<div className="relative size-7 transition-transform duration-300 ease-in-out group-hover:scale-x-[-1]">
+							<KanbanIcon size={24} className="absolute size-6! inset-0 m-auto rotate-270" />
+						</div>
 					</div>
 				) : null}
 			</div>
