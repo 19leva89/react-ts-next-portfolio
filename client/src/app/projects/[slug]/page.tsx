@@ -91,7 +91,7 @@ const ProjectSlugPage = () => {
 																	width={1300}
 																	height={700}
 																	quality={100}
-																	className="size-full rounded-xl object-cover"
+																	className="size-full object-cover"
 																/>
 															</DialogContent>
 														</DialogPortal>

@@ -49,7 +49,7 @@ export const Header = () => {
 
 	return (
 		<header className={isSticky ? 'sticky' : ''}>
-			<nav className="container m-auto flex items-center justify-between gap-8">
+			<nav className="container m-auto flex items-center justify-between gap-1 sm:gap-8">
 				<div className="logo flex items-center gap-8">
 					<Link href="/">
 						<Image
@@ -67,7 +67,7 @@ export const Header = () => {
 					</h2>
 				</div>
 
-				<div className="navlist flex items-center gap-4">
+				<div className="navlist flex items-center gap-2 sm:gap-4">
 					<ul className="flex items-center gap-8">
 						{navItems.map(({ href, label }) => (
 							<NavItem

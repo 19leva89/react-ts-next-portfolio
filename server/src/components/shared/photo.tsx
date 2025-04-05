@@ -3,8 +3,7 @@
 import axios from 'axios'
 import Form from 'next/form'
 import Image from 'next/image'
-import toast from 'react-hot-toast'
-
+import { toast } from 'sonner'
 import { Trash2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
