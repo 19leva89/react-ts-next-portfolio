@@ -14,7 +14,7 @@ export const services = [
 	},
 	{
 		id: 3,
-		title: 'Digital Marketing(SEO)',
+		title: 'Digital Marketing (SEO)',
 		description:
 			'My digital marketing services will take your business to the next level, we offer remarkable digital marketing strategies that drives traffic to your website, your business, and improves your brand awareness to potential customers.',
 	},

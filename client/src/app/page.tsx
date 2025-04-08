@@ -97,7 +97,7 @@ const HomePage = () => {
 
 							<div className="lead" data-aos="fade-up">
 								I break down complex user experience problems to create integrity focused solutions that
-								connect billions of people
+								connect millions of people
 							</div>
 
 							<div className="hero-btn-box" data-aos="fade-up">

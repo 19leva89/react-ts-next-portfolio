@@ -71,7 +71,7 @@ export const Footer = () => {
 				</ul>
 
 				<div className="copyrights">
-					&copy; 2024. All Rights Reserved by <span>Sobolev.in</span>
+					&copy; 2025. All Rights Reserved by <span>Sobolev.in</span>
 				</div>
 			</div>
 		</footer>
