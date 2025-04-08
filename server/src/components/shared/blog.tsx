@@ -3,11 +3,11 @@
 import axios from 'axios'
 import Form from 'next/form'
 import Image from 'next/image'
-import toast from 'react-hot-toast'
 import ReactMarkdown from 'react-markdown'
 import MarkdownEditor from 'react-markdown-editor-lite'
 import 'react-markdown-editor-lite/lib/index.css'
 
+import { toast } from 'sonner'
 import { Trash2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'

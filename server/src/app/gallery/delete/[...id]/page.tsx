@@ -2,7 +2,7 @@
 
 import axios from 'axios'
 import Head from 'next/head'
-import toast from 'react-hot-toast'
+import { toast } from 'sonner'
 import { Trash2Icon } from 'lucide-react'
 import { useState, useEffect } from 'react'
 import { useParams, useRouter } from 'next/navigation'
