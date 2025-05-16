@@ -68,7 +68,7 @@ const ShopSlugPage = () => {
 
 								<div className="left-s-img-box-list">
 									<Swiper
-										slidesPerView={'auto'}
+										slidesPerView="auto"
 										spaceBetween={30}
 										freeMode={true}
 										grabCursor={true}

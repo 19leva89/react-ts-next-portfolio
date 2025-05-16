@@ -25,13 +25,13 @@ const SettingsPage = () => {
 						<div className="flex items-center justify-between mt-8">
 							<h3>Phone:</h3>
 
-							<input type="tel" defaultValue={'+380668745656'} />
+							<input type="tel" defaultValue="+380668745656" />
 						</div>
 
 						<div className="flex items-center justify-between mt-8">
 							<h3>Email:</h3>
 
-							<input type="email" defaultValue={'youremail@gmail.com'} />
+							<input type="email" defaultValue="youremail@gmail.com" />
 						</div>
 
 						<div className="flex items-center justify-center w-full mt-8">

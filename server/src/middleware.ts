@@ -1,11 +1,11 @@
 import NextAuth from 'next-auth'
 import { NextRequest, NextResponse } from 'next/server'
 
-import authConfig from '@/auth.config'
+import edgeConfig from '@/auth.config'
 
-const { auth } = NextAuth(authConfig)
+const { auth } = NextAuth(edgeConfig)
 
-const publicRoutes = ['/auth/sign-in', '/auth/sign-up', '/api/auth']
+const publicRoutes = ['/auth/sign-in', '/auth/sign-up', '/recovery', '/api/auth']
 const protectedRoutes = ['/']
 
 export default auth(async function middleware(req: NextRequest) {
@@ -33,5 +33,4 @@ export default auth(async function middleware(req: NextRequest) {
 
 export const config = {
 	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|icons|images|fonts|css|js).*)'],
-	runtime: 'nodejs',
 }

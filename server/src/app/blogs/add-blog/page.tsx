@@ -6,7 +6,7 @@ const AddBlogPage = () => {
 			<DashboardHeader title="Add" subtitle="Blog" breadcrumbs={['blogs', 'add-blog']} />
 
 			<div className="contents-add">
-				<Blog _id={''} title={''} slug={''} />
+				<Blog _id="" title="" slug="" />
 			</div>
 		</div>
 	)

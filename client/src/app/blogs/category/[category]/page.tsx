@@ -118,7 +118,7 @@ const BlogCategoryPage = () => {
 
 												<div className="absolute bottom-2 left-2 w-full z-10">
 													<Swiper
-														slidesPerView={'auto'}
+														slidesPerView="auto"
 														spaceBetween={0}
 														freeMode={true}
 														grabCursor={true}

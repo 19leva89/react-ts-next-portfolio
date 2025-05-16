@@ -6,7 +6,7 @@ const AddProductPage = () => {
 			<DashboardHeader title="Add" subtitle="Product" breadcrumbs={['shop', 'add-product']} />
 
 			<div className="contents-add">
-				<Shop _id={''} title={''} slug={''} />
+				<Shop _id="" title="" slug="" />
 			</div>
 		</div>
 	)

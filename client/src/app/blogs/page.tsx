@@ -106,7 +106,7 @@ const BlogsPage = () => {
 
 									<div className="fe-posts flex items-center">
 										<Swiper
-											slidesPerView={'auto'}
+											slidesPerView="auto"
 											freeMode={true}
 											spaceBetween={30}
 											modules={[Scrollbar]}

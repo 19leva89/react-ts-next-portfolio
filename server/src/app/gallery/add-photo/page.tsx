@@ -6,7 +6,7 @@ const AddPhotoPage = () => {
 			<DashboardHeader title="Add" subtitle="Photo" breadcrumbs={['gallery', 'add-photo']} />
 
 			<div className="contents-add">
-				<Photo _id={''} title={''} slug={''} images={[]} />
+				<Photo _id="" title="" slug="" images={[]} />
 			</div>
 		</div>
 	)

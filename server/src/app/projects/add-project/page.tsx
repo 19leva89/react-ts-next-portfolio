@@ -6,7 +6,7 @@ const AddProjectPage = () => {
 			<DashboardHeader title="Add" subtitle="Project" breadcrumbs={['projects', 'add-project']} />
 
 			<div className="contents-add">
-				<Project _id={''} title={''} slug={''} />
+				<Project _id="" title="" slug="" />
 			</div>
 		</div>
 	)
