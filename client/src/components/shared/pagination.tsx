@@ -14,11 +14,11 @@ export const Pagination = ({ paginate, currentPage, totalPages }: Props) => {
 	}
 
 	return (
-		<div className="content-pagination flex items-center justify-center mt-12">
+		<div className='content-pagination mt-12 flex items-center justify-center'>
 			<button
 				onClick={() => paginate(currentPage - 1)}
 				disabled={currentPage === 1}
-				className="flex items-center justify-center"
+				className='flex items-center justify-center'
 			>
 				<ChevronLeftIcon size={26} />
 			</button>
@@ -38,7 +38,7 @@ export const Pagination = ({ paginate, currentPage, totalPages }: Props) => {
 			<button
 				onClick={() => paginate(currentPage + 1)}
 				disabled={currentPage === totalPages}
-				className="flex items-center justify-center"
+				className='flex items-center justify-center'
 			>
 				<ChevronRightIcon size={26} />
 			</button>

@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 			const photos = await Photo.find().sort({ _id: -1 })
 			return NextResponse.json(photos)
 		}
-	} catch (error) {
+	} catch {
 		return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
 	}
 }

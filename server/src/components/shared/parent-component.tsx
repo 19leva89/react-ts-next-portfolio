@@ -18,7 +18,7 @@ export function ParentComponent({ children }: PropsWithChildren) {
 			<Aside asideOpen={asideOpen} handleAsideOpen={asideClickOpen} />
 
 			<main>
-				<div className={asideOpen ? 'container mx-auto' : 'container mx-auto active'}>{children}</div>
+				<div className={asideOpen ? 'container mx-auto' : 'active container mx-auto'}>{children}</div>
 			</main>
 		</>
 	)

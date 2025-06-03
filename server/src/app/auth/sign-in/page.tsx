@@ -50,45 +50,45 @@ const SignInPage = () => {
 	}
 
 	return (
-		<div className="flex items-center justify-center h-screen!">
-			<div className="login-form">
-				<div className="heading">Sign In</div>
+		<div className='flex h-screen! items-center justify-center'>
+			<div className='login-form'>
+				<div className='heading'>Sign In</div>
 
 				{sessionStatus === 'loading' ? (
-					<div className="flex items-center justify-center w-full flex-col">
+					<div className='flex w-full flex-col items-center justify-center'>
 						<Spinner />
 					</div>
 				) : (
-					<form className="form" onSubmit={handleSubmit}>
+					<form className='form' onSubmit={handleSubmit}>
 						<input
-							type="email"
-							name="email"
-							placeholder="Email"
-							className="input"
+							type='email'
+							name='email'
+							placeholder='Email'
+							className='input'
 							onChange={handleChange}
 							value={form.email}
 							required
 						/>
 
 						<input
-							type="password"
-							name="password"
-							placeholder="Password"
-							className="input"
+							type='password'
+							name='password'
+							placeholder='Password'
+							className='input'
 							onChange={handleChange}
 							value={form.password}
 							required
 						/>
 
-						<button className="login-button" type="submit">
+						<button className='login-button' type='submit'>
 							Sign In
 						</button>
 
-						<span className="text-gray-600">
+						<span className='text-gray-600'>
 							Forgot your password?
 							<Link
-								href="/recovery"
-								className="ml-1 font-medium text-amber-600 hover:text-amber-700 hover:underline transition-colors ease-in-out duration-200"
+								href='/recovery'
+								className='ml-1 font-medium text-amber-600 transition-colors duration-200 ease-in-out hover:text-amber-700 hover:underline'
 							>
 								Restore
 							</Link>

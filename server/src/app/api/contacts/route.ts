@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
 			const contacts = await Contact.find().sort({ _id: -1 })
 			return NextResponse.json(contacts)
 		}
-	} catch (error) {
+	} catch {
 		return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
 	}
 }
@@ -55,7 +55,7 @@ export async function POST(request: NextRequest) {
 		})
 
 		return NextResponse.json(contactDoc, { status: 201 })
-	} catch (error) {
+	} catch {
 		return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
 	}
 }
@@ -89,7 +89,7 @@ export async function PUT(request: NextRequest) {
 		)
 
 		return NextResponse.json({ success: true })
-	} catch (error) {
+	} catch {
 		return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
 	}
 }
@@ -113,7 +113,7 @@ export async function DELETE(request: NextRequest) {
 		} else {
 			return NextResponse.json({ error: 'Missing ID parameter' }, { status: 400 })
 		}
-	} catch (error) {
+	} catch {
 		return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })
 	}
 }

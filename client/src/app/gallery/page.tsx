@@ -18,50 +18,50 @@ const GalleryPage = () => {
 				<title>Sobolev: Gallery Photos</title>
 			</Head>
 
-			<div className="gallery-page">
-				<div className="container m-auto">
-					<div className="gallery-top-sec">
-						<div className="top-phone-sec">
-							<div className="left-title-sec">
-								<h4 data-aos="fade-right">Sobolev Gallery Photos</h4>
+			<div className='gallery-page'>
+				<div className='container m-auto'>
+					<div className='gallery-top-sec'>
+						<div className='top-phone-sec'>
+							<div className='left-title-sec'>
+								<h4 data-aos='fade-right'>Sobolev Gallery Photos</h4>
 
-								<h1 data-aos="fade-right">
+								<h1 data-aos='fade-right'>
 									Vaibhav <br /> Photographers
 								</h1>
 
-								<Link href="/gallery#gallery-images">
+								<Link href='/gallery#gallery-images'>
 									<button>View more</button>
 								</Link>
 							</div>
 
-							<div className="right-img-sec">
+							<div className='right-img-sec'>
 								<Image
-									src="/img/gallery-1.jpg"
-									alt="gallery"
-									data-aos="flip-left"
-									data-aos-ease="ease-in-cubic"
-									data-aos-duration="2000"
+									src='/img/gallery-1.jpg'
+									alt='gallery'
+									data-aos='flip-left'
+									data-aos-ease='ease-in-cubic'
+									data-aos-duration='2000'
 									width={330}
 									height={450}
 								/>
 
-								<div className="r-img-top">
+								<div className='r-img-top'>
 									<Image
-										src="/img/gallery-2.jpg"
-										alt="gallery"
-										data-aos="flip-right"
-										data-aos-ease="ease-in-cubic"
-										data-aos-duration="2000"
+										src='/img/gallery-2.jpg'
+										alt='gallery'
+										data-aos='flip-right'
+										data-aos-ease='ease-in-cubic'
+										data-aos-duration='2000'
 										width={420}
 										height={560}
 									/>
 
 									<Image
-										src="/img/gallery-3.jpg"
-										alt="gallery"
-										data-aos="flip-right"
-										data-aos-ease="ease-in-cubic"
-										data-aos-duration="2000"
+										src='/img/gallery-3.jpg'
+										alt='gallery'
+										data-aos='flip-right'
+										data-aos-ease='ease-in-cubic'
+										data-aos-duration='2000'
 										width={300}
 										height={400}
 									/>
@@ -71,9 +71,9 @@ const GalleryPage = () => {
 					</div>
 				</div>
 
-				<div className="gallery-btm-photos" id="gallery-images">
-					<div className="container m-auto">
-						<div className="g-btm-title text-center">
+				<div className='gallery-btm-photos' id='gallery-images'>
+					<div className='container m-auto'>
+						<div className='g-btm-title text-center'>
 							<h3>
 								<span>01:</span> Our portfolio
 							</h3>
@@ -83,25 +83,25 @@ const GalleryPage = () => {
 						</div>
 
 						{loading ? (
-							<div className="flex items-center justify-center">
+							<div className='flex items-center justify-center'>
 								<Spinner />
 							</div>
 						) : (
-							<div className="gallery-image-grid">
+							<div className='gallery-image-grid'>
 								{allData?.map((photo) => (
 									<div
-										className="image-item"
+										className='image-item'
 										key={photo._id}
-										data-aos="flip-left"
-										data-aos-ease="ease-in-cubic"
-										data-aos-duration="2000"
+										data-aos='flip-left'
+										data-aos-ease='ease-in-cubic'
+										data-aos-duration='2000'
 									>
 										<img
 											src={photo.images && photo.images.length > 0 ? photo.images[0] : '/img/no-image.png'}
-											alt="gallery"
+											alt='gallery'
 										/>
 
-										<div className="gallery-img-item-info">
+										<div className='gallery-img-item-info'>
 											<h2>{photo.title}</h2>
 											<p>by Sobolev</p>
 										</div>

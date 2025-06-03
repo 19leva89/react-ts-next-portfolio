@@ -55,7 +55,7 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 	const publishedData = allData?.filter((content) => content.status === 'publish') || []
 
 	const buttonClasses = cn(
-		'inline-flex items-center text-sm sm:text-lg leading-none font-bold h-8 sm:h-12 p-2 sm:px-8 sm:py-4 border-none rounded-3xl',
+		'inline-flex h-8 items-center rounded-3xl border-none p-2 text-sm leading-none font-bold sm:h-12 sm:px-8 sm:py-4 sm:text-lg',
 		'bg-[var(--week-white)] text-[var(--main-site-color)]',
 		'dark:bg-[#140c1c] dark:text-[var(--pure-white)]',
 		'hover:bg-gradient-to-r hover:from-[var(--main-site-color)] hover:to-[var(--dark-site-secondary)] hover:text-[var(--pure-white)]',
@@ -81,19 +81,19 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 	}, [selectedCategory, allData])
 
 	return (
-		<section className="projects">
-			<div className="container m-auto">
-				<div className="relative text-center mb-12 mt-0 sm:mt-20 max-w-[700px] w-full mx-auto">
+		<section className='projects'>
+			<div className='container m-auto'>
+				<div className='relative mx-auto mt-0 mb-12 w-full max-w-[700px] text-center sm:mt-20'>
 					<h2
-						className="inline-flex gap-4 mb-0 text-4xl sm:text-5xl bg-gradient-to-r from-[var(--main-site-color)] to-[var(--dark-site-secondary)] dark:to-[#dddddd] bg-clip-text text-transparent"
-						data-aos="fade-up"
+						className='mb-0 inline-flex gap-4 bg-gradient-to-r from-[var(--main-site-color)] to-[var(--dark-site-secondary)] bg-clip-text text-4xl text-transparent sm:text-5xl dark:to-[#dddddd]'
+						data-aos='fade-up'
 					>
 						My Recent Works
 					</h2>
 
 					<p
-						className="mt-4 text-sm sm:text-xl text-center text-[var(--dark-black)] dark:text-[#999]"
-						data-aos="fade-up"
+						className='mt-4 text-center text-sm text-[var(--dark-black)] sm:text-xl dark:text-[#999]'
+						data-aos='fade-up'
 					>
 						I put your ideas and thus your wishes in the form of a unique web project that inspires you and
 						your customers
@@ -101,11 +101,11 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 				</div>
 
 				<div
-					className="flex flex-wrap items-center justify-center gap-4"
-					data-aos="fade-zoom-in"
-					data-aos-easing="ease-in-back"
-					data-aos-delay="300"
-					data-aos-offset="0"
+					className='flex flex-wrap items-center justify-center gap-4'
+					data-aos='fade-zoom-in'
+					data-aos-easing='ease-in-back'
+					data-aos-delay='300'
+					data-aos-offset='0'
 				>
 					<button
 						onClick={() => setSelectedCategory('all')}
@@ -159,15 +159,15 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 					</button>
 				</div>
 
-				<div className="projects-card">
+				<div className='projects-card'>
 					{loading ? (
-						<div className="flex items-center justify-center w-screen h-[50vh]">
+						<div className='flex h-[50vh] w-screen items-center justify-center'>
 							<Spinner />
 						</div>
 					) : (
 						<>
 							{filteredProjects.length === 0 ? (
-								<h1 className="flex items-center justify-center w-full h-[25vh] mt-12 text-[var(--dark-black)] dark:text-[#999]">
+								<h1 className='mt-12 flex h-[25vh] w-full items-center justify-center text-[var(--dark-black)] dark:text-[#999]'>
 									No projects found
 								</h1>
 							) : (
@@ -175,12 +175,12 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 									<Link
 										key={project._id}
 										href={`/projects/${project.slug}`}
-										className="pro-card"
-										data-aos="flip-left"
-										data-aos-easing="ease-out-cubic"
-										data-aos-duration="2000"
+										className='pro-card'
+										data-aos='flip-left'
+										data-aos-easing='ease-out-cubic'
+										data-aos-duration='2000'
 									>
-										<div className="pro-img-box">
+										<div className='pro-img-box'>
 											<Image
 												src={
 													project.images && project.images.length > 0
@@ -194,8 +194,8 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 											/>
 										</div>
 
-										<div className="pro-content-box">
-											<h2 className="mb-0 xl:mb-4 text-sm lg:text-lg xl:text-2xl uppercase">
+										<div className='pro-content-box'>
+											<h2 className='mb-0 text-sm uppercase lg:text-lg xl:mb-4 xl:text-2xl'>
 												{project.title}
 											</h2>
 
@@ -209,9 +209,9 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 				</div>
 
 				{!showAllProjects && (
-					<div className="flex items-center justify-center">
-						<button className={cn(buttonClasses, 'mt-12 px-8 py-4 h-12 text-lg')}>
-							<Link href="/projects">View all projects</Link>
+					<div className='flex items-center justify-center'>
+						<button className={cn(buttonClasses, 'mt-12 h-12 px-8 py-4 text-lg')}>
+							<Link href='/projects'>View all projects</Link>
 						</button>
 					</div>
 				)}

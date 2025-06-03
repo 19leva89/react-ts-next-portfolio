@@ -42,7 +42,6 @@ export const Shop = ({
 	// for images uploading
 	const [isUploading, setIsUploading] = useState<boolean>(false)
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const uploadImagesQuery: Promise<any>[] = []
 
 	const createProduct = async () => {
@@ -122,16 +121,16 @@ export const Shop = ({
 	}
 
 	return (
-		<Form className="add-website-form" action="" onSubmit={createProduct}>
+		<Form className='add-website-form' action='' onSubmit={createProduct}>
 			{/* product title */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="title">
-					Title <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='title'>
+					Title <span className='text-red-500'>*</span>
 				</label>
 				<input
-					type="text"
-					id="title"
-					placeholder="Enter small title"
+					type='text'
+					id='title'
+					placeholder='Enter small title'
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					required
@@ -139,14 +138,14 @@ export const Shop = ({
 			</div>
 
 			{/* blog slug url */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="slug">
-					Slug (seo friendly url) <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='slug'>
+					Slug (seo friendly url) <span className='text-red-500'>*</span>
 				</label>
 				<input
-					type="text"
-					id="slug"
-					placeholder="Enter slug url"
+					type='text'
+					id='slug'
+					placeholder='Enter slug url'
 					value={slug}
 					onChange={handleSlugChange}
 					required
@@ -154,60 +153,60 @@ export const Shop = ({
 			</div>
 
 			{/* product affiliate link */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="affiliateLink">Affiliate link</label>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='affiliateLink'>Affiliate link</label>
 				<input
-					type="text"
-					id="affiliateLink"
-					placeholder="Enter affiliate link"
+					type='text'
+					id='affiliateLink'
+					placeholder='Enter affiliate link'
 					value={affiliateLink}
 					onChange={(e) => setAffiliateLink(e.target.value)}
 				/>
 			</div>
 
 			{/* product live preview */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="price">Price</label>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='price'>Price</label>
 				<input
-					type="text"
-					id="price"
-					placeholder="Enter price"
+					type='text'
+					id='price'
+					placeholder='Enter price'
 					value={price}
 					onChange={(e) => setPrice(Number(e.target.value))}
 				/>
 			</div>
 
 			{/* product images */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<div className="w-full">
-					<label htmlFor="images">Images (first image will be shown as thumbnail, you can drag)</label>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<div className='w-full'>
+					<label htmlFor='images'>Images (first image will be shown as thumbnail, you can drag)</label>
 					<input
-						type="file"
-						id="fileInput"
-						className="mt-4"
-						accept="image/*"
+						type='file'
+						id='fileInput'
+						className='mt-4'
+						accept='image/*'
 						onChange={uploadImages}
 						multiple
 					/>
 				</div>
 
-				<div className="w-full flex items-start justify-start mt-4">{isUploading && <Spinner />}</div>
+				<div className='mt-4 flex w-full items-start justify-start'>{isUploading && <Spinner />}</div>
 			</div>
 
 			{/* image preview and image sortable with delete image */}
 			{!isUploading && images?.length > 0 && (
-				<div className="flex items-center mb-8">
+				<div className='mb-8 flex items-center'>
 					<ReactSortable
 						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
-						className="flex items-center flex-wrap gap-4"
+						className='flex flex-wrap items-center gap-4'
 					>
 						{images?.map((link, index) => (
-							<div key={link} className="uploaded-img">
-								<Image src={link} alt="image" className="object-cover" width={150} height={80} />
+							<div key={link} className='uploaded-img'>
+								<Image src={link} alt='image' className='object-cover' width={150} height={80} />
 
-								<div className="delete-img">
+								<div className='delete-img'>
 									<button onClick={() => handleDeleteImage(index)}>
 										<Trash2Icon size={15} />
 									</button>
@@ -219,8 +218,8 @@ export const Shop = ({
 			)}
 
 			{/* markdown description */}
-			<div className="description w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="description">
+			<div className='description mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='description'>
 					Product content (for image: first upload and copy link and paste in ![alt text](link))
 				</label>
 
@@ -231,7 +230,6 @@ export const Shop = ({
 					renderHTML={(text) => (
 						<ReactMarkdown
 							components={{
-								// eslint-disable-next-line @typescript-eslint/no-explicit-any
 								code: (props: any) => <CodeBlock {...props} inline={false} />,
 							}}
 						>
@@ -242,39 +240,39 @@ export const Shop = ({
 			</div>
 
 			{/* tags */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="tags">Tags</label>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='tags'>Tags</label>
 				<select
-					name="tags"
-					id="tags"
+					name='tags'
+					id='tags'
 					value={tags}
 					onChange={(e) => setTags(Array.from(e.target.selectedOptions, (option) => option.value))}
 					multiple
 				>
-					<option value="adapter">Adapter</option>
-					<option value="usb-c">USB C</option>
-					<option value="graphic">Graphic</option>
-					<option value="gimbal">Gimbal</option>
-					<option value="content-creators">Content Creators</option>
-					<option value="desk">Desk</option>
-					<option value="standing-desk">Standing Desk</option>
+					<option value='adapter'>Adapter</option>
+					<option value='usb-c'>USB C</option>
+					<option value='graphic'>Graphic</option>
+					<option value='gimbal'>Gimbal</option>
+					<option value='content-creators'>Content Creators</option>
+					<option value='desk'>Desk</option>
+					<option value='standing-desk'>Standing Desk</option>
 				</select>
 			</div>
 
 			{/* product status */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="status">
-					Status <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='status'>
+					Status <span className='text-red-500'>*</span>
 				</label>
-				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)} required>
-					<option value="">No select</option>
-					<option value="draft">Draft</option>
-					<option value="publish">Publish</option>
+				<select name='status' id='status' value={status} onChange={(e) => setStatus(e.target.value)} required>
+					<option value=''>No select</option>
+					<option value='draft'>Draft</option>
+					<option value='publish'>Publish</option>
 				</select>
 			</div>
 
-			<div className="w-full mb-4">
-				<button className="w-full justify-center uppercase" type="submit">
+			<div className='mb-4 w-full'>
+				<button className='w-full justify-center uppercase' type='submit'>
 					Save product
 				</button>
 			</div>

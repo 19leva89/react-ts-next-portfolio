@@ -56,25 +56,25 @@ const DeleteBlogPage = () => {
 				<title>Delete Blog</title>
 			</Head>
 
-			<div className="content-page">
-				<DashboardHeader title="Delete" subtitle={productInfo?.title || ''} breadcrumbs={['blogs']} />
+			<div className='content-page'>
+				<DashboardHeader title='Delete' subtitle={productInfo?.title || ''} breadcrumbs={['blogs']} />
 
-				<div className="delete-sec flex items-center justify-center w-screen h-screen">
-					<div className="delete-card">
-						<Trash2Icon size={60} color="red" />
+				<div className='delete-sec flex h-screen w-screen items-center justify-center'>
+					<div className='delete-card'>
+						<Trash2Icon size={60} color='red' />
 
-						<p className="cookie-heading">Are you sure?</p>
+						<p className='cookie-heading'>Are you sure?</p>
 
-						<p className="cookie-description">
+						<p className='cookie-description'>
 							If you delete this website content, it will be permanent delete your content
 						</p>
 
-						<div className="button-container">
-							<button onClick={deleteProduct} className="accept-button">
+						<div className='button-container'>
+							<button onClick={deleteProduct} className='accept-button'>
 								Delete
 							</button>
 
-							<button onClick={goBack} className="decline-button">
+							<button onClick={goBack} className='decline-button'>
 								Cancel
 							</button>
 						</div>

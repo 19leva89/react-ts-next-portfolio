@@ -45,14 +45,14 @@ const ShopSlugPage = () => {
 				<title>Shop Page</title>
 			</Head>
 
-			<div className="shop-slug-page">
-				<div className="shop-content">
-					<div className="container m-auto">
-						<div className="shop-cont-box">
-							<div className="left-shop-img-box">
-								<div className="left-shop-main-img">
+			<div className='shop-slug-page'>
+				<div className='shop-content'>
+					<div className='container m-auto'>
+						<div className='shop-cont-box'>
+							<div className='left-shop-img-box'>
+								<div className='left-shop-main-img'>
 									{loading ? (
-										<div className="w-full h-full flex items-center justify-center">
+										<div className='flex h-full w-full items-center justify-center'>
 											<Spinner />
 										</div>
 									) : (
@@ -66,15 +66,15 @@ const ShopSlugPage = () => {
 									)}
 								</div>
 
-								<div className="left-s-img-box-list">
+								<div className='left-s-img-box-list'>
 									<Swiper
-										slidesPerView="auto"
+										slidesPerView='auto'
 										spaceBetween={30}
 										freeMode={true}
 										grabCursor={true}
 										modules={[Scrollbar]}
 										scrollbar={{ draggable: true }}
-										className="imageSwiper"
+										className='imageSwiper'
 									>
 										{allData &&
 											allData[0] &&
@@ -95,29 +95,28 @@ const ShopSlugPage = () => {
 								</div>
 							</div>
 
-							<div className="right-shop-cont-box">
+							<div className='right-shop-cont-box'>
 								<h1>{allData?.[0].title}</h1>
 
-								<h3 className="right-shop-price">
+								<h3 className='right-shop-price'>
 									Price: <span>$ {allData?.[0].price}</span>
 								</h3>
 
 								<a
 									href={allData?.[0].affiliateLink}
-									target="_blank"
-									rel="noreferrer"
-									className="shop-now-btn"
+									target='_blank'
+									rel='noreferrer'
+									className='shop-now-btn'
 								>
 									Shop Now
 								</a>
 
-								<div className="blog-content dark:bg-[#140c1c]!">
-									<h2 className="bc-title">Product Details:</h2>
+								<div className='blog-content dark:bg-[#140c1c]!'>
+									<h2 className='bc-title'>Product Details:</h2>
 
 									<ReactMarkdown
 										remarkPlugins={[remarkGfm]}
 										components={{
-											// eslint-disable-next-line @typescript-eslint/no-explicit-any
 											code: (props: any) => <CodeBlock {...props} inline={false} />,
 										}}
 									>

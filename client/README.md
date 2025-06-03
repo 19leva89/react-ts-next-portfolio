@@ -1,3 +1,5 @@
+# This project contains the following technologies
+
 Animation and Interaction:
 - AOS (animation on scroll)
 - GSAP (animation library)
@@ -34,7 +36,18 @@ Text Editing:
 Utilities and Libraries:
 - Knip (code analyzer and declutter)
 
-To run the client:
-npm run dev
-npm run lint (loading ESLint checker)
-npm run knip
+# Project setup commands:
+terminal powershell -> `npm i` (install dependencies)
+terminal powershell -> `npm run dev`
+terminal powershell -> `npm run lint` (loading ESLint checker)
+terminal powershell -> `npm run knip`
+
+# GitHub commands:
+terminal powershell -> `git pull origin master` (get latest changes)
+
+terminal powershell -> `git add .` (add all changes)
+terminal powershell -> `git commit -m "commit message"` (commit changes)
+terminal powershell -> `git checkout -b <branch-name>` (create new branch)
+
+terminal powershell -> `git push origin master` (push changes to master)
+terminal powershell -> `git push origin <branch-name>` (push changes to branch)

@@ -9,16 +9,16 @@ interface DashboardHeaderProps {
 
 export const DashboardHeader = ({ title, subtitle, breadcrumbs }: DashboardHeaderProps) => {
 	return (
-		<div className="title-dashboard flex items-center justify-between">
+		<div className='title-dashboard flex items-center justify-between'>
 			<div>
 				<h2>
 					{title} <span>{subtitle}</span>
 				</h2>
-				<h3 className="uppercase">Admin panel</h3>
+				<h3 className='uppercase'>Admin panel</h3>
 			</div>
 
-			<div className="breadcrumb">
-				<Link href="/">
+			<div className='breadcrumb'>
+				<Link href='/'>
 					<HouseIcon size={22} />
 				</Link>
 

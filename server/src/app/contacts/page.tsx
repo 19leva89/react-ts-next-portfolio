@@ -42,15 +42,15 @@ const ContactsPage = () => {
 	const publishedContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
 	return (
-		<div className="content-page">
-			<DashboardHeader title="All Published" subtitle="Contacts" breadcrumbs={['contacts']} />
+		<div className='content-page'>
+			<DashboardHeader title='All Published' subtitle='Contacts' breadcrumbs={['contacts']} />
 
-			<div className="contents-table">
-				<div className="flex items-center gap-8 mb-4">
+			<div className='contents-table'>
+				<div className='mb-4 flex items-center gap-8'>
 					<h2>Search Contacts:</h2>
 					<input
-						type="text"
-						placeholder="Search by name..."
+						type='text'
+						placeholder='Search by name...'
 						value={searchQuery}
 						onChange={(e) => setSearchQuery(e.target.value)}
 					/>
@@ -79,7 +79,7 @@ const ContactsPage = () => {
 							<>
 								{publishedContent.length === 0 ? (
 									<tr>
-										<td colSpan={6} className="text-center">
+										<td colSpan={6} className='text-center'>
 											No Contacts Found
 										</td>
 									</tr>
@@ -105,7 +105,7 @@ const ContactsPage = () => {
 											</td>
 
 											<td>
-												<div className="flex items-center gap-8 justify-center">
+												<div className='flex items-center justify-center gap-8'>
 													<Link href={`/contacts/view/${content._id}`}>
 														<button>
 															<EyeIcon size={15} />

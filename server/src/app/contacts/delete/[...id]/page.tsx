@@ -56,23 +56,23 @@ const DeleteContactPage = () => {
 				<title>Delete Contact</title>
 			</Head>
 
-			<div className="content-page">
-				<DashboardHeader title="Delete" subtitle={contactInfo?.email || ''} breadcrumbs={['contacts']} />
+			<div className='content-page'>
+				<DashboardHeader title='Delete' subtitle={contactInfo?.email || ''} breadcrumbs={['contacts']} />
 
-				<div className="delete-sec flex items-center justify-center w-screen h-screen">
-					<div className="delete-card">
-						<Trash2Icon size={60} color="red" />
+				<div className='delete-sec flex h-screen w-screen items-center justify-center'>
+					<div className='delete-card'>
+						<Trash2Icon size={60} color='red' />
 
-						<p className="cookie-heading">Are you sure?</p>
+						<p className='cookie-heading'>Are you sure?</p>
 
-						<p className="cookie-description">If you delete this contact, it will be deleted permanently</p>
+						<p className='cookie-description'>If you delete this contact, it will be deleted permanently</p>
 
-						<div className="button-container">
-							<button onClick={deleteContact} className="accept-button">
+						<div className='button-container'>
+							<button onClick={deleteContact} className='accept-button'>
 								Delete
 							</button>
 
-							<button onClick={goBack} className="decline-button">
+							<button onClick={goBack} className='decline-button'>
 								Cancel
 							</button>
 						</div>

@@ -46,7 +46,7 @@ export const CodeBlock = ({ inline, className, children, ...props }: Props) => {
 				<SyntaxHighlighter
 					style={a11yDark}
 					language={match[1]}
-					PreTag="pre"
+					PreTag='pre'
 					{...props}
 					codeTagProps={{
 						style: codeTagStyle,
@@ -74,7 +74,7 @@ export const CodeBlock = ({ inline, className, children, ...props }: Props) => {
 	}
 
 	return (
-		<code className="md-post-code" {...props}>
+		<code className='md-post-code' {...props}>
 			{children}
 		</code>
 	)

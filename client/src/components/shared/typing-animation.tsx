@@ -23,5 +23,5 @@ export const TypingAnimation = () => {
 		}
 	}, [])
 
-	return <span ref={el} className="typed-text" />
+	return <span ref={el} className='typed-text' />
 }

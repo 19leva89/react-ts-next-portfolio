@@ -23,7 +23,6 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 	// for images uploading
 	const [isUploading, setIsUploading] = useState<boolean>(false)
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const uploadImagesQuery: Promise<any>[] = []
 
 	const createPhoto = async () => {
@@ -103,16 +102,16 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 	}
 
 	return (
-		<Form className="add-website-form" action="" onSubmit={createPhoto}>
+		<Form className='add-website-form' action='' onSubmit={createPhoto}>
 			{/* photo title */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="title">
-					Title <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='title'>
+					Title <span className='text-red-500'>*</span>
 				</label>
 				<input
-					type="text"
-					id="title"
-					placeholder="Enter small title"
+					type='text'
+					id='title'
+					placeholder='Enter small title'
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					required
@@ -120,14 +119,14 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 			</div>
 
 			{/* blog slug url */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="slug">
-					Slug (seo friendly url) <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='slug'>
+					Slug (seo friendly url) <span className='text-red-500'>*</span>
 				</label>
 				<input
-					type="text"
-					id="slug"
-					placeholder="Enter slug url"
+					type='text'
+					id='slug'
+					placeholder='Enter slug url'
 					value={slug}
 					onChange={handleSlugChange}
 					required
@@ -135,40 +134,40 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 			</div>
 
 			{/* photo images */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<div className="w-full">
-					<label htmlFor="images">
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<div className='w-full'>
+					<label htmlFor='images'>
 						Images (first image will be shown as thumbnail, you can drag){' '}
-						<span className="text-red-500">*</span>
+						<span className='text-red-500'>*</span>
 					</label>
 					<input
-						type="file"
-						id="fileInput"
-						className="mt-4"
-						accept="image/*"
+						type='file'
+						id='fileInput'
+						className='mt-4'
+						accept='image/*'
 						onChange={uploadImages}
 						multiple
 						required
 					/>
 				</div>
 
-				<div className="w-full flex items-start justify-start mt-4">{isUploading && <Spinner />}</div>
+				<div className='mt-4 flex w-full items-start justify-start'>{isUploading && <Spinner />}</div>
 			</div>
 
 			{/* image preview and image sortable with delete image */}
 			{!isUploading && images?.length > 0 && (
-				<div className="flex items-center mb-8">
+				<div className='mb-8 flex items-center'>
 					<ReactSortable
 						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
-						className="flex items-center flex-wrap gap-4"
+						className='flex flex-wrap items-center gap-4'
 					>
 						{images?.map((link, index) => (
-							<div key={link} className="uploaded-img">
-								<Image src={link} alt="image" className="object-cover" width={150} height={80} />
+							<div key={link} className='uploaded-img'>
+								<Image src={link} alt='image' className='object-cover' width={150} height={80} />
 
-								<div className="delete-img">
+								<div className='delete-img'>
 									<button onClick={() => handleDeleteImage(index)}>
 										<Trash2Icon size={15} />
 									</button>
@@ -179,8 +178,8 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 				</div>
 			)}
 
-			<div className="w-full mb-4">
-				<button className="w-full justify-center uppercase" type="submit">
+			<div className='mb-4 w-full'>
+				<button className='w-full justify-center uppercase' type='submit'>
 					Save photo
 				</button>
 			</div>

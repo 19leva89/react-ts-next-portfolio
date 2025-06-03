@@ -55,11 +55,11 @@ const BlogCategoryPage = () => {
 				<title>Blog category page</title>
 			</Head>
 
-			<div className="blog-category">
-				<section className="top-hero">
-					<div className="container m-auto">
-						<div className="top-title">
-							<div className="top-title-cont flex items-center">
+			<div className='blog-category'>
+				<section className='top-hero'>
+					<div className='container m-auto'>
+						<div className='top-title'>
+							<div className='top-title-cont flex items-center'>
 								<h1>
 									Category{' '}
 									<span>
@@ -77,12 +77,12 @@ const BlogCategoryPage = () => {
 					</div>
 				</section>
 
-				<section className="latest-posts-sec">
-					<div className="container m-auto">
-						<div className="border border-[#2a1f81]" />
+				<section className='latest-posts-sec'>
+					<div className='container m-auto'>
+						<div className='border border-[#2a1f81]' />
 
-						<div className="latest-posts-data">
-							<div className="fe-title">
+						<div className='latest-posts-data'>
+							<div className='fe-title'>
 								<h3>
 									{category
 										? category
@@ -94,15 +94,15 @@ const BlogCategoryPage = () => {
 								</h3>
 							</div>
 
-							<div className="latest-posts">
+							<div className='latest-posts'>
 								{loading ? (
-									<div className="flex items-center justify-center w-screen h-[50vh]">
+									<div className='flex h-[50vh] w-screen items-center justify-center'>
 										<Spinner />
 									</div>
 								) : (
 									publishedContent.map((content) => (
-										<div key={content._id} className="l-post">
-											<div className="l-post-img">
+										<div key={content._id} className='l-post'>
+											<div className='l-post-img'>
 												<Link href={`/blogs/${content.slug}`}>
 													<Image
 														src={
@@ -112,22 +112,22 @@ const BlogCategoryPage = () => {
 														}
 														alt={content.title}
 														fill
-														sizes="(max-width: 768px) 100vw, 420px"
+														sizes='(max-width: 768px) 100vw, 420px'
 													/>
 												</Link>
 
-												<div className="absolute bottom-2 left-2 w-full z-10">
+												<div className='absolute bottom-2 left-2 z-10 w-full'>
 													<Swiper
-														slidesPerView="auto"
+														slidesPerView='auto'
 														spaceBetween={0}
 														freeMode={true}
 														grabCursor={true}
 														modules={[FreeMode]}
-														className="tagsSwiper"
+														className='tagsSwiper'
 													>
 														{content.blogCategory?.map((cat, index) => (
 															<SwiperSlide key={index}>
-																<Link href={cat} className="ai">
+																<Link href={cat} className='ai'>
 																	<span />
 																	{cat.replace(/-/g, ' ')}
 																</Link>
@@ -137,15 +137,15 @@ const BlogCategoryPage = () => {
 												</div>
 											</div>
 
-											<div className="l-post-info">
+											<div className='l-post-info'>
 												<h3>
 													<Link href={`/blogs/${content.slug}`}>{content.title}</Link>
 												</h3>
 
 												<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque, autem. </p>
 
-												<h4 className="flex items-center">
-													<Image src="/img/coder-white.png" alt="author" width={28} height={28} />
+												<h4 className='flex items-center'>
+													<Image src='/img/coder-white.png' alt='author' width={28} height={28} />
 													<span>by Sobolev</span>
 												</h4>
 											</div>

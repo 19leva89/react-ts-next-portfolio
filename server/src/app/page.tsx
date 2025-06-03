@@ -66,48 +66,48 @@ const HomePage = () => {
 	}, [])
 
 	return (
-		<div className="dashboard">
-			<DashboardHeader title="Admin" subtitle="Dashboard" />
+		<div className='dashboard'>
+			<DashboardHeader title='Admin' subtitle='Dashboard' />
 
 			{/* dashboard four cards */}
-			<div className="top-four-cards flex flex-wrap items-center justify-between gap-2">
-				<div className="four-card">
+			<div className='top-four-cards flex flex-wrap items-center justify-between gap-2'>
+				<div className='four-card'>
 					<h2>Total Blogs</h2>
 					<span>{blogsData.filter((item) => item.status === 'publish').length}</span>
 				</div>
 
-				<div className="four-card">
+				<div className='four-card'>
 					<h2>Total Projects</h2>
 					<span>{projectData.filter((item) => item.status === 'publish').length}</span>
 				</div>
 
-				<div className="four-card">
+				<div className='four-card'>
 					<h2>Total Products</h2>
 					<span>{shopData.filter((item) => item.status === 'publish').length}</span>
 				</div>
 
-				<div className="four-card">
+				<div className='four-card'>
 					<h2>Gallery Photos</h2>
 					<span>{photosData.length}</span>
 				</div>
 			</div>
 
 			{/* year overview */}
-			<div className="year-overview flex items-center justify-between">
-				<div className="left-year-overview">
-					<div className="flex items-center justify-between">
+			<div className='year-overview flex items-center justify-between'>
+				<div className='left-year-overview'>
+					<div className='flex items-center justify-between'>
 						<h3>Year Overview</h3>
 
-						<ul className="creative-dots">
-							<li className="big-dot"></li>
-							<li className="semi-big-dot"></li>
-							<li className="medium-dot"></li>
-							<li className="semi-medium-dot"></li>
-							<li className="small-dot"></li>
-							<li className="semi-small-dot"></li>
+						<ul className='creative-dots'>
+							<li className='big-dot'></li>
+							<li className='semi-big-dot'></li>
+							<li className='medium-dot'></li>
+							<li className='semi-medium-dot'></li>
+							<li className='small-dot'></li>
+							<li className='semi-small-dot'></li>
 						</ul>
 
-						<h3 className="text-right">
+						<h3 className='text-right'>
 							{shopData.filter((item) => item.status === 'publish').length +
 								blogsData.filter((item) => item.status === 'publish').length +
 								projectData.filter((item) => item.status === 'publish').length}{' '}
@@ -120,21 +120,21 @@ const HomePage = () => {
 					<BarChart shopData={shopData} blogsData={blogsData} projectData={projectData} />
 				</div>
 
-				<div className="right-sales-cont">
-					<div className="flex items-center justify-between">
+				<div className='right-sales-cont'>
+					<div className='flex items-center justify-between'>
 						<h3>Data by Category</h3>
 
-						<ul className="creative-dots">
-							<li className="big-dot"></li>
-							<li className="semi-big-dot"></li>
-							<li className="medium-dot"></li>
-							<li className="semi-medium-dot"></li>
-							<li className="small-dot"></li>
-							<li className="semi-small-dot"></li>
+						<ul className='creative-dots'>
+							<li className='big-dot'></li>
+							<li className='semi-big-dot'></li>
+							<li className='medium-dot'></li>
+							<li className='semi-medium-dot'></li>
+							<li className='small-dot'></li>
+							<li className='semi-small-dot'></li>
 						</ul>
 					</div>
 
-					<div className="blogs-category">
+					<div className='blogs-category'>
 						<table>
 							<thead>
 								<tr>
