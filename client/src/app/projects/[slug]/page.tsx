@@ -118,7 +118,7 @@ const ProjectSlugPage = () => {
 									quidem sapiente quia similique. Consequatur, omnis?
 								</p>
 
-								<a href={allData?.[0].livePreview} target='_blank'>
+								<a href={allData?.[0].livePreview} target='_blank' rel='noopener noreferrer'>
 									Live Preview
 								</a>
 							</div>
