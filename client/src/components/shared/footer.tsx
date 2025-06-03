@@ -20,7 +20,11 @@ export const Footer = () => {
 					</li>
 
 					<li>
-						<Link href='/assets/Soboliev_Dmitry_Node_React_Next_Dev.pdf' target='_blank'>
+						<Link
+							href='/assets/Soboliev_Dmitry_Node_React_Next_Dev.pdf'
+							target='_blank'
+							rel='noopener noreferrer'
+						>
 							Resume
 						</Link>
 					</li>
@@ -40,31 +44,31 @@ export const Footer = () => {
 
 				<ul className='hero-social'>
 					<li>
-						<Link href='/' target='_blank'>
+						<Link href='/' target='_blank' rel='noopener noreferrer'>
 							<TwitterIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
-						<Link href='https://facebook.com/dimochka.sobolev' target='_blank'>
+						<Link href='https://facebook.com/dimochka.sobolev' target='_blank' rel='noopener noreferrer'>
 							<FacebookIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
-						<Link href='/' target='_blank'>
+						<Link href='/' target='_blank' rel='noopener noreferrer'>
 							<GlobeIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
-						<Link href='https://linkedin.com/in/lev-dmitry' target='_blank'>
+						<Link href='https://linkedin.com/in/lev-dmitry' target='_blank' rel='noopener noreferrer'>
 							<LinkedinIcon size={20} />
 						</Link>
 					</li>
 
 					<li>
-						<Link href='https://github.com/19leva89' target='_blank'>
+						<Link href='https://github.com/19leva89' target='_blank' rel='noopener noreferrer'>
 							<GithubIcon size={20} />
 						</Link>
 					</li>

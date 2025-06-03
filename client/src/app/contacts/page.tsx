@@ -109,7 +109,7 @@ const ContactPage = () => {
 
 										<span>
 											Phone:{' '}
-											<Link href='tel:+380668745656' target='_blank' rel='noreferrer noopener'>
+											<Link href='tel:+380668745656' target='_blank' rel='noopener noreferrer'>
 												+380668745656
 											</Link>
 										</span>
@@ -120,7 +120,7 @@ const ContactPage = () => {
 
 										<span>
 											Email:{' '}
-											<Link href='mailto:d.sobolev.dev@gmail.com' target='_blank' rel='noreferrer noopener'>
+											<Link href='mailto:d.sobolev.dev@gmail.com' target='_blank' rel='noopener noreferrer'>
 												d.sobolev.dev@gmail.com
 											</Link>
 										</span>
@@ -134,7 +134,7 @@ const ContactPage = () => {
 											<Link
 												href='https://linkedin.com/in/lev-dmitry'
 												target='_blank'
-												rel='noreferrer noopener'
+												rel='noopener noreferrer'
 											>
 												lev dmitry
 											</Link>
@@ -146,7 +146,7 @@ const ContactPage = () => {
 
 										<span>
 											Twitter:{' '}
-											<Link href='#' target='_blank' rel='noreferrer noopener'>
+											<Link href='#' target='_blank' rel='noopener noreferrer'>
 												@sobolev
 											</Link>
 										</span>

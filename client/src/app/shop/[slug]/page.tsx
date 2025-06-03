@@ -105,7 +105,7 @@ const ShopSlugPage = () => {
 								<a
 									href={allData?.[0].affiliateLink}
 									target='_blank'
-									rel='noreferrer'
+									rel='noopener noreferrer'
 									className='shop-now-btn'
 								>
 									Shop Now

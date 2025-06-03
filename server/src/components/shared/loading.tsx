@@ -149,7 +149,7 @@ export const Loading = () => {
 					></polyline>
 
 					<polyline
-						className='pl-_tick'
+						className='pl-tick'
 						stroke='hsl(223,90%,80%)'
 						points='0,2 0,14'
 						transform='rotate(0,0,0) translate(0,40)'
