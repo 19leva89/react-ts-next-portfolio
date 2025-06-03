@@ -49,22 +49,22 @@ export const BlogSearch = ({ cls }: Props) => {
 	}
 
 	return (
-		<div className="search-blog-fix">
-			<div className="search-blog-section-fix">
-				<div className="sbsf-input flex items-center gap-4">
+		<div className='search-blog-fix'>
+			<div className='search-blog-section-fix'>
+				<div className='sbsf-input flex items-center gap-4'>
 					<input
-						type="text"
-						placeholder="Search blog here"
+						type='text'
+						placeholder='Search blog here'
 						value={blogTitle}
 						onChange={(e) => setBlogTitle(e.target.value)}
-						className="border border-[#8a81d3] rounded-xl"
+						className='rounded-xl border border-[#8a81d3]'
 					/>
 
-					<div className="sbs-input-close" onClick={cls}>
+					<div className='sbs-input-close' onClick={cls}>
 						<XIcon size={55} />
 					</div>
 				</div>
-				<div className="sbsf-search-list mt-8">
+				<div className='sbsf-search-list mt-8'>
 					{blogTitle && (
 						<>
 							{searchResult.length === 0 ? (
@@ -75,7 +75,7 @@ export const BlogSearch = ({ cls }: Props) => {
 								<>
 									{searchResult.slice(0, 10).map((blog) => {
 										return (
-											<Link href={`/blogs/${blog.slug}`} key={blog._id} className="sbsf-s-box" onClick={cls}>
+											<Link href={`/blogs/${blog.slug}`} key={blog._id} className='sbsf-s-box' onClick={cls}>
 												<h2>{blog.title}</h2>
 
 												<p>{extractFirstParagraph(blog.description ?? '')}</p>

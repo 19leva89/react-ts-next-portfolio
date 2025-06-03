@@ -16,12 +16,12 @@ export const ModeToggle = () => {
 	}, [resolvedTheme, setTheme, setMetaColor])
 
 	return (
-		<div className="dark-mode-toggle size-10 sm:size-12" onClick={toggleTheme}>
-			<SunIcon size={28} className="hidden [html.dark_&]:block" />
+		<div className='dark-mode-toggle size-10 sm:size-12' onClick={toggleTheme}>
+			<SunIcon size={28} className='hidden [html.dark_&]:block' />
 
-			<MoonIcon size={28} className="hidden [html.light_&]:block" />
+			<MoonIcon size={28} className='hidden [html.light_&]:block' />
 
-			<span className="sr-only">Toggle theme</span>
+			<span className='sr-only'>Toggle theme</span>
 		</div>
 	)
 }

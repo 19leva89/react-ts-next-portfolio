@@ -40,7 +40,6 @@ export const Blog = ({
 	// for images uploading
 	const [isUploading, setIsUploading] = useState<boolean>(false)
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const uploadImagesQuery: Promise<any>[] = []
 
 	const createBlog = async () => {
@@ -120,16 +119,16 @@ export const Blog = ({
 	}
 
 	return (
-		<Form className="add-website-form" action="" onSubmit={createBlog}>
+		<Form className='add-website-form' action='' onSubmit={createBlog}>
 			{/* blog title */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="title">
-					Title <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='title'>
+					Title <span className='text-red-500'>*</span>
 				</label>
 				<input
-					type="text"
-					id="title"
-					placeholder="Enter small title"
+					type='text'
+					id='title'
+					placeholder='Enter small title'
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
 					required
@@ -137,14 +136,14 @@ export const Blog = ({
 			</div>
 
 			{/* blog slug url */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="slug">
-					Slug (seo friendly url) <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='slug'>
+					Slug (seo friendly url) <span className='text-red-500'>*</span>
 				</label>
 				<input
-					type="text"
-					id="slug"
-					placeholder="Enter slug url"
+					type='text'
+					id='slug'
+					placeholder='Enter slug url'
 					value={slug}
 					onChange={handleSlugChange}
 					required
@@ -152,57 +151,57 @@ export const Blog = ({
 			</div>
 
 			{/* blog category */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="category">Select category (for multiple press Ctrl + mouse left key)</label>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='category'>Select category (for multiple press Ctrl + mouse left key)</label>
 				<select
-					name="category"
-					id="category"
+					name='category'
+					id='category'
 					value={blogCategory}
 					onChange={(e) => setBlogCategory(Array.from(e.target.selectedOptions, (option) => option.value))}
 					multiple
 				>
-					<option value="node-js">Node JS</option>
-					<option value="react-js">React JS</option>
-					<option value="next-js">Next JS</option>
-					<option value="css">CSS</option>
-					<option value="digital-marketing">Digital Marketing</option>
-					<option value="flutter-dev">Flutter Dev</option>
-					<option value="database">Database</option>
-					<option value="deployment">Deployment</option>
+					<option value='node-js'>Node JS</option>
+					<option value='react-js'>React JS</option>
+					<option value='next-js'>Next JS</option>
+					<option value='css'>CSS</option>
+					<option value='digital-marketing'>Digital Marketing</option>
+					<option value='flutter-dev'>Flutter Dev</option>
+					<option value='database'>Database</option>
+					<option value='deployment'>Deployment</option>
 				</select>
 			</div>
 
 			{/* blog images */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<div className="w-full">
-					<label htmlFor="images">Images (first image will be shown as thumbnail, you can drag)</label>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<div className='w-full'>
+					<label htmlFor='images'>Images (first image will be shown as thumbnail, you can drag)</label>
 					<input
-						type="file"
-						id="fileInput"
-						className="mt-4"
-						accept="image/*"
+						type='file'
+						id='fileInput'
+						className='mt-4'
+						accept='image/*'
 						onChange={uploadImages}
 						multiple
 					/>
 				</div>
 
-				<div className="w-full flex items-start justify-start mt-4">{isUploading && <Spinner />}</div>
+				<div className='mt-4 flex w-full items-start justify-start'>{isUploading && <Spinner />}</div>
 			</div>
 
 			{/* image preview and image sortable with delete image */}
 			{!isUploading && images?.length > 0 && (
-				<div className="flex items-center mb-8">
+				<div className='mb-8 flex items-center'>
 					<ReactSortable
 						list={Array.isArray(images) ? images.map((link) => ({ id: link, content: link })) : []}
 						setList={updateImagesOrder}
 						animation={200}
-						className="flex items-center flex-wrap gap-4"
+						className='flex flex-wrap items-center gap-4'
 					>
 						{images?.map((link, index) => (
-							<div key={link} className="uploaded-img">
-								<Image src={link} alt="image" className="object-cover" width={150} height={80} />
+							<div key={link} className='uploaded-img'>
+								<Image src={link} alt='image' className='object-cover' width={150} height={80} />
 
-								<div className="delete-img">
+								<div className='delete-img'>
 									<button onClick={() => handleDeleteImage(index)}>
 										<Trash2Icon size={15} />
 									</button>
@@ -214,8 +213,8 @@ export const Blog = ({
 			)}
 
 			{/* markdown description */}
-			<div className="description w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="description">
+			<div className='description mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='description'>
 					Blog content (for image: first upload and copy link and paste in ![alt text](link))
 				</label>
 
@@ -226,7 +225,6 @@ export const Blog = ({
 					renderHTML={(text) => (
 						<ReactMarkdown
 							components={{
-								// eslint-disable-next-line @typescript-eslint/no-explicit-any
 								code: (props: any) => <CodeBlock {...props} inline={false} />,
 							}}
 						>
@@ -237,38 +235,38 @@ export const Blog = ({
 			</div>
 
 			{/* tags */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="tags">Tags</label>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='tags'>Tags</label>
 				<select
-					name="tags"
-					id="tags"
+					name='tags'
+					id='tags'
 					value={tags}
 					onChange={(e) => setTags(Array.from(e.target.selectedOptions, (option) => option.value))}
 					multiple
 				>
-					<option value="html">HTML</option>
-					<option value="css">CSS</option>
-					<option value="java-script">Java Script</option>
-					<option value="next-js">Next JS</option>
-					<option value="react-js">React JS</option>
-					<option value="database">Database</option>
+					<option value='html'>HTML</option>
+					<option value='css'>CSS</option>
+					<option value='java-script'>Java Script</option>
+					<option value='next-js'>Next JS</option>
+					<option value='react-js'>React JS</option>
+					<option value='database'>Database</option>
 				</select>
 			</div>
 
 			{/* blog status */}
-			<div className="w-full flex flex-col items-start justify-start mb-8">
-				<label htmlFor="status">
-					Status <span className="text-red-500">*</span>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
+				<label htmlFor='status'>
+					Status <span className='text-red-500'>*</span>
 				</label>
-				<select name="status" id="status" value={status} onChange={(e) => setStatus(e.target.value)} required>
-					<option value="">No select</option>
-					<option value="draft">Draft</option>
-					<option value="publish">Publish</option>
+				<select name='status' id='status' value={status} onChange={(e) => setStatus(e.target.value)} required>
+					<option value=''>No select</option>
+					<option value='draft'>Draft</option>
+					<option value='publish'>Publish</option>
 				</select>
 			</div>
 
-			<div className="w-full mb-4">
-				<button className="w-full justify-center uppercase" type="submit">
+			<div className='mb-4 w-full'>
+				<button className='w-full justify-center uppercase' type='submit'>
 					Save blog
 				</button>
 			</div>

@@ -10,12 +10,12 @@ const ServicesPage = () => {
 				<title>Services</title>
 			</Head>
 
-			<div className="services-page">
-				<div className="top-services">
-					<div className="container m-auto">
-						<h2 data-aos="fade-up">My Services</h2>
+			<div className='services-page'>
+				<div className='top-services'>
+					<div className='container m-auto'>
+						<h2 data-aos='fade-up'>My Services</h2>
 
-						<p data-aos="fade-up">
+						<p data-aos='fade-up'>
 							<span>
 								I put your ideas and thus your wishes in the form of a unique web project that inspires you
 								and you customers
@@ -24,17 +24,17 @@ const ServicesPage = () => {
 					</div>
 				</div>
 
-				<div className="center-services">
-					<div className="container m-auto">
-						<div className="c-services-box">
+				<div className='center-services'>
+					<div className='container m-auto'>
+						<div className='c-services-box'>
 							{/* Web Deployment */}
-							<div className="cs-service" data-aos="fade-right">
+							<div className='cs-service' data-aos='fade-right'>
 								<span>01</span>
 
 								<div>
 									<h2>Web Deployment</h2>
 
-									<Image src="/svg/website-icon.svg" alt="" width={70} height={70} />
+									<Image src='/svg/website-icon.svg' alt='' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -52,13 +52,13 @@ const ServicesPage = () => {
 							</div>
 
 							{/* Mobile Development */}
-							<div className="cs-service" data-aos="fade-right">
+							<div className='cs-service' data-aos='fade-right'>
 								<span>02</span>
 
 								<div>
 									<h2>Mobile Development</h2>
 
-									<Image src="/svg/android.svg" alt="" width={70} height={70} />
+									<Image src='/svg/android.svg' alt='' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -77,13 +77,13 @@ const ServicesPage = () => {
 							</div>
 
 							{/* Digital Marketing (SEO) */}
-							<div className="cs-service" data-aos="fade-up">
+							<div className='cs-service' data-aos='fade-up'>
 								<span>03</span>
 
 								<div>
 									<h2>Digital Marketing (SEO)</h2>
 
-									<Image src="/svg/seo.svg" alt="" width={70} height={70} />
+									<Image src='/svg/seo.svg' alt='' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -100,13 +100,13 @@ const ServicesPage = () => {
 							</div>
 
 							{/* Content Creator */}
-							<div className="cs-service" data-aos="fade-up">
+							<div className='cs-service' data-aos='fade-up'>
 								<span>04</span>
 
 								<div>
 									<h2>Content Creator</h2>
 
-									<Image src="/svg/photo-album.svg" alt="" width={70} height={70} />
+									<Image src='/svg/photo-album.svg' alt='' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -123,13 +123,13 @@ const ServicesPage = () => {
 							</div>
 
 							{/* UI/UX Product Design */}
-							<div className="cs-service" data-aos="fade-left">
+							<div className='cs-service' data-aos='fade-left'>
 								<span>05</span>
 
 								<div>
 									<h2>UI/UX Product Design</h2>
 
-									<Image src="/svg/ui.svg" alt="" width={70} height={70} />
+									<Image src='/svg/ui.svg' alt='' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -146,13 +146,13 @@ const ServicesPage = () => {
 							</div>
 
 							{/* E-commerce Business Solutions */}
-							<div className="cs-service" data-aos="fade-left">
+							<div className='cs-service' data-aos='fade-left'>
 								<span>06</span>
 
 								<div>
 									<h2>E-commerce Business Solutions</h2>
 
-									<Image src="/svg/shopify.svg" alt="" width={70} height={70} />
+									<Image src='/svg/shopify.svg' alt='' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -172,19 +172,19 @@ const ServicesPage = () => {
 					</div>
 				</div>
 
-				<div className="pricing-plan-sec">
-					<div className="container m-auto">
-						<div className="pricing-title text-center">
-							<h3 data-aos="fade-up" className="flex items-center justify-center gap-2">
-								<Image src="/img/chevron-right.png" alt="" width={45} height={20} /> Pricing Plan
+				<div className='pricing-plan-sec'>
+					<div className='container m-auto'>
+						<div className='pricing-title text-center'>
+							<h3 data-aos='fade-up' className='flex items-center justify-center gap-2'>
+								<Image src='/img/chevron-right.png' alt='' width={45} height={20} /> Pricing Plan
 							</h3>
 
-							<h2 data-aos="fade-up">Pricing my work</h2>
+							<h2 data-aos='fade-up'>Pricing my work</h2>
 						</div>
 
-						<div className="flex flex-wrap items-center justify-center gap-12 mx-4 md:justify-between">
+						<div className='mx-4 flex flex-wrap items-center justify-center gap-12 md:justify-between'>
 							{/* Life Plan */}
-							<div className="pricing-card" data-aos="fade-right">
+							<div className='pricing-card' data-aos='fade-right'>
 								<h4>Life Plan</h4>
 
 								<p>Perfect choice for individual</p>
@@ -193,7 +193,7 @@ const ServicesPage = () => {
 									$29.00 <span>Monthly</span>
 								</h2>
 
-								<Link href="/contacts">
+								<Link href='/contacts'>
 									<button>Get Start Now</button>
 								</Link>
 
@@ -221,7 +221,7 @@ const ServicesPage = () => {
 							</div>
 
 							{/* Premium Plan */}
-							<div className="pricing-card" data-aos="fade-up">
+							<div className='pricing-card' data-aos='fade-up'>
 								<h4>Premium Plan</h4>
 
 								<p>Perfect choice for individual</p>
@@ -230,7 +230,7 @@ const ServicesPage = () => {
 									$59.00 <span>Monthly</span>
 								</h2>
 
-								<Link href="/contacts">
+								<Link href='/contacts'>
 									<button>Get Start Now</button>
 								</Link>
 
@@ -258,7 +258,7 @@ const ServicesPage = () => {
 							</div>
 
 							{/* Pro Plan */}
-							<div className="pricing-card" data-aos="fade-left">
+							<div className='pricing-card' data-aos='fade-left'>
 								<h4>Pro Plan</h4>
 
 								<p>Perfect choice for individual</p>
@@ -267,7 +267,7 @@ const ServicesPage = () => {
 									$79.00 <span>Monthly</span>
 								</h2>
 
-								<Link href="/contacts">
+								<Link href='/contacts'>
 									<button>Get Start Now</button>
 								</Link>
 

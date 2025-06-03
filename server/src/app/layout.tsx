@@ -2,8 +2,8 @@ import { Nunito } from 'next/font/google'
 import { PropsWithChildren } from 'react'
 
 import { constructMetadata } from '@/lib'
+import { AppProvider } from '@/components/shared/providers'
 import { ParentComponent } from '@/components/shared/parent-component'
-import { AppProvider, ThemeProvider } from '@/components/shared/providers'
 
 import './globals.css'
 
@@ -17,7 +17,7 @@ export const metadata = constructMetadata()
 
 export default async function RootLayout({ children }: PropsWithChildren) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang='en' suppressHydrationWarning>
 			<body className={nunito.variable}>
 				<AppProvider>
 					{/* <ThemeProvider

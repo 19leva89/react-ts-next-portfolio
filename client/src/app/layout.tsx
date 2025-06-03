@@ -17,13 +17,13 @@ export const metadata = constructMetadata()
 
 export default async function RootLayout({ children }: PropsWithChildren) {
 	return (
-		<html lang="en" suppressHydrationWarning>
+		<html lang='en' suppressHydrationWarning>
 			<body className={nunito.variable}>
-				<ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} enableColorScheme>
+				<ThemeProvider attribute='class' defaultTheme='light' enableSystem={false} enableColorScheme>
 					<ClientLayout>
 						<Header />
 
-						<main id="site-wrapper">{children}</main>
+						<main id='site-wrapper'>{children}</main>
 
 						<Footer />
 					</ClientLayout>

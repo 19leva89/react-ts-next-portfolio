@@ -221,7 +221,7 @@ const BlogPage = () => {
 		return comments
 			.filter((comment) => comment.mainComment)
 			.map((parentComment) => (
-				<div key={parentComment._id} className="blog-comment">
+				<div key={parentComment._id} className='blog-comment'>
 					<h3>
 						{parentComment.name} <span>{parentComment.createdAt?.toLocaleString()}</span>
 					</h3>
@@ -236,11 +236,11 @@ const BlogPage = () => {
 						Reply
 					</button>
 
-					{parentComment.parent && <span className="replied-to">Replied to {parentComment.parentName}</span>}
+					{parentComment.parent && <span className='replied-to'>Replied to {parentComment.parentName}</span>}
 
-					<div className="children-comments">
+					<div className='children-comments'>
 						{commentsMap.get(parentComment._id).map((childComment: IComment) => (
-							<div key={childComment._id} className="child-comment">
+							<div key={childComment._id} className='child-comment'>
 								<h3>
 									{childComment.name} <span>{childComment.createdAt?.toLocaleString()}</span>
 								</h3>
@@ -275,7 +275,7 @@ const BlogPage = () => {
 
 					setBlogData(res.data)
 					setLoading(false)
-				} catch (error) {
+				} catch {
 					setError('Failed to fetch blog data, please try again later.')
 					setLoading(false)
 				}
@@ -287,7 +287,7 @@ const BlogPage = () => {
 
 	if (loading) {
 		return (
-			<div className="flex items-center justify-center w-screen h-screen">
+			<div className='flex h-screen w-screen items-center justify-center'>
 				<Spinner />
 			</div>
 		)
@@ -304,11 +304,11 @@ const BlogPage = () => {
 			</Head>
 
 			{blogData && (
-				<div className="blog-slug-page">
-					<div className="container m-auto">
-						<div className="blog-slug-page-cont">
-							<div className="left-side-details">
-								<div className="left-blog-info-img">
+				<div className='blog-slug-page'>
+					<div className='container m-auto'>
+						<div className='blog-slug-page-cont'>
+							<div className='left-side-details'>
+								<div className='left-blog-info-img'>
 									<Image
 										src={
 											blogData.blog.images && blogData.blog.images.length > 0
@@ -322,29 +322,29 @@ const BlogPage = () => {
 									/>
 								</div>
 
-								<div className="slug-blog-info-pub">
-									<div className="flex items-center gap-8">
-										<div className="admin-slug">
-											<Image src="/img/coder-white.png" alt="coder" width={30} height={30} />
+								<div className='slug-blog-info-pub'>
+									<div className='flex items-center gap-8'>
+										<div className='admin-slug'>
+											<Image src='/img/coder-white.png' alt='coder' width={30} height={30} />
 
 											<span>by Sobolev</span>
 										</div>
 
-										<div className="admin-slug">
+										<div className='admin-slug'>
 											<CalendarDaysIcon size={27} />
 											<span>{formatDate(createdAtDate)}</span>
 										</div>
 
-										<div className="admin-slug">
+										<div className='admin-slug'>
 											<EyeIcon size={35} />
 											<span>Comments ({blogData.comments ? blogData.comments.length : 0})</span>
 										</div>
 									</div>
 
-									<div className="share-blog-slug">
+									<div className='share-blog-slug'>
 										{/* copy url button */}
 										<div
-											title="Copy URL"
+											title='Copy URL'
 											onClick={() => copyToClipboard(blogUrl)}
 											style={{ cursor: 'pointer' }}
 										>
@@ -355,8 +355,8 @@ const BlogPage = () => {
 										{/* twitter share button */}
 										<Link
 											href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Check out this blog post: ${blogData.blog.title}`)}&url=${encodeURIComponent(blogUrl)}`}
-											target="_blank"
-											rel="noopener noreferrer"
+											target='_blank'
+											rel='noopener noreferrer'
 										>
 											<TwitterIcon size={20} />
 										</Link>
@@ -364,8 +364,8 @@ const BlogPage = () => {
 										{/* facebook share button */}
 										<Link
 											href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogUrl)}`}
-											target="_blank"
-											rel="noopener noreferrer"
+											target='_blank'
+											rel='noopener noreferrer'
 										>
 											<FacebookIcon size={20} />
 										</Link>
@@ -373,8 +373,8 @@ const BlogPage = () => {
 										{/* linkedin share button */}
 										<Link
 											href={`https://linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(blogUrl)}`}
-											target="_blank"
-											rel="noopener noreferrer"
+											target='_blank'
+											rel='noopener noreferrer'
 										>
 											<LinkedinIcon size={20} />
 										</Link>
@@ -386,11 +386,10 @@ const BlogPage = () => {
 								{loading ? (
 									<Spinner />
 								) : (
-									<div className="blog-content dark:bg-[#0f0715]!">
+									<div className='blog-content dark:bg-[#0f0715]!'>
 										<ReactMarkdown
 											remarkPlugins={[remarkGfm]}
 											components={{
-												// eslint-disable-next-line @typescript-eslint/no-explicit-any
 												code: (props: any) => <CodeBlock {...props} inline={false} />,
 											}}
 										>
@@ -399,26 +398,26 @@ const BlogPage = () => {
 									</div>
 								)}
 
-								<div className="blog-slug-tags">
-									<div className="blog-s-tags">
+								<div className='blog-slug-tags'>
+									<div className='blog-s-tags'>
 										<h2>Tags:</h2>
 
-										<div className="flex items-center flex-wrap gap-4">
+										<div className='flex flex-wrap items-center gap-4'>
 											{blogData.blog?.tags?.map((tag) => <span key={tag}>{tag}</span>)}
 										</div>
 									</div>
 								</div>
 
-								<div className="blog-use-comments">
+								<div className='blog-use-comments'>
 									<h2>Comments:</h2>
 									{renderComments(blogData.comments)}
 								</div>
 
-								<div className="blog-slug-comments" ref={replyFormRef}>
+								<div className='blog-slug-comments' ref={replyFormRef}>
 									{newComment.parentName && (
-										<h2 className="flex items-start justify-start gap-8">
-											Leave a reply to <span className="parent-name">{newComment.parentName}</span>
-											<button onClick={handleRemoveReply} className="remove-reply-btn">
+										<h2 className='flex items-start justify-start gap-8'>
+											Leave a reply to <span className='parent-name'>{newComment.parentName}</span>
+											<button onClick={handleRemoveReply} className='remove-reply-btn'>
 												Remove reply
 											</button>
 										</h2>
@@ -428,19 +427,19 @@ const BlogPage = () => {
 
 									<p>Your email will not be published. All fields are required.</p>
 
-									<form onSubmit={handleCommentSubmit} className="leave-areply-form">
-										<div className="name-email-comment">
+									<form onSubmit={handleCommentSubmit} className='leave-areply-form'>
+										<div className='name-email-comment'>
 											<input
-												type="text"
-												placeholder="Enter Name"
+												type='text'
+												placeholder='Enter Name'
 												value={newComment.name}
 												onChange={(e) => setNewComment({ ...newComment, name: e.target.value })}
 												required
 											/>
 
 											<input
-												type="email"
-												placeholder="Enter Email"
+												type='email'
+												placeholder='Enter Email'
 												value={newComment.email}
 												onChange={(e) => setNewComment({ ...newComment, email: e.target.value })}
 												required
@@ -448,25 +447,25 @@ const BlogPage = () => {
 										</div>
 
 										<input
-											type="text"
-											placeholder="Enter Title"
+											type='text'
+											placeholder='Enter Title'
 											value={newComment.title}
 											onChange={(e) => setNewComment({ ...newComment, title: e.target.value })}
 											required
 										/>
 
 										<textarea
-											name=""
+											name=''
 											rows={4}
-											id="text-comments"
-											placeholder="Enter your Comment"
+											id='text-comments'
+											placeholder='Enter your Comment'
 											value={newComment.contentPreview}
 											onChange={(e) => setNewComment({ ...newComment, contentPreview: e.target.value })}
 											required
 										></textarea>
 
-										<div className="flex items-center gap-8">
-											<button type="submit">Post Comment</button>
+										<div className='flex items-center gap-8'>
+											<button type='submit'>Post Comment</button>
 
 											<p>{messageOk}</p>
 										</div>
@@ -474,16 +473,16 @@ const BlogPage = () => {
 								</div>
 							</div>
 
-							<div className="right-side-details">
-								<Form action="" className="right-slug-search-bar">
-									<input type="text" placeholder="Search..." onClick={handleSearchOpen} />
+							<div className='right-side-details'>
+								<Form action='' className='right-slug-search-bar'>
+									<input type='text' placeholder='Search...' onClick={handleSearchOpen} />
 
 									<button>
 										<SearchIcon size={26} />
 									</button>
 								</Form>
 
-								<div className="right-slug-category">
+								<div className='right-slug-category'>
 									<h2>Categories</h2>
 
 									<ul>
@@ -592,10 +591,10 @@ const BlogPage = () => {
 									</ul>
 								</div>
 
-								<div className="right-recent-post">
+								<div className='right-recent-post'>
 									<h2>Recent Posts</h2>
 									{allData?.slice(0, 3).map((blog) => (
-										<Link key={blog._id} href={`/blogs/${blog.slug}`} className="right-recent-p">
+										<Link key={blog._id} href={`/blogs/${blog.slug}`} className='right-recent-p'>
 											<Image
 												src={blog.images && blog.images.length > 0 ? blog.images[0] : '/img/no-image.png'}
 												alt={blog.title}
@@ -605,7 +604,7 @@ const BlogPage = () => {
 
 											<div>
 												<h3>{blog.title}</h3>
-												<h4 className="mt-4">
+												<h4 className='mt-4'>
 													{blog.tags?.slice(0, 3).map((tag) => {
 														return <span key={tag}>{tag}</span>
 													})}

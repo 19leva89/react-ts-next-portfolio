@@ -46,26 +46,26 @@ const ViewContactPage = () => {
 				<title>View Contact</title>
 			</Head>
 
-			<div className="content-page">
+			<div className='content-page'>
 				<DashboardHeader
-					title="Contact"
+					title='Contact'
 					subtitle={contactInfo ? contactInfo.email : ''}
 					breadcrumbs={['contacts']}
 				/>
 
-				<div className="contact-info mt-8">
-					<div className="flex items-center justify-between gap-2 mb-4">
-						<h2 className="contact-info-header">Contact Details</h2>
+				<div className='contact-info mt-8'>
+					<div className='mb-4 flex items-center justify-between gap-2'>
+						<h2 className='contact-info-header'>Contact Details</h2>
 
-						<Link href={`/contacts/delete/${id}`} className="contact-info-link">
-							<button className="p-2">
+						<Link href={`/contacts/delete/${id}`} className='contact-info-link'>
+							<button className='p-2'>
 								<Trash2Icon size={15} />
 							</button>
 						</Link>
 					</div>
 
 					{contactInfo ? (
-						<table className="contact-details-table">
+						<table className='contact-details-table'>
 							<tbody>
 								<tr>
 									<th>First Name:</th>

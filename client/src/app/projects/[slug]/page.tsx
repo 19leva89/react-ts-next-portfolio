@@ -46,13 +46,13 @@ const ProjectSlugPage = () => {
 				<title>{slug ? slug.replace(/-/g, ' ') : 'Loading...'}</title>
 			</Head>
 
-			<div className="project-slug">
-				<div className="project-slug-img">
-					<div className="container m-auto">
-						<div className="flex justify-center border border-dashed border-[#34269c]">
-							<div className="w-full xl:w-4/5 2xl:w-2/3 p-4 sm:p-8">
+			<div className='project-slug'>
+				<div className='project-slug-img'>
+					<div className='container m-auto'>
+						<div className='flex justify-center border border-dashed border-[#34269c]'>
+							<div className='w-full p-4 sm:p-8 xl:w-4/5 2xl:w-2/3'>
 								{loading ? (
-									<div className="w-full h-full flex items-center justify-center">
+									<div className='flex h-full w-full items-center justify-center'>
 										<Spinner />
 									</div>
 								) : (
@@ -66,7 +66,7 @@ const ProjectSlugPage = () => {
 												<CarouselItem key={index}>
 													<Dialog>
 														<DialogTrigger aria-describedby={undefined}>
-															<div className="p-1 cursor-zoom-in">
+															<div className='cursor-zoom-in p-1'>
 																<Image
 																	src={image}
 																	alt={`Image ${index + 1}`}
@@ -78,12 +78,12 @@ const ProjectSlugPage = () => {
 														</DialogTrigger>
 
 														<DialogPortal>
-															<DialogOverlay className="z-100 backdrop-blur-md" />
+															<DialogOverlay className='z-100 backdrop-blur-md' />
 
-															<DialogContent className="z-100 max-w-325! p-1 border-none bg-transparent shadow-none">
-																<DialogTitle className="hidden" />
+															<DialogContent className='z-100 max-w-325! border-none bg-transparent p-1 shadow-none'>
+																<DialogTitle className='hidden' />
 
-																<DialogDescription className="hidden" />
+																<DialogDescription className='hidden' />
 
 																<Image
 																	src={image}
@@ -91,7 +91,7 @@ const ProjectSlugPage = () => {
 																	width={1300}
 																	height={700}
 																	quality={100}
-																	className="size-full object-cover"
+																	className='size-full object-cover'
 																/>
 															</DialogContent>
 														</DialogPortal>
@@ -100,16 +100,16 @@ const ProjectSlugPage = () => {
 											))}
 										</CarouselContent>
 
-										<CarouselPrevious variant="secondary" />
+										<CarouselPrevious variant='secondary' />
 
-										<CarouselNext variant="secondary" />
+										<CarouselNext variant='secondary' />
 									</Carousel>
 								)}
 							</div>
 						</div>
 
-						<div className="project-slug-info">
-							<div className="left-main-pro-info">
+						<div className='project-slug-info'>
+							<div className='left-main-pro-info'>
 								<h1>{projectCategory}</h1>
 
 								<p>
@@ -118,12 +118,12 @@ const ProjectSlugPage = () => {
 									quidem sapiente quia similique. Consequatur, omnis?
 								</p>
 
-								<a href={allData?.[0].livePreview} target="_blank">
+								<a href={allData?.[0].livePreview} target='_blank'>
 									Live Preview
 								</a>
 							</div>
 
-							<div className="right-main-pro-info">
+							<div className='right-main-pro-info'>
 								<div>
 									<h3>Category</h3>
 
@@ -152,16 +152,15 @@ const ProjectSlugPage = () => {
 					</div>
 				</div>
 
-				<div className="project-slug-description">
-					<div className="container m-auto">
-						<div className="ps-desc">
+				<div className='project-slug-description'>
+					<div className='container m-auto'>
+						<div className='ps-desc'>
 							<h2>Project Description</h2>
 
-							<div className="blog-content dark:bg-[var(--dark-black)]!">
+							<div className='blog-content dark:bg-[var(--dark-black)]!'>
 								<ReactMarkdown
 									remarkPlugins={[remarkGfm]}
 									components={{
-										// eslint-disable-next-line @typescript-eslint/no-explicit-any
 										code: (props: any) => <CodeBlock {...props} inline={false} />,
 									}}
 								>

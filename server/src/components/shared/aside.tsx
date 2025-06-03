@@ -33,8 +33,8 @@ interface NavItemProps {
 const NavItem = ({ title, links, activeLink, icon: Icon, isOpen, onToggle, onLinkClick }: NavItemProps) => (
 	<>
 		{links.length > 1 ? (
-			<li className="flex-col items-start justify-start m-2">
-				<div className="flex items-center gap-4 p-4" onClick={onToggle}>
+			<li className='m-2 flex-col items-start justify-start'>
+				<div className='flex items-center gap-4 p-4' onClick={onToggle}>
 					<Icon />
 
 					<span>{title}</span>
@@ -62,12 +62,12 @@ const NavItem = ({ title, links, activeLink, icon: Icon, isOpen, onToggle, onLin
 				<li
 					className={
 						activeLink === links[0].href
-							? 'nav-active flex-col items-start justify-start m-2'
-							: 'flex-col items-start justify-start m-2'
+							? 'nav-active m-2 flex-col items-start justify-start'
+							: 'm-2 flex-col items-start justify-start'
 					}
 					onClick={() => onLinkClick(links[0].href)}
 				>
-					<div className="flex items-center gap-4 p-4">
+					<div className='flex items-center gap-4 p-4'>
 						<Icon />
 
 						<span>{title}</span>
@@ -106,7 +106,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 				<ul>
 					{/* Dashboard */}
 					<NavItem
-						title="Dashboard"
+						title='Dashboard'
 						links={[{ href: '/', label: 'Dashboard' }]}
 						activeLink={activeLink}
 						icon={HouseIcon}
@@ -117,7 +117,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 
 					{/* Projects */}
 					<NavItem
-						title="Projects"
+						title='Projects'
 						links={[
 							{ href: '/projects', label: 'All Projects' },
 							{ href: '/projects/draft-projects', label: 'Draft Projects' },
@@ -132,7 +132,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 
 					{/* Blogs */}
 					<NavItem
-						title="Blogs"
+						title='Blogs'
 						links={[
 							{ href: '/blogs', label: 'All Blogs' },
 							{ href: '/blogs/draft-blogs', label: 'Draft Blogs' },
@@ -147,7 +147,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 
 					{/* Gallery */}
 					<NavItem
-						title="Gallery"
+						title='Gallery'
 						links={[
 							{ href: '/gallery', label: 'All Photos' },
 							{ href: '/gallery/add-photo', label: 'Add Photo' },
@@ -161,7 +161,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 
 					{/* Shop */}
 					<NavItem
-						title="Shop"
+						title='Shop'
 						links={[
 							{ href: '/shop', label: 'All Products' },
 							{ href: '/shop/draft-product', label: 'Draft Products' },
@@ -176,7 +176,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 
 					{/* Contacts */}
 					<NavItem
-						title="Contacts"
+						title='Contacts'
 						links={[{ href: '/contacts', label: 'Contacts' }]}
 						activeLink={activeLink}
 						icon={NotebookTabsIcon}
@@ -187,7 +187,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 
 					{/* Settings */}
 					<NavItem
-						title="Settings"
+						title='Settings'
 						links={[{ href: '/settings', label: 'Settings' }]}
 						activeLink={activeLink}
 						icon={SettingsIcon}
@@ -198,7 +198,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 				</ul>
 
 				{/* Logout */}
-				<button onClick={() => signOut()} className="logout-btn">
+				<button onClick={() => signOut()} className='logout-btn'>
 					Logout
 				</button>
 			</aside>

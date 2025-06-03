@@ -54,20 +54,20 @@ const ShopPage = () => {
 				<title>Shop</title>
 			</Head>
 
-			<div className="shop-page">
-				<div className="shop-page-top-title">
-					<div className="container m-auto">
-						<h2 data-aos="fade-right">Shop Online</h2>
+			<div className='shop-page'>
+				<div className='shop-page-top-title'>
+					<div className='container m-auto'>
+						<h2 data-aos='fade-right'>Shop Online</h2>
 
-						<h3 data-aos="fade-right">Our Products</h3>
+						<h3 data-aos='fade-right'>Our Products</h3>
 					</div>
 				</div>
 
-				<div className="shop-products">
-					<div className="container m-auto">
-						<div className="shop-pro-cards">
+				<div className='shop-products'>
+					<div className='container m-auto'>
+						<div className='shop-pro-cards'>
 							{loading ? (
-								<div className="w-full h-full flex items-center justify-center">
+								<div className='flex h-full w-full items-center justify-center'>
 									<Spinner />
 								</div>
 							) : (
@@ -75,12 +75,12 @@ const ShopPage = () => {
 									<Link
 										href={`/shop/${product.slug}`}
 										key={product._id}
-										className="sp-pro-card"
-										data-aos="flip-left"
-										data-aos-ease="ease-in-cubic"
-										data-aos-duration="2000"
+										className='sp-pro-card'
+										data-aos='flip-left'
+										data-aos-ease='ease-in-cubic'
+										data-aos-duration='2000'
 									>
-										<div className="sp-pro-card-img">
+										<div className='sp-pro-card-img'>
 											<Image
 												src={
 													product.images && product.images.length > 0
@@ -94,12 +94,12 @@ const ShopPage = () => {
 											/>
 										</div>
 
-										<div className="sp-pro-card-info">
+										<div className='sp-pro-card-info'>
 											<h2>{product.title}</h2>
 
 											<h3>$ {product.price}</h3>
 
-											<div className="sp-pro-tags">
+											<div className='sp-pro-tags'>
 												{product.tags?.map((tag) => <span key={tag}>{tag.replace(/-/g, ' ')}</span>)}
 											</div>
 

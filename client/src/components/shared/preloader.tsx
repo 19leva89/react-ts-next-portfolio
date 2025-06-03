@@ -54,12 +54,12 @@ export const Preloader = ({ isLoading, children }: Props) => {
 
 	return isLoading ? (
 		<div className={`preloader ${isLoading ? '' : 'hidden'}`} aria-hidden={!isLoading}>
-			<svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
-				<path ref={svgRef} d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
+			<svg viewBox='0 0 1000 1000' preserveAspectRatio='none'>
+				<path ref={svgRef} d='M0,1005S175,995,500,995s500,5,500,5V0H0Z'></path>
 			</svg>
 
-			<div className="preloader-heading">
-				<div className="load-text" ref={svgTextRef}>
+			<div className='preloader-heading'>
+				<div className='load-text' ref={svgTextRef}>
 					{['S', 'O', 'B', 'O', 'L', 'E', 'V'].map((letter, index) => (
 						<span key={index} style={{ ['--i' as string]: index }}>
 							{letter}
@@ -69,6 +69,6 @@ export const Preloader = ({ isLoading, children }: Props) => {
 			</div>
 		</div>
 	) : (
-		<div className="overflow-hidden">{children}</div>
+		<div className='overflow-hidden'>{children}</div>
 	)
 }

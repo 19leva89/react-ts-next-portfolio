@@ -9,7 +9,7 @@ const ProjectsPage = () => {
 				<title>Project</title>
 			</Head>
 
-			<div className="project-page">
+			<div className='project-page'>
 				<ProjectsSection showAllProjects={true} />
 			</div>
 		</>

@@ -14,7 +14,7 @@ export const Pagination = ({ paginate, currentPage, totalPages }: PaginationProp
 	}
 
 	return (
-		<div className="content-pagination">
+		<div className='content-pagination'>
 			<button onClick={() => paginate(currentPage - 1)} disabled={currentPage === 1}>
 				<ChevronLeftIcon size={26} />
 			</button>

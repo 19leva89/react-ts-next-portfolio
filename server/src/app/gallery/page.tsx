@@ -42,16 +42,16 @@ const GalleryPage = () => {
 	const publishedContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
 
 	return (
-		<div className="content-page">
-			<DashboardHeader title="All Published" subtitle="Photos" breadcrumbs={['gallery']} />
+		<div className='content-page'>
+			<DashboardHeader title='All Published' subtitle='Photos' breadcrumbs={['gallery']} />
 
-			<div className="contents-table">
-				<div className="flex items-center gap-8 mb-4">
+			<div className='contents-table'>
+				<div className='mb-4 flex items-center gap-8'>
 					<h2>Search Photos:</h2>
 
 					<input
-						type="text"
-						placeholder="Search by title..."
+						type='text'
+						placeholder='Search by title...'
 						value={searchQuery}
 						onChange={(e) => {
 							setSearchQuery(e.target.value)
@@ -81,7 +81,7 @@ const GalleryPage = () => {
 							<>
 								{publishedContent.length === 0 ? (
 									<tr>
-										<td colSpan={4} className="text-center">
+										<td colSpan={4} className='text-center'>
 											No Photos Found
 										</td>
 									</tr>
@@ -91,18 +91,18 @@ const GalleryPage = () => {
 											<td>{indexOfFirstContent + index + 1}</td>
 
 											<td>
-												<div className="content-image-container">
+												<div className='content-image-container'>
 													<Image
 														src={
 															content.images && content.images.length > 0
 																? content.images[0]
 																: '/img/no-image.png'
 														}
-														alt="image"
+														alt='image'
 														width={200}
 														height={100}
-														layout="responsive"
-														objectFit="cover"
+														layout='responsive'
+														objectFit='cover'
 														priority={false}
 														quality={100}
 													/>
@@ -114,7 +114,7 @@ const GalleryPage = () => {
 											</td>
 
 											<td>
-												<div className="flex items-center gap-8 justify-center">
+												<div className='flex items-center justify-center gap-8'>
 													<Link href={`/gallery/edit/${content._id}`}>
 														<button>
 															<SquarePenIcon size={15} />
