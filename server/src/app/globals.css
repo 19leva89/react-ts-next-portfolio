@@ -759,28 +759,6 @@ button {
 	border-radius: 10px;
 }
 
-.add-website-form button {
-	width: 100%;
-	padding: 1rem;
-	background-color: #8667b0;
-	color: var(--pure-white);
-	border-radius: 10px;
-	border: none;
-	outline: none;
-	font-size: 1.4rem;
-	transition: 0.3s ease;
-}
-
-.add-website-form button:hover {
-	background-color: #7734d3;
-}
-
-.description button {
-	width: 100px;
-	padding: 10px 15px;
-	font-size: 15px;
-}
-
 /* ********************************************** */
 /* ****************************  DRAFT BLOGS PAGE */
 /* ********************************************** */
@@ -1721,4 +1699,69 @@ button {
 	.contents-table table h3 {
 		width: 125px;
 	}
+}
+
+/* ********************************************** */
+/* **************************** MD-EDITOR-TOOLBAR */
+/* ********************************************** */
+
+.md-editor {
+	z-index: 1;
+	width: 100%;
+	max-width: 100%;
+	height: 400px;
+	max-height: 80vh;
+	overflow: hidden;
+	border-radius: 8px;
+	border: 1px solid #e2e8f0;
+	box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+	.md-editor {
+		height: 300px;
+		max-height: 70vh;
+	}
+}
+
+.md-editor-content {
+	width: 100%;
+	max-width: 100%;
+	height: 100%;
+	overflow: auto;
+	box-sizing: border-box;
+}
+
+.md-editor-toolbar {
+	background: transparent;
+	border-bottom: 2px solid #e2e8f0;
+	padding: 8px 12px;
+	border-radius: 8px 8px 0 0;
+}
+
+.md-editor-toolbar-item button {
+	background: rgba(255, 255, 255, 0.1);
+	border: 1px solid rgba(255, 255, 255, 0.2);
+	border-radius: 6px;
+	color: white;
+	padding: 6px 8px;
+	margin: 2px;
+	transition: all 0.2s ease;
+	backdrop-filter: blur(10px);
+}
+
+.md-editor-toolbar-item button:hover {
+	background: rgba(255, 255, 255, 0.2);
+	transform: translateY(-1px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.md-editor-toolbar-item button:active {
+	transform: translateY(0);
+}
+
+.md-editor-toolbar-divider {
+	background: rgba(255, 255, 255, 0.3);
+	width: 1px;
+	margin: 0 8px;
 }

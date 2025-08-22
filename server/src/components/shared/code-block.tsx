@@ -4,8 +4,8 @@ import { CSSProperties, ReactNode, useState } from 'react'
 
 interface CodeBlockProps {
 	inline: boolean
-	className: string
-	children: ReactNode
+	className?: string
+	children?: ReactNode
 }
 
 export const CodeBlock = ({ inline, className, children, ...props }: CodeBlockProps) => {
