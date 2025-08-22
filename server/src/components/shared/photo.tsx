@@ -9,8 +9,8 @@ import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
-import { Spinner } from '@/components/shared'
 import { IPhoto } from '@/models/photo'
+import { Spinner } from '@/components/shared'
 
 export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: existingImages }: IPhoto) => {
 	const router = useRouter()
@@ -179,7 +179,10 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 			)}
 
 			<div className='mb-4 w-full'>
-				<button className='w-full justify-center uppercase' type='submit'>
+				<button
+					className='w-full justify-center rounded-[10px] border-none bg-[#8667b0] px-4 py-4 text-[1.4rem] text-white uppercase transition-all duration-300 ease-in-out outline-none hover:bg-[#7734d3]'
+					type='submit'
+				>
 					Save photo
 				</button>
 			</div>

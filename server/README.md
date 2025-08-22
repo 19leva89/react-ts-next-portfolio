@@ -45,9 +45,10 @@ Utilities and Libraries:
 
 # Project setup commands:
 terminal powershell -> `npm i --force` (install dependencies)
+terminal powershell -> `npx npm-check-updates --interactive` (update dependencies)
 terminal powershell -> `npm run dev`
 terminal powershell -> `npm run lint` (loading ESLint checker)
-terminal powershell -> `npm run knip`
+terminal powershell -> `npm run knip` (loading Knip checker)
 
 # GitHub commands:
 terminal powershell -> `git pull origin master` (get latest changes)
@@ -57,4 +58,5 @@ terminal powershell -> `git commit -m "commit message"` (commit changes)
 terminal powershell -> `git checkout -b <branch-name>` (create new branch)
 
 terminal powershell -> `git push origin master` (push changes to master)
+terminal powershell -> `git push origin master:<branch-name>` (if branch already exists)
 terminal powershell -> `git push origin <branch-name>` (push changes to branch)

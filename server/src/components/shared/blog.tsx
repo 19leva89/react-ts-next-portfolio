@@ -3,9 +3,6 @@
 import axios from 'axios'
 import Form from 'next/form'
 import Image from 'next/image'
-import ReactMarkdown from 'react-markdown'
-import MarkdownEditor from 'react-markdown-editor-lite'
-import 'react-markdown-editor-lite/lib/index.css'
 
 import { toast } from 'sonner'
 import { Trash2Icon } from 'lucide-react'
@@ -14,7 +11,7 @@ import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
 import { IBlog } from '@/models/blog'
-import { CodeBlock, Spinner } from '@/components/shared'
+import { DynamicMarkdownEditor, Spinner } from '@/components/shared'
 
 export const Blog = ({
 	_id,
@@ -125,6 +122,7 @@ export const Blog = ({
 				<label htmlFor='title'>
 					Title <span className='text-red-500'>*</span>
 				</label>
+
 				<input
 					type='text'
 					id='title'
@@ -140,6 +138,7 @@ export const Blog = ({
 				<label htmlFor='slug'>
 					Slug (seo friendly url) <span className='text-red-500'>*</span>
 				</label>
+
 				<input
 					type='text'
 					id='slug'
@@ -153,6 +152,7 @@ export const Blog = ({
 			{/* blog category */}
 			<div className='mb-8 flex w-full flex-col items-start justify-start'>
 				<label htmlFor='category'>Select category (for multiple press Ctrl + mouse left key)</label>
+
 				<select
 					name='category'
 					id='category'
@@ -175,6 +175,7 @@ export const Blog = ({
 			<div className='mb-8 flex w-full flex-col items-start justify-start'>
 				<div className='w-full'>
 					<label htmlFor='images'>Images (first image will be shown as thumbnail, you can drag)</label>
+
 					<input
 						type='file'
 						id='fileInput'
@@ -213,25 +214,12 @@ export const Blog = ({
 			)}
 
 			{/* markdown description */}
-			<div className='description mb-8 flex w-full flex-col items-start justify-start'>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
 				<label htmlFor='description'>
 					Blog content (for image: first upload and copy link and paste in ![alt text](link))
 				</label>
 
-				<MarkdownEditor
-					style={{ width: '100%', height: '400px' }}
-					value={description}
-					onChange={(e) => setDescription(e.text)}
-					renderHTML={(text) => (
-						<ReactMarkdown
-							components={{
-								code: (props: any) => <CodeBlock {...props} inline={false} />,
-							}}
-						>
-							{text}
-						</ReactMarkdown>
-					)}
-				/>
+				<DynamicMarkdownEditor value={description} onChange={(value) => setDescription(value)} />
 			</div>
 
 			{/* tags */}
@@ -266,7 +254,10 @@ export const Blog = ({
 			</div>
 
 			<div className='mb-4 w-full'>
-				<button className='w-full justify-center uppercase' type='submit'>
+				<button
+					className='w-full justify-center rounded-[10px] border-none bg-[#8667b0] px-4 py-4 text-[1.4rem] text-white uppercase transition-all duration-300 ease-in-out outline-none hover:bg-[#7734d3]'
+					type='submit'
+				>
 					Save blog
 				</button>
 			</div>

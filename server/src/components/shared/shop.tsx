@@ -3,9 +3,6 @@
 import axios from 'axios'
 import Form from 'next/form'
 import Image from 'next/image'
-import ReactMarkdown from 'react-markdown'
-import MarkdownEditor from 'react-markdown-editor-lite'
-import 'react-markdown-editor-lite/lib/index.css'
 
 import { toast } from 'sonner'
 import { Trash2Icon } from 'lucide-react'
@@ -14,7 +11,7 @@ import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
 
 import { IShop } from '@/models/shop'
-import { CodeBlock, Spinner } from '@/components/shared'
+import { DynamicMarkdownEditor, Spinner } from '@/components/shared'
 
 export const Shop = ({
 	_id,
@@ -218,25 +215,12 @@ export const Shop = ({
 			)}
 
 			{/* markdown description */}
-			<div className='description mb-8 flex w-full flex-col items-start justify-start'>
+			<div className='mb-8 flex w-full flex-col items-start justify-start'>
 				<label htmlFor='description'>
 					Product content (for image: first upload and copy link and paste in ![alt text](link))
 				</label>
 
-				<MarkdownEditor
-					style={{ width: '100%', height: '400px' }}
-					value={description}
-					onChange={(e) => setDescription(e.text)}
-					renderHTML={(text) => (
-						<ReactMarkdown
-							components={{
-								code: (props: any) => <CodeBlock {...props} inline={false} />,
-							}}
-						>
-							{text}
-						</ReactMarkdown>
-					)}
-				/>
+				<DynamicMarkdownEditor value={description} onChange={(value) => setDescription(value)} />
 			</div>
 
 			{/* tags */}
@@ -264,6 +248,7 @@ export const Shop = ({
 				<label htmlFor='status'>
 					Status <span className='text-red-500'>*</span>
 				</label>
+
 				<select name='status' id='status' value={status} onChange={(e) => setStatus(e.target.value)} required>
 					<option value=''>No select</option>
 					<option value='draft'>Draft</option>
@@ -272,7 +257,10 @@ export const Shop = ({
 			</div>
 
 			<div className='mb-4 w-full'>
-				<button className='w-full justify-center uppercase' type='submit'>
+				<button
+					className='w-full justify-center rounded-[10px] border-none bg-[#8667b0] px-4 py-4 text-[1.4rem] text-white uppercase transition-all duration-300 ease-in-out outline-none hover:bg-[#7734d3]'
+					type='submit'
+				>
 					Save product
 				</button>
 			</div>
