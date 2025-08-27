@@ -11,10 +11,12 @@
     "postinstall": "npm rebuild sharp"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.3",
     "@uiw/react-markdown-editor": "^6.1.4",
     "axios": "^1.11.0",
     "bcrypt-ts": "^7.1.0",
     "chart.js": "^4.5.0",
+    "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.540.0",

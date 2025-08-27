@@ -3,16 +3,19 @@
 import axios from 'axios'
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { Loader } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { ChangeEvent, useState } from 'react'
 
+import { Button } from '@/components/ui'
 import { Spinner } from '@/components/shared'
 
 const SignUpPage = () => {
 	const router = useRouter()
 	const { status: sessionStatus } = useSession()
 
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [form, setForm] = useState<{ email: string; password: string; confirmPassword: string }>({
 		email: '',
 		password: '',
@@ -25,28 +28,34 @@ const SignUpPage = () => {
 
 	const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		setIsLoading(true)
 
-		if (form.password !== form.confirmPassword) {
-			toast.error('Passwords do not match')
-			// setError('Passwords do not match')
-			// setTimeout(() => setError(''), 3000)
+		try {
+			if (form.password !== form.confirmPassword) {
+				toast.error('Passwords do not match')
 
-			return
-		}
+				return
+			}
 
-		const { data } = await axios.post('/api/auth/sign-up', form, {
-			headers: { 'Content-Type': 'application/json' },
-		})
+			const { data } = await axios.post('/api/auth/sign-up', form, {
+				headers: { 'Content-Type': 'application/json' },
+			})
 
-		if (data.error) {
-			toast.error('Error happened here')
-			// setError('Error happened here')
+			if (data.error) {
+				toast.error('Error happened here')
+			} else {
+				toast.success('Sign up successful')
 
-			// setTimeout(() => setError(''), 3000)
-		} else {
-			toast.success('Sign up successful')
-
-			router.push('/auth/sign-in')
+				router.push('/auth/sign-in')
+			}
+		} catch (error) {
+			if (error instanceof Error) {
+				toast.error(`Sign up failed: ${error.message}`)
+			} else {
+				toast.error('Sign up failed: unknown error')
+			}
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
@@ -65,9 +74,10 @@ const SignUpPage = () => {
 							type='email'
 							name='email'
 							placeholder='Email'
-							className='input'
 							onChange={handleChange}
 							value={form.email}
+							disabled={isLoading}
+							className='input'
 							required
 						/>
 
@@ -75,9 +85,10 @@ const SignUpPage = () => {
 							type='password'
 							name='password'
 							placeholder='Password'
-							className='input'
 							onChange={handleChange}
 							value={form.password}
+							disabled={isLoading}
+							className='input'
 							required
 						/>
 
@@ -85,15 +96,22 @@ const SignUpPage = () => {
 							type='password'
 							name='confirmPassword'
 							placeholder='Confirm password'
-							className='input'
 							onChange={handleChange}
 							value={form.confirmPassword}
+							disabled={isLoading}
+							className='input'
 							required
 						/>
 
-						<button className='login-button' type='submit'>
-							Sign Up
-						</button>
+						<Button
+							type='submit'
+							size='lg'
+							disabled={isLoading}
+							className='login-button flex h-17 items-center justify-center gap-2'
+						>
+							{isLoading && <Loader size={24} className='size-6 animate-spin' />}
+							{isLoading ? 'Signing Up...' : 'Sign Up'}
+						</Button>
 
 						<span className='text-gray-600'>
 							Already have an account?
