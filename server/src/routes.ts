@@ -19,7 +19,7 @@ export const protectedRoutes = [
  * These routes will redirect logged in users to /settings
  * @type {string[]}
  */
-export const authRoutes = ['/auth/sign-in', '/auth/sign-up', '/auth/reset', '/api/auth']
+export const authRoutes = ['/auth/sign-in', '/auth/sign-up', '/auth/reset']
 
 /**
  * The default redirect path after logging in

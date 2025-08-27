@@ -58,7 +58,7 @@ const ShopSlugPage = () => {
 									) : (
 										<Image
 											src={mainImage || '/img/no-image.png'}
-											alt={allData && allData[0] ? allData[0].title : ''}
+											alt={allData && allData[0] ? allData[0].title : 'Shop image'}
 											width={650}
 											height={450}
 											quality={100}
@@ -83,7 +83,7 @@ const ShopSlugPage = () => {
 												<SwiperSlide key={index}>
 													<Image
 														src={image}
-														alt={allData[0]?.title}
+														alt={allData && allData[0] ? allData[0].title : 'Shop image'}
 														onClick={() => handleImageClick(image)}
 														width={250}
 														height={250}

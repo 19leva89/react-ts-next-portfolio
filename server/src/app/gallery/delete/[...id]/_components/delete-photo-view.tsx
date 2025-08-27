@@ -13,21 +13,26 @@ export const DeletePhotoView = () => {
 	const router = useRouter()
 	const { id } = useParams() as { id: string }
 
-	const [productInfo, setProductInfo] = useState<IPhoto | null>(null)
+	const [isDeleting, setIsDeleting] = useState<boolean>(false)
+	const [photoInfo, setPhotoInfo] = useState<IPhoto | null>(null)
 
 	const goBack = () => {
 		router.push('/gallery')
 	}
 
-	const deleteProduct = async () => {
+	const deletePhoto = async () => {
 		try {
-			await axios.delete(`/api/photos?id=${id}`)
+			setIsDeleting(true)
+
+			await axios.delete(`/api/photos?id=${encodeURIComponent(id)}`)
 
 			toast.success('Photo deleted successfully')
 
 			goBack()
 		} catch (error) {
 			console.error('[BLOGS_DELETE] Error deleting:', error)
+		} finally {
+			setIsDeleting(false)
 		}
 	}
 
@@ -36,22 +41,22 @@ export const DeletePhotoView = () => {
 			return
 		}
 
-		const fetchProduct = async () => {
+		const fetchPhoto = async () => {
 			try {
-				const res = await axios.get(`/api/photos?id=${id}`)
+				const res = await axios.get(`/api/photos?id=${encodeURIComponent(id)}`)
 
-				setProductInfo(res.data)
+				setPhotoInfo(res.data)
 			} catch (error) {
 				console.error('[PHOTOS_DELETE] Error loading data:', error)
 			}
 		}
 
-		fetchProduct()
+		fetchPhoto()
 	}, [id])
 
 	return (
 		<div className='content-page'>
-			<DashboardHeader title='Delete' subtitle={productInfo?.title || ''} breadcrumbs={['gallery']} />
+			<DashboardHeader title='Delete' subtitle={photoInfo?.title || ''} breadcrumbs={['gallery']} />
 
 			<div className='delete-sec flex h-screen w-screen items-center justify-center'>
 				<div className='delete-card'>
@@ -59,13 +64,11 @@ export const DeletePhotoView = () => {
 
 					<p className='cookie-heading'>Are you sure?</p>
 
-					<p className='cookie-description'>
-						If you delete this website content, it will be permanent delete your content
-					</p>
+					<p className='cookie-description'>If you delete this photo, it will be permanently removed</p>
 
 					<div className='button-container'>
-						<button onClick={deleteProduct} className='accept-button'>
-							Delete
+						<button onClick={deletePhoto} disabled={isDeleting} className='accept-button'>
+							{isDeleting ? 'Deleting...' : 'Delete'}
 						</button>
 
 						<button onClick={goBack} className='decline-button'>

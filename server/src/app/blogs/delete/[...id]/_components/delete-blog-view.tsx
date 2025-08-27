@@ -13,21 +13,26 @@ export const DeleteBlogView = () => {
 	const router = useRouter()
 	const { id } = useParams() as { id: string }
 
-	const [productInfo, setProductInfo] = useState<IBlog | null>(null)
+	const [blogInfo, setBlogInfo] = useState<IBlog | null>(null)
+	const [isDeleting, setIsDeleting] = useState<boolean>(false)
 
 	const goBack = () => {
 		router.push('/blogs')
 	}
 
-	const deleteProduct = async () => {
+	const deleteBlog = async () => {
 		try {
-			await axios.delete(`/api/blogs?id=${id}`)
+			setIsDeleting(true)
+
+			await axios.delete(`/api/blogs?id=${encodeURIComponent(id)}`)
 
 			toast.success('Blog deleted successfully')
 
 			goBack()
 		} catch (error) {
 			console.error('[BLOGS_DELETE] Error deleting:', error)
+		} finally {
+			setIsDeleting(false)
 		}
 	}
 
@@ -36,22 +41,22 @@ export const DeleteBlogView = () => {
 			return
 		}
 
-		const fetchProduct = async () => {
+		const fetchBlog = async () => {
 			try {
-				const res = await axios.get(`/api/blogs?id=${id}`)
+				const res = await axios.get(`/api/blogs?id=${encodeURIComponent(id)}`)
 
-				setProductInfo(res.data)
+				setBlogInfo(res.data)
 			} catch (error) {
 				console.error('[BLOGS_DELETE] Error loading data:', error)
 			}
 		}
 
-		fetchProduct()
+		fetchBlog()
 	}, [id])
 
 	return (
 		<div className='content-page'>
-			<DashboardHeader title='Delete' subtitle={productInfo?.title || ''} breadcrumbs={['blogs']} />
+			<DashboardHeader title='Delete' subtitle={blogInfo?.title || ''} breadcrumbs={['blogs']} />
 
 			<div className='delete-sec flex h-screen w-screen items-center justify-center'>
 				<div className='delete-card'>
@@ -59,13 +64,11 @@ export const DeleteBlogView = () => {
 
 					<p className='cookie-heading'>Are you sure?</p>
 
-					<p className='cookie-description'>
-						If you delete this website content, it will be permanent delete your content
-					</p>
+					<p className='cookie-description'>If you delete this blog, it will be permanently removed</p>
 
 					<div className='button-container'>
-						<button onClick={deleteProduct} className='accept-button'>
-							Delete
+						<button onClick={deleteBlog} disabled={isDeleting} className='accept-button'>
+							{isDeleting ? 'Deleting...' : 'Delete'}
 						</button>
 
 						<button onClick={goBack} className='decline-button'>

@@ -26,25 +26,24 @@ const ShopPage = () => {
 		setCurrentPage(pageNumber)
 	}
 
-	// filter all data based on search query
+	// Filter data by search query AND publish status in one step
 	const filteredContent =
 		searchQuery.trim() === ''
-			? allData
-			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
+			? allData?.filter((content) => content.status === 'publish') || []
+			: allData?.filter(
+					(content) =>
+						content.status === 'publish' && content.title.toLowerCase().includes(searchQuery.toLowerCase()),
+				) || []
 
-	// total pages
-	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
+	// total pages based on filtered content
+	const totalPages = Math.ceil(filteredContent.length / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
-	// get current page of content
-	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
-
-	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
-
-	const publishedData = allData?.filter((content) => content.status === 'publish') || []
+	// get current page of content (slice AFTER filtering)
+	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
 
 	const createdAtData = allData?.[0].createdAt ? new Date(allData[0].createdAt) : null
 
@@ -71,7 +70,7 @@ const ShopPage = () => {
 									<Spinner />
 								</div>
 							) : (
-								publishedData.map((product) => (
+								currentContent.map((product) => (
 									<Link
 										href={`/shop/${product.slug}`}
 										key={product._id}
@@ -87,7 +86,7 @@ const ShopPage = () => {
 														? product.images[0]
 														: '/img/no-image.png'
 												}
-												alt={product.title}
+												alt={product.title ? `${product.title} image` : 'Shop image'}
 												width={420}
 												height={330}
 												quality={100}
@@ -100,7 +99,9 @@ const ShopPage = () => {
 											<h3>$ {product.price}</h3>
 
 											<div className='sp-pro-tags'>
-												{product.tags?.map((tag) => <span key={tag}>{tag.replace(/-/g, ' ')}</span>)}
+												{product.tags?.map((tag) => (
+													<span key={tag}>{tag.replace(/-/g, ' ')}</span>
+												))}
 											</div>
 
 											<p>{formatDate(createdAtData)}</p>

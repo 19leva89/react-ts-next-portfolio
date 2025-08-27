@@ -37,25 +37,24 @@ const BlogsPage = () => {
 		setCurrentPage(pageNumber)
 	}
 
-	// filter all data based on search query
+	// Filter data by search query AND publish status in one step
 	const filteredContent =
 		searchQuery.trim() === ''
-			? allData
-			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
+			? allData?.filter((content) => content.status === 'publish') || []
+			: allData?.filter(
+					(content) =>
+						content.status === 'publish' && content.title.toLowerCase().includes(searchQuery.toLowerCase()),
+				) || []
 
-	// total pages
-	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
+	// total pages based on filtered content
+	const totalPages = Math.ceil(filteredContent.length / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
-	// get current page of content
-	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
-
-	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
-
-	const sliderPublishedData = allData?.filter((content) => content.status === 'publish') || []
+	// get current page of content (slice AFTER filtering)
+	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
 
 	const handleSearchOpen = () => {
 		setSearchInput(!searchInput)
@@ -118,7 +117,7 @@ const BlogsPage = () => {
 													<Spinner />
 												</div>
 											) : (
-												sliderPublishedData.slice(0, 6).map((content) => (
+												currentContent.slice(0, 6).map((content) => (
 													<SwiperSlide
 														key={content._id}
 														data-aos='flip-left'
@@ -133,7 +132,7 @@ const BlogsPage = () => {
 																			? content.images[0]
 																			: '/img/no-image.png'
 																	}
-																	alt={content.title}
+																	alt={content.title ? `${content.title} image` : 'Blog image'}
 																	width={430}
 																	height={480}
 																	quality={100}
@@ -274,7 +273,7 @@ const BlogsPage = () => {
 										<Spinner />
 									</div>
 								) : (
-									publishedContent.map((content) => (
+									currentContent.map((content) => (
 										<div
 											key={content._id}
 											className='l-post'
@@ -290,7 +289,7 @@ const BlogsPage = () => {
 																? content.images[0]
 																: '/img/no-image.png'
 														}
-														alt={content.title}
+														alt={content.title ? `${content.title} image` : 'Blog image'}
 														sizes='(max-width: 768px) 100vw, 420px'
 														fill
 													/>
@@ -326,7 +325,7 @@ const BlogsPage = () => {
 						</div>
 
 						{/* for pagination */}
-						{publishedContent.length > 0 && totalPages > 1 && (
+						{filteredContent.length > 0 && totalPages > 1 && (
 							<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 						)}
 					</div>

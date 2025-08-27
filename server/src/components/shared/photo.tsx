@@ -6,8 +6,8 @@ import Image from 'next/image'
 import { toast } from 'sonner'
 import { Trash2Icon } from 'lucide-react'
 import { useRouter } from 'next/navigation'
-import { ChangeEvent, useState } from 'react'
 import { ReactSortable } from 'react-sortablejs'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import { IPhoto } from '@/models/photo'
 import { Spinner } from '@/components/shared'
@@ -96,10 +96,12 @@ export const Photo = ({ _id, title: existingTitle, slug: existingSlug, images: e
 		setSlug(newSlug)
 	}
 
-	if (redirect) {
-		router.push('/gallery')
-		return null
-	}
+	// Handle redirect in useEffect to avoid calling router.push during render
+	useEffect(() => {
+		if (redirect) {
+			router.push('/gallery')
+		}
+	}, [redirect, router])
 
 	return (
 		<Form className='add-website-form' action='' onSubmit={createPhoto}>
