@@ -1,6 +1,15 @@
+import { redirect } from 'next/navigation'
+
+import { auth } from '@/auth'
 import { Shop, DashboardHeader } from '@/components/shared'
 
-const AddProductPage = () => {
+const AddProductPage = async () => {
+	const session = await auth()
+
+	if (!session) {
+		redirect('/auth/sign-in')
+	}
+
 	return (
 		<div className='add-contents-page'>
 			<DashboardHeader title='Add' subtitle='Product' breadcrumbs={['shop', 'add-product']} />

@@ -13,6 +13,7 @@
   "dependencies": {
     "@uiw/react-markdown-editor": "^6.1.4",
     "axios": "^1.11.0",
+    "bcrypt-ts": "^7.1.0",
     "chart.js": "^4.5.0",
     "cloudinary": "^2.7.0",
     "clsx": "^2.1.1",

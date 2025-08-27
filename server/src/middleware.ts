@@ -1,36 +1,44 @@
-import NextAuth from 'next-auth'
+import { getToken } from 'next-auth/jwt'
 import { NextRequest, NextResponse } from 'next/server'
 
-import edgeConfig from '@/auth.config'
+import { authRoutes, DEFAULT_LOGIN_REDIRECT, protectedRoutes } from '@/routes'
 
-const { auth } = NextAuth(edgeConfig)
+const secret = process.env.AUTH_SECRET
 
-const publicRoutes = ['/auth/sign-in', '/auth/sign-up', '/recovery', '/api/auth']
-const protectedRoutes = ['/']
+export async function middleware(req: NextRequest) {
+	const { nextUrl } = req
+	const { origin, pathname, protocol, search } = req.nextUrl
 
-export default auth(async function middleware(req: NextRequest) {
-	const session = await auth()
-	const path = req.nextUrl.pathname
+	const isAuthRoute = authRoutes.includes(pathname)
+	const isProtected = protectedRoutes.some((route) => pathname === route || pathname.startsWith(`${route}/`))
 
-	// Allow access to public routes and Next.js assets
-	if (
-		publicRoutes.some((route) => path.startsWith(route)) ||
-		path.startsWith('/_next/img') ||
-		path.includes('.png')
-	) {
+	//! Important to set secureCookie
+	const token = await getToken({ req, secret, secureCookie: protocol === 'https:' })
+	const isLoggedIn = !!token
+
+	// 1. If it's an authorization route and the user is already logged in, redirect
+	if (isAuthRoute) {
+		if (isLoggedIn) {
+			// Redirect logged-in users away from auth routes
+			return NextResponse.redirect(new URL(DEFAULT_LOGIN_REDIRECT, nextUrl))
+		}
+
+		// Allow unauthenticated users to access auth routes
 		return NextResponse.next()
 	}
 
-	// Checking protected routes
-	if (protectedRoutes.some((route) => path.startsWith(route)) && !session) {
-		const absoluteURL = new URL('/auth/sign-in', req.nextUrl.origin)
+	// 2. If this is a secure route and the user is not logged in, redirect to '/not-auth'
+	if (!isLoggedIn && isProtected) {
+		const absoluteURL = new URL('/auth/sign-in', origin)
 
-		return NextResponse.redirect(absoluteURL.toString())
+		absoluteURL.searchParams.set('callbackUrl', `${pathname}${search}`)
+
+		return NextResponse.redirect(absoluteURL)
 	}
 
 	return NextResponse.next()
-})
+}
 
 export const config = {
-	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|icons|images|fonts|css|js).*)'],
+	matcher: ['/((?!api|_next/static|_next/image|favicon.ico|assets).*)'],
 }

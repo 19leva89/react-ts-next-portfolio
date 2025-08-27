@@ -87,7 +87,7 @@ const SignInPage = () => {
 						<span className='text-gray-600'>
 							Forgot your password?
 							<Link
-								href='/recovery'
+								href='/auth/reset'
 								className='ml-1 font-medium text-amber-600 transition-colors duration-200 ease-in-out hover:text-amber-700 hover:underline'
 							>
 								Restore
