@@ -19,7 +19,7 @@ export const EditBlogsView = () => {
 
 		const fetchProduct = async () => {
 			try {
-				const res = await axios.get(`/api/blogs?id=${id}`)
+				const res = await axios.get(`/api/blogs?id=${encodeURIComponent(id)}`)
 
 				setProductInfo(res.data)
 			} catch (error) {

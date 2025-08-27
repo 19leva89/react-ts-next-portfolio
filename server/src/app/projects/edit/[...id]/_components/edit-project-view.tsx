@@ -19,7 +19,7 @@ export const EditProjectView = () => {
 
 		const fetchProduct = async () => {
 			try {
-				const res = await axios.get(`/api/projects?id=${id}`)
+				const res = await axios.get(`/api/projects?id=${encodeURIComponent(id)}`)
 
 				setProductInfo(res.data)
 			} catch (error) {

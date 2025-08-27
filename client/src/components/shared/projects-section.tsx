@@ -34,25 +34,24 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 	// fetch content data
 	const { allData, loading } = useFetchData<IProject[]>('/api/projects')
 
-	// filter all data based on search query
+	// Filter data by search query AND publish status in one step
 	const filteredContent =
 		searchQuery.trim() === ''
-			? allData
-			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
+			? allData?.filter((content) => content.status === 'publish') || []
+			: allData?.filter(
+					(content) =>
+						content.status === 'publish' && content.title.toLowerCase().includes(searchQuery.toLowerCase()),
+				) || []
 
-	// total pages
-	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
+	// total pages based on filtered content
+	const totalPages = Math.ceil(filteredContent.length / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
-	// get current page of content
-	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
-
-	const publishedContent = currentContent?.filter((content) => content.status === 'publish') || []
-
-	const publishedData = allData?.filter((content) => content.status === 'publish') || []
+	// get current page of content (slice AFTER filtering)
+	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
 
 	const buttonClasses = cn(
 		'inline-flex h-8 items-center rounded-3xl border-none p-2 text-sm leading-none font-bold sm:h-12 sm:px-8 sm:py-4 sm:text-lg',
@@ -187,7 +186,7 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 														? project.images[0]
 														: '/img/no-image.png'
 												}
-												alt={project.title}
+												alt={project.title ? `${project.title} image` : 'Project image'}
 												width={550}
 												height={400}
 												quality={100}

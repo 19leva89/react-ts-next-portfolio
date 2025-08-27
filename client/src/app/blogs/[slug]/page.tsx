@@ -271,7 +271,7 @@ const BlogPage = () => {
 		const fetchBlogData = async () => {
 			if (slug) {
 				try {
-					const res = await axios.get(`/api/blogs/${slug}`)
+					const res = await axios.get(`/api/blogs/${encodeURIComponent(slug)}`)
 
 					setBlogData(res.data)
 					setLoading(false)
@@ -315,7 +315,7 @@ const BlogPage = () => {
 												? blogData.blog.images[0]
 												: '/img/no-image.png'
 										}
-										alt={blogData.blog.title}
+										alt={blogData.blog.title ? `${blogData.blog.title} image` : 'Blog image'}
 										width={910}
 										height={350}
 										quality={100}
@@ -403,7 +403,9 @@ const BlogPage = () => {
 										<h2>Tags:</h2>
 
 										<div className='flex flex-wrap items-center gap-4'>
-											{blogData.blog?.tags?.map((tag) => <span key={tag}>{tag}</span>)}
+											{blogData.blog?.tags?.map((tag) => (
+												<span key={tag}>{tag}</span>
+											))}
 										</div>
 									</div>
 								</div>
@@ -597,7 +599,7 @@ const BlogPage = () => {
 										<Link key={blog._id} href={`/blogs/${blog.slug}`} className='right-recent-p'>
 											<Image
 												src={blog.images && blog.images.length > 0 ? blog.images[0] : '/img/no-image.png'}
-												alt={blog.title}
+												alt={blog.title ? `${blog.title} image` : 'Blog image'}
 												width={100}
 												height={100}
 											/>

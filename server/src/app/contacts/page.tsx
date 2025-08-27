@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 
 import { auth } from '@/auth'
-import { ContactsView } from './_components/blogs-view'
+import { ContactsView } from './_components/contacts-view'
 
 const ContactsPage = async () => {
 	const session = await auth()

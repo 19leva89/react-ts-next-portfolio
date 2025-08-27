@@ -27,19 +27,19 @@ export const ContactsView = () => {
 	// filter all data based on search query
 	const filteredContent =
 		searchQuery.trim() === ''
-			? allData
+			? allData || []
 			: allData?.filter((content) => content.firstName.toLowerCase().includes(searchQuery.toLowerCase())) ||
 				[]
 
-	// total pages
-	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
+	// total pages based on filtered content
+	const totalPages = Math.ceil(filteredContent.length / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
-	// get current page of content
-	const publishedContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
+	// get current page of content (slice after filtering)
+	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
 
 	return (
 		<div className='content-page'>
@@ -77,14 +77,14 @@ export const ContactsView = () => {
 							</tr>
 						) : (
 							<>
-								{publishedContent.length === 0 ? (
+								{currentContent.length === 0 ? (
 									<tr>
 										<td colSpan={6} className='text-center'>
-											No Contacts Found
+											No contacts found
 										</td>
 									</tr>
 								) : (
-									publishedContent.map((content, index) => (
+									currentContent.map((content, index) => (
 										<tr key={content._id} className={content.viewed ? '' : 'bg-[#f23434ad]'}>
 											<td>{indexOfFirstContent + index + 1}</td>
 
@@ -122,7 +122,7 @@ export const ContactsView = () => {
 				</table>
 
 				{/* for pagination */}
-				{publishedContent.length > 0 && totalPages > 1 && (
+				{filteredContent.length > 0 && totalPages > 1 && (
 					<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 				)}
 			</div>

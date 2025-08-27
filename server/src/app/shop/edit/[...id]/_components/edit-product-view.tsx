@@ -19,7 +19,7 @@ export const EditProductView = () => {
 
 		const fetchProduct = async () => {
 			try {
-				const res = await axios.get(`/api/shops?id=${id}`)
+				const res = await axios.get(`/api/shops?id=${encodeURIComponent(id)}`)
 
 				setProductInfo(res.data)
 			} catch (error) {

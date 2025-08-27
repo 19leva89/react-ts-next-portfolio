@@ -30,7 +30,7 @@ export const SkillsGrid = () => {
 								<div className='group flex flex-col items-center justify-center gap-2 rounded-3xl border border-transparent bg-[#f6f3fc] px-10 py-6 transition duration-300 ease-in-out hover:border-[#905ff1] sm:px-14 sm:py-8 dark:bg-[#140c1c] dark:hover:bg-[#19195c]'>
 									<Image
 										src={skillSrc}
-										alt={skill.name.toLowerCase()}
+										alt={skill.name ? `${skill.name.toLowerCase()} image` : 'Skill image'}
 										width={70}
 										height={70}
 										className='transform duration-300 ease-in-out group-hover:scale-110'

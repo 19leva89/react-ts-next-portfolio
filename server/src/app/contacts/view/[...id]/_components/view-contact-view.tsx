@@ -22,14 +22,14 @@ export const ViewContactView = () => {
 
 		const fetchAndMarkContact = async () => {
 			try {
-				const res = await axios.get(`/api/contacts?id=${id}`)
+				const res = await axios.get(`/api/contacts?id=${encodeURIComponent(id)}`)
 				const contact = res.data
 
 				setContactInfo(contact)
 
 				// Updating the viewed field
 				if (!contact.viewed) {
-					await axios.put(`/api/contacts`, { _id: id, viewed: true })
+					await axios.put(`/api/contacts`, { _id: encodeURIComponent(id), viewed: true })
 				}
 			} catch (error) {
 				console.error('[CONTACT_VIEW] Error fetching or updating contact:', error)

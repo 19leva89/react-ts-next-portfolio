@@ -353,7 +353,7 @@ const HomePage = () => {
 											<div className='re-blog-img'>
 												<Image
 													src={blog.images && blog.images.length > 0 ? blog.images[0] : '/img/no-image.png'}
-													alt={blog.title}
+													alt={blog.title ? `${blog.title} image` : 'Blog image'}
 													width={400}
 													height={400}
 												/>

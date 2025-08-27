@@ -28,18 +28,18 @@ export const GalleryView = () => {
 	// filter all data based on search query
 	const filteredContent =
 		searchQuery.trim() === ''
-			? allData
+			? allData || []
 			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
 
-	// total pages
-	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
+	// total pages based on filtered content
+	const totalPages = Math.ceil(filteredContent.length / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
-	// get current page of content
-	const publishedContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
+	// get current page of content (slice after filtering)
+	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
 
 	return (
 		<div className='content-page'>
@@ -79,14 +79,14 @@ export const GalleryView = () => {
 							</tr>
 						) : (
 							<>
-								{publishedContent.length === 0 ? (
+								{currentContent.length === 0 ? (
 									<tr>
 										<td colSpan={4} className='text-center'>
-											No Photos Found
+											No photos found
 										</td>
 									</tr>
 								) : (
-									publishedContent.map((content, index) => (
+									currentContent.map((content, index) => (
 										<tr key={content._id}>
 											<td>{indexOfFirstContent + index + 1}</td>
 
@@ -98,7 +98,7 @@ export const GalleryView = () => {
 																? content.images[0]
 																: '/img/no-image.png'
 														}
-														alt='image'
+														alt={content.title ? `${content.title} image` : 'Gallery image'}
 														width={200}
 														height={100}
 														layout='responsive'
@@ -137,7 +137,7 @@ export const GalleryView = () => {
 				</table>
 
 				{/* for pagination */}
-				{publishedContent.length > 0 && totalPages > 1 && (
+				{filteredContent.length > 0 && totalPages > 1 && (
 					<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 				)}
 			</div>

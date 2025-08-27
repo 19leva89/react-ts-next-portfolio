@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation'
 
 import { auth } from '@/auth'
-import { Blog, DashboardHeader } from '@/components/shared'
+import { AddBlogView } from './_components/add-blog-view'
 
 const AddBlogPage = async () => {
 	const session = await auth()
@@ -10,15 +10,7 @@ const AddBlogPage = async () => {
 		redirect('/auth/sign-in')
 	}
 
-	return (
-		<div className='add-contents-page'>
-			<DashboardHeader title='Add' subtitle='Blog' breadcrumbs={['blogs', 'add-blog']} />
-
-			<div className='contents-add'>
-				<Blog _id='' title='' slug='' />
-			</div>
-		</div>
-	)
+	return <AddBlogView />
 }
 
 export default AddBlogPage

@@ -13,21 +13,26 @@ export const DeleteProjectView = () => {
 	const router = useRouter()
 	const { id } = useParams() as { id: string }
 
+	const [isDeleting, setIsDeleting] = useState<boolean>(false)
 	const [productInfo, setProductInfo] = useState<IProject | null>(null)
 
 	const goBack = () => {
 		router.push('/projects')
 	}
 
-	const deleteProduct = async () => {
+	const deleteProject = async () => {
 		try {
-			await axios.delete(`/api/projects?id=${id}`)
+			setIsDeleting(true)
+
+			await axios.delete(`/api/projects?id=${encodeURIComponent(id)}`)
 
 			toast.success('Project deleted successfully')
 
 			goBack()
 		} catch (error) {
 			console.error('[PROJECTS_DELETE] Error deleting:', error)
+		} finally {
+			setIsDeleting(false)
 		}
 	}
 
@@ -36,9 +41,9 @@ export const DeleteProjectView = () => {
 			return
 		}
 
-		const fetchProduct = async () => {
+		const fetchProject = async () => {
 			try {
-				const res = await axios.get(`/api/projects?id=${id}`)
+				const res = await axios.get(`/api/projects?id=${encodeURIComponent(id)}`)
 
 				setProductInfo(res.data)
 			} catch (error) {
@@ -46,7 +51,7 @@ export const DeleteProjectView = () => {
 			}
 		}
 
-		fetchProduct()
+		fetchProject()
 	}, [id])
 
 	return (
@@ -59,13 +64,11 @@ export const DeleteProjectView = () => {
 
 					<p className='cookie-heading'>Are you sure?</p>
 
-					<p className='cookie-description'>
-						If you delete this website content, it will be permanent delete your content
-					</p>
+					<p className='cookie-description'>If you delete this project, it will be permanently removed</p>
 
 					<div className='button-container'>
-						<button onClick={deleteProduct} className='accept-button'>
-							Delete
+						<button onClick={deleteProject} disabled={isDeleting} className='accept-button'>
+							{isDeleting ? 'Deleting...' : 'Delete'}
 						</button>
 
 						<button onClick={goBack} className='decline-button'>

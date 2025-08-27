@@ -21,7 +21,7 @@ export const DeleteContactView = () => {
 
 	const deleteContact = async () => {
 		try {
-			await axios.delete(`/api/contacts?id=${id}`)
+			await axios.delete(`/api/contacts?id=${encodeURIComponent(id)}`)
 
 			toast.success('Contact deleted successfully')
 
@@ -38,7 +38,7 @@ export const DeleteContactView = () => {
 
 		const fetchContact = async () => {
 			try {
-				const res = await axios.get(`/api/contacts?id=${id}`)
+				const res = await axios.get(`/api/contacts?id=${encodeURIComponent(id)}`)
 
 				setContactInfo(res.data)
 			} catch (error) {

@@ -19,11 +19,11 @@ export const EditPhotoView = () => {
 
 		const fetchProduct = async () => {
 			try {
-				const res = await axios.get(`/api/photos?id=${id}`)
+				const res = await axios.get(`/api/photos?id=${encodeURIComponent(id)}`)
 
 				setProductInfo(res.data)
 			} catch (error) {
-				console.error('[PHOTOS_EDIT] Data boot error:', error)
+				console.error('[PHOTOS_EDIT] Data load error:', error)
 			}
 		}
 

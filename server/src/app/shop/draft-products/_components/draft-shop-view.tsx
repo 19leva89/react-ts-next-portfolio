@@ -25,23 +25,24 @@ export const DraftShopView = () => {
 		setCurrentPage(pageNumber)
 	}
 
-	// filter all data based on search query
+	// Filter data by search query AND publish status in one step
 	const filteredContent =
 		searchQuery.trim() === ''
-			? allData
-			: allData?.filter((content) => content.title.toLowerCase().includes(searchQuery.toLowerCase())) || []
+			? allData?.filter((content) => content.status === 'draft') || []
+			: allData?.filter(
+					(content) =>
+						content.status === 'draft' && content.title.toLowerCase().includes(searchQuery.toLowerCase()),
+				) || []
 
-	// total pages
-	const totalPages = Math.ceil((filteredContent?.length || 0) / perPage)
+	// total pages based on filtered content
+	const totalPages = Math.ceil(filteredContent.length / perPage)
 
 	// calculate index of the first content displayed on the current page
 	const indexOfFirstContent = (currentPage - 1) * perPage
 	const indexOfLastContent = currentPage * perPage
 
-	// get current page of content
-	const currentContent = filteredContent?.slice(indexOfFirstContent, indexOfLastContent) || []
-
-	const draftedContent = currentContent.filter((content) => content.status === 'draft') || []
+	// get current page of content (slice AFTER filtering)
+	const currentContent = filteredContent.slice(indexOfFirstContent, indexOfLastContent)
 
 	return (
 		<div className='content-page'>
@@ -81,14 +82,14 @@ export const DraftShopView = () => {
 							</tr>
 						) : (
 							<>
-								{draftedContent.length === 0 ? (
+								{currentContent.length === 0 ? (
 									<tr>
 										<td colSpan={4} className='text-center'>
-											No Products Found
+											No products found
 										</td>
 									</tr>
 								) : (
-									draftedContent.map((content, index) => (
+									currentContent.map((content, index) => (
 										<tr key={content._id}>
 											<td>{indexOfFirstContent + index + 1}</td>
 
@@ -100,7 +101,7 @@ export const DraftShopView = () => {
 																? content.images[0]
 																: '/img/no-image.png'
 														}
-														alt='image'
+														alt={content.title ? `${content.title} image` : 'Shop image'}
 														width={200}
 														height={100}
 														layout='responsive'
@@ -117,13 +118,13 @@ export const DraftShopView = () => {
 
 											<td>
 												<div className='flex items-center justify-center gap-8'>
-													<Link href={`/shops/edit/${content._id}`}>
+													<Link href={`/shop/edit/${content._id}`}>
 														<button>
 															<SquarePenIcon size={15} />
 														</button>
 													</Link>
 
-													<Link href={`/shops/delete/${content._id}`}>
+													<Link href={`/shop/delete/${content._id}`}>
 														<button>
 															<Trash2Icon size={15} />
 														</button>
@@ -139,7 +140,7 @@ export const DraftShopView = () => {
 				</table>
 
 				{/* for pagination */}
-				{draftedContent.length > 0 && totalPages > 1 && (
+				{filteredContent.length > 0 && totalPages > 1 && (
 					<Pagination paginate={paginate} currentPage={currentPage} totalPages={totalPages} />
 				)}
 			</div>
