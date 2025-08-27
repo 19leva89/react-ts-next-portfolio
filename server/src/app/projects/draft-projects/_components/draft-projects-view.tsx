@@ -5,11 +5,11 @@ import Image from 'next/image'
 import { useState } from 'react'
 import { SquarePenIcon, Trash2Icon } from 'lucide-react'
 
-import { IShop } from '@/models/shop'
+import { IProject } from '@/models/project'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { DashboardHeader, DataLoading, Pagination } from '@/components/shared'
 
-const DraftShopPage = () => {
+export const DraftProjectsView = () => {
 	// pagination
 	const [perPage] = useState<number>(7)
 	const [currentPage, setCurrentPage] = useState<number>(1)
@@ -18,7 +18,7 @@ const DraftShopPage = () => {
 	const [searchQuery, setSearchQuery] = useState<string>('')
 
 	// fetch content data
-	const { allData, loading } = useFetchData<IShop[]>('/api/shops')
+	const { allData, loading } = useFetchData<IProject[]>('/api/projects')
 
 	// handle page change
 	const paginate = (pageNumber: number) => {
@@ -45,11 +45,11 @@ const DraftShopPage = () => {
 
 	return (
 		<div className='content-page'>
-			<DashboardHeader title='All Draft' subtitle='Products' breadcrumbs={['shop', 'draft-product']} />
+			<DashboardHeader title='All Draft' subtitle='Projects' breadcrumbs={['projects', 'draft-projects']} />
 
 			<div className='contents-table'>
 				<div className='mb-4 flex items-center gap-8'>
-					<h2>Search Products:</h2>
+					<h2>Search Projects:</h2>
 
 					<input
 						type='text'
@@ -84,7 +84,7 @@ const DraftShopPage = () => {
 								{draftedContent.length === 0 ? (
 									<tr>
 										<td colSpan={4} className='text-center'>
-											No Products Found
+											No Projects Found
 										</td>
 									</tr>
 								) : (
@@ -117,13 +117,13 @@ const DraftShopPage = () => {
 
 											<td>
 												<div className='flex items-center justify-center gap-8'>
-													<Link href={`/shops/edit/${content._id}`}>
+													<Link href={`/projects/edit/${content._id}`}>
 														<button>
 															<SquarePenIcon size={15} />
 														</button>
 													</Link>
 
-													<Link href={`/shops/delete/${content._id}`}>
+													<Link href={`/projects/delete/${content._id}`}>
 														<button>
 															<Trash2Icon size={15} />
 														</button>
@@ -146,5 +146,3 @@ const DraftShopPage = () => {
 		</div>
 	)
 }
-
-export default DraftShopPage

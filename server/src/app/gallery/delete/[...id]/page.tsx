@@ -1,54 +1,15 @@
-'use client'
-
-import axios from 'axios'
 import Head from 'next/head'
-import { toast } from 'sonner'
-import { Trash2Icon } from 'lucide-react'
-import { useState, useEffect } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { redirect } from 'next/navigation'
 
-import { IPhoto } from '@/models/photo'
-import { DashboardHeader } from '@/components/shared'
+import { auth } from '@/auth'
+import { DeletePhotoView } from './_components/delete-photo-view'
 
-const DeletePhotoPage = () => {
-	const router = useRouter()
-	const { id } = useParams() as { id: string }
+const DeletePhotoPage = async () => {
+	const session = await auth()
 
-	const [productInfo, setProductInfo] = useState<IPhoto | null>(null)
-
-	const goBack = () => {
-		router.push('/gallery')
+	if (!session) {
+		redirect('/auth/sign-in')
 	}
-
-	const deleteProduct = async () => {
-		try {
-			await axios.delete(`/api/photos?id=${id}`)
-
-			toast.success('Photo deleted successfully')
-
-			goBack()
-		} catch (error) {
-			console.error('[BLOGS_DELETE] Error deleting:', error)
-		}
-	}
-
-	useEffect(() => {
-		if (!id) {
-			return
-		}
-
-		const fetchProduct = async () => {
-			try {
-				const res = await axios.get(`/api/photos?id=${id}`)
-
-				setProductInfo(res.data)
-			} catch (error) {
-				console.error('[PHOTOS_DELETE] Error loading data:', error)
-			}
-		}
-
-		fetchProduct()
-	}, [id])
 
 	return (
 		<>
@@ -56,31 +17,7 @@ const DeletePhotoPage = () => {
 				<title>Delete Photo</title>
 			</Head>
 
-			<div className='content-page'>
-				<DashboardHeader title='Delete' subtitle={productInfo?.title || ''} breadcrumbs={['gallery']} />
-
-				<div className='delete-sec flex h-screen w-screen items-center justify-center'>
-					<div className='delete-card'>
-						<Trash2Icon size={60} color='red' />
-
-						<p className='cookie-heading'>Are you sure?</p>
-
-						<p className='cookie-description'>
-							If you delete this website content, it will be permanent delete your content
-						</p>
-
-						<div className='button-container'>
-							<button onClick={deleteProduct} className='accept-button'>
-								Delete
-							</button>
-
-							<button onClick={goBack} className='decline-button'>
-								Cancel
-							</button>
-						</div>
-					</div>
-				</div>
-			</div>
+			<DeletePhotoView />
 		</>
 	)
 }

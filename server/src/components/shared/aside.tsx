@@ -107,7 +107,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 					{/* Dashboard */}
 					<NavItem
 						title='Dashboard'
-						links={[{ href: '/', label: 'Dashboard' }]}
+						links={[{ href: '/dashboard', label: 'Dashboard' }]}
 						activeLink={activeLink}
 						icon={HouseIcon}
 						isOpen={openNavItem === 'Dashboard'}
@@ -164,7 +164,7 @@ export const Aside = ({ asideOpen }: AsideProps) => {
 						title='Shop'
 						links={[
 							{ href: '/shop', label: 'All Products' },
-							{ href: '/shop/draft-product', label: 'Draft Products' },
+							{ href: '/shop/draft-products', label: 'Draft Products' },
 							{ href: '/shop/add-product', label: 'Add Product' },
 						]}
 						activeLink={activeLink}
