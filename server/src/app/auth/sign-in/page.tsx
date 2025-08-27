@@ -2,16 +2,19 @@
 
 import Link from 'next/link'
 import { toast } from 'sonner'
+import { Loader } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { ChangeEvent, useState } from 'react'
 import { signIn, useSession } from 'next-auth/react'
 
+import { Button } from '@/components/ui'
 import { Spinner } from '@/components/shared'
 
 const SignInPage = () => {
 	const router = useRouter()
 	const { status: sessionStatus } = useSession()
 
+	const [isLoading, setIsLoading] = useState<boolean>(false)
 	const [form, setForm] = useState<{ email: string; password: string }>({
 		email: '',
 		password: '',
@@ -23,6 +26,7 @@ const SignInPage = () => {
 
 	const handleSubmit = async (e: ChangeEvent<HTMLFormElement>) => {
 		e.preventDefault()
+		setIsLoading(true)
 
 		try {
 			// attempt to sign in using credentials provider
@@ -46,6 +50,8 @@ const SignInPage = () => {
 			} else {
 				toast.error('Sign in failed: unknown error')
 			}
+		} finally {
+			setIsLoading(false)
 		}
 	}
 
@@ -64,9 +70,10 @@ const SignInPage = () => {
 							type='email'
 							name='email'
 							placeholder='Email'
-							className='input'
 							onChange={handleChange}
 							value={form.email}
+							disabled={isLoading}
+							className='input'
 							required
 						/>
 
@@ -74,15 +81,22 @@ const SignInPage = () => {
 							type='password'
 							name='password'
 							placeholder='Password'
-							className='input'
 							onChange={handleChange}
 							value={form.password}
+							disabled={isLoading}
+							className='input'
 							required
 						/>
 
-						<button className='login-button' type='submit'>
-							Sign In
-						</button>
+						<Button
+							type='submit'
+							size='lg'
+							disabled={isLoading}
+							className='login-button flex h-17 items-center justify-center gap-2'
+						>
+							{isLoading && <Loader size={24} className='size-6 animate-spin' />}
+							{isLoading ? 'Signing In...' : 'Sign In'}
+						</Button>
 
 						<span className='text-gray-600'>
 							Forgot your password?

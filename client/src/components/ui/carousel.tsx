@@ -12,7 +12,7 @@ import {
 import { ArrowLeftIcon, ArrowRightIcon } from 'lucide-react'
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib'
 import { Button } from '@/components/ui'
 
 type CarouselApi = UseEmblaCarouselType[1]

@@ -5,7 +5,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { ArrowUpRightIcon } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib'
 import { IProject } from '@/models/project'
 import { Spinner } from '@/components/shared'
 import { useFetchData } from '@/hooks/use-fetch-data'
