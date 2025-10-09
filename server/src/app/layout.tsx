@@ -1,5 +1,6 @@
 import { Nunito } from 'next/font/google'
 import { PropsWithChildren } from 'react'
+import { Analytics } from '@vercel/analytics/next'
 
 import { constructMetadata } from '@/lib'
 import { AppProvider } from '@/components/shared/providers'
@@ -29,6 +30,9 @@ export default async function RootLayout({ children }: PropsWithChildren) {
 					<ParentComponent>{children}</ParentComponent>
 					{/* </ThemeProvider> */}
 				</AppProvider>
+
+				{/* Allow track page views for Vercel */}
+				<Analytics />
 			</body>
 		</html>
 	)
