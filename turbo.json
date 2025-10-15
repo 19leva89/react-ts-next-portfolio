@@ -1,17 +1,13 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "ui": "tui",
-	"globalEnv": [
-    "TURBO_REMOTE_CACHE_SIGNATURE_KEY" 
-  ],
+  "ui": "stream",
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*", "!README.md"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"],
 			"env": 
 				[
-					"TURBO_REMOTE_CACHE_SIGNATURE_KEY",
 					"DATABASE_URL",
 					"CLIENT_PORT",
 					"ADMIN_PORT",
@@ -32,8 +28,5 @@
       "cache": false,
       "persistent": true
     }
-  },
-  "remoteCache": {
-    "signature": true
   }
 }
