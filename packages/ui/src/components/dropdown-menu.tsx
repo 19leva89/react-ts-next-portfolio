@@ -2,8 +2,8 @@
 
 import { cn } from '@repo/ui/lib'
 import { ComponentProps } from 'react'
+import { DropdownMenu as DropdownMenuPrimitive } from 'radix-ui'
 import { CheckIcon, ChevronRightIcon, CircleIcon } from 'lucide-react'
-import * as DropdownMenuPrimitive from '@radix-ui/react-dropdown-menu'
 
 /**
  * Main dropdown menu component wrapper for dropdown functionality

@@ -1,15 +1,1 @@
-<svg width="512.000000" height="512.000000" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-	<desc>
-			Created with Pixso.
-	</desc>
-
-	<defs>
-		<clipPath id="clip22_7">
-			<rect id="next-js-dark" width="512.000000" height="512.000000" fill="white" fill-opacity="0"/>
-		</clipPath>
-	</defs>
-	
-	<g clip-path="url(#clip22_7)">
-		<path id="path" d="M386.39 35.5C217.06 -64.07 1.88 57.54 0.01 253.88C-1.82 445.59 201.07 569.42 370.03 485.04L185.56 213.63L185.56 381.63C185.56 400.24 149.94 400.24 149.94 381.63L149.94 156.42C149.94 141.64 177.38 140.43 185.16 153.27L395.43 470.57C553.38 368.83 551.24 132.43 386.39 35.5ZM362.64 353.44L326.91 298.87L326.91 149.45C326.91 135.52 362.64 135.52 362.64 149.45L362.64 353.44Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
-	</g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" fill="none" viewBox="0 0 512 512"><defs><clipPath id="a"><path fill="#fff" fill-opacity="0" d="M0 0h512v512H0z"/></clipPath></defs><g clip-path="url(#a)"><path fill="#fff" d="M386.39 35.5C217.06-64.07 1.88 57.54.01 253.88c-1.83 191.71 201.06 315.54 370.02 231.16L185.56 213.63v168c0 18.61-35.62 18.61-35.62 0V156.42c0-14.78 27.44-15.99 35.22-3.15l210.27 317.3c157.95-101.74 155.81-338.14-9.04-435.07m-23.75 317.94-35.73-54.57V149.45c0-13.93 35.73-13.93 35.73 0z"/></g></svg>

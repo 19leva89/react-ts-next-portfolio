@@ -55,15 +55,15 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 
 	const buttonClasses = cn(
 		'inline-flex h-8 items-center rounded-3xl border-none p-2 text-sm font-bold leading-none sm:h-12 sm:px-8 sm:py-4 sm:text-lg',
-		'bg-[var(--week-white)] text-[var(--main-site-color)]',
-		'dark:bg-[#140c1c] dark:text-[var(--pure-white)]',
-		'hover:bg-gradient-to-r hover:from-[var(--main-site-color)] hover:to-[var(--dark-site-secondary)] hover:text-[var(--pure-white)]',
+		'text-main-site-color bg-week-white',
+		'dark:text-pure-white dark:bg-[#140c1c]',
+		'hover:from-main-site-color hover:text-pure-white hover:to-dark-site-secondary hover:bg-gradient-to-r',
 		'transition-all duration-300',
 	)
 
 	const activeClasses = cn(
-		'bg-gradient-to-r from-[var(--main-site-color)] to-[#2a1454] text-[var(--pure-white)]',
-		'dark:bg-gradient-to-r dark:from-[var(--main-site-color)] dark:to-[#2a1454] dark:text-[var(--pure-white)]',
+		'from-main-site-color text-pure-white bg-gradient-to-r to-[#2a1454]',
+		'dark:from-main-site-color dark:text-pure-white dark:bg-gradient-to-r dark:to-[#2a1454]',
 	)
 
 	useEffect(() => {
@@ -84,14 +84,14 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 			<div className='container m-auto'>
 				<div className='relative mx-auto mb-12 mt-0 w-full max-w-[700px] text-center sm:mt-20'>
 					<h2
-						className='mb-0 inline-flex gap-4 bg-gradient-to-r from-[var(--main-site-color)] to-[var(--dark-site-secondary)] bg-clip-text text-4xl capitalize text-transparent sm:text-5xl dark:to-[#dddddd]'
+						className='bg-linear-to-r from-main-site-color to-dark-site-secondary mb-0 inline-flex gap-4 bg-clip-text text-4xl capitalize text-transparent sm:text-5xl dark:to-[#dddddd]'
 						data-aos='fade-up'
 					>
 						My recent works
 					</h2>
 
 					<p
-						className='mt-4 text-center text-sm text-[var(--dark-black)] sm:text-xl dark:text-[#999]'
+						className='text-(--dark-black) mt-4 text-center text-sm sm:text-xl dark:text-[#999]'
 						data-aos='fade-up'
 					>
 						I put your ideas and thus your wishes in the form of a unique web project that inspires you and
@@ -166,7 +166,7 @@ export const ProjectsSection = ({ showAllProjects, maxProjects }: Props) => {
 					) : (
 						<>
 							{filteredProjects.length === 0 ? (
-								<h1 className='mt-12 flex h-[25vh] w-full items-center justify-center text-[var(--dark-black)] dark:text-[#999]'>
+								<h1 className='text-(--dark-black) mt-12 flex h-[25vh] w-full items-center justify-center dark:text-[#999]'>
 									No projects found
 								</h1>
 							) : (

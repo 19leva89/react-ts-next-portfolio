@@ -3,10 +3,12 @@
 import axios from 'axios'
 import Head from 'next/head'
 import Link from 'next/link'
-import { ChangeEvent, FormEvent, useState } from 'react'
-import { LinkedinIcon, MailIcon, PhoneCallIcon, TwitterIcon } from 'lucide-react'
+import { MailIcon, PhoneCallIcon } from 'lucide-react'
+import { ChangeEvent, SubmitEvent, useState } from 'react'
 
 import { IContact } from '@/models/contact'
+import TwitterIcon from '@/assets/icons/twitter.svg'
+import LinkedinIcon from '@/assets/icons/linkedin.svg'
 
 const ContactPage = () => {
 	const [firstName, setFirstName] = useState<string>('')
@@ -21,7 +23,7 @@ const ContactPage = () => {
 
 	const [messageOk, setMessageOk] = useState<string>('')
 
-	const createProduct = async (e: FormEvent<HTMLFormElement>) => {
+	const createProduct = async (e: SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		setMessageOk('Sending...')
@@ -128,7 +130,7 @@ const ContactPage = () => {
 									</li>
 
 									<li>
-										<LinkedinIcon size={26} />
+										<LinkedinIcon size={26} className='stroke-[#6d5edc]' />
 
 										<span>
 											LinkedIn:{' '}
@@ -143,7 +145,7 @@ const ContactPage = () => {
 									</li>
 
 									<li>
-										<TwitterIcon size={26} />
+										<TwitterIcon size={26} className='stroke-[#6d5edc]' />
 
 										<span>
 											Twitter:{' '}

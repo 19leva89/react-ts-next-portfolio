@@ -2,7 +2,7 @@
 
 import { cn } from '@repo/ui/lib'
 import { ComponentProps } from 'react'
-import * as SeparatorPrimitive from '@radix-ui/react-separator'
+import { Separator as SeparatorPrimitive } from 'radix-ui'
 
 /**
  * Separator component for visual division with configurable orientation

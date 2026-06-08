@@ -1,4 +1,3 @@
-import { Bar } from 'react-chartjs-2'
 import {
 	Chart as ChartJS,
 	CategoryScale,
@@ -11,6 +10,7 @@ import {
 	ChartDataset,
 	ChartData,
 } from 'chart.js'
+import { Bar } from 'react-chartjs-2'
 
 import { IBlog } from '@/models/blog'
 import { IShop } from '@/models/shop'

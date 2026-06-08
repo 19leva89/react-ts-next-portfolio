@@ -8,18 +8,10 @@ import Image from 'next/image'
 import remarkGfm from 'remark-gfm'
 import ReactMarkdown from 'react-markdown'
 
-import {
-	CalendarDaysIcon,
-	CopyIcon,
-	EyeIcon,
-	FacebookIcon,
-	LinkedinIcon,
-	SearchIcon,
-	TwitterIcon,
-} from 'lucide-react'
 import { Types } from 'mongoose'
 import { useParams } from 'next/navigation'
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { SubmitEvent, useEffect, useRef, useState } from 'react'
+import { CalendarDaysIcon, CopyIcon, EyeIcon, SearchIcon } from 'lucide-react'
 
 import { IBlog } from '@/models/blog'
 import { absoluteUrl } from '@/lib/utils'
@@ -27,6 +19,10 @@ import { IComment } from '@/models/comment'
 import { formatDate } from '@/utils/format-date'
 import { useFetchData } from '@/hooks/use-fetch-data'
 import { BlogSearch, CodeBlock, Spinner } from '@/components/shared'
+
+import TwitterIcon from '@/assets/icons/twitter.svg'
+import FacebookIcon from '@/assets/icons/facebook.svg'
+import LinkedinIcon from '@/assets/icons/linkedin.svg'
 
 const BlogPage = () => {
 	const { slug } = useParams() as { slug: string }
@@ -70,7 +66,7 @@ const BlogPage = () => {
 		}, 3000)
 	}
 
-	const handleCommentSubmit = async (e: FormEvent<HTMLFormElement>) => {
+	const handleCommentSubmit = async (e: SubmitEvent<HTMLFormElement>) => {
 		e.preventDefault()
 
 		try {
@@ -350,9 +346,12 @@ const BlogPage = () => {
 										<div
 											title='Copy URL'
 											onClick={() => copyToClipboard(blogUrl)}
-											style={{ cursor: 'pointer' }}
+											className='group/animate cursor-pointer'
 										>
-											<CopyIcon size={20} />
+											<CopyIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color dark:stroke-pure-white'
+											/>
 											<span>{copied ? 'Copied!' : ''}</span>
 										</div>
 
@@ -361,8 +360,12 @@ const BlogPage = () => {
 											href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`Check out this blog post: ${blogData.blog.title}`)}&url=${encodeURIComponent(blogUrl)}`}
 											target='_blank'
 											rel='noopener noreferrer'
+											className='group/animate'
 										>
-											<TwitterIcon size={20} />
+											<TwitterIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color dark:stroke-pure-white'
+											/>
 										</Link>
 
 										{/* facebook share button */}
@@ -370,8 +373,12 @@ const BlogPage = () => {
 											href={`https://facebook.com/sharer/sharer.php?u=${encodeURIComponent(blogUrl)}`}
 											target='_blank'
 											rel='noopener noreferrer'
+											className='group/animate'
 										>
-											<FacebookIcon size={20} />
+											<FacebookIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color dark:stroke-pure-white'
+											/>
 										</Link>
 
 										{/* linkedin share button */}
@@ -379,8 +386,12 @@ const BlogPage = () => {
 											href={`https://linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(blogUrl)}`}
 											target='_blank'
 											rel='noopener noreferrer'
+											className='group/animate'
 										>
-											<LinkedinIcon size={20} />
+											<LinkedinIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color dark:stroke-pure-white'
+											/>
 										</Link>
 									</div>
 								</div>

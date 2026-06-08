@@ -1,9 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?>
-
-<svg width="800px" height="800px" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-	<rect x="4" y="8" width="40" height="32" rx="1.63265" fill="#2F88FF" stroke="#000000" stroke-width="4"/>
-	<path d="M16 18.948C14 16 10.4978 17.9376 10.7489 20.9688C11 24 15 24 15.2498 27.0312C15.4997 30.0625 12 32 10 29.052" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-	<path d="M26 18H22V31H26" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-	<path d="M22 25H26" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-	<rect x="32" y="18" width="6" height="13" rx="3" stroke="white" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" fill="none" viewBox="0 0 48 48"><rect width="40" height="32" x="4" y="8" fill="#2f88ff" stroke="#000" stroke-width="4" rx="1.633"/><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M16 18.948c-2-2.948-5.502-1.01-5.251 2.02C11 24 15 24 15.249 27.032 15.5 30.063 12 32 10 29.052M26 18h-4v13h4M22 25h4"/><rect width="6" height="13" x="32" y="18" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" rx="3"/></svg>

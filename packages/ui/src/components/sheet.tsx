@@ -3,7 +3,7 @@
 import { cn } from '@repo/ui/lib'
 import { XIcon } from 'lucide-react'
 import { ComponentProps } from 'react'
-import * as SheetPrimitive from '@radix-ui/react-dialog'
+import { Dialog as SheetPrimitive } from 'radix-ui'
 
 /**
  * Main sheet component wrapper for slide-out panel functionality

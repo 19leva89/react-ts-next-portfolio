@@ -1,12 +1,12 @@
 import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 
-interface PaginationProps {
+interface Props {
 	paginate: (page: number) => void
 	currentPage: number
 	totalPages: number
 }
 
-export const Pagination = ({ paginate, currentPage, totalPages }: PaginationProps) => {
+export const Pagination = ({ paginate, currentPage, totalPages }: Props) => {
 	const pageNumbers = []
 
 	for (let i = 1; i <= totalPages; i++) {

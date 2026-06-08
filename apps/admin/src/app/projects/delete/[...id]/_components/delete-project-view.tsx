@@ -11,6 +11,7 @@ import { DashboardHeader } from '@/components/shared'
 
 export const DeleteProjectView = () => {
 	const router = useRouter()
+
 	const { id } = useParams() as { id: string }
 
 	const [isDeleting, setIsDeleting] = useState<boolean>(false)

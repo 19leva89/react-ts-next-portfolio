@@ -9,8 +9,8 @@ import { useParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 import { IShop } from '@/models/shop'
-import { CodeBlock, Spinner } from '@/components/shared'
 import { useFetchData } from '@/hooks/use-fetch-data'
+import { CodeBlock, Spinner } from '@/components/shared'
 
 // swiper
 import 'swiper/css'

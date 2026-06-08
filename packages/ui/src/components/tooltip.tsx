@@ -2,7 +2,7 @@
 
 import { cn } from '@repo/ui/lib'
 import { ComponentProps } from 'react'
-import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+import { Tooltip as TooltipPrimitive } from 'radix-ui'
 
 /**
  * Tooltip provider component with customizable delay configuration

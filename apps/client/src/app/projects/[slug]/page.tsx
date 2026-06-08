@@ -157,7 +157,7 @@ const ProjectSlugPage = () => {
 						<div className='ps-desc'>
 							<h2>Project description</h2>
 
-							<div className='blog-content dark:bg-[var(--dark-black)]!'>
+							<div className='blog-content dark:bg-(--dark-black)!'>
 								<ReactMarkdown
 									remarkPlugins={[remarkGfm]}
 									components={{

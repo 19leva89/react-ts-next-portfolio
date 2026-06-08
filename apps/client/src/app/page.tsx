@@ -1,28 +1,29 @@
 'use client'
 
+import {
+	ArrowUpRightIcon,
+	CalendarDaysIcon,
+	DownloadIcon,
+	ExternalLinkIcon,
+	GlobeIcon,
+	GraduationCapIcon,
+	MedalIcon,
+} from 'lucide-react'
 import axios from 'axios'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 
-import {
-	ArrowUpRightIcon,
-	CalendarDaysIcon,
-	DownloadIcon,
-	ExternalLinkIcon,
-	FacebookIcon,
-	GithubIcon,
-	GlobeIcon,
-	GraduationCapIcon,
-	LinkedinIcon,
-	MedalIcon,
-	TwitterIcon,
-} from 'lucide-react'
 import { IBlog } from '@/models/blog'
 import { services } from '@/constants/services'
 import { formatDate } from '@/utils/format-date'
 import { ProjectsSection, SkillsGrid, Spinner, TypingAnimation } from '@/components/shared'
+
+import GithubIcon from '@/assets/icons/github.svg'
+import TwitterIcon from '@/assets/icons/twitter.svg'
+import FacebookIcon from '@/assets/icons/facebook.svg'
+import LinkedinIcon from '@/assets/icons/linkedin.svg'
 
 const HomePage = () => {
 	const { theme } = useTheme()
@@ -113,8 +114,11 @@ const HomePage = () => {
 
 								<ul className='hero-social'>
 									<li>
-										<Link href='#' target='_blank' rel='noopener noreferrer'>
-											<TwitterIcon size={20} />
+										<Link href='#' target='_blank' rel='noopener noreferrer' className='group/animate'>
+											<TwitterIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+											/>
 										</Link>
 									</li>
 
@@ -123,26 +127,49 @@ const HomePage = () => {
 											href='https://facebook.com/dimochka.sobolev'
 											target='_blank'
 											rel='noopener noreferrer'
+											className='group/animate'
 										>
-											<FacebookIcon size={20} />
+											<FacebookIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+											/>
 										</Link>
 									</li>
 
 									<li>
-										<Link href='#' target='_blank' rel='noopener noreferrer'>
-											<GlobeIcon size={20} />
+										<Link href='#' target='_blank' rel='noopener noreferrer' className='group/animate'>
+											<GlobeIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+											/>
 										</Link>
 									</li>
 
 									<li>
-										<Link href='https://linkedin.com/in/lev-dmitry' target='_blank' rel='noopener noreferrer'>
-											<LinkedinIcon size={20} />
+										<Link
+											href='https://linkedin.com/in/lev-dmitry'
+											target='_blank'
+											rel='noopener noreferrer'
+											className='group/animate'
+										>
+											<LinkedinIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+											/>
 										</Link>
 									</li>
 
 									<li>
-										<Link href='https://github.com/19leva89' target='_blank' rel='noopener noreferrer'>
-											<GithubIcon size={20} />
+										<Link
+											href='https://github.com/19leva89'
+											target='_blank'
+											rel='noopener noreferrer'
+											className='group/animate'
+										>
+											<GithubIcon
+												size={20}
+												className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+											/>
 										</Link>
 									</li>
 								</ul>

@@ -12,7 +12,9 @@ import { ModeToggle, NavItem } from '@/components/shared'
 
 export const Header = () => {
 	const pathname = usePathname()
+
 	const { theme } = useTheme()
+
 	const [mobile, setMobile] = useState<boolean>(false)
 	const [isSticky, setIsSticky] = useState<boolean>(false)
 	const [activeLink, setActiveLink] = useState<string>('/')
@@ -87,10 +89,10 @@ export const Header = () => {
 					</button>
 
 					<div className='group' onClick={handleMobileOpen}>
-						<div className='mobile-toggle-svg relative size-13 transition-transform duration-300 ease-in-out group-hover:scale-x-[-1]'>
+						<div className='mobile-toggle-svg size-13 relative transition-transform duration-300 ease-in-out group-hover:scale-x-[-1]'>
 							<KanbanIcon
 								size={48}
-								className='absolute inset-0 m-auto size-12! scale-y-[-1] rotate-90 p-1 transition-colors duration-300 ease-in-out hover:text-[var(--main-site-color)]'
+								className='size-12! hover:text-main-site-color absolute inset-0 m-auto rotate-90 scale-y-[-1] p-1 transition-colors duration-300 ease-in-out'
 							/>
 						</div>
 					</div>

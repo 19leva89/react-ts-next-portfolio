@@ -2,7 +2,7 @@
 
 import { cn } from '@repo/ui/lib'
 import { ComponentProps } from 'react'
-import * as LabelPrimitive from '@radix-ui/react-label'
+import { Label as LabelPrimitive } from 'radix-ui'
 
 /**
  * Label component with styled text and accessibility features for form fields

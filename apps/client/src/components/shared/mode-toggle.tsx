@@ -7,8 +7,8 @@ import { MoonIcon, SunIcon } from 'lucide-react'
 import { META_THEME_COLORS, useMetaColor } from '@/hooks/use-meta-color'
 
 export const ModeToggle = () => {
-	const { setTheme, resolvedTheme } = useTheme()
 	const { setMetaColor } = useMetaColor()
+	const { setTheme, resolvedTheme } = useTheme()
 
 	const toggleTheme = useCallback(() => {
 		setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')

@@ -131,6 +131,10 @@ button {
 	--radius-lg: var(--radius);
 	--radius-xl: calc(var(--radius) + 4px);
 	--color-custom-color: var(--custom-color);
+	--color-main-site-color: var(--main-site-color);
+	--color-pure-white: var(--pure-white);
+	--color-week-white: var(--week-white);
+	--color-dark-site-secondary: var(--dark-site-secondary);
 }
 
 @layer base {

@@ -11,6 +11,7 @@ interface HeaderProps {
 
 export const Header = ({ handleAsideOpen }: HeaderProps) => {
 	const { data: session } = useSession()
+
 	const [isFullscreen, setIsFullscreen] = useState<boolean>(false)
 
 	const toggleFullscreen = () => {
@@ -33,7 +34,7 @@ export const Header = ({ handleAsideOpen }: HeaderProps) => {
 				{session ? (
 					<div className='header-ham group flex items-center justify-center' onClick={handleAsideOpen}>
 						<div className='relative size-7 transition-transform duration-300 ease-in-out group-hover:scale-x-[-1]'>
-							<KanbanIcon size={24} className='absolute inset-0 m-auto size-6! rotate-270' />
+							<KanbanIcon size={24} className='size-6! rotate-270 absolute inset-0 m-auto' />
 						</div>
 					</div>
 				) : null}

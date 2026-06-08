@@ -1,6 +1,11 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { FacebookIcon, GithubIcon, GlobeIcon, LinkedinIcon, TwitterIcon } from 'lucide-react'
+import { GlobeIcon } from 'lucide-react'
+
+import GithubIcon from '@/assets/icons/github.svg'
+import TwitterIcon from '@/assets/icons/twitter.svg'
+import FacebookIcon from '@/assets/icons/facebook.svg'
+import LinkedinIcon from '@/assets/icons/linkedin.svg'
 
 export const Footer = () => {
 	return (
@@ -44,38 +49,65 @@ export const Footer = () => {
 
 				<ul className='hero-social'>
 					<li>
-						<Link href='/' target='_blank' rel='noopener noreferrer'>
-							<TwitterIcon size={20} />
+						<Link href='/' target='_blank' rel='noopener noreferrer' className='group/animate'>
+							<TwitterIcon
+								size={20}
+								className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+							/>
 						</Link>
 					</li>
 
 					<li>
-						<Link href='https://facebook.com/dimochka.sobolev' target='_blank' rel='noopener noreferrer'>
-							<FacebookIcon size={20} />
+						<Link
+							href='https://facebook.com/dimochka.sobolev'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='group/animate'
+						>
+							<FacebookIcon
+								size={20}
+								className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+							/>
 						</Link>
 					</li>
 
 					<li>
-						<Link href='/' target='_blank' rel='noopener noreferrer'>
-							<GlobeIcon size={20} />
+						<Link href='/' target='_blank' rel='noopener noreferrer' className='group/animate'>
+							<GlobeIcon size={20} className='group-hover/animate:stroke-pure-white stroke-main-site-color' />
 						</Link>
 					</li>
 
 					<li>
-						<Link href='https://linkedin.com/in/lev-dmitry' target='_blank' rel='noopener noreferrer'>
-							<LinkedinIcon size={20} />
+						<Link
+							href='https://linkedin.com/in/lev-dmitry'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='group/animate'
+						>
+							<LinkedinIcon
+								size={20}
+								className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+							/>
 						</Link>
 					</li>
 
 					<li>
-						<Link href='https://github.com/19leva89' target='_blank' rel='noopener noreferrer'>
-							<GithubIcon size={20} />
+						<Link
+							href='https://github.com/19leva89'
+							target='_blank'
+							rel='noopener noreferrer'
+							className='group/animate'
+						>
+							<GithubIcon
+								size={20}
+								className='group-hover/animate:stroke-pure-white stroke-main-site-color'
+							/>
 						</Link>
 					</li>
 				</ul>
 
 				<div className='copyrights'>
-					&copy; 2025. All rights reserved by <span>Sobolev.in</span>
+					&copy; 2025-2026. All rights reserved by <span>Sobolev.in</span>
 				</div>
 			</div>
 		</footer>

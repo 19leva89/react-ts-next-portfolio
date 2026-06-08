@@ -11,6 +11,14 @@ const nextConfig: NextConfig = {
 		unoptimized: true,
 	},
 	reactStrictMode: false,
+	turbopack: {
+		rules: {
+			'*.svg': {
+				loaders: ['@svgr/webpack'],
+				as: '*.js',
+			},
+		},
+	},
 }
 
 export default nextConfig

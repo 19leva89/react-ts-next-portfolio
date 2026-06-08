@@ -36,7 +36,7 @@ const ServicesPage = () => {
 								<div>
 									<h2>Web deployment</h2>
 
-									<Image src='/svg/website-icon.svg' alt='' width={70} height={70} />
+									<Image src='/svg/website-icon.svg' alt='website icon' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -60,7 +60,7 @@ const ServicesPage = () => {
 								<div>
 									<h2>Mobile development</h2>
 
-									<Image src='/svg/android.svg' alt='' width={70} height={70} />
+									<Image src='/svg/android.svg' alt='android' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -85,7 +85,7 @@ const ServicesPage = () => {
 								<div>
 									<h2>Digital marketing (SEO)</h2>
 
-									<Image src='/svg/seo.svg' alt='' width={70} height={70} />
+									<Image src='/svg/seo.svg' alt='seo' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -108,7 +108,7 @@ const ServicesPage = () => {
 								<div>
 									<h2>Content creator</h2>
 
-									<Image src='/svg/photo-album.svg' alt='' width={70} height={70} />
+									<Image src='/svg/photo-album.svg' alt='photo album' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -131,7 +131,7 @@ const ServicesPage = () => {
 								<div>
 									<h2>UI/UX product design</h2>
 
-									<Image src='/svg/ui.svg' alt='' width={70} height={70} />
+									<Image src='/svg/ui.svg' alt='ui/ux' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -154,7 +154,7 @@ const ServicesPage = () => {
 								<div>
 									<h2>E-commerce business solutions</h2>
 
-									<Image src='/svg/shopify.svg' alt='' width={70} height={70} />
+									<Image src='/svg/shopify.svg' alt='shopify' width={70} height={70} />
 								</div>
 
 								<ul>
@@ -178,7 +178,7 @@ const ServicesPage = () => {
 					<div className='container m-auto'>
 						<div className='pricing-title text-center'>
 							<h3 data-aos='fade-up' className='flex items-center justify-center gap-2'>
-								<Image src='/img/chevron-right.png' alt='' width={45} height={20} /> Pricing plan
+								<Image src='/img/chevron-right.png' alt='chevron right' width={45} height={20} /> Pricing plan
 							</h3>
 
 							<h2 data-aos='fade-up' className='capitalize'>

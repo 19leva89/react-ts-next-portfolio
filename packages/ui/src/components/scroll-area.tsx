@@ -2,7 +2,7 @@
 
 import { cn } from '@repo/ui/lib'
 import { ComponentProps } from 'react'
-import * as ScrollAreaPrimitive from '@radix-ui/react-scroll-area'
+import { ScrollArea as ScrollAreaPrimitive } from 'radix-ui'
 
 /**
  * Scroll area component with custom styled scrollbars and viewport management
